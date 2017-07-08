@@ -1,0 +1,345 @@
+'scopeName': 'source.stata'
+'name': 'Stata'
+'fileTypes': [
+  'do',
+  'ado',
+  'mata'
+]
+'foldingStartMarker': '\\{\\s*$'
+'foldingStopMarker': '^\\s*\\}'
+'patterns': [
+  {
+    'match': '\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))(?=[^a-zA-Z_])'
+    'name': 'constant.numeric.float.stata'
+  }
+  {
+    'match': '(?<=[^0-9a-zA-Z_])(?i:(\\.\\d+(e[\\-\\+]?\\d+)?))'
+    'name': 'constant.numeric.float.stata'
+  }
+  {
+    'match': '\\b(?i:(\\d+e[\\-\\+]?\\d+))'
+    'name': 'constant.numeric.float.stata'
+  }
+  {
+    'match': '\\b(?i:([1-9]+[0-9]*|0)L)'
+    'name': 'constant.numeric.integer.long.decimal.stata'
+  }
+  {
+    'match': '\\b([0-9]+|0)'
+    'name': 'constant.numeric.integer.decimal.stata'
+  }
+  {
+    'include': '#line_comments'
+  }
+  {
+    'begin': '"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.stata'
+    'end': '"'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.stata'
+    'name': 'string.quoted.double.stata'
+  }
+  {
+    'begin': '`"'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.string.begin.stata'
+    'end': '"\''
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.string.end.stata'
+    'name': 'string.quoted.double.compound.stata'
+    'patterns': [
+      {
+        'include': '#cdq_string_content'
+      }
+    ]
+  }
+  {
+    'begin': '/\\*'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.begin.stata'
+    'end': '\\*/'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.end.stata'
+    'name': 'comment.block.stata'
+    'patterns': [
+      {
+        'include': '#cb_content'
+      }
+    ]
+  }
+  {
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.stata'
+    'match': '^\\s*(\\*).*$\\n?'
+    'name': 'comment.line.star.stata'
+    'comment': 'TODO! need to except out the occasion that a * comes after a /// on the previous line. May be easiest to join with the comment.line.triple-slash.stata below'
+  }
+  {
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.stata'
+    'match': '(///).*$\\n?'
+    'name': 'comment.line.triple-slash.stata'
+  }
+  {
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.stata'
+    'match': '(//).*$\\n?'
+    'name': 'comment.line.double-slash.stata'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.string.begin.stata'
+      '2':
+        'name': 'meta.empty-list.stata'
+      '3':
+        'name': 'punctuation.definition.string.end.stata'
+    'match': '(`)(\\s*(\'))\\b'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'punctuation.definition.string.begin.stata'
+      '2':
+        'name': 'meta.empty-list.stata'
+      '3':
+        'name': 'punctuation.definition.string.end.stata'
+    'match': '(`)([a-z]*)(\')'
+  }
+  {
+    'begin': '`'
+    'beginCaptures':
+      'name': 'punctuation.section.local.begin.stata'
+    'contentName': 'entity.name.type.local.stata'
+    'end': '\''
+    'endCaptures':
+      '1':
+        'name': 'punctuation.section.local.end.stata'
+    'name': 'meta.local.stata'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'storage.modifier.global.stata'
+    'match': '\\b(gl|glo|glob|globa|global)\\b'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'storage.modifier.local.stata'
+    'match': '\\b(loc|loca|local)\\b'
+  }
+  {
+    'comment': 'keywords that delimit flow conditionals'
+    'name': 'keyword.control.conditional.stata'
+    'match': '\\b(if|else)\\b'
+  }
+  {
+    'comment': 'keywords that delimit loops'
+    'name': 'keyword.control.repeat.stata'
+    'match': '\\b(foreach|forv(a|al|alu|alue|alues)?|while)\\b'
+  }
+  {
+    'comment': 'keywords that alter flow from within a block'
+    'name': 'keyword.control.statement.stata'
+    'match': '\\b(continue)\\b'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.other.stata'
+    'comment': 'keywords that haven\'t fit into other groups (yet).'
+    'match': '\\b(as|ass|asse|asser|assert)\\b'
+  }
+ {
+    'begin': '^\\s*(cap(t|tu|tur|ture)?|qui(e|et|etl|etly)?|n(o|oi|ois|oisi|oisil|oisily)?:?)?\\s*(program)\\s*(de(f|fi|fin|fine)?|di(r)?|drop|l(i|is|ist)?)?\\s+(?=[A-Za-z_][A-Za-z0-9_]*)'
+    'beginCaptures':
+      '5':
+        'name': 'storage.type.function.stata'
+    'end': '(\\()|\\s*($\\n?|#.*$\\n?)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.parameters.begin.stata'
+      '2':
+        'name': 'invalid.illegal.missing-parameters.stata'
+    'name': 'meta.function.stata'
+    'patterns': [
+      {
+        'begin': '(?=[A-Za-z_][A-Za-z0-9_]*)'
+        'contentName': 'entity.name.function.stata'
+        'end': '(?![A-Za-z0-9_])'
+        'patterns': [
+          {
+            'include': '#entity_name_function'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'include': '#dotted_name'
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    'match': '\\+|\\-|\\*|\\^'
+    'name': 'keyword.operator.arithmetic.stata'
+  }
+  {
+    'comment': 'match division operator but not path separator'
+    'match': '(?<![a-zA-Z.])/(?![a-zA-Z.]|$)'
+    'name': 'keyword.operator.arithmetic.stata'
+  }
+  {
+    'match': '\\&|\\||!|~'
+    'name': 'keyword.operator.logical.stata'
+  }
+  {
+    'match': '<|>|<\\=|>\\=|\\=\\=|\\!\\=|~\\='
+    'name': 'keyword.operator.comparison.stata'
+  }
+  {
+    'match': '\\='
+    'name': 'keyword.operator.assignment.stata'
+  }
+]
+'repository':
+  'builtin_functions':
+      'match': '\\b(regexm|regexs|__import__|abs)\\b'
+      'name': 'support.function.builtin.stata'
+  'builtin_types':
+      'match': '\\b(byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)\\b'
+      'name': 'support.type.stata'
+  'line_comments':
+      'match': ''
+      'name': ''
+  'dotted_name':
+    'begin': '(?=[A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*)'
+    'end': '(?![A-Za-z0-9_\\.])'
+    'patterns': [
+      {
+        'begin': '(\\.)(?=[A-Za-z_][A-Za-z0-9_]*)'
+        'end': '(?![A-Za-z0-9_])'
+        'patterns': [
+          {
+            'include': '#magic_function_names'
+          }
+          {
+            'include': '#magic_variable_names'
+          }
+          {
+            'include': '#illegal_names'
+          }
+          {
+            'include': '#generic_names'
+          }
+        ]
+      }
+      {
+        'begin': '(?<!\\.)(?=[A-Za-z_][A-Za-z0-9_]*)'
+        'end': '(?![A-Za-z0-9_])'
+        'patterns': [
+          {
+            'include': '#builtin_functions'
+          }
+          {
+            'include': '#builtin_types'
+          }
+          {
+            'include': '#builtin_exceptions'
+          }
+          {
+            'include': '#illegal_names'
+          }
+          {
+            'include': '#magic_function_names'
+          }
+          {
+            'include': '#magic_variable_names'
+          }
+          {
+            'include': '#language_variables'
+          }
+          {
+            'include': '#generic_names'
+          }
+        ]
+      }
+    ]
+  'function_name':
+    'patterns': [
+      {
+        'include': '#magic_function_names'
+      }
+      {
+        'include': '#magic_variable_names'
+      }
+      {
+        'include': '#builtin_exceptions'
+      }
+      {
+        'include': '#builtin_functions'
+      }
+      {
+        'include': '#builtin_types'
+      }
+      {
+        'include': '#generic_names'
+      }
+    ]
+  'generic_names':
+      'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+  'illegal_names':
+      'match': '\\b(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with)\\b'
+      'name': 'invalid.illegal.name.stata'
+  'regular_expressions':
+    'patterns': [
+      {
+        'include': 'source.regexp.stata'
+      }
+    ]
+  'varlist':
+    'match': ''
+    'name': ''
+  'cb_content':
+    'begin': '/\\*'
+    'end': '\\*/'
+    'patterns': [
+      {
+        'include': '#cb_content'
+      }
+    ]
+  'cdq_string_content':
+    'begin': '`"'
+    'end': '"\''
+    'patterns': [
+      {
+        'include': '#cdq_string_content'
+      }
+    ]
+# scratch
+# prefix commands: by (bysort) statsby rolling bootstrap jackknife permute simulate svy "mi estimate" nestreg stepwise xi fp mfp capture noisily quietly version
