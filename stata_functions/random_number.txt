@@ -1,181 +1,324 @@
 
 Title
 
-    [D] functions -- Functions
+    [FN] Random-number functions
 
 
-Description
-
-    This is a quick reference on functions for generating pseudorandom variates.  For help on all
-    functions, see [D] functions.  See [R] set seed for setting the random-number seed.
-
-
-Random-number functions
+Functions
 
     runiform()
-       Range:        0 to nearly 1 (0 to 1 - 2^(-32))
-       Description:  returns uniform random variates.
+       Description:  uniformly distributed random variates over the interval
+                     (0,1)
 
-                     runiform() returns uniformly distributed random variates on the interval [0,1).
-                     runiform() takes no arguments, but the parentheses must be typed.  runiform() can
-                     be seeded with the set seed command. (See matrix functions for the related
-                     matuniform() matrix function.)
+                     runiform() can be seeded with the set seed command; see
+                     [R] set seed.
+       Range:        c(epsdouble) to 1-c(epsdouble)
 
-                     To generate random variates over the interval [a,b), use a+(b-a)*runiform().
+    runiform(a,b)
+       Description:  uniformly distributed random variates over the interval
+                     (a,b)
+       Domain a:     c(mindouble) to c(maxdouble)
+       Domain b:     c(mindouble) to c(maxdouble)
+       Range:        a+c(epsdouble) to b-c(epsdouble)
 
-                     To generate random integers over [a,b], use a+int((b-a+1)*runiform()).
+    runiformint(a,b)
+       Description:  uniformly distributed random integer variates on the
+                     interval [a,b]
+
+                     If a or b is nonintegral, runiformint(a,b) returns
+                     runiformint(floor(a), floor(b)).
+       Domain a:     -2^53 to 2^53 (may be nonintegral)
+       Domain b:     -2^53 to 2^53 (may be nonintegral)
+       Range:        -2^53 to 2^53
+
+    ---------------------------------------------------------------------------
 
     rbeta(a, b)
+       Description:  beta(a,b) random variates, where a and b are the beta
+                     distribution shape parameters
+
+                     Besides using the standard methodology for generating
+                     random variates from a given distribution, rbeta() uses
+                     the specialized algorithms of Johnk (Gentle 2003),
+                     Atkinson and Wittaker (1970, 1976), Devroye (1986), and
+                     Schmeiser and Babu (1980).
        Domain a:     0.05 to 1e+5
        Domain b:     0.15 to 1e+5
        Range:        0 to 1 (exclusive)
-       Description:  returns beta(a,b) random variates, where a and b are the beta distribution shape
-                     parameters.
-
-                     Besides the standard methodology for generating random variates from a given
-                     distribution, rbeta() uses the specialized algorithms of Johnk (Gentle 2003),
-                     Atkinson and Wittaker (1970, 1976), Devroye (1986), and Schmeiser and Babu (1980).
 
     rbinomial(n, p)
+       Description:  binomial(n,p) random variates, where n is the number of
+                     trials and p is the success probability
+
+                     Besides using the standard methodology for generating
+                     random variates from a given distribution, rbinomial()
+                     uses the specialized algorithms of Kachitvichyanukul
+                     (1982), Kachitvichyanukul and Schmeiser (1988), and Kemp
+                     (1986).
        Domain n:     1 to 1e+11
        Domain p:     1e-8 to 1-1e-8
        Range:        0 to n
-       Description:  returns binomial(n,p) random variates, where n is the number of trials and p is the
-                     success probability.
 
-                     Besides the standard methodology for generating random variates from a given
-                     distribution, rbinomial() uses the specialized algorithms of Kachitvichyanukul
-                     (1982), Kachitvichyanukul and Schmeiser (1988), and Kemp (1986).
+    rcauchy(a,b)
+       Description:  Cauchy(a,b) random variates, where a is the location
+                     parameter and b is the scale parameter
+       Domain a:     -1e+300 to 1e+300
+       Domain b:     1e-100 to 1e+300
+       Range:        c(mindouble) to c(maxdouble)
 
     rchi2(df)
+       Description:  chi-squared, with df degrees of freedom, random variates
        Domain df:    2e-4 to 2e+8
        Range:        0 to c(maxdouble)
-       Description:  returns chi-squared, with df degrees of freedom, random variates.
+
+    rexponential(b)
+       Description:  exponential random variates with scale b
+       Domain b:     1e-323 to 8e+307
+       Range:        1e-323 to 8e+307
 
     rgamma(a, b)
+       Description:  gamma(a,b) random variates, where a is the gamma shape
+                     parameter and b is the scale parameter
+
+                     Methods for generating gamma variates are taken from
+                     Ahrens and Dieter (1974), Best (1983), and Schmeiser and
+                     Lal (1980).
        Domain a:     1e-4 to 1e+8
        Domain b:     c(smallestdouble) to c(maxdouble)
        Range:        0 to c(maxdouble)
-       Description:  returns gamma(a,b) random variates, where a is the gamma shape parameter and b is
-                     the scale parameter.
-
-                     Methods for generating gamma variates are taken from Ahrens and Dieter (1974), Best
-                     (1983), and Schmeiser and Lal (1980).
 
     rhypergeometric(N, K, n)
+       Description:  hypergeometric random variates
+
+                     The distribution parameters are integer valued, where N
+                     is the population size, K is the number of elements in
+                     the population that have the attribute of interest, and
+                     n is the sample size.
+
+                     Besides using the standard methodology for generating
+                     random variates from a given distribution,
+                     rhypergeometric() uses the specialized algorithms of
+                     Kachitvichyanukul (1982) and Kachitvichyanukul and
+                     Schmeiser (1985).
        Domain N:     2 to 1e+6
        Domain K:     1 to N-1
        Domain n:     1 to N-1
        Range:        max(0,n-N+K) to min(K,n)
-       Description:  returns hypergeometric random variates.  The distribution parameters are integer
-                     valued, where N is the population size, K is the number of elements in the
-                     population that have the attribute of interest, and n is the sample size.
 
-                     Besides the standard methodology for generating random variates from a given
-                     distribution, rhypergeometric() uses the specialized algorithms of
-                     Kachitvichyanukul (1982) and Kachitvichyanukul and Schmeiser (1985).
+    rigaussian(m,a)
+       Description:  inverse Gaussian random variates with mean m and shape
+                     parameter a
+
+                     rigaussian() is based on a method proposed by Michael,
+                     Schucany, and Haas (1976).
+       Domain m:     1e-10 to 1000
+       Domain a:     0.001 to 1e+10
+       Range:        0 to c(maxdouble)
+
+    rlaplace(m,b)
+       Description:  Laplace(m,b) random variates with mean m and scale
+                     parameter b
+       Domain m:     -1e+300 to 1e+300
+       Domain b:     1e-300 to 1e+300
+       Range:        c(mindouble) to c(maxdouble)
+
+    rlogistic()
+       Description:  logistic variates with mean 0 and standard deviation
+                     pi/sqrt(3)
+
+                     The variates x are generated by x = invlogistic(0,1,u),
+                     where u is a random uniform(0,1) variate.
+       Range:        c(mindouble) to c(maxdouble)
+
+    rlogistic(s)
+       Description:  logistic variates with mean 0, scale s, and standard
+                     deviation s*pi/sqrt(3)
+
+                     The variates x are generated by x = invlogistic(0,s,u),
+                     where u is a random uniform(0,1) variate.
+       Domain s:     0 to c(maxdouble)
+       Range:        c(mindouble) to c(maxdouble)
+
+    rlogistic(m,s)
+       Description:  logistic variates with mean m, scale s, and standard
+                     deviation s*pi/sqrt(3)
+
+                     The variates x are generated by x = invlogistic(m,s,u),
+                     where u is a random uniform(0,1) variate.
+       Domain m:     c(mindouble) to c(maxdouble)
+       Domain s:     0 to c(maxdouble)
+       Range:        c(mindouble) to c(maxdouble)
 
     rnbinomial(n, p)
-       Domain n:     0.1 to 1e+5
+       Description:  negative binomial random variates
+
+                     If n is integer valued, rnbinomial() returns the number
+                     of failures before the nth success, where the
+                     probability of success on a single trial is p.  n can
+                     also be nonintegral.
+       Domain n:     1e-4 to 1e+5
        Domain p:     1e-4 to 1-1e-4
        Range:        0 to 2^53-1
-       Description:  returns negative binomial random variates.  If n is integer valued, rnbinomial()
-                     returns the number of failures before the nth success, where the probability of
-                     success on a single trial is p.  n can also be nonintegral.
 
     rnormal()
+       Description:  standard normal (Gaussian) random variates, that is,
+                     variates from a normal distribution with a mean of 0 and
+                     a standard deviation of 1
        Range:        c(mindouble) to c(maxdouble)
-       Description:  returns standard normal (Gaussian) random variates, that is, variates from a normal
-                     distribution with a mean of 0 and a standard deviation of 1.
 
     rnormal(m)
+       Description:  normal(m,1) (Gaussian) random variates, where m is the
+                     mean and the standard deviation is 1
        Domain m:     c(mindouble) to c(maxdouble)
        Range:        c(mindouble) to c(maxdouble)
-       Description:  returns normal(m,1) (Gaussian) random variates, where m is the mean and the
-                     standard deviation is 1.
 
     rnormal(m, s)
-       Domain m:     c(mindouble) to c(maxdouble)
-       Domain s:     c(smallestdouble) to c(maxdouble)
-       Range:        c(mindouble) to c(maxdouble)
-       Description:  returns normal(m,s) (Gaussian) random variates, where m is the mean and s is the
-                     standard deviation.
+       Description:  normal(m,s) (Gaussian) random variates, where m is the
+                     mean and s is the standard deviation
 
-                     The methods for generating normal (Gaussian) random variates are taken from Knuth
-                     (1998, 122-128); Marsaglia, MacLaren, and Bray (1964); and Walker (1977).
+                     The methods for generating normal (Gaussian) random
+                     variates are taken from Knuth (1998, 122-128);
+                     Marsaglia, MacLaren, and Bray (1964); and Walker (1977).
+       Domain m:     c(mindouble) to c(maxdouble)
+       Domain s:     0 to c(maxdouble)
+       Range:        c(mindouble) to c(maxdouble)
 
     rpoisson(m)
+       Description:  Poisson(m) random variates, where m is the distribution
+                     mean
+
+                     Poisson variates are generated using the probability
+                     integral transform methods of Kemp and Kemp (1990, 1991)
+                     and the method of Kachitvichyanukul (1982).
        Domain m:     1e-6 to 1e+11
        Range:        0 to 2^53-1
-       Description:  returns Poisson(m) random variates, where m is the distribution mean.
-
-                     Poisson variates are generated using the probability integral transform methods of
-                     Kemp and Kemp (1990, 1991), as well as the method of Kachitvichyanukul (1982).
 
     rt(df)
+       Description:  Student's t random variates, where df is the degrees of
+                     freedom
+
+                     Student's t variates are generated using the method of
+                     Kinderman and Monahan (1977, 1980).
        Domain df:    1 to 2^53-1
        Range:        c(mindouble) to c(maxdouble)
-       Description:  returns Student's t random variates, where df is the degrees of freedom.
 
-                     Student's t variates are generated using the method of Kinderman and Monahan (1977,
-                     1980).
+    rweibull(a,b)
+       Description:  Weibull variates with shape a and scale b
+
+                     The variates x are generated by x =
+                     invweibulltail(a,b,0,u), where u is a random
+                     uniform(0,1) variate.
+       Domain a:     0.01 to 1e+6
+       Domain b:     1e-323 to 8e+307
+       Range:        1e-323 to 8e+307
+
+    rweibull(a,b,g)
+       Description:  Weibull variates with shape a, scale b, and location g
+
+                     The variates x are generated by x =
+                     invweibulltail(a,b,g,u), where u is a random
+                     uniform(0,1) variate.
+       Domain a:     0.01 to 1e+6
+       Domain b:     1e-323 to 8e+307
+       Domain g:     -8e-307 to 8e+307
+       Range:        g+c(epsdouble) to 8e+307
+
+
+    rweibullph(a,b)
+       Description:  Weibull (proportional hazards) variates with shape a and
+                     scale b
+
+                     The variates x are generated by x =
+                     invweibullphtail(a,b,0,u), where u is a random
+                     uniform(0,1) variate.
+       Domain a:     0.01 to 1e+6
+       Domain b:     1e-323 to 8e+307
+       Range:        1e-323 to 8e+307
+
+    rweibullph(a,b,g)
+       Description:  Weibull (proportional hazards) variates with shape a,
+                     scale b, and location g
+
+                     The variates x are generated by x =
+                     invweibullphtail(a,b,g,u), where u is a random
+                     uniform(0,1) variate.
+       Domain a:     0.01 to 1e+6
+       Domain b:     1e-323 to 8e+307
+       Domain g:     -8e-307 to 8e+307
+       Range:        g+c(epsdouble) to 8e+307
+
 
 
 References
 
-    Ahrens, J. H., and U. Dieter.  1974.  Computer methods for sampling from gamma, beta, Poisson, and
-        binomial distributions.  Computing 12: 223-246.
+    Ahrens, J. H., and U. Dieter.  1974.  Computer methods for sampling from
+        gamma, beta, Poisson, and binomial distributions.  Computing 12:
+        223-246.
 
-    Atkinson, A. C., and J. Whittaker.  1976.  A switching algorithm for the generation of beta random
-        variables with at least one parameter less than 1.  Journal of the Royal Statistical Society,
-        Series A 139: 462-467.
+    Atkinson, A. C., and J. Whittaker.  1976.  A switching algorithm for the
+        generation of beta random variables with at least one parameter less
+        than 1.  Journal of the Royal Statistical Society, Series A 139:
+        462-467.
 
-    ------. 1970. Algorithm AS 134: The generation of beta random variables with one parameter greater
-        than and one parameter less than 1.  Applied Statistics 28: 90-93.
+    ------. 1970. Algorithm AS 134: The generation of beta random variables
+        with one parameter greater than and one parameter less than 1.
+        Applied Statistics 28: 90-93.
 
-    Best, D. J.  1983.  A note on gamma variate generators with shape parameters less than unity.
-        Computing 30: 185-188.
+    Best, D. J.  1983.  A note on gamma variate generators with shape
+        parameters less than unity.  Computing 30: 185-188.
 
-    Devroye, L.  1986.  Non-uniform Random Variate Generation.  New York: Springer.
-
-    Gentle, J. E.  2003.  Random Number Generation and Monte Carlo Methods.  2nd ed.  New York:
+    Devroye, L.  1986.  Non-uniform Random Variate Generation.  New York:
         Springer.
 
-    Kachitvichyanukul, V.  1982.  Computer Generation of Poisson, Binomial, and Hypergeometric Random
-        Variables.  PhD thesis, Purdue University.
+    Gentle, J. E.  2003.  Random Number Generation and Monte Carlo Methods.
+        2nd ed.  New York: Springer.
 
-    Kachitvichyanukul, V., and B. Schmeiser.  1985.  Computer generation of hypergeometric random
-        variates.  Journal of Statistical Computation and Simulation 22: 127-145.
+    Kachitvichyanukul, V.  1982.  Computer Generation of Poisson, Binomial,
+        and Hypergeometric Random Variables.  PhD thesis, Purdue University.
 
-    ------.  1988.  Binomial random variate generation.  Communications of the Association for Computing
-        Machinery 31: 216-222.
+    Kachitvichyanukul, V., and B. Schmeiser.  1985.  Computer generation of
+        hypergeometric random variates.  Journal of Statistical Computation
+        and Simulation 22: 127-145.
 
-    Kemp, C. D.  1986.  A modal method for generating binomial variates.  Communications in Statistics:
-        Theory and Methods 15: 805-813.
+    ------.  1988.  Binomial random variate generation.  Communications of
+        the Association for Computing Machinery 31: 216-222.
 
-    Kemp, A. W., and C. D. Kemp.  1990.  A composition-search algorithm for low-parameter Poisson
-        generation.  Journal of Statistical Computation and Simulation 35: 239-244.
+    Kemp, C. D.  1986.  A modal method for generating binomial variates.
+        Communications in Statistics: Theory and Methods 15: 805-813.
 
-    Kemp, C. D., and A. W. Kemp.  1991.  Poisson random variate generation.  Applied Statistics 40:
-        143-158.
+    Kemp, A. W., and C. D. Kemp.  1990.  A composition-search algorithm for
+        low-parameter Poisson generation.  Journal of Statistical Computation
+        and Simulation 35: 239-244.
 
-    Kinderman, A. J., and J. F. Monahan.  1977.  Computer generation of random variables using the ratio
-        of uniform deviates.  Association for Computing Machinery Transactions on Mathematical Software
-        3: 257-260.
+    Kemp, C. D., and A. W. Kemp.  1991.  Poisson random variate generation.
+        Applied Statistics 40: 143-158.
 
-    ------.  1980.  New methods for generating Student's t and gamma variables.  Computing 25: 369-377.
+    Kinderman, A. J., and J. F. Monahan.  1977.  Computer generation of
+        random variables using the ratio of uniform deviates.  Association
+        for Computing Machinery Transactions on Mathematical Software 3:
+        257-260.
 
-    Knuth, D.  1998.  The Art of Computer Programming, Volume 2: Seminumerical Algorithms.  3rd ed.
-        Reading, MA: Addison Wesley.
+    ------.  1980.  New methods for generating Student's t and gamma
+        variables.  Computing 25: 369-377.
 
-    Marsaglia, G., M. D. MacLaren, and T. A. Bray.  1964.  A fast procedure for generating normal random
-        variables.  Communications of the ACM 7: 4-10.
+    Knuth, D.  1998.  The Art of Computer Programming, Volume 2:
+        Seminumerical Algorithms.  3rd ed.  Reading, MA: Addison Wesley.
 
-    Schmeiser, B. W., and A. J. G. Babu.  1980.  Beta variate generation via exponential majorizing
-        functions.  Operations Research 28: 917-926.
+    Marsaglia, G., M. D. MacLaren, and T. A. Bray.  1964.  A fast procedure
+        for generating normal random variables.  Communications of the ACM 7:
+        4-10.
 
-    Schmeiser, B. W., and R. Lal. 1980.  Squeeze methods for generating gamma variates.  Journal of the
-        American Statistical Association 75: 679-682.
+    Michael, J. R., W. R. Schucany, and R. W. Haas.  1976. Generating random
+        variates using transformations with multiple roots.  American
+        Statistician 30: 88-90.
 
-    Walker, A. J.  1977.  An efficient method for generating discrete random variables with general
-        distributions.  ACM Transactions on Mathematical Software 3: 253-256.
+    Schmeiser, B. W., and A. J. G. Babu.  1980.  Beta variate generation via
+        exponential majorizing functions.  Operations Research 28: 917-926.
+
+    Schmeiser, B. W., and R. Lal. 1980.  Squeeze methods for generating gamma
+        variates.  Journal of the American Statistical Association 75:
+        679-682.
+
+    Walker, A. J.  1977.  An efficient method for generating discrete random
+        variables with general distributions.  ACM Transactions on
+        Mathematical Software 3: 253-256.

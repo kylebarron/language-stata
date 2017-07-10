@@ -7,14 +7,15 @@ def import_text(path):
         results = inputfile.readlines()
     return results
 
-datetime      = import_text("stata_functions/datetime.txt")
-density       = import_text("stata_functions/density.txt")
-math          = import_text("stata_functions/math.txt")
-matrix        = import_text("stata_functions/matrix.txt")
-programming   = import_text("stata_functions/programming.txt")
-random_number = import_text("stata_functions/random_number.txt")
-string        = import_text("stata_functions/string.txt")
-timeseries    = import_text("stata_functions/timeseries.txt")
+datetime      = import_text("datetime.txt")
+density       = import_text("density.txt")
+math          = import_text("math.txt")
+matrix        = import_text("matrix.txt")
+programming   = import_text("programming.txt")
+random_number = import_text("random_number.txt")
+string        = import_text("string.txt")
+timeseries    = import_text("timeseries.txt")
+trig          = import_text("trig.txt")
 
 def find_functions(text_list):
     function_list = []
@@ -33,10 +34,11 @@ all_functions.extend(find_functions(programming))
 all_functions.extend(find_functions(random_number))
 all_functions.extend(find_functions(string))
 all_functions.extend(find_functions(timeseries))
-all_functions.extend(["mi"]) # only shortened function I know of 
+all_functions.extend(find_functions(trig))
+all_functions.extend(["mi"]) # only abbreviated function I know of
 
 all_functions_str = "|".join(all_functions)
 
-text_file = open("stata_functions/all_functions.txt", "w")
+text_file = open("all_functions.txt", "w")
 text_file.write(all_functions_str)
 text_file.close()

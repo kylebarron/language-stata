@@ -1,0 +1,81 @@
+
+Title
+
+    [FN] Trigonometric functions
+
+
+Functions
+
+    acos(x)
+       Description:  the radian value of the arccosine of x
+       Domain:       -1 to 1
+       Range:        0 to pi
+
+    acosh(x)
+       Description:  the inverse hyperbolic cosine of x,
+                     acosh(x) = ln{x+sqrt(x*x - 1)}
+       Domain:       1 to 8.9e+307
+       Range:        0 to 709.77
+
+    asin(x)
+       Description:  the radian value of the arcsine of x
+       Domain:       -1 to 1
+       Range:        -pi/2 to pi/2
+
+    asinh(x)
+       Description:  the inverse hyperbolic sine of x,
+                     asinh(x) = ln{x+sqrt(x*x + 1)}
+       Domain:       -8.9e+307 to 8.9e+307
+       Range:        -709.77 to 709.77
+
+    atan(x)
+       Description:  the radian value of the arctangent of x
+       Domain:       -8e+307 to 8e+307
+       Range:        -pi/2 to pi/2
+
+    atan2(y,x)
+       Description:  the radian value of the arctangent of y/x, where the
+                     signs of the parameters y and x are used to determine
+                     the quadrant of the answer
+       Domain y:     -8e+307 to 8e+307
+       Domain x:     -8e+307 to 8e+307
+       Range:        -pi to pi
+
+    atanh(x)
+       Description:  the inverse hyperbolic tangent of x, atanh(x) =
+                     (1/2){ln(1+x) - ln(1-x)}
+       Domain:       -1 to 1
+       Range:        -8e+307 to 8e+307
+
+    cos(x)
+       Description:  the cosine of x, where x is in radians
+       Domain:       -1e+18 to 1e+18
+       Range:        -1 to 1
+
+    cosh(x)
+       Description:  the hyperbolic cosine of x,
+                     cosh(x) = {exp(x) + exp(-x)}/2
+       Domain:       -709 to 709
+       Range:        1 to 4.11e+307
+
+    sin(x)
+       Description:  the sine of x, where x is in radians
+       Domain:       -1e+18 to 1e+18
+       Range:        -1 to 1
+
+    sinh(x)
+       Description:  the hyperbolic sine of x,
+                     sinh(x) = {exp(x) - exp(-x)}/2
+       Domain:       -709 to 709
+       Range:        -4.11e+307 to 4.11e+307
+
+    tan(x)
+       Description:  the tangent of x, where x is in radians
+       Domain:       -1e+18 to 1e+18
+       Range:        -1e+17 to 1e+17 or missing
+
+    tanh(x)
+       Description:  the hyperbolic tangent of x,
+                     tanh(x) = {exp(x) - exp(-x)}/{exp(x) + exp(-x)}
+       Domain:       -8e+307 to 8e+307
+       Range:        -1 to 1 or missing

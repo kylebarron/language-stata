@@ -1,142 +1,162 @@
 
 Title
 
-    [D] functions -- Functions
+    [FN] Date and time functions
 
 
-Description
-
-    This is a quick reference on date and time functions.  For help on all functions, see [D] functions.
-
-
-Date and time functions
+Functions
 
     bofd("cal",e_d)
+       Description:  the e_b business date corresponding to e_d
        Domain cal:   business calendar names and formats
        Domain e_d:   %td as defined by business calendar named cal
        Range:        as defined by business calendar named cal
-       Description:  returns the e_b business date corresponding to e_d.
 
     Cdhms(e_d,h,m,s)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
+       Description:  the e_tC datetime (ms. with leap seconds since 01jan1960
+                     00:00:00.000) corresponding to e_d, h, m, s
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
        Domain h:     integers 0 to 23
        Domain m:     integers 0 to 59
        Domain s:     reals 0.000 to 60.999
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999) and missing
-       Description:  returns the e_tC datetime (ms. with leap seconds since 01jan1960 00:00:00.000)
-                         corresponding to e_d, h, m, s.
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999) and missing
 
     Chms(h,m,s)
+       Description:  the e_tC datetime (ms. with leap seconds since 01jan1960
+                     00:00:00.000) corresponding to h, m, s on 01jan1960
        Domain h:     integers 0 to 23
        Domain m:     integers 0 to 59
        Domain s:     reals 0.000 to 60.999
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999) and missing
-       Description:  returns the e_tC datetime (ms. with leap seconds since 01jan1960 00:00:00.000)
-                         corresponding to h, m, s on 01jan1960.
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999) and missing
 
     Clock(s1,s2[,Y])
+       Description:  the e_tC datetime (ms. with leap seconds since 01jan1960
+                     00:00:00.000) corresponding to s1 based on s2 and Y
+
+                     Function Clock() works the same as function clock()
+                     except that Clock() returns a leap second-adjusted %tC
+                     value rather than an unadjusted %tc value.  Use Clock()
+                     only if original time values have been adjusted for leap
+                     seconds.
        Domain s1:    strings
        Domain s2:    strings
        Domain Y:     integers 1000 to 9998 (but probably 2001 to 2099)
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999) and missing
-       Description:  returns the e_tC datetime (ms. with leap seconds since 01jan1960 00:00:00.000)
-                         corresponding to s1 based on s2 and Y.
-
-                     Function Clock() works the same as function clock() except that Clock() returns a
-                     leap second-adjusted %tC value rather than an unadjusted %tc value.  Use Clock()
-                     only if original time values have been adjusted for leap seconds.
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999) and missing
 
     clock(s1,s2[,Y])
+       Description:  the e_tc datetime (ms. since 01jan1960 00:00:00.000)
+                     corresponding to s1 based on s2 and Y
+
+                     s1 contains the date, time, or both, recorded as a
+                     string, in virtually any format. Months can be spelled
+                     out, abbreviated (to three characters), or indicated as
+                     numbers; years can include or exclude the century;
+                     blanks and punctuation are allowed.
+
+                     s2 is any permutation of M, D, [##]Y, h, m, and s, with
+                     their order defining the order that month, day, year,
+                     hour, minute, and second occur (and whether they occur)
+                     in s1.  ##, if specified, indicates the default century
+                     for two-digit years in s1.  For instance, s2 = "MD19Y
+                     hm" would translate s1 = "11/15/91 21:14" as 15nov1991
+                     21:14.  The space in "MD19Y hm" was not significant and
+                     the string would have translated just as well with
+                     "MD19Yhm".
+
+                     Y provides an alternate way of handling two-digit years.
+                     Y specifies the largest year that is to be returned when
+                     a two-digit year is encountered; see date().  If neither
+                     ## nor Y is specified, clock() returns missing when it
+                     encounters a two-digit year.
        Domain s1:    strings
        Domain s2:    strings
        Domain Y:     integers 1000 to 9998 (but probably 2001 to 2099)
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999) and missing
-       Description:  returns the e_tc datetime (ms. since 01jan1960 00:00:00.000) corresponding to s1
-                         based on s2 and Y.
-
-                     s1 contains the date, time, or both, recorded as a string, in virtually any format.
-                     Months can be spelled out, abbreviated (to three characters), or indicated as
-                     numbers; years can include or exclude the century; blanks and punctuation are
-                     allowed.
-
-                     s2 is any permutation of M, D, [##]Y, h, m, and s, with their order defining the
-                     order that month, day, year, hour, minute, and second occur (and whether they
-                     occur) in s1.  ##, if specified, indicates the default century for two-digit years
-                     in s1.  For instance, s2 = "MD19Y hm" would translate s1 = "11/15/91 21:14" as
-                     15nov1991 21:14.  The space in "MD19Y hm" was not significant and the string would
-                     have translated just as well with "MD19Yhm".
-
-                     Y provides an alternate way of handling two-digit years.  Y specifies the largest
-                     year that is to be returned when a two-digit year is encountered; see function
-                     date().  If neither ## nor Y is specified, clock() returns missing when it
-                     encounters a two-digit year.
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999) and missing
 
     Cmdyhms(M,D,Y,h,m,s)
+       Description:  the e_tC datetime (ms. with leap seconds since 01jan1960
+                     00:00:00.000) corresponding to M, D, Y, h, m, s
        Domain M:     integers 1 to 12
        Domain D:     integers 1 to 31
        Domain Y:     integers 0100 to 9999 (but probably 1800 to 2100)
        Domain h:     integers 0 to 23
        Domain m:     integers 0 to 59
        Domain s:     reals 0.000 to 60.999
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999) and missing
-       Description:  returns the e_tC datetime (ms. with leap seconds since 01jan1960 00:00:00.000)
-                         corresponding to M, D, Y, h, m, s.
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999) and missing
 
     Cofc(e_tc)
-       Domain e_tc:  datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999)
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999)
-       Description:  returns the e_tC datetime (ms. with leap seconds since 01jan1960 00:00:00.000) of
-                         e_tc (ms. without leap seconds since 01jan1960 00:00:00.000).
+       Description:  the e_tC datetime (ms. with leap seconds since 01jan1960
+                     00:00:00.000) of e_tc (ms. without leap seconds since
+                     01jan1960 00:00:00.000)
+       Domain e_tc:  datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999)
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999)
 
     cofC(e_tC)
-       Domain e_tC:  datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999)
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999)
-       Description:  returns the e_tc datetime (ms. without leap seconds since 01jan1960 00:00:00.000)
-                         of e_tC (ms. with leap seconds since 01jan1960 00:00:00.000).
+       Description:  the e_tc datetime (ms. without leap seconds since
+                     01jan1960 00:00:00.000) of e_tC (ms. with leap seconds
+                     since 01jan1960 00:00:00.000)
+       Domain e_tC:  datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999)
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999)
 
     Cofd(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999)
-       Description:  returns the e_tC datetime (ms. with leap seconds since 01jan1960 00:00:00.000) of
-                         date e_d at time 00:00:00.000.
+       Description:  the e_tC datetime (ms. with leap seconds since 01jan1960
+                     00:00:00.000) of date e_d at time 00:00:00.000
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999)
 
     cofd(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999)
-       Description:  returns the e_tc datetime (ms. since 01jan1960 00:00:00.000) of date e_d at time
-                         00:00:00.000.
+       Description:  the e_tc datetime (ms. since 01jan1960 00:00:00.000) of
+                     date e_d at time 00:00:00.000
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999)
 
-    daily(s1,s2[,Y]) is a synonym for date(s1,s2[,Y]).
+    daily(s1,s2[,Y])
+       Description:  a synonym for date(s1,s2[,Y])
 
     date(s1,s2[,Y])
-       Domain s1:    strings
-       Domain s2:    strings
-       Domain Y:     integers 1000 to 9998 (but probably 2001 to 2099)
-       Range:        %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549) and missing
-       Description:  returns the e_d date (days since 01jan1960) corresponding to s1 based on s2 and Y.
+       Description:  the e_d date (days since 01jan1960) corresponding to s1
+                     based on s2 and Y
 
-                     s1 contains the date, recorded as a string, in virtually any format.  Months can be
-                     spelled out, abbreviated (to three characters), or indicated as numbers; years can
-                     include or exclude the century; blanks and punctuation are allowed.
+                     s1 contains the date, recorded as a string, in virtually
+                     any format.  Months can be spelled out, abbreviated (to
+                     three characters), or indicated as numbers; years can
+                     include or exclude the century; blanks and punctuation
+                     are allowed.
 
-                     s2 is any permutation of M, D, and [##]Y, with their order defining the order that
-                     month, day, and year occur in s1.  ##, if specified, indicates the default century
-                     for two-digit years in s1.  For instance, s2="MD19Y" would translate s1="11/15/91"
-                     as 15nov1991.
+                     s2 is any permutation of M, D, and [##]Y, with their
+                     order defining the order that month, day, and year occur
+                     in s1.  ##, if specified, indicates the default century
+                     for two-digit years in s1.  For instance, s2="MD19Y"
+                     would translate s1="11/15/91" as 15nov1991.
 
-                     Y provides an alternate way of handling two-digit years.  When a two-digit year is
-                     encountered, the largest year, topyear, that does not exceed Y is returned.
+                     Y provides an alternate way of handling two-digit years.
+                     When a two-digit year is encountered, the largest year,
+                     topyear, that does not exceed Y is returned.
 
                             date("1/15/08","MDY",1999) = 15jan1908
                             date("1/15/08","MDY",2019) = 15jan2008
@@ -148,344 +168,438 @@ Date and time functions
                             date("1/15/01","MDY",2050) = 15jan2001
                             date("1/15/00","MDY",2050) = 15jan2000
 
-                     If neither ## nor Y is specified, date() returns missing when it encounters a
-                     two-digit year. See Working with two-digit years in [D] datetime translation for
-                     more information.
+                     If neither ## nor Y is specified, date() returns missing
+                     when it encounters a two-digit year. See Working with
+                     two-digit years in [D] datetime translation for more
+                     information.
+       Domain s1:    strings
+       Domain s2:    strings
+       Domain Y:     integers 1000 to 9998 (but probably 2001 to 2099)
+       Range:        %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549) or missing
 
     day(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Range:        integers 1 to 31 and missing
-       Description:  returns the numeric day of the month corresponding to e_d.
+       Description:  the numeric day of the month corresponding to e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
+       Range:        integers 1 to 31 or missing
 
     dhms(e_d,h,m,s)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
+       Description:  the e_tc datetime (ms. since 01jan1960 00:00:00.000)
+                     corresponding to e_d, h, m, s
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
        Domain h:     integers 0 to 23
        Domain m:     integers 0 to 59
        Domain s:     reals 0.000 to 59.999
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999) and missing
-       Description:  returns the e_tc datetime (ms. since 01jan1960 00:00:00.000) corresponding to e_d,
-                         h, m, s.
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999) and missing
 
     dofb(e_b,"cal")
+       Description:  the e_d datetime corresponding to e_b
        Domain e_b:   %tb as defined by business calendar named cal
        Domain cal:   business calendar names and formats
        Range:        as defined by business calendar named cal
-       Description:  returns the e_d datetime corresponding to e_b.
 
     dofC(e_tC)
-       Domain e_tC:  datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999)
-       Range:        %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Description:  returns the e_d date (days since 01jan1960) of datetime e_tC (ms. with leap seconds
-                         since 01jan1960 00:00:00.000).
+       Description:  the e_d date (days since 01jan1960) of datetime e_tC
+                     (ms. with leap seconds since 01jan1960 00:00:00.000)
+       Domain e_tC:  datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999)
+       Range:        %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
 
     dofc(e_tc)
-       Domain e_tc:  datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999)
-       Range:        %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Description:  returns the e_d date (days since 01jan1960) of datetime e_tC (ms. since 01jan1960
-                         00:00:00.000).
+       Description:  the e_d date (days since 01jan1960) of datetime e_tC
+                     (ms. since 01jan1960 00:00:00.000)
+       Domain e_tc:  datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999)
+       Range:        %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
 
     dofh(e_h)
+       Description:  the e_d date (days since 01jan1960) of the start of
+                     half-year e_h
        Domain e_h:   %th dates 0100h1 to 9999h2 (integers -3,720 to 16,079)
-       Range:        %td dates 01jan0100 to 01jul9999 (integers -679,350 to 2,936,366)
-       Description:  returns the e_d date (days since 01jan1960) of the start of half-year e_h.
+       Range:        %td dates 01jan0100 to 01jul9999 (integers -679,350 to
+                     2,936,366)
 
     dofm(e_m)
+       Description:  the e_d date (days since 01jan1960) of the start of
+                     month e_m
        Domain e_m:   %tm dates 0100m1 to 9999m12 (integers -22,320 to 96,479)
-       Range:        %td dates 01jan0100 to 01dec9999 (integers -679,350 to 2,936,519)
-       Description:  returns the e_d date (days since 01jan1960) of the start of month e_m.
+       Range:        %td dates 01jan0100 to 01dec9999 (integers -679,350 to
+                     2,936,519)
 
     dofq(e_q)
+       Description:  the e_d date (days since 01jan1960) of the start of
+                     quarter e_q
        Domain e_q:   %tq dates 0100q1 to 9999q4 (integers -7,440 to 32,159)
-       Range:        %td dates 01jan0100 to 01oct9999 (integers -679,350 to 2,936,458)
-       Description:  returns the e_d date (days since 01jan1960) of the start of quarter e_q.
+       Range:        %td dates 01jan0100 to 01oct9999 (integers -679,350 to
+                     2,936,458)
 
     dofw(e_w)
-       Domain e_w:   %tw dates 0100w1 to 9999w52 (integers -96,720 to 418,079)
-       Range:        %td dates 01jan0100 to 24dec9999 (integers -679,350 to 2,936,542)
-       Description:  returns the e_d date (days since 01jan1960) of the start of week e_w.
+       Description:  the e_d date (days since 01jan1960) of the start of week
+                     e_w
+       Domain e_w:   %tw dates 0100w1 to 9999w52 (integers -96,720 to
+                     418,079)
+       Range:        %td dates 01jan0100 to 24dec9999 (integers -679,350 to
+                     2,936,542)
 
     dofy(e_y)
+       Description:  the e_d date (days since 01jan1960) of 01jan in year e_y
        Domain e_y:   %ty dates 0100 to 9999 (integers 0100 to 9999)
-       Range:        %td dates 01jan0100 to 01jan9999 (integers -679,350 to 2,936,185)
-       Description:  returns the e_d date (days since 01jan1960) of 01jan in year e_y.
+       Range:        %td dates 01jan0100 to 01jan9999 (integers -679,350 to
+                     2,936,185)
 
     dow(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Range:        integers 0 to 6 and missing
-       Description:  returns the numeric day of the week corresponding to date e_d; 0 = Sunday, 1 =
-                         Monday, ..., 6 = Saturday.
+       Description:  the numeric day of the week corresponding to date e_d; 0
+                     = Sunday, 1 = Monday, ..., 6 = Saturday
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
+       Range:        integers 0 to 6 or missing
 
     doy(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Range:        integers 1 to 366 and missing
-       Description:  returns the numeric day of the year corresponding to date e_d.
+       Description:  the numeric day of the year corresponding to date e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
+       Range:        integers 1 to 366 or missing
 
     halfyear(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Range:        integers 1, 2, and missing
-       Description:  returns the numeric half of the year corresponding to date e_d.
+       Description:  the numeric half of the year corresponding to date e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
+       Range:        integers 1, 2, or missing
 
     halfyearly(s1,s2[,Y])
+       Description:  the e_h half-yearly date (half-years since 1960h1)
+                     corresponding to s1 based on s2 and Y; Y specifies
+                     topyear; see date()
        Domain s1:    strings
        Domain s2:    strings "HY" and "YH"; Y may be prefixed with ##
        Domain Y:     integers 1000 to 9998 (but probably 2001 to 2099)
-       Range:        %th dates 0100h1 to 9999h2 (integers -3,720 to 16,079) and missing
-       Description:  returns the e_h half-yearly date (half-years since 1960h1) corresponding to s1
-                         based on s2 and Y; Y specifies topyear; see date().
+       Range:        %th dates 0100h1 to 9999h2 (integers -3,720 to 16,079)
+                     or missing
 
     hh(e_tc)
-       Domain e_tc:  datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999)
+       Description:  the hour corresponding to datetime e_tc (ms. since
+                     01jan1960 00:00:00.000)
+       Domain e_tc:  datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999)
        Range:        integers 0 through 23, missing
-       Description:  returns the hour corresponding to datetime e_tc (ms. since 01jan1960 00:00:00.000).
 
     hhC(e_tC)
-       Domain e_tC:  datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999)
+       Description:  the hour corresponding to datetime e_tC (ms. with leap
+                     seconds since 01jan1960 00:00:00.000)
+       Domain e_tC:  datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999)
        Range:        integers 0 through 23, missing
-       Description:  returns the hour corresponding to datetime e_tC (ms. with leap seconds since
-                         01jan1960 00:00:00.000).
 
     hms(h,m,s)
+       Description:  the e_tc datetimes (ms. since 01jan1960 00:00:00.000)
+                     corresponding to h, m, s on 01jan1960
        Domain h:     integers 0 to 23
        Domain m:     integers 0 to 59
        Domain s:     reals 0.000 to 59.999
-       Range:        datetimes 01jan1960 00:00:00.000 to 01jan1960 23:59:59.999 (integers 0 to
-                         86,399,999 and missing)
-       Description:  returns the e_tc datetimes (ms. since 01jan1960 00:00:00.000) corresponding to h,
-                         m, s on 01jan1960.
+       Range:        datetimes 01jan1960 00:00:00.000 to 01jan1960
+                     23:59:59.999 (integers 0 to 86,399,999 or missing)
 
     hofd(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
+       Description:  the e_h half-yearly date (half years since 1960h1)
+                     containing date e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
        Range:        %th dates 0100h1 to 9999h2 (integers -3,720 to 16,079)
-       Description:  returns the e_h half-yearly date (half years since 1960h1) containing date e_d.
 
     hours(ms)
+       Description:  ms/3,600,000
        Domain ms:    real; milliseconds
-       Range:        real and missing
-       Description:  returns ms/3,600,000.
+       Range:        real or missing
 
     mdy(M,D,Y)
+       Description:  the e_d date (days since 01jan1960) corresponding to M,
+                     D, Y
        Domain M:     integers 1 to 12
        Domain D:     integers 1 to 31
        Domain Y:     integers 0100 to 9999 (but probably 1800 to 2100)
-       Range:        %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549) and missing
-       Description:  returns the e_d date (days since 01jan1960) corresponding to M, D, Y.
+       Range:        %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549) or missing
 
     mdyhms(M,D,Y,h,m,s)
+       Description:  the e_tc datetime (ms. since 01jan1960 00:00:00.000)
+                     corresponding to M, D, Y, h, m, s
        Domain M:     integers 1 to 12
        Domain D:     integers 1 to 31
        Domain Y:     integers 0100 to 9999 (but probably 1800 to 2100)
        Domain h:     integers 0 to 23
        Domain m:     integers 0 to 59
        Domain s:     reals 0.000 to 59.999
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999) and missing
-       Description:  returns the e_tc datetime (ms. since 01jan1960 00:00:00.000) corresponding to M, D,
-                         Y, h, m, s.
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999) and missing
 
     minutes(ms)
+       Description:  ms/60,000
        Domain ms:    real; milliseconds
-       Range:        real and missing
-       Description:  returns ms/60,000.
+       Range:        real or missing
 
     mm(e_tc)
-       Domain e_tc:  datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999)
+       Description:  the minute corresponding to datetime e_tc (ms. since
+                     01jan1960 00:00:00.000)
+       Domain e_tc:  datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999)
        Range:        integers 0 through 59, missing
-       Description:  returns the minute corresponding to datetime e_tc (ms. since 01jan1960
-                         00:00:00.000).
 
     mmC(e_tC)
-       Domain e_tC:  datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999)
+       Description:  the minutes corresponding to datetime e_tC (ms. with
+                     leap seconds since 01jan1960 00:00:00.000)
+       Domain e_tC:  datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999)
        Range:        integers 0 through 59, missing
-       Description:  returns the minutes corresponding to datetime e_tC (ms. with leap seconds since
-                         01jan1960 00:00:00.000).
 
     mofd(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
+       Description:  the e_m monthly date (months since 1960m1) containing
+                     date e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
        Range:        %tm dates 0100m1 to 9999m12 (integers -22,320 to 96,479)
-       Description:  returns the e_m monthly date (months since 1960m1) containing date e_d.
 
     month(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Range:        integers 1 to 12 and missing
-       Description:  returns the numeric month corresponding to date e_d.
+       Description:  the numeric month corresponding to date e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
+       Range:        integers 1 to 12 or missing
 
     monthly(s1,s2[,Y])
+       Description:  the e_m monthly date (months since 1960m1) corresponding
+                     to s1 based on s2 and Y; Y specifies topyear; see date()
        Domain s1:    strings
        Domain s2:    strings "MY" and "YM"; Y may be prefixed with ##
        Domain Y:     integers 1000 to 9998 (but probably 2001 to 2099)
-       Range:        %tm dates 0100m1 to 9999m12 (integers -22,320 to 96,479) and missing
-       Description:  returns the e_m monthly date (months since 1960m1) corresponding to s1 based on s2
-                         and Y; Y specifies topyear; see date().
+       Range:        %tm dates 0100m1 to 9999m12 (integers -22,320 to 96,479)
+                     or missing
 
     msofhours(h)
+       Description:  h x 3,600,000
        Domain h:     real; hours
-       Range:        real and missing; milliseconds
-       Description:  returns h x 3,600,000.
+       Range:        real or missing; milliseconds
 
     msofminutes(m)
+       Description:  m x 60,000
        Domain m:     real; minutes
-       Range:        real and missing; milliseconds
-       Description:  returns m x 60,000.
+       Range:        real or missing; milliseconds
 
     msofseconds(s)
+       Description:  s x 1,000
        Domain s:     real; seconds
-       Range:        real and missing; milliseconds
-       Description:  returns s x 1,000.
+       Range:        real or missing; milliseconds
 
     qofd(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
+       Description:  the e_q quarterly date (quarters since 1960q1)
+                     containing date e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
        Range:        %tq dates 0100q1 to 9999q4 (integers -7,440 to 32,159)
-       Description:  returns the e_q quarterly date (quarters since 1960q1) containing date e_d.
 
     quarter(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Range:        integers 1 to 4 and missing
-       Description:  returns the numeric quarter of the year corresponding to date e_d.
+       Description:  the numeric quarter of the year corresponding to date
+                     e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
+       Range:        integers 1 to 4 or missing
 
     quarterly(s1,s2[,Y])
+       Description:  the e_q quarterly date (quarters since 1960q1)
+                     corresponding to s1 based on s2 and Y; Y specifies
+                     topyear; see date()
        Domain s1:    strings
        Domain s2:    strings "QY" and "YQ"; Y may be prefixed with ##
        Domain Y:     integers 1000 to 9998 (but probably 2001 to 2099)
-       Range:        %tq dates 0100q1 to 9999q4 (integers -7,440 to 32,159) and missing
-       Description:  returns the e_q quarterly date (quarters since 1960q1) corresponding to s1 based on
-                         s2 and Y; Y specifies topyear; see date().
+       Range:        %tq dates 0100q1 to 9999q4 (integers -7,440 to 32,159)
+                     or missing
 
     seconds(ms)
+       Description:  ms/1,000
        Domain ms:    real; milliseconds
-       Range:        real and missing
-       Description:  returns ms/1,000.
+       Range:        real or missing
 
     ss(e_tc)
-       Domain e_tc:  datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999)
+       Description:  the second corresponding to datetime e_tc (ms. since
+                     01jan1960 00:00:00.000)
+       Domain e_tc:  datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999)
        Range:        real 0.000 through 59.999, missing
-       Description:  returns the second corresponding to datetime e_tc (ms. since 01jan1960
-                         00:00:00.000).
 
     ssC(e_tC)
-       Domain e_tC:  datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999)
+       Description:  the second corresponding to datetime e_tC (ms. with leap
+                     seconds since 01jan1960 00:00:00.000)
+       Domain e_tC:  datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999)
        Range:        real 0.000 through 60.999, missing
-       Description:  returns the second corresponding to datetime e_tC (ms. with leap seconds since
-                         01jan1960 00:00:00.000).
 
     tC(l)
-       Domain l:     datetime literal strings 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to >253,717,919,999,999)
-       Description:  convenience function to make typing dates and times in expressions easier; same as
-                         tc(), except returns leap second-adjusted values; for example, typing
-                         tc(29nov2007 9:15) is equivalent to typing 1511946900000, whereas tC(29nov2007
-                         9:15) is 1511946923000.
+       Description:  convenience function to make typing dates and times in
+                     expressions easier
+
+                     Same as tc(), except returns leap second-adjusted
+                     values; for example, typing tc(29nov2007 9:15) is
+                     equivalent to typing 1511946900000, whereas tC(29nov2007
+                     9:15) is 1511946923000.
+       Domain l:     datetime literal strings 01jan0100 00:00:00.000 to
+                     31dec9999 23:59:59.999
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     >253,717,919,999,999)
 
     tc(l)
-       Domain l:     datetime literal strings 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999
-       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999 23:59:59.999 (integers
-                         -58,695,840,000,000 to 253,717,919,999,999)
-       Description:  convenience function to make typing dates and times in expressions easier; for
-                         example, typing tc(2jan1960 13:42) is equivalent to typing 135720000; the date
-                         but not the time may be omitted, and then 01jan1960 is assumed; the seconds
-                         portion of the time may be omitted and is assumed to be 0.000; tc(11:02) is
-                         equivalent to typing 39720000.
+       Description:  convenience function to make typing dates and times in
+                     expressions easier
+
+                     For example, typing tc(2jan1960 13:42) is equivalent to
+                     typing 135720000; the date but not the time may be
+                     omitted, and then 01jan1960 is assumed; the seconds
+                     portion of the time may be omitted and is assumed to be
+                     0.000; tc(11:02) is equivalent to typing 39720000.
+       Domain l:     datetime literal strings 01jan0100 00:00:00.000 to
+                     31dec9999 23:59:59.999
+       Range:        datetimes 01jan0100 00:00:00.000 to 31dec9999
+                     23:59:59.999 (integers -58,695,840,000,000 to
+                     253,717,919,999,999)
 
     td(l)
+       Description:  convenience function to make typing dates in expressions
+                     easier
+
+                     For example, typing td(2jan1960) is equivalent to typing
+                     1.
        Domain l:     date literal strings 01jan0100 to 31dec9999
-       Range:        %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Description:  convenience function to make typing dates in expressions easier; for example,
-                         typing td(2jan1960) is equivalent to typing 1.
+       Range:        %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
 
     th(l)
+       Description:  convenience function to make typing half-yearly dates in
+                     expressions easier
+
+                     For example, typing th(1960h2) is equivalent to typing
+                     1.
        Domain l:     half-year literal strings 0100h1 to 9999h2
        Range:        %th dates 0100h1 to 9999h2 (integers -3,720 to 16,079)
-       Description:  convenience function to make typing half-yearly dates in expressions easier; for
-                         example, typing th(1960h2) is equivalent to typing 1.
 
     tm(l)
+       Description:  convenience function to make typing monthly dates in
+                     expressions easier
+
+                     For example, typing tm(1960m2) is equivalent to typing
+                     1.
        Domain l:     month literal strings 0100m1 to 9999m12
        Range:        %tm dates 0100m1 to 9999m12 (integers -22,320 to 96,479)
-       Description:  convenience function to make typing monthly dates in expressions easier; for
-                         example, typing tm(1960m2) is equivalent to typing 1.
 
     tq(l)
+       Description:  convenience function to make typing quarterly dates in
+                     expressions easier
+
+                     For example, typing tq(1960q2) is equivalent to typing
+                     1.
        Domain l:     quarter literal strings 0100q1 to 9999q4
-       Range:        %tq dates 0100q1 to 9999q12 (integers -7,440 to 32,159)
-       Description:  convenience function to make typing quarterly dates in expressions easier; for
-                         example, typing tq(1960q2) is equivalent to typing 1.
+       Range:        %tq dates 0100q1 to 9999q4 (integers -7,440 to 32,159)
 
     tw(l)
+       Description:  convenience function to make typing weekly dates in
+                     expressions easier
+
+                     For example, typing tw(1960w2) is equivalent to typing
+                     1.
        Domain l:     week literal strings 0100w1 to 9999w52
-       Range:        %tw dates 0100w1 to 9999w52 (integers -96,720 to 418,079)
-       Description:  convenience function to make typing weekly dates in expressions easier; for
-                         example, typing tw(1960w2) is equivalent to typing 1.
+       Range:        %tw dates 0100w1 to 9999w52 (integers -96,720 to
+                     418,079)
 
     week(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Range:        integers 1 to 52 and missing
-       Description:  returns the numeric week of the year corresponding to date e_d, the %td encoded
-                         date (days since 01jan1960).  Note: The first week of a year is the first 7-day
-                         period of the year.
+       Description:  the numeric week of the year corresponding to date e_d,
+                     the %td encoded date (days since 01jan1960)
+
+                     Note: The first week of a year is the first 7-day period
+                     of the year.
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
+       Range:        integers 1 to 52 or missing
 
     weekly(s1,s2[,Y])
+       Description:  the e_w weekly date (weeks since 1960w1) corresponding
+                     to s1 based on s2 and Y; Y specifies topyear; see date()
        Domain s1:    strings
        Domain s2:    strings "WY" and "YW"; Y may be prefixed with ##
        Domain Y:     integers 1000 to 9998 (but probably 2001 to 2099)
-       Range:        %tw dates 0100w1 to 9999w52 (integers -96,720 to 418,079) and missing
-       Description:  returns the e_w weekly date (weeks since 1960w1) corresponding to s1 based on s2
-                         and Y; Y specifies topyear; see date().
+       Range:        %tw dates 0100w1 to 9999w52 (integers -96,720 to
+                     418,079) or missing
 
     wofd(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
-       Range:        %tw dates 0100w1 to 9999w52 (integers -96,720 to 418,079)
-       Description:  returns the e_w weekly date (weeks since 1960w1) containing date e_d.
+       Description:  the e_w weekly date (weeks since 1960w1) containing date
+                     e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
+       Range:        %tw dates 0100w1 to 9999w52 (integers -96,720 to
+                     418,079)
 
     year(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
+       Description:  the numeric year corresponding to date e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
        Range:        integers 0100 to 9999 (but probably 1800 to 2100)
-       Description:  returns the numeric year corresponding to date e_d.
 
     yearly(s1,s2[,Y])
+       Description:  the e_y yearly date (year) corresponding to s1 based on
+                     s2 and Y; Y specifies topyear; see date()
        Domain s1:    strings
        Domain s2:    strings "Y"; Y may be prefixed with ##
        Domain Y:     integers 1000 to 9998 (but probably 2001 to 2099)
-       Range:        %ty dates 0100 to 9999 (integers 0100 to 9999) and missing
-       Description:  returns the e_y yearly date (year) corresponding to s1 based on s2 and Y; Y
-                         specifies topyear; see date().
+       Range:        %ty dates 0100 to 9999 (integers 0100 to 9999) or
+                     missing
 
     yh(Y,H)
+       Description:  the e_h half-yearly date (half-years since 1960h1)
+                     corresponding to year Y, half-year H
        Domain Y:     integers 1000 to 9999 (but probably 1800 to 2100)
        Domain H:     integers 1, 2
        Range:        %th dates 1000h1 to 9999h2 (integers -1,920 to 16,079)
-       Description:  returns the e_h half-yearly date (half-years since 1960h1) corresponding to year Y,
-                         half-year H.
 
     ym(Y,M)
+       Description:  the e_m monthly date (months since 1960m1) corresponding
+                     to year Y, month M
        Domain Y:     integers 1000 to 9999 (but probably 1800 to 2100)
        Domain M:     integers 1 to 12
        Range:        %tm dates 1000m1 to 9999m12 (integers -11,520 to 96,479)
-       Description:  returns the e_m monthly date (months since 1960m1) corresponding to year Y, month
-                         M.
 
     yofd(e_d)
-       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to 2,936,549)
+       Description:  the e_y yearly date (year) containing date e_d
+       Domain e_d:   %td dates 01jan0100 to 31dec9999 (integers -679,350 to
+                     2,936,549)
        Range:        %ty dates 0100 to 9999 (integers 0100 to 9999)
-       Description:  returns the e_y yearly date (year) containing date e_d.
 
     yq(Y,Q)
+       Description:  the e_q quarterly date (quarters since 1960q1)
+                     corresponding to year Y, quarter Q
        Domain Y:     integers 1000 to 9999 (but probably 1800 to 2100)
        Domain Q:     integers 1 to 4
        Range:        %tq dates 1000q1 to 9999q4 (integers -3,840 to 32,159)
-       Description:  returns the e_q quarterly date (quarters since 1960q1) corresponding to year Y,
-                         quarter Q.
 
     yw(Y,W)
+       Description:  the e_w weekly date (weeks since 1960w1) corresponding
+                     to year Y, week W
        Domain Y:     integers 1000 to 9999 (but probably 1800 to 2100)
        Domain W:     integers 1 to 52
-       Range:        %tw dates 1000w1 to 9999w52 (integers -49,920 to 418,079)
-       Description:  returns the e_w weekly date (weeks since 1960w1) corresponding to year Y, week W.
+       Range:        %tw dates 1000w1 to 9999w52 (integers -49,920 to
+                     418,079)
+
+
+Video example
+
+        How to create a date variable from a date stored as a string
