@@ -1,0 +1,258 @@
+
+Title
+
+    [D] functions -- Functions
+
+
+Description
+
+    This is a quick reference to matrix functions available within Stata.  See [P] matrix for background
+    information and links to more matrix help.  For help on all functions, see [D] functions.
+
+    Stata has a newer, more powerful matrix language.  For information on it, see [M] Mata.
+
+    Let A, B, C, ..., represent matrix names or matrix expressions and let a, b, c, ..., represent
+    numbers or scalar expressions.
+
+
+Matrix functions returning a scalar
+
+    colnumb(M,s)
+       Domain M:     matrices
+       Domain s:     strings
+       Range:        integer scalars 1 to matsize and missing
+       Description:  returns the column number of M associated with column name s.
+                     returns missing if the column cannot be found.
+
+    colsof(M)
+       Domain:       matrices
+       Range:        integer scalars 1 to matsize
+       Description:  returns the number of columns of M.
+
+    det(M)
+       Domain:       n x n (square) matrices
+       Range:        scalars -8e+307 to 8e+307
+       Description:  returns the determinant of matrix M.
+
+    diag0cnt(M)
+       Domain:       n x n (square) matrices
+       Range:        integer scalars 0 to n
+       Description:  returns the number of zeros on the diagonal of M.
+
+    el(s,i,j)
+       Domain s:     strings containing matrix name
+       Domain i:     scalars 1 to matsize
+       Domain j:     scalars 1 to matsize
+       Range:        scalars -8e+307 to 8e+307 and missing
+       Description:  returns s[floor(i),floor(j)], the i,j element of the matrix named s.
+                     returns missing if i or j are out of range or if matrix s does not exist.
+
+    issymmetric(M)
+       Domain:       matrices
+       Range:        integers 0 and 1
+       Description:  returns 1 if the matrix is symmetric; otherwise, returns 0.
+
+    matmissing(M)
+       Domain:       matrices
+       Range:        integers 0 and 1
+       Description:  returns 1 if any elements of the matrix are missing; otherwise, returns 0.
+
+    mreldif(X,Y)
+       Domain X:     matrices
+       Domain Y:     matrices with same number of rows and columns as X
+       Range:        scalars -8e+307 to 8e+307
+       Description:  returns the relative difference of X and Y.
+
+    rownumb(M,s)
+       Domain M:     matrices
+       Domain s:     strings
+       Range:        integer scalars 1 to matsize and missing
+       Description:  returns the row number of M associated with row name s.
+                     returns missing if the row cannot be found.
+
+    rowsof(M)
+       Domain:       matrices
+       Range:        integer scalars 1 to matsize
+       Description:  returns the number of rows of M.
+
+    trace(M)
+       Domain:       n x n (square) matrices
+       Range:        scalars -8e+307 to 8e+307
+       Description:  returns the trace of matrix M.
+
+    Matrix functions returning scalar may be used in any expression context, not just matrix expression
+    contexts.
+
+
+Matrix functions returning a matrix
+
+    cholesky(M)
+       Domain:       n x n, positive-definite, symmetric matrices
+       Range:        n x n lower-triangular matrices
+       Description:  returns the Cholesky decomposition of the matrix:
+                         if R = cholesky(S), then RR^T = S.
+                         R^T indicates the transpose of R.
+                         Row and column names are obtained from M.
+
+    corr(M)
+       Domain:       n x n symmetric variance matrices
+       Range:        n x n symmetric correlation matrices
+       Description:  returns the correlation matrix of the variance matrix.  Row and column names are
+                         obtained from M.
+
+    diag(V)
+       Domain:       1 x n and n x 1 vectors
+       Range:        n x n diagonal matrices
+       Description:  returns the square, diagonal matrix created from the row or column vector.  Row and
+                         column names are obtained from the column names of M if M is a row vector or
+                         from the row names of M if M is a column vector.
+
+    get(systemname)
+       Domain:       existing names of system matrices
+       Range:        matrices
+       Description:  returns a copy of Stata internal system matrix systemname.
+
+                     This function is included for backward compatibility with previous versions of
+                     Stata.
+
+    hadamard(M,N)
+       Domain M:     m x n matrices
+       Domain N:     m x n matrices
+       Range:        m x n matrices
+       Description:  returns a matrix whose i, j element is M[i,j]*N[i,j] (if M and N are not the same
+                         size, this function reports a conformability error).
+
+    I(n)
+       Domain:       real scalars 1 to matsize
+       Range:        identity matrices
+       Description:  returns an n x n matrix if n is an integer; otherwise, this function returns the
+                         round(n) x round(n) identity matrix.
+
+    inv(M)
+       Domain:       n x n nonsingular matrices
+       Range:        n x n matrices
+       Description:  returns the inverse of the matrix M.  If M is singular, this will result in an
+                         error.
+
+                     The function invsym() should be used in preference to inv() because invsym() is
+                     more accurate.  The row names of the result are obtained from the column names of
+                     M, and the column names of the result are obtained from the row names of M.
+
+    invsym(M)
+       Domain:       n x n symmetric matrices
+       Range:        n x n symmetric matrices
+       Description:  returns the inverse of the M if M is positive definite.  If M is not positive
+                         definite, rows will be inverted until the diagonal terms are zero or negative;
+                         the rows and columns corresponding to these terms will be set to 0, producing a
+                         g2 inverse.  The row names of the result are obtained from the column names of
+                         M, and the column names of the result are obtained from the row names of M.
+
+    J(r,c,z)
+       Domain r:     integer scalars 1 to matsize
+       Domain c:     integer scalars 1 to matsize
+       Domain z:     scalars -8e+307 to 8e+307
+       Range:        r x c matrices
+       Description:  returns the r x c matrix containing elements z.
+
+    matuniform(r,c)
+       Domain r:     integer scalars 1 to matsize
+       Domain c:     integer scalars 1 to matsize
+       Range:        r x c matrices
+       Description:  returns the r x c matrices containing uniformly distributed pseudorandom numbers on
+                         the interval [0,1).
+
+    nullmat(matname)
+       Domain:       matrix names, existing and nonexisting
+       Range:        matrices including null if matname does not exist
+       Description:  nullmat() is for use with the row-join (,) and column-join (\) operators in
+                     programming situations.  Consider the following code fragment, which is an attempt
+                     to create the vector (1,2,3,4):
+
+                           forvalues i = 1/4 {
+                                   mat v = (v, `i')
+                           }
+
+                     The above program will not work because, the first time through the loop, v will
+                     not yet exist, and thus forming (v, `i') makes no sense.  nullmat() relaxes that
+                     restriction:
+
+                           forvalues i = 1/4 {
+                                   mat v = (nullmat(v), `i')
+                           }
+
+                     The nullmat() function informs Stata that if v does not exist, the function
+                     row-join is to be generalized.  Joining nothing with `i' results in (`i').  Thus
+                     the first time through the loop, v = (1) is formed.  The second time through, v
+                     does exist, so v = (1,2) is formed, and so on.
+
+                     nullmat() can be used only with the , and \ operators.
+
+    sweep(M,i)
+       Domain M:     n x n matrices
+       Domain i:     integer scalars 1 to n
+       Range:        n x n matrices
+       Description:  returns matrix M with ith row/column swept.  The row and column names of the
+                         resultant matrix are obtained from M, except that the nth row and column names
+                         are interchanged.
+
+    vec(M)
+       Domain:       matrices
+       Range:        column vectors (n x 1 matrices)
+       Description:  returns a column vector formed by listing the elements of M, starting with the
+                         first column and proceeding column by column.
+
+    vecdiag(M)
+       Domain:       n x n matrices
+       Range:        1 x n vectors
+       Description:  returns the row vector containing the diagonal of matrix M. vecdiag() is the
+                         opposite of diag().  The row name is set to r1; the column names are obtained
+                         from the column names of M.
+
+
+Examples
+
+    . matrix myid = I(3)
+    . matrix list myid
+
+    . matrix new = J(2,3,0)
+    . matrix list new
+
+    . matrix A = (1,2\2,5)
+    . matrix Ainv = invsym(A)
+    . matrix list Ainv
+
+    . matrix L = cholesky(4*I(2) + A'*A)
+    . matrix list L
+
+    . matrix B = (1,5,9\2,1,7\3,5,1)
+    . matrix Binv = inv(B)
+    . matrix list Binv
+
+    . matrix C = sweep(B,1)
+    . matrix list C
+
+    . matrix C = sweep(C,1)
+    . matrix list C
+
+    . matrix Cov = (36.6598,-3596.48\-3596.48,604030)
+    . matrix R = corr(Cov)
+    . matrix list R
+
+    . matrix d = (1,2,3)
+    . matrix D = diag(d)
+    . matrix list D
+
+    . matrix e = vec(D)
+    . matrix list e
+
+    . matrix f = vecdiag(D)
+    . matrix list f
+
+    . matrix G = diag(inv(B) * vecdiag(d) + 4*sweep(B+J(3,3,10),2)'*I(3))')
+    . matrix list G
+
+    . matrix U = matuniform(3,4)
+    . matrix list U
+
+    . matrix H = hadamard(B,C)
+    . matrix list H

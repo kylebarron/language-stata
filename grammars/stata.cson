@@ -97,47 +97,42 @@
     'name': 'comment.line.double-slash.stata'
   }
   {
-    'captures':
-      '1':
-        'name': 'punctuation.definition.string.begin.stata'
-      '2':
-        'name': 'meta.empty-list.stata'
-      '3':
-        'name': 'punctuation.definition.string.end.stata'
-    'match': '(`)(\\s*(\'))\\b'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'punctuation.definition.string.begin.stata'
-      '2':
-        'name': 'meta.empty-list.stata'
-      '3':
-        'name': 'punctuation.definition.string.end.stata'
-    'match': '(`)([a-z]*)(\')'
-  }
-  {
     'begin': '`'
     'beginCaptures':
-      'name': 'punctuation.section.local.begin.stata'
-    'contentName': 'entity.name.type.local.stata'
+      '0':
+        'name': 'punctuation.definition.string.begin.stata'
+    'contentName': 'entity.name.type.class.stata'
     'end': '\''
     'endCaptures':
-      '1':
-        'name': 'punctuation.section.local.end.stata'
-    'name': 'meta.local.stata'
+      '0':
+        'name': 'punctuation.definition.string.end.stata'
+    'name': 'entity.name.type.class.stata'
+    'patterns': [
+      'include': '$self'
+    ]
   }
   {
     'captures':
       '1':
-        'name': 'storage.modifier.global.stata'
-    'match': '\\b(gl|glo|glob|globa|global)\\b'
+        'name': 'punctuation.definition.string.begin.stata'
+      '2':
+        'name': 'punctuation.definition.string.begin.stata'
+      '3':
+        'name': 'entity.name.type.class.stata'
+      '4':
+        'name': 'punctuation.definition.string.end.stata'
+    'match': '\\s*(\\$)(\\{?)([A-Za-z_][A-Za-z0-9_]{0,31})(\\}?)'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
   }
   {
     'captures':
       '1':
-        'name': 'storage.modifier.local.stata'
-    'match': '\\b(loc|loca|local)\\b'
+        'name': 'storage.modifier.macro.stata'
+    'match': '\\b(gl(o|ob|oba|obal)?|loc(a|al)?|tempvar|tempname|tempfile)\\b'
   }
   {
     'comment': 'keywords that delimit flow conditionals'
@@ -145,9 +140,29 @@
     'match': '\\b(if|else)\\b'
   }
   {
+    'captures':
+      '1':
+        'name': 'keyword.control.flow.stata'
+      '2':
+        'name': 'entity.name.type.class.stata'
+      '3':
+        'name': 'keyword.control.flow.stata'
+    'match': '\\b(foreach)\\s+([a-zA-Z0-9_]{1,31})\\s+(in|of loc(a|al)?|of glo(b|ba|bal)?|of var(l|li|lis|list)?|of new(l|li|lis|list)?|of num(l|li|lis|list)?)\\b'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'keyword.control.flow.stata'
+      '2':
+        'name': 'entity.name.type.class.stata'
+      '3':
+        'name': 'keyword.operator.assignment.stata'
+    'match': '\\b(forvalues)\\s+([a-zA-Z0-9_]{1,31})\\s*(=)\\s*[0-9\\(\\)/:\. ]+\\s*\\{'
+  }
+  {
     'comment': 'keywords that delimit loops'
     'name': 'keyword.control.repeat.stata'
-    'match': '\\b(foreach|forv(a|al|alu|alue|alues)?|while)\\b'
+    'match': '\\b(while)\\b'
   }
   {
     'comment': 'keywords that alter flow from within a block'
@@ -161,8 +176,18 @@
     'comment': 'keywords that haven\'t fit into other groups (yet).'
     'match': '\\b(as|ass|asse|asser|assert)\\b'
   }
- {
-    'begin': '^\\s*(cap(t|tu|tur|ture)?|qui(e|et|etl|etly)?|n(o|oi|ois|oisi|oisil|oisily)?:?)?\\s*(program)\\s*(de(f|fi|fin|fine)?|di(r)?|drop|l(i|is|ist)?)?\\s+(?=[A-Za-z_][A-Za-z0-9_]*)'
+  {
+    'match': '\\b(by(s|so|sor|sort)?|statsby|rolling|bootstrap|jackknife|permute|simulate|svy|mi est(i|im|ima|imat|imate)?|nestreg|stepwise|xi|fp|mfp|vers(i|io|ion)?)\\b'
+    'name': 'storage.type.function.stata'
+    'comment': 'prefixes that require a colon'
+  }
+  {
+  'comment': 'prefixes that don\'t need a colon'
+  'name': 'keyword.control.flow.stata'
+  'match': '\\b(qui(e|et|etl|etly)?|n(o|oi|ois|oisi|oisil|oisily)?|cap(t|tu|tur|ture)?)\\b:?'
+  }
+  {
+    'begin': '^\\s*(program)\\s*(de(f|fi|fin|fine)?|di(r)?|drop|l(i|is|ist)?)?\\s+(?=[A-Za-z_][A-Za-z0-9_]*)'
     'beginCaptures':
       '5':
         'name': 'storage.type.function.stata'
@@ -215,7 +240,7 @@
     'name': 'keyword.operator.arithmetic.stata'
   }
   {
-    'match': '\\&|\\||!|~'
+    'match': '\\&|\\||!|~|:'
     'name': 'keyword.operator.logical.stata'
   }
   {
@@ -229,8 +254,10 @@
 ]
 'repository':
   'builtin_functions':
-      'match': '\\b(regexm|regexs|__import__|abs)\\b'
-      'name': 'support.function.builtin.stata'
+      'match': '\\b(bofd|Cdhms|Chms|Clock|clock|Cmdyhms|Cofc|cofC|Cofd|cofd|date|day|dhms|dofb|dofC|dofc|dofh|dofm|dofq|dofw|dofy|dow|doy|halfyear|halfyearly|hh|hhC|hms|hofd|hours|mdy|mdyhms|minutes|mm|mmC|mofd|month|monthly|msofhours|msofminutes|msofseconds|qofd|quarter|quarterly|seconds|ss|ssC|tC|tc|td|th|tm|tq|tw|week|weekly|wofd|year|yearly|yh|ym|yofd|yq|yw|ibeta|betaden|ibetatail|invibeta|invibetatail|nibeta|nbetaden|invnibeta|binomial|binomialp|binomialtail|invbinomial|invbinomialtail|chi2|chi2den|chi2tail|invchi2|invchi2tail|nchi2|invnchi2|npnchi2|dunnettprob|invdunnettprob|F|Fden|Ftail|invF|invFtail|nF|nFden|nFtail|invnFtail|npnF|gammap|gammaden|gammaptail|invgammap|invgammaptail|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|hypergeometric|hypergeometricp|nbinomial|nbinomialp|nbinomialtail|invnbinomial|invnbinomialtail|binormal|normal|normalden|normalden|normalden|invnormal|lnnormal|lnnormalden|lnnormalden|lnnormalden|poisson|poissonp|poissontail|invpoisson|invpoissontail|t|tden|ttail|invt|invttail|nt|ntden|nttail|invnttail|npnt|tukeyprob|invtukeyprob|abs|acos|acosh|asin|asinh|atan|atan2|atanh|ceil|cloglog|comb|cos|cosh|digamma|exp|floor|int|invcloglog|invlogit|ln|lnfactorial|lngamma|log|log10|logit|max|min|mod|reldif|round|sign|sin|sinh|sqrt|sum|tan|tanh|trigamma|colnumb|colsof|det|diag0cnt|el|issymmetric|matmissing|mreldif|rownumb|rowsof|trace|cholesky|corr|diag|get|hadamard|I|inv|invsym|J|matuniform|nullmat|sweep|vec|vecdiag|autocode|byteorder|c|chop|clip|cond|e|e|epsdouble|epsfloat|fileexists|fileread|filereaderror|filewrite|float|fmtwidth|inlist|inrange|irecode|matrix|maxbyte|maxdouble|maxfloat|maxint|maxlong|minbyte|mindouble|minfloat|minint|minlong|missing|r|recode|replay|return|s|scalar|smallestdouble|runiform|rbeta|rbinomial|rchi2|rgamma|rhypergeometric|rnbinomial|rnormal|rnormal|rnormal|rpoisson|rt|abbrev|char|indexnot|itrim|length|lower|ltrim|plural|proper|real|regexm|regexr|regexs|reverse|rtrim|soundex|strcat|strdup|string|string|strmatch|strpos|strtoname|strtoname|subinstr|subinword|substr|trim|upper|word|wordcount|tin|twithin|mi)\\('
+      'captures':
+        '1':
+          'name': 'support.function.builtin.stata'
   'builtin_types':
       'match': '\\b(byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)\\b'
       'name': 'support.type.stata'
@@ -314,7 +341,8 @@
   'generic_names':
       'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
   'illegal_names':
-      'match': '\\b(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with)\\b'
+      'match':
+       '\\bgen(e|er|era|erat|erate)?\\s*(byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s*(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with|[0-9][A-Za-z0-9_]+|[A-Za-z_][A-Za-z0-9_]{32,})\\b\\s*(///)?\\s*\\n?\\s*='
       'name': 'invalid.illegal.name.stata'
   'regular_expressions':
     'patterns': [

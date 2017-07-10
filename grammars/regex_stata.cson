@@ -1,5 +1,5 @@
 'scopeName': 'source.regexp.stata'
-'comment': 'Match Stata\'s limited regular expression syntax.'
+'comment': 'Match Stata\'s (limited) regular expression syntax.'
 'fileTypes': [
     're'
 ]
@@ -8,7 +8,7 @@
 'foldingStopMarker': '(\\*/|\\}|\\))'
 'patterns': [
   {
-    'match': '\\\\[bBAZzG]|\\^|\\$'
+    'match': '\\^|\\$'
     'name': 'keyword.control.anchor.regexp'
   }
   {
@@ -16,7 +16,7 @@
     'name': 'keyword.other.back-reference.regexp'
   }
   {
-    'match': '[?+*][?+]?|\\{(\\d+,\\d+|\\d+,|,\\d+|\\d+)\\}\\??'
+    'match': '[?+*]'
     'name': 'keyword.operator.quantifier.regexp'
   }
   {
@@ -24,39 +24,16 @@
     'name': 'keyword.operator.or.regexp'
   }
   {
-    'begin': '\\(\\?\\#'
-    'end': '\\)'
-    'name': 'comment.block.regexp'
-  }
-  {
-    'comment': 'We are restrictive in what we allow to go after the comment character to avoid false positives, since the availability of comments depend on regexp flags.'
-    'match': '(?<=^|\\s)#\\s[[a-zA-Z0-9,. \\t?!-:][^\\x{00}-\\x{7F}]]*$'
-    'name': 'comment.line.number-sign.regexp'
-  }
-  {
-    'match': '\\(\\?[iLmsux]+\\)'
-    'name': 'keyword.other.option-toggle.regexp'
-  }
-  {
     'match': '(\\()(\\?P=([a-zA-Z_][a-zA-Z_0-9]*\\w*))(\\))'
     'name': 'keyword.other.back-reference.named.regexp'
   }
+  # regexm(find_type, "`regex'")
   {
-    'begin': '(\\()((\\?=)|(\\?!)|(\\?<=)|(\\?<!))'
+    'begin': 'regexm\\([\w\"]+\s*,\s*(\"|\')'
     'beginCaptures':
       '1':
         'name': 'punctuation.definition.group.regexp'
-      '2':
-        'name': 'punctuation.definition.group.assertion.regexp'
-      '3':
-        'name': 'meta.assertion.look-ahead.regexp'
-      '4':
-        'name': 'meta.assertion.negative-look-ahead.regexp'
-      '5':
-        'name': 'meta.assertion.look-behind.regexp'
-      '6':
-        'name': 'meta.assertion.negative-look-behind.regexp'
-    'end': '(\\))'
+    'end': '(\"|\')\\)'
     'endCaptures':
       '1':
         'name': 'punctuation.definition.group.regexp'
@@ -77,7 +54,7 @@
       '3':
         'name': 'entity.name.section.back-reference.regexp'
     'comment': 'we can make this more sophisticated to match the | character that separates yes-pattern from no-pattern, but it\'s not really necessary.'
-    'end': '(\\))'
+    'end': '(\"|\')\\)'
     'name': 'meta.group.assertion.conditional.regexp'
     'patterns': [
       {
@@ -98,7 +75,7 @@
         'name': 'punctuation.definition.group.capture.regexp'
       '6':
         'name': 'punctuation.definition.group.no-capture.regexp'
-    'end': '(\\))'
+    'end': '(\"|\')\\)'
     'endCaptures':
       '1':
         'name': 'punctuation.definition.group.regexp'
@@ -116,10 +93,6 @@
 'repository':
   'character-class':
     'patterns': [
-      {
-        'match': '\\\\[wWsSdDhH]|\\.'
-        'name': 'constant.character.character-class.regexp'
-      }
       {
         'match': '\\\\.'
         'name': 'constant.character.escape.backslash.regexp'

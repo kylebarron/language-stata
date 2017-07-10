@@ -1,0 +1,279 @@
+
+Title
+
+    [D] functions -- Functions
+
+
+Description
+
+    This is a quick reference for the mathematical functions.  For help on all functions, see [D]
+    functions.
+
+
+Mathematical functions
+
+    abs(x)
+       Domain:       -8e+307 to 8e+307
+       Range:        0 to 8e+307
+       Description:  returns the absolute value of x.
+
+    acos(x)
+       Domain:       -1 to 1
+       Range:        0 to pi
+       Description:  returns the radian value of the arccosine of x.
+
+    acosh(x)
+       Domain:       1 to 8.9e+307
+       Range:        0 to 709.77
+       Description:  returns the inverse hyperbolic cosine of x,
+                         acosh(x) = ln{x+sqrt(x*x - 1)}.
+
+    asin(x)
+       Domain:       -1 to 1
+       Range:        -pi/2 to pi/2
+       Description:  returns the radian value of the arcsine of x.
+
+    asinh(x)
+       Domain:       -8.9e+307 to 8.9e+307
+       Range:        -709.77 to 709.77
+       Description:  returns the inverse hyperbolic sine of x,
+                         asinh(x) = ln{x+sqrt(x*x + 1)}.
+
+    atan(x)
+       Domain:       -8e+307 to 8e+307
+       Range:        -pi/2 to pi/2
+       Description:  returns the radian value of the arctangent of x.
+
+    atan2(y,x)
+       Domain y:     -8e+307 to 8e+307
+       Domain x:     -8e+307 to 8e+307
+       Range:        -pi to pi
+       Description:   returns the radian value of the arctangent of y/x, where the signs of the
+                         parameters y and x are used to determine the quadrant of the answer.
+
+    atanh(x)
+       Domain:       -1 to 1
+       Range:        -8e+307 to 8e+307
+       Description:   returns the inverse hyperbolic tangent of x, atanh(x) = (1/2){ln(1+x) - ln(1-x)}.
+
+    ceil(x)
+       Domain:       -8e+307 to 8e+307
+       Range:        integers in -8e+307 to 8e+307
+       Description:  returns the unique integer n such that n - 1 < x < n.
+                     returns x (not ".") if x is missing, meaning that ceil(.a) = .a.
+
+                     Also see floor(x), int(x), and round(x).
+
+    cloglog(x)
+       Domain:       0 to 1
+       Range:        -8e+307 to 8e+307
+       Description:  returns the complementary log-log of x,
+                         cloglog(x) = ln{-ln(1-x)}.
+
+    comb(n,k)
+       Domain n:     integers 1 to 1e+305
+       Domain k:     integers 0 to n
+       Range:        0 to 8e+307 and missing
+       Description:  returns the combinatorial function n!/{k!(n - k)!}.
+
+    cos(x)
+       Domain:       -1e+18 to 1e+18
+       Range:        -1 to 1
+       Description:  returns the cosine of x, where x is in radians.
+
+    cosh(x)
+       Domain:       -709 to 709
+       Range:        1 to 4.11e+307
+       Description:  returns the hyperbolic cosine of x,
+                         cosh(x) = {exp(x) + exp(-x)}/2.
+
+    digamma(x)
+       Domain:       -1e+15 to 8e+307
+       Range:        -8e+307 to 8e+307 and missing
+       Description:  returns the digamma() function.  This is the derivative of lngamma(x).
+
+                     The digamma(x) function is sometimes called the psi function.
+
+    exp(x)
+       Domain:       -8e+307 to 709
+       Range:        0 to 8e+307
+       Description:  returns the exponential function of e^x.  This function is the inverse of ln(x).
+
+    floor(x)
+       Domain:       -8e+307 to 8e+307
+       Range:        integers in -8e+307 to 8e+307
+       Description:  returns the unique integer n such that n < x < n + 1.
+                     returns x (not ".") if x is missing, meaning that floor(.a) = .a.
+
+                     Also see ceil(x), int(x), and round(x).
+
+    int(x)
+       Domain:       -8e+307 to 8e+307
+       Range:        integers in -8e+307 to 8e+307
+       Description:  returns the integer obtained by truncating x toward 0; thus,
+                         int(5.2) = 5
+                         int(-5.8) = -5
+                     returns x (not ".") if x is missing, meaning that int(.a) = .a.
+
+                     One way to obtain the closest integer to x is int(x+sign(x)/2), which simplifies to
+                     int(x+0.5) for x > 0.  However, use of the round() function is preferred.  Also see
+                     round(x), ceil(x), and floor(x).
+
+    invcloglog(x)
+       Domain:       -8e+307 to 8e+307
+       Range:        0 to 1 and missing
+       Description:  returns the inverse of the complementary log-log function of x,
+                         invcloglog(x) = 1 - exp{-exp(x)}.
+
+    invlogit(x)
+       Domain:       -8e+307 to 8e+307
+       Range:        0 to 1 and missing
+       Description:  returns the inverse of the logit function of x,
+                         invlogit(x) = exp(x)/{1 + exp(x)}.
+
+    ln(x)
+       Domain:       1e-323 to 8e+307
+       Range:        -744 to 709
+       Description:  returns the natural logarithm, ln(x).  This function is the inverse of exp(x).
+
+    lnfactorial(n)
+       Domain:       integers 0 to 1e+305
+       Range:        0 to 8e+307
+       Description:  returns the natural log of n factorial = ln(n!).
+
+                     To calculate n!, use round(exp(lnfactorial(n)),1) to ensure that the result is an
+                     integer.  Logs of factorials are generally more useful than the factorials
+                     themselves because of overflow problems.
+
+    lngamma(x)
+       Domain:       -2,147,483,648 to 1e+305 (excluding negative integers)
+       Range:        -8e+307 to 8e+307
+       Description:  returns the natural log of the gamma function of x.  For integer values of x > 0,
+                         this is ln((x-1)!).
+
+                     lngamma(x) for x < 0 returns a number such that exp(lngamma(x)) is equal to the
+                     absolute value of the gamma function.  That is, lngamma(x) always returns a real
+                     (not complex) result.
+
+    log(x)
+       Domain:       1e-323 to 8e+307
+       Range:        -744 to 709
+       Description:  returns the natural logarithm, ln(x), which is a synonym for ln(x).
+
+    log10(x)
+       Domain:       1e-323 to 8e+307
+       Range:        -323 to 308
+       Description:  returns the base-10 logarithm of x.
+
+    logit(x)
+       Domain:       0 to 1 (exclusive)
+       Range:        -8e+307 to 8e+307 and missing
+       Description:  returns the log of the odds ratio of x,
+                         logit(x) = ln{x/(1-x)}.
+
+    max(x1,x2,...,xn)
+       Domain x1:    -8e+307 to 8e+307 and missing
+       Domain x2:    -8e+307 to 8e+307 and missing
+       ...
+       Domain xn:    -8e+307 to 8e+307 and missing
+       Range:        -8e+307 to 8e+307 and missing
+       Description:  returns the maximum value of x1, x2, ..., xn.  Unless all arguments are missing,
+                         missing values are ignored.
+                         max(2,10,.,7) = 10
+                         max(.,.,.) = .
+
+    min(x1,x2,...,xn)
+       Domain x1:    -8e+307 to 8e+307 and missing
+       Domain x2:    -8e+307 to 8e+307 and missing
+       ...
+       Domain xn:    -8e+307 to 8e+307 and missing
+       Range:        -8e+307 to 8e+307 and missing
+       Description:  returns the minimum value of x1, x2, ..., xn.  Unless all arguments are missing,
+                         missing values are ignored.
+                         min(2,10,.,7) = 2
+                         min(.,.,.) = .
+
+    mod(x,y)
+       Domain x:     -8e+307 to 8e+307
+       Domain y:     0 to 8e+307
+       Range:        0 to 8e+307
+       Description:  returns the modulus of x with respect to y.  mod(x,y) = x - y*int(x/y)
+                         mod(x,0) = .
+
+    reldif(x,y)
+       Domain x:     -8e+307 to 8e+307 and missing
+       Domain y:     -8e+307 to 8e+307 and missing
+       Range:        -8e+307 to 8e+307 and missing
+       Description:  returns the "relative" difference |x-y|/(|y|+1).
+                     returns 0 if both arguments are the same type of extended missing value.
+                     returns missing if only one argument is missing or if the two arguments are two
+                         different types of missing.
+
+    round(x,y) or round(x)
+       Domain x:     -8e+307 to 8e+307
+       Domain y:     -8e+307 to 8e+307
+       Range:        -8e+307 to 8e+307
+       Description:  returns x rounded in units of y or x rounded to the nearest integer if the argument
+                         y is omitted.
+
+                     returns x (not ".") if x is missing, meaning that round(.a) = .a and round(.a,y) =
+                         .a if y is not missing; if y is missing, "." is returned.
+
+                     For y = 1, or with y omitted, this amounts to the closest integer to x;
+                     round(5.2,1) is 5, as is round(4.8,1); round(-5.2,1) is -5, as is round(-4.8,1).
+                     The rounding definition is generalized for y != 1.  With y = .01, for instance, x
+                     is rounded to two decimal places; round(sqrt(2),.01) is 1.41. y may also be larger
+                     than 1; round(28,5) is 30, which is 28 rounded to the closest multiple of 5.  For y
+                     = 0, the function is defined as returning x unmodified.  Also see int(x), ceil(x),
+                     and floor(x).
+
+    sign(x)
+       Domain:       -8e+307 to 8e+307 and missing
+       Range:        -1, 0, 1 and missing
+       Description:  returns the sign of x: -1 if x < 0, 0 if x = 0, 1 if x > 0, and missing if x is
+                         missing.
+
+    sin(x)
+       Domain:       -1e+18 to 1e+18
+       Range:        -1 to 1
+       Description:  returns the sine of x, where x is in radians.
+
+    sinh(x)
+       Domain:       -709 to 709
+       Range:        -4.11e+307 to 4.11e+307
+       Description:  returns the hyperbolic sine of x,
+                         sinh(x) = {exp(x) - exp(-x)}/2.
+
+    sqrt(x)
+       Domain:       0 to 8e+307
+       Range:        0 to 1e+154
+       Description:  returns the square root of x.
+
+    sum(x)
+       Domain:       all real numbers and missing
+       Range:        -8e+307 to 8e+307 (excluding missing)
+       Description:  returns the running sum of x, treating missing values as zero.
+
+                     For example, following the command generate y=sum(x), the jth observation on y
+                     contains the sum of the first through jth observations on x.  See [D] egen for an
+                     alternative sum function, total(), that produces a constant equal to the overall
+                     sum.
+
+    tan(x)
+       Domain:       -1e+18 to 1e+18
+       Range:        -1e+17 to 1e+17 and missing
+       Description:  returns the tangent of x, where x is in radians.
+
+    tanh(x)
+       Domain:       -8e+307 to 8e+307
+       Range:        -1 to 1 and missing
+       Description:  returns the hyperbolic tangent of x,
+                         tanh(x) = {exp(x) - exp(-x)}/{exp(x) + exp(-x)}.
+
+    trigamma(x)
+       Domain:       -1e+15 to 8e+307
+       Range:        0 to 8e+307 and missing
+       Description:  returns the second derivative of lngamma(x).  The trigamma() function is the
+                         derivative of digamma(x).
+
+    trunc(x) is a synonym for int(x).

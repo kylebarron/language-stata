@@ -1,0 +1,841 @@
+
+Title
+
+    [D] functions -- Functions
+
+
+Description
+
+    This is a quick reference for the probability distributions and density functions.  For help on all
+    functions, see [D] functions.
+
+
+Probability distributions and density functions
+
+    The probability distribution and density functions are organized under the following headings:
+
+        Beta and noncentral beta distributions
+        Binomial distribution
+        Chi-squared and noncentral chi-squared distributions
+        Dunnett's multiple range distribution
+        F and noncentral F distributions
+        Gamma distribution
+        Hypergeometric distribution
+        Negative binomial distribution
+        Normal (Gaussian), log of the normal, and binormal distributions
+        Poisson distribution
+        Student's t and noncentral Student's t distributions
+        Tukey's Studentized range distribution
+
+
+Beta and noncentral beta distributions
+
+    ibeta(a,b,x)
+       Domain a:     1e-10 to 1e+17
+       Domain b:     1e-10 to 1e+17
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is 0 < x < 1
+       Range:        0 to 1
+       Description:  returns the cumulative beta distribution with shape parameters a and b
+                     returns 0 if x < 0.
+                     returns 1 if x > 1.
+
+                     ibeta() returns the regularized incomplete beta function, also known as the
+                     incomplete beta function ratio.  The incomplete beta function without
+                     regularization is given by
+                     (gamma(a)*gamma(b)/gamma(a+b))*ibeta(a,b,x)
+                     or, better when a or b might be large,
+                     exp(lngamma(a)+lngamma(b)-lngamma(a+b))*ibeta(a,b,x).
+
+                     Here is an example of the use of the regularized incomplete beta function.
+                     Although Stata has a cumulative binomial function (see binomial()), the probability
+                     that an event occurs k or fewer times in n trials, when the probability of one
+                     event is p, can be evaluated as cond(k==n,1,1-ibeta(k+1,n-k,p)).  The reverse
+                     cumulative binomial (the probability that an event occurs k or more times) can be
+                     evaluated as cond(k==0,1,ibeta(k,n-k+1,p)).
+
+    betaden(a,b,x)
+       Domain a:     1e-323 to 8e+307
+       Domain b:     1e-323 to 8e+307
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is 0 < x < 1
+       Range:        0 to 8e+307
+       Description:  returns the probability density of the beta distribution, where a and b are shape
+                         parameters.
+                     returns 0 if x < 0 or x > 1.
+
+    ibetatail(a,b,x)
+       Domain a:     1e-10 to 1e+17
+       Domain b:     1e-10 to 1e+17
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is 0 < x < 1
+       Range:        0 to 1
+       Description:  returns the reverse cumulative (upper tail or survivor) beta distribution with
+                         shape parameters a and b.
+                     returns 1 if x < 0.
+                     returns 0 if x > 1.
+
+                     ibetatail() is also known as the complement to the incomplete beta function
+                     (ratio).
+
+    invibeta(a,b,p)
+       Domain a:     1e-10 to 1e+17
+       Domain b:     1e-10 to 1e+17
+       Domain p:     0 to 1
+       Range:        0 to 1
+       Description:  returns the inverse cumulative beta distribution: if ibeta(a,b,x) = p, then
+                         invibeta(a,b,p) = x.
+
+    invibetatail(a,b,p)
+       Domain a:     1e-10 to 1e+17
+       Domain b:     1e-10 to 1e+17
+       Domain p:     0 to 1
+       Range:        0 to 1
+       Description:  returns the inverse reverse cumulative (upper tail or survivor) beta distribution:
+                         if ibetatail(a,b,x) = p, then invibetatail(a,b,p) = x.
+
+    nibeta(a,b,np,x)
+       Domain a:     1e-323 to 8e+307
+       Domain b:     1e-323 to 8e+307
+       Domain np:    0 to 10,000
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is 0 < x < 1
+       Range:        0 to 1
+       Description:  returns the cumulative noncentral beta distribution, where a and b are shape
+                         parameters, np is the noncentrality parameter, and x is the value of a beta
+                         random variable.
+                     returns 0 if x < 0.
+                     returns 1 if x > 1.
+
+                     nibeta(a,b,0,x) = ibeta(a,b,x), but ibeta() is the preferred function to use for
+                     the central beta distribution. nibeta() is computed using an algorithm described in
+                     Johnson, Kotz, and Balakrishnan (1995).
+
+    nbetaden(a,b,np,x)
+       Domain a:     1e-323 to 8e+307
+       Domain b:     1e-323 to 8e+307
+       Domain np:    0 to 1,000
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is 0 < x < 1
+       Range:        0 to 8e+307
+       Description:  returns the probability density function of the noncentral beta distribution, where
+                         a and b are shape parameters, np is the noncentrality parameter, and x is the
+                         value of a beta random variable.
+                     returns 0 if x < 0 or x > 1.
+
+                     nbetaden(a,b,0,x)= betaden(a,b,x), but betaden() is the preferred function to use
+                     for the central beta distribution. nbetaden() is computed using an algorithm
+                     described in Johnson, Kotz, and Balakrishnan (1995).
+
+    invnibeta(a,b,np,p)
+       Domain a:     1e-323 to 8e+307
+       Domain b:     1e-323 to 8e+307
+       Domain np:    0 to 1,000
+       Domain p:     0 to 1
+       Range:        0 to 1
+       Description:  returns the inverse cumulative noncentral beta distribution: if nibeta(a,b,np,x) =
+                         p, then invnibeta(a,b,np,p) = x.
+
+
+Binomial distribution
+
+    binomial(n,k,p)
+       Domain n:     0 to 1e+17
+       Domain k:     -8e+307 to 8e+307
+                     Interesting domain is 0 < k < n
+       Domain p:     0 to 1
+       Range:        0 to 1
+       Description:  returns the probability of observing floor(k) or fewer successes in floor(n) trials
+                         when the probability of a success on one trial is p.
+                     returns 0 if k < 0.
+                     returns 1 if k > n.
+
+    binomialp(n,k,p)
+       Domain n:     1 to 1e+6
+       Domain k:     0 to n
+       Domain p:     0 to 1
+       Range:        0 to 1
+       Description:  returns the probability of observing floor(k) successes in floor(n) trials when the
+                         probability of a success on one trial is p.
+
+    binomialtail(n,k,p)
+       Domain n:     0 to 1e+17
+       Domain k:     -8e+307 to 8e+307
+                     Interesting domain is 0 < k < n
+       Domain p:     0 to 1
+       Range:        0 to 1
+       Description:  returns the probability of observing floor(k) or more successes in floor(n) trials
+                         when the probability of a success on one trial is p.
+                     returns 1 if k < 0.
+                     returns 0 if k > n.
+
+    invbinomial(n,k,p)
+       Domain n:     1 to 1e+17
+       Domain k:     0 to n - 1
+       Domain p:     0 to 1 (exclusive)
+       Range:        0 to 1
+       Description:  returns the inverse of the cumulative binomial; that is, it returns the probability
+                         of success on one trial such that the probability of observing floor(k) or
+                         fewer successes in floor(n) trials is p.
+
+    invbinomialtail(n,k,p)
+       Domain n:     1 to 1e+17
+       Domain k:     1 to n
+       Domain p:     0 to 1 (exclusive)
+       Range:        0 to 1
+       Description:  returns the inverse of the right cumulative binomial; that is, it returns the
+                         probability of success on one trial such that the probability of observing
+                         floor(k) or more successes in floor(n) trials is p.
+
+
+Chi-squared and noncentral chi-squared distributions
+
+    chi2(df,x)
+       Domain df:    2e-10 to 2e+17 (may be nonintegral)
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        0 to 1
+       Description:  returns the cumulative chi-squared distribution with df degrees of freedom.
+                         chi2(df,x) = gammap(df/2,x/2).
+                     returns 0 if x < 0.
+
+    chi2den(df,x)
+       Domain df:    2e-10 to 2e+17 (may be nonintegral)
+       Domain x:     -8e+307 to 8e+307
+       Range:        0 to 8e+307
+       Description:  returns the probability density of the chi-squared distribution with df degrees of
+                         freedom.  chi2den(df,x) = gammaden(df/2,2,0,x).
+                     returns 0 if x < 0.
+
+    chi2tail(df,x)
+       Domain df:    2e-10 to 2e+17 (may be nonintegral)
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        0 to 1
+       Description:  returns the reverse cumulative (upper tail or survivor) chi-squared distribution
+                         with df degrees of freedom.
+                         chi2tail(df,x) = 1 - chi2(df,x)
+                     returns 1 if x < 0.
+
+    invchi2(df,p)
+       Domain df:    2e-10 to 2e+17 (may be nonintegral)
+       Domain p:     0 to 1
+       Range:        0 to 8e+307
+       Description:  returns the inverse of chi2():  if chi2(df,x) = p, then invchi2(df,p) = x.
+
+    invchi2tail(df,p)
+       Domain df:    2e-10 to 2e+17 (may be nonintegral)
+       Domain p:     0 to 1
+       Range:        0 to 8e+307
+       Description:  returns the inverse of chi2tail(): if chi2tail(df,x) = p, then invchi2tail(df,p) =
+                         x.
+
+    nchi2(df,np,x)
+       Domain df:    integers 1 to 200
+       Domain np:    0 to 1,000
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        0 to 1
+       Description:  returns the cumulative noncentral chi-squared distribution, where df denotes the
+                         degrees of freedom, np is the noncentrality parameter, and x is the value of
+                         chi-squared.
+                     returns 0 if x < 0.
+
+                     nchi2(df,0,x) = chi2(df,x), but chi2() is the preferred function to use for the
+                     central chi-squared distribution.  nchi2() is computed using the algorithm of
+                     Haynam, Govindarajulu, and Leone (1970).
+
+    invnchi2(df,np,p)
+       Domain df:    integers 1 to 200
+       Domain np:    0 to 1,000
+       Domain p:     0 to 1
+       Range:        0 to 8e+307
+       Description:  returns the inverse cumulative noncentral chi-squared distribution: if
+                         nchi2(df,np,x) = p, then invnchi2(df,np,p) = x; df must be an integer.
+
+    npnchi2(df,x,p)
+       Domain df:    integers 1 to 200
+       Domain x:     0 to 8e+307
+       Domain p:     1e-138 to 1 - 2^(-52)
+       Range:        0 to 1,000
+       Description:  returns the noncentrality parameter, np, for the noncentral chi-squared:  if
+                         nchi2(df,np,x) = p, then npnchi2(df,x,p) = np.
+
+
+Dunnett's multiple range
+
+    dunnettprob(k,df,x)
+       Domain k:     2 to 1e+6
+       Domain df:    2 to 1e+6
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        0 to 1
+       Description:  returns the cumulative multiple range distribution that is used in Dunnett's
+                         multiple-comparison method with k ranges and df degrees of freedom.
+                     returns 0 if x < 0.
+
+                     dunnettprob() is computed using an algorithm described in Miller (1981).
+
+    invdunnettprob(k,df,p)
+       Domain k:     2 to 1e+6
+       Domain df:    2 to 1e+6
+       Domain p:     0 to 1 (right exclusive)
+       Range:        0 to 8e+307
+       Description:  returns the inverse cumulative multiple range distribution that is used in
+                         Dunnett's multiple-comparison method with k ranges and df degrees of freedom.
+                         If dunnettprob(k,df,x) = p, then invdunnettprob(k,df,p) = x.
+
+                     invdunnettprob() is computed using an algorithm described in Miller (1981).
+
+
+F and noncentral F distributions
+
+    F(df1,df2,f)
+       Domain df1:   2e-10 to 2e+17 (may be nonintegral)
+       Domain df2:   2e-10 to 2e+17 (may be nonintegral)
+       Domain f:     -8e+307 to 8e+307
+                     Interesting domain is f > 0
+       Range:        0 to 1
+       Description:  returns the cumulative F distribution with df1 numerator and df2 denominator
+                         degrees of freedom.
+                     returns 0 if f < 0.
+
+    Fden(df1,df2,f)
+       Domain df1:   1e-323 to 8e+307 (may be nonintegral)
+       Domain df2:   1e-323 to 8e+307 (may be nonintegral)
+       Domain f:     -8e+307 to 8e+307
+                     Interesting domain is f > 0
+       Range:        0 to 8e+307
+       Description:  returns the probability density function for the F distribution with df1 numerator
+                         and df2 denominator degrees of freedom.
+                     returns 0 if f < 0.
+
+    Ftail(df1,df2,f)
+       Domain df1:   2e-10 to 2e+17 (may be nonintegral)
+       Domain df2:   2e-10 to 2e+17 (may be nonintegral)
+       Domain f:     -8e+307 to 8e+307
+                     Interesting domain is f > 0
+       Range:        0 to 1
+       Description:  returns the reverse cumulative (upper tail or survivor) F distribution with df1
+                         numerator and df2 denominator degrees of freedom.  Ftail(df1,df2,f) = 1 -
+                         F(df1,df2,f)
+                     returns 1 if f < 0.
+
+    invF(df1,df2,p)
+       Domain df1:   2e-10 to 2e+17 (may be nonintegral)
+       Domain df2:   2e-10 to 2e+17 (may be nonintegral)
+       Domain p:     0 to 1
+       Range:        0 to 8e+307
+       Description:  returns the inverse cumulative F distribution: if F(df1,df2,f) = p, then
+                         invF(df1,df2,p) = f.
+
+    invFtail(df1,df2,p)
+       Domain df1:   2e-10 to 2e+17 (may be nonintegral)
+       Domain df2:   2e-10 to 2e+17 (may be nonintegral)
+       Domain p:     0 to 1
+       Range:        0 to 8e+307
+       Description:  returns the inverse reverse cumulative (upper tail or survivor) F distribution: if
+                         Ftail(df1,df2,f) = p, then invFtail(df1,df2,p) = f.
+
+    nF(df1,df2,np,f)
+       Domain df1:   2e-10 to 1e+8 (may be nonintegral)
+       Domain df2:   2e-10 to 1e+8 (may be nonintegral)
+       Domain np:    0 to 10,000
+       Domain f:     -8e+307 to 8e+307
+       Range:        0 to 1
+       Description:  returns the cumulative noncentral F distribution with df1 numerator and df2
+                         denominator degrees of freedom and noncentrality parameter np.
+                         nF(df1,df2,0,f) = F(df1,df2,f).
+                     returns 0 if f < 0.
+
+                     nF() is computed using nibeta() based on the relationship between the noncentral
+                     beta and noncentral F distributions:
+                     nF(df1,df2,np,f) =
+                         nibeta(df1/2, df2/2, np, df1*f/((df1*f)+df2)).
+
+
+    nFden(df1,df2,np,f)
+       Domain df1:   1e-323 to 8e+307 (may be nonintegral)
+       Domain df2:   1e-323 to 8e+307 (may be nonintegral)
+       Domain np:    0 to 1,000
+       Domain f:     -8e+307 to 8e+307
+                     Interesting domain is f > 0
+       Range:        0 to 8e+307
+       Description:  returns the probability density function of the noncentral F density with df1
+                         numerator and df2 denominator degrees of freedom and noncentrality parameter
+                         np.
+                     returns 0 if f < 0.
+
+                     nFden(df1,df2,0,f) = Fden(df1,df2,f), but Fden() is the preferred function to use
+                     for the central F distribution.
+
+                     Also, if F follows the noncentral F distribution with df1 and df2 degrees of
+                     freedom and noncentrality parameter np, then
+
+                                 df1 F
+                               ---------
+                               df2 + df1 F
+
+                     follows a noncentral beta distribution with shape parameters a=df1/2, b=df2/2, and
+                     noncentrality parameter np, as given in nbetaden().  nFden() is computed based on
+                     this relationship.
+
+    nFtail(df1,df2,np,f)
+       Domain df1:   1e-323 to 8e+307 (may be nonintegral)
+       Domain df2:   1e-323 to 8e+307 (may be nonintegral)
+       Domain np:    0 to 1,000
+       Domain f:     -8e+307 to 8e+307
+                     Interesting domain is f > 0
+       Range:        0 to 1
+       Description:  returns the reverse cumulative (upper tail or survivor) noncentral F distribution
+                         with df1 numerator and df2 denominator degrees of freedom and noncentrality
+                         parameter np.
+                     returns 1 if f < 0.
+
+                     nFtail() is computed using nibeta() based on the relationship between the
+                     noncentral beta and F distributions.  See Johnson, Kotz, and Balakrishnan (1995)
+                     for more details.
+
+    invnFtail(df1,df2,np,p)
+       Domain df1:   1e-323 to 8e+307 (may be nonintegral)
+       Domain df2:   1e-323 to 8e+307 (may be nonintegral)
+       Domain np:    0 to 1,000
+       Domain p:     0 to 1
+       Range:        0 to 8e+307
+       Description:  returns the inverse reverse cumulative (upper tail or survivor) noncentral F
+                         distribution: if nFtail(df1,df2,np,f) = p, then invnFtail(df1,df2,np,p) = x.
+
+    npnF(df1,df2,f,p)
+       Domain df1:   2e-10 to 1e+6 (may be nonintegral)
+       Domain df2:   2e-10 to 1e+6 (may be nonintegral)
+       Domain f:     0 to 8e+307
+       Domain p:     0 to 1
+       Range:        0 to 10,000
+       Description:  returns the noncentrality parameter, np, for the noncentral F:  if nF(df1,df2,np,f)
+                         = p, then npnF(df1,df2,f,p) = np.
+
+
+Gamma distribution
+
+    gammap(a,x)
+       Domain a:     1e-10 to 1e+17
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        0 to 1
+       Description:  returns the cumulative gamma distribution with shape parameter a.
+                     returns 0 if x < 0.
+
+                     The cumulative Poisson (the probability of observing k or fewer events if the
+                     expected is x) can be evaluated as 1-gammap(k+1,x). The reverse cumulative (the
+                     probability of observing k or more events) can be evaluated as gammap(k,x).
+
+                     gammap() is also known as the incomplete gamma function (ratio).
+
+                     Probabilities for the three-parameter gamma distribution (see gammaden()) can be
+                     calculated by shifting and scaling x; that is, gammap(a,(x - g)/b).
+
+    gammaden(a,b,g,x)
+       Domain a:     1e-323 to 8e+307
+       Domain b:     1e-323 to 8e+307
+       Domain g:     -8e+307 to 8e+307
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > g
+       Range:        0 to 8e+307
+       Description:  returns the probability density function of the gamma distribution, where a is the
+                         shape parameter, b is the scale parameter, and g is the location parameter.
+                     returns 0 if x < g.
+
+    gammaptail(a,x)
+       Domain a:     1e-10 to 1e+17
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        0 to 1
+       Description:  returns the reverse (upper tail or survivor) cumulative gamma distribution with
+                         shape parameter a.
+                     returns 1 if x < 0.
+
+                     gammaptail() is also known as the complement to the incomplete gamma function
+                     (ratio).
+
+    invgammap(a,p)
+       Domain a:     1e-10 to 1e+17
+       Domain p:     0 to 1
+       Range:        0 to 8e+307
+       Description:  returns the inverse cumulative gamma distribution: if gammap(a,x) = p, then
+                         invgammap(a,p) = x.
+
+    invgammaptail(a,p)
+       Domain a:     1e-10 to 1e+17
+       Domain p:     0 to 1
+       Range:        0 to 8e+307
+       Description:  returns the inverse reverse cumulative (upper tail or survivor) gamma distribution:
+                         if gammaptail(a,x) = p, then invgammaptail(a,p) = x.
+
+    dgammapda(a,x)
+       Domain a:     1e-7 to 1e+17
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        -16 to 0
+       Description:  returns the partial derivative of the cumulative gamma distribution gammap(a,x)
+                         with respect to a, for a > 0.
+                     returns 0 if x < 0.
+
+    dgammapdada(a,x)
+       Domain a:     1e-7 to 1e+17
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        -0.02 to 4.77e+5
+       Description:  returns the 2nd partial derivative of the cumulative gamma distribution gammap(a,x)
+                         with respect to a, for a > 0.
+                     returns 0 if x < 0.
+
+    dgammapdadx(a,x)
+       Domain a:     1e-7 to 1e+17
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        -0.04 to 8e+307
+       Description:  returns the 2nd partial derivative of the cumulative gamma distribution gammap(a,x)
+                         with respect to a and x, for a > 0.
+                     returns 0 if x < 0.
+
+    dgammapdx(a,x)
+       Domain a:     1e-10 to 1e+17
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        0 to 8e+307
+       Description:  returns the partial derivative of the cumulative gamma distribution gammap(a,x)
+                         with respect to x, for a > 0.
+                     returns 0 if x < 0.
+
+    dgammapdxdx(a,x)
+       Domain a:     1e-10 to 1e+17
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        0 to 1e+40
+       Description:  returns the 2nd partial derivative of the cumulative gamma distribution gammap(a,x)
+                         with respect to x, for a > 0.
+                     returns 0 if x < 0.
+
+
+
+Hypergeometric distribution
+
+    hypergeometric(N,K,n,k)
+       Domain N:     2 to 1e+5
+       Domain K:     1 to N-1
+       Domain n:     1 to N-1
+       Domain k:     max(0,n-N+K) to min(K,n)
+       Range:        0 to 1
+       Description:  returns the cumulative probability of the hypergeometric distribution.  N is the
+                         population size, K is the number of elements in the population that have the
+                         attribute of interest, and n is the sample size.  Returned is the probability
+                         of observing k or fewer elements from a sample of size n that have the
+                         attribute of interest.
+
+    hypergeometricp(N,K,n,k)
+       Domain N:     2 to 1e+5
+       Domain K:     1 to N-1
+       Domain n:     1 to N-1
+       Domain k:     max(0,n-N+K) to min(K,n)
+       Range:        0 to 1 (right exclusive)
+       Description:  returns the hypergeometric probability of k successes (where success is obtaining
+                         an element with the attribute of interest) out of a sample of size n, from a
+                         population of size N containing K elements that have the attribute of interest.
+
+
+Negative binomial distribution
+
+    nbinomial(n,k,p)
+       Domain n:     1e-10 to 1e+17 (can be nonintegral)
+       Domain k:     0 to 2^53-1
+       Domain p:     0 to 1 (left exclusive)
+       Range:        0 to 1
+       Description:  returns the cumulative probability of the negative binomial distribution.  n can be
+                         nonintegral.  When n is an integer, nbinomial() returns the probability of
+                         observing k or fewer failures before the nth success, when the probability of a
+                         success on one trial is p.
+
+                     The negative binomial distribution function is evaluated using the ibeta()
+                     function.
+
+    nbinomialp(n,k,p)
+       Domain n:     1e-10 to 1e+6 (can be nonintegral)
+       Domain k:     0 to 1e+10
+       Domain p:     0 to 1 (left exclusive)
+       Range:        0 to 1
+       Description:  returns the negative binomial probability.  When n is an integer, nbinomialp()
+                         returns the probability of observing exactly floor(k) failures before the nth
+                         success when the probability of a success on one trial is p.
+
+    nbinomialtail(n,k,p)
+       Domain n:     1e-10 to 1e+17 (can be nonintegral)
+       Domain k:     0 to 2^53-1
+       Domain p:     0 to 1 (left exclusive)
+       Range:        0 to 1
+       Description:  returns the reverse cumulative probability of the negative binomial distribution.
+                         When n is an integer, nbinomialtail() returns the probability of observing k or
+                         more failures before the nth success, when the probability of a success on one
+                         trial is p.
+
+                     The reverse negative binomial distribution function is evaluated using the
+                     ibetatail() function.
+
+    invnbinomial(n,k,q)
+       Domain n:     1e-10 to 1e+17 (can be nonintegral)
+       Domain k:     0 to 2^53-1
+       Domain q:     0 to 1 (exclusive)
+       Range:        0 to 1
+       Description:  returns the value of the negative binomial parameter, p, such that q =
+                         nbinomial(n,k,p).
+
+                     invnbinomial() is evaluated using invibeta().
+
+    invnbinomialtail(n,k,q)
+       Domain n:     1e-10 to 1e+17 (can be nonintegral)
+       Domain k:     1 to 2^53-1
+       Domain q:     0 to 1 (exclusive)
+       Range:        0 to 1 (exclusive)
+       Description:  returns the value of the negative binomial parameter, p, such that q =
+                         nbinomialtail(n,k,p).
+
+                     invnbinomialtail() is evaluated using invibetatail().
+
+
+Normal (Gaussian), log of the normal, and binormal distributions
+
+    binormal(h,k,r)
+       Domain h:     -8e+307 to 8e+307
+       Domain k:     -8e+307 to 8e+307
+       Domain r:     -1 to 1
+       Range:        0 to 1
+       Description:  returns the joint cumulative distribution of the bivariate normal with correlation
+                         r; cumulative over (-inf,h] x (-inf,k].
+
+    normal(z)
+       Domain:       -8e+307 to 8e+307
+       Range:        0 to 1
+       Description:  returns the cumulative standard normal distribution.
+
+    normalden(z)
+       Domain:       -8e+307 to 8e+307
+       Range:        0 to 0.39894 ...
+       Description:  returns the standard normal density.
+
+    normalden(x,s)
+       Domain x:     -8e+307 to 8e+307
+       Domain s:     1e-308 to 8e+307
+       Range:        0 to 8e+307
+       Description:  returns the normal density with mean 0 and standard deviation s:
+                         normalden(x,1) = normalden(x) and
+                         normalden(x,s) = normalden(x/s)/s.
+
+    normalden(x,m,s)
+       Domain x:     -8e+307 to 8e+307
+       Domain m:     -8e+307 to 8e+307
+       Domain s:     1e-308 to 8e+307
+       Range:        0 to 8e+307
+       Description:  returns the normal density with mean m and standard deviation s:
+                         normalden(x,0,s) = normalden(x,s) and
+                         normalden(x,m,s) = normalden((x-m)/s)/s.
+
+    invnormal(p)
+       Domain:       1e-323 to 1 - 2^(-53)
+       Range:        -38.449394 to 8.2095362
+       Description:  returns the inverse cumulative standard normal distribution: if normal(z) = p, then
+                         invnormal(p) = z.
+
+    lnnormal(z)
+       Domain:       -1e+99 to 8e+307
+       Range:        -5e+197 to 0
+       Description:  returns the natural logarithm of the cumulative standard normal distribution.
+
+    lnnormalden(z)
+       Domain:       -1e+154 to 1e+154
+       Range:        -5e+307 to -0.91893853 = lnnormalden(0)
+       Description:  returns the natural logarithm of the standard normal density.
+
+    lnnormalden(x,s)
+       Domain x:     -8e+307 to 8e+307
+       Domain s:     1e-323 to 8e+307
+       Range:        -5e+307 to 742.82799
+       Description:  returns the natural logarithm of the normal density with mean 0 and standard
+                         deviation s:
+                         lnnormalden(x,1) = lnnormalden(x) and
+                         lnnormalden(x,s) = lnnormalden(x/s) - ln(s).
+
+    lnnormalden(x,m,s)
+       Domain x:     -8e+307 to 8e+307
+       Domain m:     -8e+307 to 8e+307
+       Domain s:     1e-323 to 8e+307
+       Range:        1e-323 to 8e+307
+       Description:  returns the natural logarithm of the normal density with mean m and standard
+                         deviation s:
+                         lnnormalden(x,0,s) = lnnormalden(x,s) and lnnormalden(x,m,s) =
+                         lnnormalden((x-m)/s) - ln(s).
+
+
+Poisson distribution
+
+    poisson(m,k)
+       Domain m:     1e-10 to 2^53-1
+       Domain k:     0 to 2^53-1
+       Range:        0 to 1
+       Description:  returns the probability of observing floor(k) or fewer outcomes that are
+                         distributed as Poisson with mean m.
+
+                     The Poisson distribution function is evaluated using the gammaptail() function.
+
+    poissonp(m,k)
+       Domain m:     1e-10 to 1e+8
+       Domain k:     0 to 1e+9
+       Range:        0 to 1
+       Description:  returns the probability of observing floor(k) outcomes that are distributed as
+                         Poisson with mean m.
+
+                     The Poisson probability function is evaluated using the gammaden() function.
+
+    poissontail(m,k)
+       Domain m:     1e-10 to 2^53-1
+       Domain k:     0 to 2^53-1
+       Range:        0 to 1
+       Description:  returns the probability of observing floor(k) or more outcomes that are distributed
+                         as Poisson with mean m.
+
+                     The reverse cumulative Poisson distribution function is evaluated using the
+                     gammap() function.
+
+    invpoisson(k,p)
+       Domain k:     0 to 2^53-1
+       Domain p:     0 to 1 (exclusive)
+       Range:        1.110e-16 to 2^53
+       Description:  returns the Poisson mean such that the cumulative Poisson distribution evaluated at
+                         k is p: if poisson(m,k) = p, then invpoisson(k,p) = m.
+
+                     The inverse Poisson distribution function is evaluated using the invgammaptail()
+                     function.
+
+    invpoissontail(k,q)
+       Domain k:     0 to 2^53-1
+       Domain q:     0 to 1 (exclusive)
+       Range:        0 to 2^53 (left exclusive)
+       Description:  returns the Poisson mean such that the reverse cumulative Poisson distribution
+                         evaluated at k is q: if poissontail(m,k) = q, then invpoissontail(k,q) = m.
+
+                     The inverse of the reverse cumulative Poisson distribution function is evaluated
+                     using the invgammap() function.
+
+
+Student's t and noncentral Student's t distributions
+
+    t(df,t)
+       Domain df:    2e-10 to 2e+17 (may be nonintegral)
+       Domain t:     -8e+307 to 8e+307
+       Range:        0 to 1
+       Description:  returns the cumulative Student's t distribution with df degrees of freedom.
+
+    tden(df,t)
+       Domain df:    1e-323 to 8e+307 (may be nonintegral)
+       Domain t:     -8e+307 to 8e+307
+       Range:        0 to 0.39894 ...
+       Description:  returns the probability density function of Student's t distribution.
+
+    ttail(df,t)
+       Domain df:    2e-10 to 2e+17 (may be nonintegral)
+       Domain t:     -8e+307 to 8e+307
+       Range:        0 to 1
+       Description:  returns the reverse cumulative (upper tail or survivor) Student's t distribution;
+                         it returns the probability T > t.
+
+    invt(df,p)
+       Domain df:    2e-10 to 2e+17 (may be nonintegral)
+       Domain p:     0 to 1
+       Range:        -8e+307 to 8e+307
+       Description:  returns the inverse cumulative Student's t distribution: if t(df,t) = p, then
+                         invt(df,p) = t.
+
+    invttail(df,p)
+       Domain df:    2e-10 to 2e+17 (may be nonintegral)
+       Domain p:     0 to 1
+       Range:        -8e+307 to 8e+307
+       Description:  returns the inverse reverse cumulative (upper tail or survivor) Student's t
+                         distribution: if ttail(df,t) = p, then invttail(df,p) = t.
+
+    nt(df,np,t)
+       Domain df:    1e-100 to 1e+10 (may be nonintegral)
+       Domain np:    -1,000 to 1,000
+       Domain t:     -8e+307 to 8e+307
+       Range:        0 to 1
+       Description:  returns the cumulative noncentral Student's t distribution with df degrees of
+                         freedom and noncentrality parameter np.  nt(df,0,t) = t(df,t).
+
+    ntden(df,np,t)
+       Domain df:    1e-100 to 1e+10 (may be nonintegral)
+       Domain np:    -1,000 to 1,000
+       Domain t:     -8e+307 to 8e+307
+       Range:        0 to 0.39894 ...
+       Description:  returns the probability density function of the noncentral Student's t distribution
+                         with df degrees of freedom and noncentrality parameter np.
+
+    nttail(df,np,t)
+       Domain df:    1e-100 to 1e+10 (may be nonintegral)
+       Domain np:    -1,000 to 1,000
+       Domain t:     -8e+307 to 8e+307
+       Range:        0 to 1
+       Description:  returns the reverse cumulative (upper tail or survivor) noncentral Student's t
+                         distribution with df degrees of freedom and noncentrality parameter np.
+
+    invnttail(df,np,p)
+       Domain df:    1 to 1e+6 (may be nonintegral)
+       Domain np:    -1,000 to 1,000
+       Domain p:     0 to 1
+       Range:        -8e+10 to 8e+10
+       Description:  returns the inverse reverse cumulative (upper tail or survivor) noncentral
+                         Student's t distribution: if nttail(df,np,t) = p, then invnttail(df,np,p) = t.
+
+    npnt(df,t,p)
+       Domain df:    1e-100 to 1e+8 (may be nonintegral)
+       Domain t:     -8e+307 to 8e+307
+       Domain p:     0 to 1
+       Range:        -1,000 to 1,000
+       Description:  returns the noncentrality parameter, np, for the noncentral Student's t
+                         distribution:  if nt(df,np,t) = p, then npnt(df,t,p) = np.
+
+
+Tukey's Studentized range
+
+    tukeyprob(k,df,x)
+       Domain k:     2 to 1e+6
+       Domain df:    2 to 1e+6
+       Domain x:     -8e+307 to 8e+307
+                     Interesting domain is x > 0
+       Range:        0 to 1
+       Description:  returns the cumulative Tukey's Studentized range distribution with k ranges and df
+                         degrees of freedom.  If df is a missing value, then the normal distribution is
+                         used instead of Student's t.
+                     returns 0 if x < 0.
+
+                     tukeyprob() is computed using an algorithm described in Miller (1981).
+
+    invtukeyprob(k,df,p)
+       Domain k:     2 to 1e+6
+       Domain df:    2 to 1e+6
+       Domain p:     0 to 1
+       Range:        0 to 8e+307
+       Description:  returns the inverse cumulative Tukey's Studentized range distribution with k ranges
+                         and df degrees of freedom.  If df is a missing value, then the normal
+                         distribution is used instead of Student's t.  If tukeyprob(k,df,x) = p, then
+                         invtukeyprob(k,df,p) = x.
+
+                     invtukeyprob() is computed using an algorithm described in Miller (1981).
+
+
+References
+
+    Haynam, G. E., Z. Govindarajulu, and F. C. Leone.  1970.  Tables of the cumulative noncentral
+        chi-square distribution.  In Vol. 1 of Selected Tables in Mathematical Statistics, ed. H. L.
+        Harter and D. B. Owen, 1-78.  Providence, RI: American Mathematical Society.
+
+    Johnson, N. L., S. Kotz, and N. Balakrishnan.  1995.  Continuous Univariate Distributions, Vol. 2.
+        2nd ed.  New York: Wiley.
+
+    Miller, R. G., Jr.  1981.  Simultaneous Statistical Inference.  2nd ed.  New York: Springer.

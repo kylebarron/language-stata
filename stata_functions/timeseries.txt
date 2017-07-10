@@ -1,0 +1,53 @@
+
+Title
+
+    [D] functions -- Functions
+
+
+Description
+
+    This is a quick reference for the time-series functions.  See [TS] time series for an introduction
+    to the time-series analysis commands.  See [D] datetime concerning date and time functions.  For
+    help on all functions, see [D] functions.
+
+    Stata also provides lag, lead, and difference operators; see [U] 11.4 varlists.
+
+
+Selecting time spans
+
+    tin(d1, d2)
+       Domain d1:    data or time literals recorded in units of t previously tsset
+       Domain d2:    data or time literals recorded in units of t previously tsset
+       Range:        0 and 1, 1 means true
+       Description:  true if d1 < t < d2, where t is the time variable previously tsset.
+
+                     You must have previously tsset the data to use tin().  When you tsset the data, you
+                     specify a time variable t, and the format on t states how it is recorded.  You type
+                     d1 and d2 according to that format.
+
+                     If t has a %tc format, you could type tin(5jan1992 11:15, 14apr2002 12:25).
+
+                     If t has a %td format, you could type tin(5jan1992, 14apr2002).
+
+                     If t has a %tw format, you could type tin(1985w1, 2002w15).
+
+                     If t has a %tm format, you could type tin(1985m1, 2002m4).
+
+                     If t has a %tq format, you could type tin(1985q1, 2002q2).
+
+                     If t has a %th format, you could type tin(1985h1, 2002h1).
+
+                     If t has a %ty format, you could type tin(1985, 2002).
+
+                     Otherwise, t is just a set of integers, and you could type tin(12, 38).
+
+                     The details of the %t format do not matter.  If your t is formatted %tdnn/dd/yy so
+                     that 5jan1992 displays as 1/5/92, you would still type the date in day-month-year
+                     order:  tin(5jan1992, 14apr2002).
+
+    twithin(d1, d2)
+       Domain d1:    date or time literals recorded in units of t previously tsset
+       Domain d2:    date or time literals recorded in units of t previously tsset
+       Range:        0 and 1, 1 means true
+       Description:  true if d1 < t < d2, where t is the time variable previously tsset; see the tin()
+                         function; twithin() is similar, except the range is exclusive.

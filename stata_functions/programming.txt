@@ -1,0 +1,402 @@
+
+Title
+
+    [D] functions -- Functions
+
+
+Description
+
+    This is a quick reference on programming functions.  For help on all functions, see [D] functions.
+
+
+Programming functions
+
+    autocode(x,n,x0,x1)
+       Domain x:     -8e+307 to 8e+307
+       Domain n:     integers 1 to 8e+307
+       Domain x0:    -8e+307 to 8e+307
+       Domain x1:    x0 to 8e+307
+       Range:        x0 to x1
+       Description:   partitions the interval from x0 to x1 into n equal-length intervals and returns
+                         the upper bound of the interval that contains x.  This function is an automated
+                         version of recode().  See [U] 25 Working with categorical data and factor
+                         variables for an example.
+
+    byteorder()
+       Range:        1 and 2
+       Description:  returns 1 if your computer stores numbers by using a hilo byte order and evaluates
+                         to 2 if your computer stores numbers by using a lohi byte order.  Consider the
+                         number 1 written as a 2-byte integer.  On some computers (called hilo), it is
+                         written as "00 01", and on other computers (called lohi), it is written as
+                         "01 00" (with the least significant byte written first).  There are similar
+                         issues for 4-byte integers, 4-byte floats, and 8-byte floats.  Stata
+                         automatically handles byte-order differences for Stata-created files.  Users
+                         need not be concerned about this issue.  Programmers producing custom binary
+                         files can use byteorder() to determine the native byte ordering; see [P] file.
+
+    c(name)
+       Domain:       names
+       Range:        real values, strings, and missing
+       Description:  returns the value of the system or constant result c(name); see [P] creturn.
+                         Referencing c(name) will return an error if the result does not exist.
+                     returns a scalar if the result is scalar.
+                     returns a string of the result containing the first 2,045 characters.
+
+    _caller()
+       Range:        1 to 13
+       Description:  returns version of the program or session that invoked the currently running
+                         program; see [P] version.  The current version at the time of this writing is
+                         13, so 13 is the upper end of this range. If Stata 13.1 were the current
+                         version, 13.1 would be the upper end of this range, and likewise, if Stata 14
+                         were the current version, 14 would be the upper end of this range.  This is a
+                         function for use by programmers.
+
+    chop(x,tol)
+       Domain x:     -8e+307 to 8e+307
+       Domain tol:   -8e+307 to 8e+307
+       Range:        -8e+307 to 8e+307
+       Description:  returns round(x) if abs(x-round(x)) < tol; otherwise, returns x.
+                     returns x if x is missing.
+
+    clip(x,a,b)
+       Domain x:     -8e+307 to 8e+307
+       Domain a:     -8e+307 to 8e+307
+       Domain b:     -8e+307 to 8e+307
+       Range:        -8e+307 to 8e+307
+       Description:  returns x if a < x < b, b if x > b, a if x < a, and missing if x is missing or if a
+                         > b. If a or b is missing, this is interpreted as a = -inf or b = +inf,
+                         respectively.
+                     returns x if x is missing.
+
+    cond(x,a,b,c) or cond(x,a,b)
+       Domain x:     -8e+307 to 8e+307 and missing; 0 means false, otherwise interpreted as true
+       Domain a:     numbers and strings
+       Domain b:     numbers if a is a number; strings if a is a string
+       Domain c:     numbers if a is a number; strings if a is a string
+       Range:        a, b, and c
+       Description:  returns a if x is true and nonmissing, b if x is false, and c if x is missing.
+                     returns a if c is not specified and x evaluates to missing.
+
+                     Note that expressions such as x>2 will never evaluate to missing.
+
+                         cond(x>2,50,70) returns 50 if x > 2 (includes x > .)
+                         cond(x>2,50,70) returns 70 if x < 2
+
+                     If you need a case for missing values in the above examples, try
+
+                         cond(missing(x), ., cond(x>2,50,70)) returns . if x is missing, returns 50 if x
+                               > 2, and returns 70 if x < 2
+
+                     If the first argument is a scalar that may contain a missing value or a variable
+                     containing missing values, the fourth argument has an effect.
+
+                         cond(wage,1,0,.) returns 1 if wage is not zero and not missing.
+                         cond(wage,1,0,.) returns 0 if wage is zero.
+                         cond(wage,1,0,.) returns . if wage is missing.
+
+                     Caution: If the first argument to cond() is a logical expression, that is,
+                     cond(x>2,50,70,.), the fourth argument is never reached.
+
+    e(name)
+       Domain:       names
+       Range:        strings, scalars, matrices, and missing
+       Description:  returns the value of stored result e(name); see [U] 18.8 Accessing results
+                         calculated by other programs.
+                         e(name) = scalar missing if the stored result does not exist
+                         e(name) = specified matrix if the stored result is a matrix
+                         e(name) = scalar numeric value if the stored result is a scalar
+                         e(name) = a string containing the first 2,045 characters if the stored result
+                                       is a string
+
+    e(sample)
+       Range:        0 to 1
+       Description:  returns 1 if the observation is in the estimation subsample and 0 otherwise.
+
+    epsdouble()
+       Range:        a double-precision number close to 0
+       Description:  returns the machine precision of a double-precision number.  If d < epsdouble() and
+                         (double) x = 1, then x + d = (double) 1.  This function takes no arguments, but
+                         the parentheses must be included.
+
+    epsfloat()
+       Range:        a floating-point number close to 0
+       Description:  returns the machine precision of a floating-point number.  If d < epsfloat() and
+                         (float) x = 1, then x + d = (float) 1.  This function takes no arguments, but
+                         the parentheses must be included.
+
+    fileexists(f)
+       Domain:       filenames
+       Range:        0 and 1
+       Description:  returns 1 if the file specified by f exists; returns 0 otherwise.
+
+                     If the file exists but is not readable, fileexists() will still return 1, because
+                     it does exist.  If the "file" is a directory, fileexists() will return 0.
+
+    fileread(f)
+       Domain:       filenames
+       Range:        strings
+       Description:  returns the contents of the file specified by f.
+
+                     If the file does not exist or an I/O error occurs while reading the file, then
+                     "fileread() error #" is returned, where # is a standard Stata error return code.
+
+    filereaderror(s)
+       Domain:       strings
+       Range:        integers
+       Description:  returns 0 or positive integer, said value having the interpretation of a return
+                         code.
+
+                     It is used like this
+
+                        . generate strL s = fileread(filename) if fileexists(filename)
+                        . assert filereaderror(s)==0
+
+                     or this
+
+                        . generate strL s = fileread(filename) if fileexists(filename)
+                        . generate rc = filereaderror(s)
+
+                     That is, filereaderror(s) is used on the result returned by fileread(filename) to
+                     determine whether an I/O error occurred.
+
+                     In the example, we only fileread() files that fileexist().  That is not required.
+                     If the file does not exist, that will be detected by filereaderror() as an error.
+                     The way we showed the example, we did not want to read missing files as errors.  If
+                     we wanted to treat missing files as errors, we would have coded
+
+                        . generate strL s = fileread(filename)
+                        . assert filereaderror(s)==0
+
+                     or
+
+                        . generate strL s = fileread(filename)
+                        . generate rc = filereaderror(s)
+
+
+    filewrite(f,s[,r])
+       Domain f:     filenames
+       Domain s:     strings
+       Domain r:     integers 1 or 2
+       Range:        integers
+       Description:  writes the string specified by s to the file specified by f and returns the number
+                     of bytes in the resulting file.
+
+                     If the optional argument r is specified as 1, the file specified by f will be
+                     replaced if it exists.  If r is specified as 2, the file specified by f will be
+                     appended to if it exists.  Any other values of r are treated as if r were not
+                     specified; that is, f will only be written to if it does not already exist.
+
+                     When the file f is freshly created or is replaced, the value returned by
+                     filewrite() is the number of bytes written to the file, strlen(s).  If r is
+                     specified as 2, and thus filewrite() is appending to an existing file, the value
+                     returned is the total number of bytes in the resulting file; that is, the value is
+                     the sum of the number of the bytes in the file as it existed before filewrite() was
+                     called and the number of bytes newly written to it, strlen(s).
+
+                     If the file exists and r is not specified as 1 or 2, or an error occurs while
+                     writing to the file, then a negative number (#) is returned, where abs(#) is a
+                     standard Stata error return code.
+
+    float(x)
+       Domain:       -1e+38 to 1e+38
+       Range:        -1e+38 to 1e+38
+       Description:  returns the value of x rounded to float precision.
+
+                     Although you may store your numeric variables as byte, int, long, float, or double,
+                     Stata converts all numbers to double before performing any calculations.
+                     Consequently, difficulties can arise in comparing numbers that have no finite
+                     binary representations.
+
+                     For example, if the variable x is stored as a float and contains the value 1.1 (a
+                     repeating "decimal" in binary), the expression x==1.1 will evaluate to false
+                     because the literal 1.1 is the double representation of 1.1, which is different
+                     from the float representation stored in x.  (They differ by 2.384 x 10^(-8).) The
+                     expression x==float(1.1) will evaluate to true because the float() function
+                     converts the literal 1.1 to its float representation before it is compared with x.
+                     (See [U] 13.11 Precision and problems therein for more information.)
+
+    fmtwidth(fmtstr)
+       Range:        strings
+       Description:  returns the output length of the %fmt contained in fmtstr.
+                     returns missing if fmtstr does not contain a valid %fmt.  For example,
+                         fmtwidth("%9.2f") returns 9 and fmtwidth("%tc") returns 18.
+
+    has_eprop(name)
+       Domain:       names
+       Range:        0 or 1
+       Description:  returns 1 if name appears as a word in e(properties); otherwise, returns 0.
+
+    inlist(z,a,b,...)
+       Domain:       all reals or all strings
+       Range:        0 or 1
+       Description:  returns 1 if z is a member of the remaining arguments; otherwise, returns 0.  All
+                         arguments must be reals or all must be strings.  The number of arguments is
+                         between 2 and 255 for reals and between 2 and 10 for strings.
+
+    inrange(z,a,b)
+       Domain:       all reals or all strings
+       Range:        0 or 1
+       Description:  returns 1 if it is known that a < z < b; otherwise, returns 0.  The following
+                         ordered rules apply:
+                         z > . returns 0.
+                         a > . and b = . returns 1.
+                         a > . returns 1 if z < b; otherwise, it returns 0.
+                         b > . returns 1 if a < z; otherwise, it returns 0.
+                         Otherwise, 1 is returned if a < z < b.
+                         If the arguments are strings, "." is interpreted as "".
+
+    irecode(x,x1,x2,...,xn)
+       Domain x:     -8e+307 to 8e+307
+       Domain xi:    -8e+307 to 8e+307
+       Range:        nonnegative integers
+       Description:  returns missing if x is missing or x1,x2,...,xn is not weakly increasing.
+                     returns 0 if x < x1.
+                     returns 1 if x1 < x < x2.
+                     returns 2 if x2 < x < x3.
+                     ...
+                     returns n if x > xn.
+
+                     Also see autocode() and recode() for other styles of recode functions.
+
+                     irecode(3, -10, -5, -3, -3, 0, 15, .) = 5
+
+    matrix(exp)
+       Domain:       any value expression
+       Range:        evaluation of exp
+       Description:  restricts name interpretation to scalars and matrices; see scalar() function.
+
+    maxbyte()
+       Range:        one integer number
+       Description:  returns the largest value that can be stored in storage type byte.  This function
+                         takes no arguments, but the parentheses must be included.
+
+    maxdouble()
+       Range:        one double-precision number
+       Description:  returns the largest value that can be stored in storage type double.  This function
+                         takes no arguments, but the parentheses must be included.
+
+    maxfloat()
+       Range:        one floating-point number
+       Description:  returns the largest value that can be stored in storage type float.  This function
+                         takes no arguments, but the parentheses must be included.
+
+    maxint()
+       Range:        one integer number
+       Description:  returns the largest value that can be stored in storage type int.  This function
+                         takes no arguments, but the parentheses must be included.
+
+    maxlong()
+       Range:        one integer number
+       Description:  returns the largest value that can be stored in storage type long.  This function
+                         takes no arguments, but the parentheses must be included.
+
+    mi(x1,x2,...,xn) is a synonym for missing(x1,x2,...,xn).
+
+    minbyte()
+       Range:        one integer number
+       Description:  returns the smallest value that can be stored in storage type byte.  This function
+                         takes no arguments, but the parentheses must be included.
+
+    mindouble()
+       Range:        one double-precision number
+       Description:  returns the smallest value that can be stored in storage type double.  This
+                         function takes no arguments, but the parentheses must be included.
+
+    minfloat()
+       Range:        one floating-point number
+       Description:  returns the smallest value that can be stored in storage type float.  This function
+                         takes no arguments, but the parentheses must be included.
+
+    minint()
+       Range:        one integer number
+       Description:  returns the smallest value that can be stored in storage type int.  This function
+                         takes no arguments, but the parentheses must be included.
+
+    minlong()
+       Range:        one integer number
+       Description:  returns the smallest value that can be stored in storage type long.  This function
+                         takes no arguments, but the parentheses must be included.
+
+    missing(x1,x2,...,xn)
+       Domain xi:    any string or numeric expression
+       Range:        0 and 1
+       Description:  returns 1 if any of the arguments evaluates to missing; otherwise, returns 0.
+
+                     Stata has two concepts of missing values:  a numeric missing value (., .a, .b, ...,
+                     .z) and a string missing value ("").  missing() returns 1 (meaning true) if any
+                     expression xi evaluates to missing.  If x is numeric, missing(x) is equivalent to x
+                     > .. If x is string, missing(x) is equivalent to x=="".
+
+    r(name)
+       Domain:       names
+       Range:        strings, scalars, matrices, and missing
+       Description:  returns the value of stored result r(name); see [U] 18.8 Accessing results
+                         calculated by other programs.
+                         r(name) = scalar missing if the stored result does not exist
+                         r(name) = specified matrix if the stored result is a matrix
+                         r(name) = scalar numeric value if the stored result is a scalar that can be
+                                       interpreted as a number
+                         r(name) = a string containing the first 2,045 characters if the stored result
+                                       is a string
+
+    recode(x,x1,x2,...,xn)
+       Domain x:     -8e+307 to 8e+307 and missing
+       Domain x1:    -8e+307 to 8e+307
+       Domain x2:    x1 to 8e+307
+       ...
+       Domain xn:    xn-1 to 8e+307
+       Range:        x1, x2, ..., xn and missing
+       Description:  returns missing if x1, x2, ..., xn is not weakly increasing.
+                     returns x if x is missing.
+                     returns x1 if x < x1; x2 if x < x2, ...; otherwise, xn if x > x1, x2, ..., xn-1.
+                         xi > . is interpreted as xi = +inf.
+
+                     Also see autocode() and irecode() for other styles of recode functions.
+
+    replay()
+       Range:        integers 0 and 1, meaning false and true, respectively
+       Description:  returns 1 if the first nonblank character of local macro `0' is a comma, or if `0'
+                         is empty.  This is a function for use by programmers writing estimation
+                         commands; see [P] ereturn.
+
+    return(name)
+       Domain:       names
+       Range:        strings, scalars, matrices, and missing
+       Description:  returns the value of the to-be-stored result return(name); see [P] return.
+                         return(name) = scalar missing if the stored result does not exist
+                         return(name) = specified matrix if the stored result is a matrix
+                         return(name) = scalar numeric value if the stored result is a scalar
+                         return(name) = a string containing the first 2,045 characters if the stored
+                                            result is a string
+
+    s(name)
+       Domain:       names
+       Range:        strings and missing
+       Description:  returns the value of stored result s(name); see [U] 18.8 Accessing results
+                         calculated by other programs.
+                         s(name) = . if the stored result does not exist
+                         s(name) = a string containing the first 2,045 characters if the stored result
+                                       is a string
+
+    scalar(exp)
+       Domain:       any valid expression
+       Range:        evaluation of exp
+       Description:  restricts name interpretation to scalars and matrices.
+
+                     Names in expressions can refer to names of variables in the dataset, names of
+                     matrices, or names of scalars.  Matrices and scalars can have the same names as
+                     variables in the dataset.  If names conflict, Stata assumes that you are referring
+                     to the name of the variable in the dataset.
+
+                     matrix() and scalar() explicitly state that you are referring to matrices and
+                     scalars.  matrix() and scalar() are the same function; scalars and matrices may not
+                     have the same names and so cannot be confused.  Typing scalar(x) makes it clear
+                     that you are referring to the scalar or matrix named x and not the variable named
+                     x, should there happen to be a variable of that name.
+
+    smallestdouble()
+       Range:        a double-precision number close to 0
+       Description:  returns the smallest double-precision number greater than zero.  If
+                         0 < d < smallestdouble(), then d does not have full double precision; these are
+                         called the denormalized numbers.  This function takes no arguments, but the
+                         parentheses must be included.
