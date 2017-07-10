@@ -129,10 +129,20 @@
     ]
   }
   {
+    'match': '\\b(gl(o|ob|oba|obal)?)\\s+\\b([A-Za-z_][A-Za-z0-9_]{0,31})\\b'
     'captures':
       '1':
         'name': 'storage.modifier.macro.stata'
-    'match': '\\b(gl(o|ob|oba|obal)?|loc(a|al)?|tempvar|tempname|tempfile)\\b'
+      '3':
+        'name': 'entity.name.type.class.stata'
+}
+  {
+    'match': '\\b(loc(a|al)?|tempvar|tempname|tempfile)\\s+\\b([A-Za-z_][A-Za-z0-9_]{0,30})\\b'
+    'captures':
+      '1':
+        'name': 'storage.modifier.macro.stata'
+      '3':
+        'name': 'entity.name.type.class.stata'
   }
   {
     'comment': 'keywords that delimit flow conditionals'
@@ -189,7 +199,7 @@
   {
     'begin': '^\\s*(program)\\s*(de(f|fi|fin|fine)?|di(r)?|drop|l(i|is|ist)?)?\\s+(?=[A-Za-z_][A-Za-z0-9_]*)'
     'beginCaptures':
-      '5':
+      '2':
         'name': 'storage.type.function.stata'
     'end': '(\\()|\\s*($\\n?|#.*$\\n?)'
     'endCaptures':
