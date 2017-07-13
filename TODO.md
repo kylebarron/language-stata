@@ -1,6 +1,19 @@
 # To do list:
 - color regular expressions
-- redo function names for stata 15
 - Globals and locals
-  - Currently defined as "class"
-  - Should the outer symbol be colored?
+    - Currently defined as "class"
+    - Should the outer symbol be colored?
+    - Should they be colored in strings?
+- how should prefixes be colored? 
+    - Should prefixes only be colored at the beginning of the line? I.e. \n\s*[prefix]. Mauricio uses "capture" as an option to some of his functions
+- What are limits on function names? Use in program drop ... block.
+- Color general commands
+    - In something like "label var ..." what should be colored?
+- Why is TODO colored... everwhere?
+    - It's colored in .md, .do, and .py files... only upper case
+- Python colors brackets and parentheses sometimes but not other times...
+    - See screenshot to see how python does it.
+    - Colors them when part of a function call
+- types probably shouldn't be colored the same as macros
+- Maybe look in material ui syntax package to see all the names that they give a color to
+- What about stuff like "merge ... using". should using be colored?

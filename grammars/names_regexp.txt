@@ -1,0 +1,12 @@
+constant.character.escape.backslash.regexp
+entity.name.section.group.regexp
+keyword.control.anchor.regexp
+keyword.operator.negation.regexp
+keyword.operator.or.regexp
+keyword.operator.quantifier.regexp
+meta.group.assertion.conditional.regexp
+meta.group.assertion.regexp
+meta.group.regexp
+punctuation.definition.group.assertion.conditional.regexp
+punctuation.definition.group.capture.regexp
+punctuation.definition.group.regexp

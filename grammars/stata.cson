@@ -197,9 +197,9 @@
   'match': '\\b(qui(e|et|etl|etly)?|n(o|oi|ois|oisi|oisil|oisily)?|cap(t|tu|tur|ture)?)\\b:?'
   }
   {
-    'begin': '^\\s*(program)\\s*(de(f|fi|fin|fine)?|di(r)?|drop|l(i|is|ist)?)?\\s+(?=[A-Za-z_][A-Za-z0-9_]*)'
+    'begin': '\\s*(program)\\s*(de(f|fi|fin|fine)?|di(r)?|drop|l(i|is|ist)?)?\\s+(?=[A-Za-z_][A-Za-z0-9_]*)'
     'beginCaptures':
-      '2':
+      '1':
         'name': 'storage.type.function.stata'
     'end': '(\\()|\\s*($\\n?|#.*$\\n?)'
     'endCaptures':
@@ -224,7 +224,15 @@
   {
     'include': '#dotted_name'
   }
-
+  {
+    "captures": {
+      "1": {
+        "name": "keyword.functions.data.stata"
+      }
+    },
+    "comment": "miscellaneous to deal with later",
+    "match": "\\b(tostring|note|label|drop|keep|format|gen)\\b"
+  }
 
 
 
