@@ -1,19 +1,41 @@
 # To do list:
-- color regular expressions
-- Globals and locals
-    - Currently defined as "class"
-    - Should the outer symbol be colored?
-    - Should they be colored in strings?
-- how should prefixes be colored? 
+[ ] Figure out why "meta.function-call.python" is colored in python but "meta.function-call.stata" isn't colored in stata.
+[ ] how should prefixes be colored? 
     - Should prefixes only be colored at the beginning of the line? I.e. \n\s*[prefix]. Mauricio uses "capture" as an option to some of his functions
-- What are limits on function names? Use in program drop ... block.
-- Color general commands
+[ ] "if" is currently colored everywhere, even in a macro. Do you want `if' colored pink when it's often a part of the syntax command.
+[ ] What are limits on function names? Use in program drop ... block to alert when illegal.
+[ ] Color general commands
     - In something like "label var ..." what should be colored?
-- Why is TODO colored... everwhere?
-    - It's colored in .md, .do, and .py files... only upper case
-- Python colors brackets and parentheses sometimes but not other times...
+    - What about "merge ... using"?
+[ ] Python colors brackets and parentheses sometimes but not other times...
     - See screenshot to see how python does it.
-    - Colors them when part of a function call
-- types probably shouldn't be colored the same as macros
-- Maybe look in material ui syntax package to see all the names that they give a color to
-- What about stuff like "merge ... using". should using be colored?
+    - Colors them when part of a function call. Doesn't color them when not inside a function's ()
+[ ] Why does reshape long color long? (Same with str)
+    - It's considered support.type.stata
+[ ] Put an option in the settings as for whether to color locals and macros inside quotes
+[ ] Change acceptable variable names to include macro identifiers
+    - local test = blah; gen di`test' = 2; that is acceptable and gives a variable name of diblah
+
+
+
+
+
+
+
+
+Completed:
+[/] color regular expressions
+[/] Maybe look in material ui syntax package to see all the names that they give a color to
+    - The names are listed in grammars/names_python.txt and grammars/names_regexp.txt
+[/] Color brackets that subset, like [_N] or [_n]
+[/] Why is TODO colored... everwhere?
+    - The [language-todo](https://github.com/atom/language-todo) package; installed by default.
+[/] Add support for ligatures. See here: <https://github.com/JuliaEditorSupport/atom-language-julia/issues/49>
+[/] Globals and locals
+    - Should they be the same color as types?
+    - Outer symbol is colored
+    - Colored in strings
+
+
+
+

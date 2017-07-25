@@ -4,19 +4,13 @@
     're'
 ]
 'name': 'Regular Expressions (Stata)'
-'foldingStartMarker': '(/\\*|\\{|\\()'
-'foldingStopMarker': '(\\*/|\\}|\\))'
 'patterns': [
   {
     'match': '\\^|\\$'
     'name': 'keyword.control.anchor.regexp'
   }
   {
-    'match': '\\\\[1-9][0-9]?'
-    'name': 'keyword.other.back-reference.regexp'
-  }
-  {
-    'match': '[?+*]'
+    'match': '[\\?\\+\\*]'
     'name': 'keyword.operator.quantifier.regexp'
   }
   {
@@ -24,62 +18,14 @@
     'name': 'keyword.operator.or.regexp'
   }
   {
-    'match': '(\\()(\\?P=([a-zA-Z_][a-zA-Z_0-9]*\\w*))(\\))'
-    'name': 'keyword.other.back-reference.named.regexp'
-  }
-  # regexm(find_type, "`regex'")
-  {
-    'begin': 'regexm\\([\w\"]+\s*,\s*(\"|\')'
+    'begin': '(\\()'
     'beginCaptures':
       '1':
-        'name': 'punctuation.definition.group.regexp'
-    'end': '(\"|\')\\)'
+        'name': 'punctuation.string.group.regexp'
+    'end': '(\\))'
     'endCaptures':
       '1':
-        'name': 'punctuation.definition.group.regexp'
-    'name': 'meta.group.assertion.regexp'
-    'patterns': [
-      {
-        'include': '$self'
-      }
-    ]
-  }
-  {
-    'begin': '(\\()(\\?\\(([1-9][0-9]?|[a-zA-Z_][a-zA-Z_0-9]*)\\))'
-    'beginCaptures':
-      '1':
-        'name': 'punctuation.definition.group.regexp'
-      '2':
-        'name': 'punctuation.definition.group.assertion.conditional.regexp'
-      '3':
-        'name': 'entity.name.section.back-reference.regexp'
-    'comment': 'we can make this more sophisticated to match the | character that separates yes-pattern from no-pattern, but it\'s not really necessary.'
-    'end': '(\"|\')\\)'
-    'name': 'meta.group.assertion.conditional.regexp'
-    'patterns': [
-      {
-        'include': '$self'
-      }
-    ]
-  }
-  {
-    'begin': '(\\()((\\?P<)([a-z]\\w*)(>)|(\\?:))?'
-    'beginCaptures':
-      '1':
-        'name': 'punctuation.definition.group.regexp'
-      '3':
-        'name': 'punctuation.definition.group.capture.regexp'
-      '4':
-        'name': 'entity.name.section.group.regexp'
-      '5':
-        'name': 'punctuation.definition.group.capture.regexp'
-      '6':
-        'name': 'punctuation.definition.group.no-capture.regexp'
-    'end': '(\"|\')\\)'
-    'endCaptures':
-      '1':
-        'name': 'punctuation.definition.group.regexp'
-    'name': 'meta.group.regexp'
+        'name': 'punctuation.string.group.regexp'
     'patterns': [
       {
         'include': '$self'
@@ -88,6 +34,10 @@
   }
   {
     'include': '#character-class'
+  }
+  {
+    'match': '[a-zA-Z_]+'
+    'name': 'string.quoted.double.compound.stata'
   }
 ]
 'repository':

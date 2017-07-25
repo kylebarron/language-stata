@@ -9,122 +9,74 @@
 'foldingStopMarker': '^\\s*\\}'
 'patterns': [
   {
-    'match': '\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))(?=[^a-zA-Z_])'
-    'name': 'constant.numeric.float.stata'
-  }
-  {
-    'match': '(?<=[^0-9a-zA-Z_])(?i:(\\.\\d+(e[\\-\\+]?\\d+)?))'
-    'name': 'constant.numeric.float.stata'
-  }
-  {
-    'match': '\\b(?i:(\\d+e[\\-\\+]?\\d+))'
-    'name': 'constant.numeric.float.stata'
-  }
-  {
-    'match': '\\b(?i:([1-9]+[0-9]*|0)L)'
-    'name': 'constant.numeric.integer.long.decimal.stata'
-  }
-  {
-    'match': '\\b([0-9]+|0)'
-    'name': 'constant.numeric.integer.decimal.stata'
-  }
-  {
-    'include': '#line_comments'
-  }
-  {
-    'begin': '"'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.definition.string.begin.stata'
-    'end': '"'
-    'endCaptures':
-      '0':
-        'name': 'punctuation.definition.string.end.stata'
-    'name': 'string.quoted.double.stata'
-  }
-  {
-    'begin': '`"'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.definition.string.begin.stata'
-    'end': '"\''
-    'endCaptures':
-      '0':
-        'name': 'punctuation.definition.string.end.stata'
-    'name': 'string.quoted.double.compound.stata'
-    'patterns': [
-      {
-        'include': '#cdq_string_content'
-      }
-    ]
-  }
-  {
-    'begin': '/\\*'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.definition.comment.begin.stata'
-    'end': '\\*/'
-    'endCaptures':
-      '0':
-        'name': 'punctuation.definition.comment.end.stata'
-    'name': 'comment.block.stata'
-    'patterns': [
-      {
-        'include': '#cb_content'
-      }
-    ]
-  }
-  {
-    'captures':
-      '0':
-        'name': 'punctuation.definition.comment.stata'
-    'match': '^\\s*(\\*).*$\\n?'
-    'name': 'comment.line.star.stata'
-    'comment': 'TODO! need to except out the occasion that a * comes after a /// on the previous line. May be easiest to join with the comment.line.triple-slash.stata below'
-  }
-  {
-    'captures':
-      '0':
-        'name': 'punctuation.definition.comment.stata'
-    'match': '(///).*$\\n?'
-    'name': 'comment.line.triple-slash.stata'
-  }
-  {
-    'captures':
-      '0':
-        'name': 'punctuation.definition.comment.stata'
-    'match': '(//).*$\\n?'
-    'name': 'comment.line.double-slash.stata'
-  }
-  {
-    'begin': '`'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.definition.string.begin.stata'
-    'contentName': 'entity.name.type.class.stata'
-    'end': '\''
-    'endCaptures':
-      '0':
-        'name': 'punctuation.definition.string.end.stata'
-    'name': 'entity.name.type.class.stata'
-    'patterns': [
-      'include': '$self'
-    ]
-  }
-  {
+    'match': '(regexm)(\\()(.+),\\s*(\"|`\")(.+)(\"|\"\')(\\))'
     'captures':
       '1':
-        'name': 'punctuation.definition.string.begin.stata'
+        'name': 'support.function.builtin.stata'
       '2':
-        'name': 'punctuation.definition.string.begin.stata'
+        'name': 'meta.function-call.stata'
       '3':
-        'name': 'entity.name.type.class.stata'
+        'name': 'meta.function-call.arguments.stata'
       '4':
+        'name': 'punctuation.definition.string.begin.stata'
+      '5':
+        'patterns': [
+          {'include': 'source.regexp.stata'}
+        ]
+      '6': 
         'name': 'punctuation.definition.string.end.stata'
-    'match': '\\s*(\\$)(\\{?)([A-Za-z_][A-Za-z0-9_]{0,31})(\\}?)'
+      '7':
+        'name': 'meta.function-call.stata'
+  }
+  {
+    'include': '#builtin_functions'
+  }
+  {
+    'include': '#comments'
+  }
+  {
+    'include': '#numbers'
+  }
+  {
+    'include': '#operators'
+  }
+  {
+    'include': '#macro-local'
+  }
+  {
+    'include': '#macro-global'
+  }
+  {
+    'include': '#string-compound'
+  }
+  {
+    'include': '#string-regular'
+  }
+  {
+    'include': '#builtin_types'
+  }
+  {
+    'comment': 'highlight [_n], etc when subsetting variable'
+    'begin': '[0-9a-zA-Z_]+(\\[)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.parameters.begin.stata'
+    'end': '(\\])'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.parameters.end.stata'
+    'name': 'meta.function.stata'
     'patterns': [
       {
-        'include': '$self'
+        'match': '(_n|_N)'
+        'name': 'entity.name.function.stata'
+        'comment': '_n and _N should be highlighted'
+      }
+      {
+        'include': '#operators'
+      }
+      {
+        'include': '#numbers'
       }
     ]
   }
@@ -214,15 +166,12 @@
         'contentName': 'entity.name.function.stata'
         'end': '(?![A-Za-z0-9_])'
         'patterns': [
-          {
-            'include': '#entity_name_function'
-          }
+          # {
+          #   'include': '#entity_name_function'
+          # }
         ]
       }
     ]
-  }
-  {
-    'include': '#dotted_name'
   }
   {
     "captures": {
@@ -233,127 +182,180 @@
     "comment": "miscellaneous to deal with later",
     "match": "\\b(tostring|note|label|drop|keep|format|gen)\\b"
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  {
-    'match': '\\+|\\-|\\*|\\^'
-    'name': 'keyword.operator.arithmetic.stata'
-  }
-  {
-    'comment': 'match division operator but not path separator'
-    'match': '(?<![a-zA-Z.])/(?![a-zA-Z.]|$)'
-    'name': 'keyword.operator.arithmetic.stata'
-  }
-  {
-    'match': '\\&|\\||!|~|:'
-    'name': 'keyword.operator.logical.stata'
-  }
-  {
-    'match': '<|>|<\\=|>\\=|\\=\\=|\\!\\=|~\\='
-    'name': 'keyword.operator.comparison.stata'
-  }
-  {
-    'match': '\\='
-    'name': 'keyword.operator.assignment.stata'
-  }
 ]
 'repository':
   'builtin_functions':
-      'match': '\\b(bofd|Cdhms|Chms|Clock|clock|Cmdyhms|Cofc|cofC|Cofd|cofd|daily|date|day|dhms|dofb|dofC|dofc|dofh|dofm|dofq|dofw|dofy|dow|doy|halfyear|halfyearly|hh|hhC|hms|hofd|hours|mdy|mdyhms|minutes|mm|mmC|mofd|month|monthly|msofhours|msofminutes|msofseconds|qofd|quarter|quarterly|seconds|ss|ssC|tC|tc|td|th|tm|tq|tw|week|weekly|wofd|year|yearly|yh|ym|yofd|yq|yw|betaden|ibeta|ibetatail|invibeta|invibetatail|nbetaden|nibeta|invnibeta|binomialp|binomial|binomialtail|invbinomial|invbinomialtail|cauchyden|cauchy|cauchytail|invcauchy|invcauchytail|lncauchyden|chi2den|chi2|chi2tail|invchi2|invchi2tail|nchi2den|nchi2|nchi2tail|invnchi2|invnchi2tail|npnchi2|dunnettprob|invdunnettprob|exponentialden|exponential|exponentialtail|invexponential|invexponentialtail|Fden|F|Ftail|invF|invFtail|nFden|nF|nFtail|invnF|invnFtail|npnF|gammaden|gammap|gammaptail|invgammap|invgammaptail|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|lnigammaden|hypergeometricp|hypergeometric|igaussianden|igaussian|igaussiantail|invigaussian|invigaussiantail|lnigaussianden|laplaceden|laplace|laplacetail|invlaplace|invlaplacetail|lnlaplaceden|logisticden|logisticden|logisticden|logistic|logistic|logistic|logistictail|logistictail|logistictail|invlogistic|invlogistic|invlogistic|invlogistictail|invlogistictail|invlogistictail|nbinomialp|nbinomial|nbinomialtail|invnbinomial|invnbinomialtail|normalden|normalden|normalden|normal|invnormal|lnnormalden|lnnormalden|lnnormalden|lnnormal|binormal|lnmvnormalden|poissonp|poisson|poissontail|invpoisson|invpoissontail|tden|t|ttail|invt|invttail|invnt|invnttail|ntden|nt|nttail|npnt|tukeyprob|invtukeyprob|weibullden|weibullden|weibull|weibull|weibulltail|weibulltail|invweibull|invweibull|invweibulltail|invweibulltail|weibullphden|weibullphden|weibullph|weibullph|weibullphtail|weibullphtail|invweibullph|invweibullph|invweibullphtail|invweibullphtail|lnwishartden|lniwishartden|abs|ceil|cloglog|comb|digamma|exp|floor|int|invcloglog|invlogit|ln|lnfactorial|lngamma|log|log10|logit|max|min|mod|reldif|round|sign|sqrt|sum|trigamma|trunc|cholesky|corr|diag|get|hadamard|I|inv|invsym|J|matuniform|nullmat|sweep|vec|vecdiag|coleqnumb|colnfreeparms|colnumb|colsof|det|diag0cnt|el|issymmetric|matmissing|mreldif|roweqnumb|rownfreeparms|rownumb|rowsof|trace|autocode|byteorder|c|chop|clip|cond|e|e|epsdouble|epsfloat|fileexists|fileread|filereaderror|filewrite|float|fmtwidth|inlist|inrange|irecode|matrix|maxbyte|maxdouble|maxfloat|maxint|maxlong|mi|minbyte|mindouble|minfloat|minint|minlong|missing|r|recode|replay|return|s|scalar|smallestdouble|runiform|runiform|runiformint|rbeta|rbinomial|rcauchy|rchi2|rexponential|rgamma|rhypergeometric|rigaussian|rlaplace|rlogistic|rlogistic|rlogistic|rnbinomial|rnormal|rnormal|rnormal|rpoisson|rt|rweibull|rweibull|rweibullph|rweibullph|abbrev|char|uchar|collatorlocale|collatorversion|indexnot|plural|plural|real|regexm|regexr|regexs|ustrregexm|ustrregexrf|ustrregexra|ustrregexs|soundex|strcat|strdup|string|string|stritrim|strlen|ustrlen|udstrlen|strlower|ustrlower|strltrim|ustrltrim|strmatch|strofreal|strofreal|strpos|ustrpos|strproper|ustrtitle|strreverse|ustrreverse|strrpos|ustrrpos|strrtrim|ustrrtrim|strtoname|ustrtoname|strtrim|ustrtrim|strupper|ustrupper|subinstr|usubinstr|subinword|substr|usubstr|udsubstr|tobytes|uisdigit|uisletter|ustrcompare|ustrcompareex|ustrfix|ustrfrom|ustrinvalidcnt|ustrleft|ustrnormalize|ustrright|ustrsortkey|ustrsortkeyex|ustrto|ustrtohex|ustrunescape|word|ustrword|wordbreaklocale|wordcount|ustrwordcount|tin|twithin|acos|acosh|asin|asinh|atan|atan2|atanh|cos|cosh|sin|sinh|tan|tanh|mi)\\('
-      'captures':
-        '1':
-          'name': 'support.function.builtin.stata'
+    'match': '\\b(bofd|Cdhms|Chms|Clock|clock|Cmdyhms|Cofc|cofC|Cofd|cofd|daily|date|day|dhms|dofb|dofC|dofc|dofh|dofm|dofq|dofw|dofy|dow|doy|halfyear|halfyearly|hh|hhC|hms|hofd|hours|mdy|mdyhms|minutes|mm|mmC|mofd|month|monthly|msofhours|msofminutes|msofseconds|qofd|quarter|quarterly|seconds|ss|ssC|tC|tc|td|th|tm|tq|tw|week|weekly|wofd|year|yearly|yh|ym|yofd|yq|yw|betaden|ibeta|ibetatail|invibeta|invibetatail|nbetaden|nibeta|invnibeta|binomialp|binomial|binomialtail|invbinomial|invbinomialtail|cauchyden|cauchy|cauchytail|invcauchy|invcauchytail|lncauchyden|chi2den|chi2|chi2tail|invchi2|invchi2tail|nchi2den|nchi2|nchi2tail|invnchi2|invnchi2tail|npnchi2|dunnettprob|invdunnettprob|exponentialden|exponential|exponentialtail|invexponential|invexponentialtail|Fden|F|Ftail|invF|invFtail|nFden|nF|nFtail|invnF|invnFtail|npnF|gammaden|gammap|gammaptail|invgammap|invgammaptail|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|lnigammaden|hypergeometricp|hypergeometric|igaussianden|igaussian|igaussiantail|invigaussian|invigaussiantail|lnigaussianden|laplaceden|laplace|laplacetail|invlaplace|invlaplacetail|lnlaplaceden|logisticden|logisticden|logisticden|logistic|logistic|logistic|logistictail|logistictail|logistictail|invlogistic|invlogistic|invlogistic|invlogistictail|invlogistictail|invlogistictail|nbinomialp|nbinomial|nbinomialtail|invnbinomial|invnbinomialtail|normalden|normalden|normalden|normal|invnormal|lnnormalden|lnnormalden|lnnormalden|lnnormal|binormal|lnmvnormalden|poissonp|poisson|poissontail|invpoisson|invpoissontail|tden|t|ttail|invt|invttail|invnt|invnttail|ntden|nt|nttail|npnt|tukeyprob|invtukeyprob|weibullden|weibullden|weibull|weibull|weibulltail|weibulltail|invweibull|invweibull|invweibulltail|invweibulltail|weibullphden|weibullphden|weibullph|weibullph|weibullphtail|weibullphtail|invweibullph|invweibullph|invweibullphtail|invweibullphtail|lnwishartden|lniwishartden|abs|ceil|cloglog|comb|digamma|exp|floor|int|invcloglog|invlogit|ln|lnfactorial|lngamma|log|log10|logit|max|min|mod|reldif|round|sign|sqrt|sum|trigamma|trunc|cholesky|corr|diag|get|hadamard|I|inv|invsym|J|matuniform|nullmat|sweep|vec|vecdiag|coleqnumb|colnfreeparms|colnumb|colsof|det|diag0cnt|el|issymmetric|matmissing|mreldif|roweqnumb|rownfreeparms|rownumb|rowsof|trace|autocode|byteorder|c|chop|clip|cond|e|e|epsdouble|epsfloat|fileexists|fileread|filereaderror|filewrite|float|fmtwidth|inlist|inrange|irecode|matrix|maxbyte|maxdouble|maxfloat|maxint|maxlong|mi|minbyte|mindouble|minfloat|minint|minlong|missing|r|recode|replay|return|s|scalar|smallestdouble|runiform|runiform|runiformint|rbeta|rbinomial|rcauchy|rchi2|rexponential|rgamma|rhypergeometric|rigaussian|rlaplace|rlogistic|rlogistic|rlogistic|rnbinomial|rnormal|rnormal|rnormal|rpoisson|rt|rweibull|rweibull|rweibullph|rweibullph|abbrev|char|uchar|collatorlocale|collatorversion|indexnot|plural|plural|real|regexm|regexr|regexs|ustrregexm|ustrregexrf|ustrregexra|ustrregexs|soundex|strcat|strdup|string|string|stritrim|strlen|ustrlen|udstrlen|strlower|ustrlower|strltrim|ustrltrim|strmatch|strofreal|strofreal|strpos|ustrpos|strproper|ustrtitle|strreverse|ustrreverse|strrpos|ustrrpos|strrtrim|ustrrtrim|strtoname|ustrtoname|strtrim|ustrtrim|strupper|ustrupper|subinstr|usubinstr|subinword|substr|usubstr|udsubstr|tobytes|uisdigit|uisletter|ustrcompare|ustrcompareex|ustrfix|ustrfrom|ustrinvalidcnt|ustrleft|ustrnormalize|ustrright|ustrsortkey|ustrsortkeyex|ustrto|ustrtohex|ustrunescape|word|ustrword|wordbreaklocale|wordcount|ustrwordcount|tin|twithin|acos|acosh|asin|asinh|atan|atan2|atanh|cos|cosh|sin|sinh|tan|tanh|mi|trim|itrim)\\('
+    'captures':
+      '1':
+        'name': 'support.function.builtin.stata'
   'builtin_types':
       'match': '\\b(byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)\\b'
       'name': 'support.type.stata'
-  'line_comments':
-      'match': ''
-      'name': ''
-  'dotted_name':
-    'begin': '(?=[A-Za-z_][A-Za-z0-9_]*(?:\\.[A-Za-z_][A-Za-z0-9_]*)*)'
-    'end': '(?![A-Za-z0-9_\\.])'
+  'comments':
     'patterns': [
       {
-        'begin': '(\\.)(?=[A-Za-z_][A-Za-z0-9_]*)'
-        'end': '(?![A-Za-z0-9_])'
-        'patterns': [
-          {
-            'include': '#magic_function_names'
-          }
-          {
-            'include': '#magic_variable_names'
-          }
-          {
-            'include': '#illegal_names'
-          }
-          {
-            'include': '#generic_names'
-          }
-        ]
+        'begin': '/\\*'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.begin.stata'
+        'end': '\\*/'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.end.stata'
+        'name': 'comment.block.stata'
       }
       {
-        'begin': '(?<!\\.)(?=[A-Za-z_][A-Za-z0-9_]*)'
-        'end': '(?![A-Za-z0-9_])'
+        'captures':
+          '0':
+            'name': 'punctuation.definition.comment.stata'
+        'match': '^\\s*(\\*).*$\\n?'
+        'name': 'comment.line.star.stata'
+        'comment': 'TODO! need to except out the occasion that a * comes after a /// on the previous line. May be easiest to join with the comment.line.triple-slash.stata below'
+      }
+      {
+        'captures':
+          '0':
+            'name': 'punctuation.definition.comment.stata'
+        'match': '(///).*$\\n?'
+        'name': 'comment.line.triple-slash.stata'
+      }
+      {
+        'captures':
+          '0':
+            'name': 'punctuation.definition.comment.stata'
+        'match': '(//).*$\\n?'
+        'name': 'comment.line.double-slash.stata'
+      }
+    ]
+  'numbers':
+    'patterns': [
+      {
+        'match': '\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))(?=[^a-zA-Z_])'
+        'name': 'constant.numeric.float.stata'
+      }
+      {
+        'match': '(?<=[^0-9a-zA-Z_])(?i:(\\.\\d+(e[\\-\\+]?\\d+)?))'
+        'name': 'constant.numeric.float.stata'
+      }
+      {
+        'match': '\\b(?i:(\\d+e[\\-\\+]?\\d+))'
+        'name': 'constant.numeric.float.stata'
+      }
+      {
+        'match': '\\b(?i:([1-9]+[0-9]*|0)L)'
+        'name': 'constant.numeric.integer.long.decimal.stata'
+      }
+      {
+        'match': '\\b([0-9]+|0)'
+        'name': 'constant.numeric.integer.decimal.stata'
+      }
+    ]
+  'operators':
+    'patterns': [
+      {
+        'match': '\\+|\\-|\\*|\\^'
+        'name': 'keyword.operator.arithmetic.stata'
+      }
+      {
+        'comment': 'match division operator but not path separator'
+        'match': '(?<![a-zA-Z.])/(?![a-zA-Z.]|$)'
+        'name': 'keyword.operator.arithmetic.stata'
+      }
+      {
+        'match': '\\&|\\|'
+        'name': 'keyword.operator.logical.stata'
+      }
+      {
+        'match': '(?:<=|>=|<|>|:=|==|!=|~=|=)'
+        'name': 'keyword.operator.comparison.stata'
+      }
+    ]
+  'string-regular':
+    'patterns': [
+      {
+        'begin': '"'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.stata'
+        'end': '"'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.stata'
+        'name': 'string.quoted.double.stata'
         'patterns': [
           {
-            'include': '#builtin_functions'
+            'include': '#macro-local'
           }
           {
-            'include': '#builtin_types'
-          }
-          {
-            'include': '#builtin_exceptions'
-          }
-          {
-            'include': '#illegal_names'
-          }
-          {
-            'include': '#magic_function_names'
-          }
-          {
-            'include': '#magic_variable_names'
-          }
-          {
-            'include': '#language_variables'
-          }
-          {
-            'include': '#generic_names'
+            'include': '#macro-global'
           }
         ]
       }
     ]
-  'function_name':
+  'string-compound':
     'patterns': [
       {
-        'include': '#magic_function_names'
+        'begin': '`"'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.stata'
+        'end': '"\''
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.stata'
+        'name': 'string.quoted.double.compound.stata'
+        'patterns': [
+          {
+            'include': '#string-regular'
+          }
+          {
+            'include': '$self'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+        ]
       }
+    ]
+  'macro-local':
+    'patterns': [
       {
-        'include': '#magic_variable_names'
+        'begin': '`'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.stata'
+        'contentName': 'entity.name.type.class.stata'
+        'end': '\''
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.stata'
+        'patterns': [
+          'include': '$self'
+        ]
       }
+    ]
+  'macro-global':
+    'patterns': [
       {
-        'include': '#builtin_exceptions'
-      }
-      {
-        'include': '#builtin_functions'
-      }
-      {
-        'include': '#builtin_types'
-      }
-      {
-        'include': '#generic_names'
+        'captures':
+          '1':
+            'name': 'punctuation.definition.string.begin.stata'
+          '2':
+            'name': 'punctuation.definition.string.begin.stata'
+          '3':
+            'name': 'entity.name.type.class.stata'
+          '4':
+            'name': 'punctuation.definition.string.end.stata'
+        'match': '\\s*(\\$)(\\{?)([A-Za-z_][A-Za-z0-9_]{0,31})(\\}?)'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
       }
     ]
   'generic_names':
@@ -362,30 +364,9 @@
       'match':
        '\\bgen(e|er|era|erat|erate)?\\s*(byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s*(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with|[0-9][A-Za-z0-9_]+|[A-Za-z_][A-Za-z0-9_]{32,})\\b\\s*(///)?\\s*\\n?\\s*='
       'name': 'invalid.illegal.name.stata'
-  'regular_expressions':
-    'patterns': [
-      {
-        'include': 'source.regexp.stata'
-      }
-    ]
+      'comment': 'highlights as illegal if variable name is more than 32 characters'
   'varlist':
     'match': ''
     'name': ''
-  'cb_content':
-    'begin': '/\\*'
-    'end': '\\*/'
-    'patterns': [
-      {
-        'include': '#cb_content'
-      }
-    ]
-  'cdq_string_content':
-    'begin': '`"'
-    'end': '"\''
-    'patterns': [
-      {
-        'include': '#cdq_string_content'
-      }
-    ]
 # scratch
 # prefix commands: by (bysort) statsby rolling bootstrap jackknife permute simulate svy "mi estimate" nestreg stepwise xi fp mfp capture noisily quietly version

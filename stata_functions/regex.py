@@ -1,7 +1,5 @@
 import re
 
-%pwd
-
 def import_text(path):
     with open(path, newline='') as inputfile:
         results = inputfile.readlines()
