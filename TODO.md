@@ -1,4 +1,7 @@
 # To do list:
+
+[ ] [Improve autocompletion support](https://github.com/atom/autocomplete-plus/wiki/SymbolProvider-Config-API)
+
 [ ] how should prefixes be colored? 
     - Should prefixes only be colored at the beginning of the line? I.e. \n\s*[prefix]. Mauricio uses "capture" as an option to some of his functions
 [ ] "if" is currently colored everywhere, even in a macro. Do you want `if' colored pink when it's often a part of the syntax command.
@@ -38,5 +41,5 @@ Completed:
 [/] Figure out why "meta.function-call.python" is colored in python but "meta.function-call.stata" isn't colored in stata.
     - Because there's a special python.less file in the atom-material-syntax package that colors those
 [/] Correct function names with global variables as arguments, like mi(${global}) (also correct regexm())
-
-
+[/] In Python, if I go to the argument of a function call and look at its scope, it's "meta.function-call.python"; but if I use that for Stata: "meta.function-call.stata", it's not colored!
+    - This is because there's a special python.less file in the material syntax theme
