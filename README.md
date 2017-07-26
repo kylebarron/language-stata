@@ -8,6 +8,7 @@ Stata syntax highlighting, built from the ground up
 - Macro highlighting, both global and local.
   - Supports macros inside macros
 - Support for programming ligatures for all valid Stata syntax for fonts that support them, like the [Fira Code](https://github.com/tonsky/FiraCode) font.
+- Syntax highlighting in function calls like missing()
 
 
 Add the following to your config.cson to have bracket matching support for local macros

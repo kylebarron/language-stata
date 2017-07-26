@@ -1,5 +1,4 @@
 # To do list:
-[ ] Figure out why "meta.function-call.python" is colored in python but "meta.function-call.stata" isn't colored in stata.
 [ ] how should prefixes be colored? 
     - Should prefixes only be colored at the beginning of the line? I.e. \n\s*[prefix]. Mauricio uses "capture" as an option to some of his functions
 [ ] "if" is currently colored everywhere, even in a macro. Do you want `if' colored pink when it's often a part of the syntax command.
@@ -13,10 +12,10 @@
 [ ] Why does reshape long color long? (Same with str)
     - It's considered support.type.stata
 [ ] Put an option in the settings as for whether to color locals and macros inside quotes
-[ ] Change acceptable variable names to include macro identifiers
+[/] Change acceptable variable names to include macro identifiers
     - local test = blah; gen di`test' = 2; that is acceptable and gives a variable name of diblah
-
-
+    - half done; long names that are over 32 chars but have `' or $ in it are not flagged
+[ ] Correct function names with global variables as arguments, like mi(${global}) (also correct regexm())
 
 
 
@@ -35,7 +34,7 @@ Completed:
     - Should they be the same color as types?
     - Outer symbol is colored
     - Colored in strings
-
-
+[/] Figure out why "meta.function-call.python" is colored in python but "meta.function-call.stata" isn't colored in stata.
+    - Because there's a special python.less file in the atom-material-syntax package that colors those
 
 
