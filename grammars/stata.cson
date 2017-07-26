@@ -27,7 +27,7 @@
             'include': '#macro-local'
           }
           {
-            'include': 'macro-global'
+            'include': '#macro-global'
           }
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -76,6 +76,9 @@
     'include': '#illegal_names'
   }
   {
+    'include': '#builtin_variables'
+  }
+  {
     'comment': 'highlight [_n], etc when subsetting variable'
     'begin': '[0-9a-zA-Z_]+(\\[)'
     'beginCaptures':
@@ -88,9 +91,7 @@
     'name': 'meta.function.stata'
     'patterns': [
       {
-        'match': '(_n|_N)'
-        'name': 'entity.name.function.stata'
-        'comment': '_n and _N should be highlighted'
+        'include': '#builtin_variables'
       }
       {
         'include': '#operators'
@@ -194,9 +195,9 @@
     ]
   }
   {
-    'match': '\\b(form(a|at)?)\\s+.*%\-?0?[0-9]+\.[0-9]+(e|f|g)c?'
+    'match': '\\b(form(a|at)?)\\s*([A-Za-z_][A-Za-z0-9_]{0,31})*\\s*(%)(\-)?(0)?([0-9]+)(\.)([0-9]+)(e|f|g)(c)?'
     'captures':
-      '1': ''
+      '1': 'keyword.functions.data.stata.test'
   }
   {
     'captures': {
@@ -232,7 +233,7 @@
         'include': '#macro-local'
       }
       {
-        'include': 'macro-global'
+        'include': '#macro-global'
       }
       {
         'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -242,6 +243,9 @@
   'builtin_types':
       'match': '\\b(byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)\\b'
       'name': 'support.type.stata'
+  'builtin_variables':
+    'match': '\\b(_b|_coef|_cons|_n|_N|_rc|_se)\\b'
+    'name': 'variable.object.stata'
   'comments':
     'patterns': [
       {
@@ -364,6 +368,18 @@
       {
         'match': '(?:<=|>=|<|>|:=|==|!=|~=|=)'
         'name': 'keyword.operator.comparison.stata'
+      }
+      {
+        'match': '(##|#)'
+        'name': 'keyword.operator.factor-variables.stata'
+      }
+      {
+        'match': '%'
+        'name': 'keyword.operator.format.stata'
+      }
+      {
+        'match': ':'
+        'name': 'punctuation.separator.key-value'
       }
     ]
   'string-compound':
