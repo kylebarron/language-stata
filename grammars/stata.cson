@@ -170,29 +170,14 @@
   'match': '\\b(qui(e|et|etl|etly)?|n(o|oi|ois|oisi|oisil|oisily)?|cap(t|tu|tur|ture)?)\\b:?'
   }
   {
-    'begin': '\\s*(program)\\s*(de(f|fi|fin|fine)?|di(r)?|drop|l(i|is|ist)?)?\\s+(?=[A-Za-z_][A-Za-z0-9_]*)'
-    'beginCaptures':
+    'match': '\\s*(program)\\s+((de(f|fi|fin|fine)?|di(r)?|drop|l(i|is|ist)?)?\\s+)?([A-Za-z_][A-Za-z0-9_]{0,31})'
+    'captures':
       '1':
         'name': 'storage.type.function.stata'
-    'end': '(\\()|\\s*($\\n?|#.*$\\n?)'
-    'endCaptures':
-      '1':
-        'name': 'punctuation.definition.parameters.begin.stata'
       '2':
-        'name': 'invalid.illegal.missing-parameters.stata'
-    'name': 'meta.function.stata'
-    'patterns': [
-      {
-        'begin': '(?=[A-Za-z_][A-Za-z0-9_]*)'
-        'contentName': 'entity.name.function.stata'
-        'end': '(?![A-Za-z0-9_])'
-        'patterns': [
-          # {
-          #   'include': '#entity_name_function'
-          # }
-        ]
-      }
-    ]
+        'name': 'storage.type.function.stata'
+      '7':
+        'name': 'entity.name.function.stata'
   }
   {
     'match': '\\b(form(a|at)?)\\s*([A-Za-z_][A-Za-z0-9_]{0,31})*\\s*(%)(\-)?(0)?([0-9]+)(\.)([0-9]+)(e|f|g)(c)?'
@@ -200,13 +185,20 @@
       '1': 'keyword.functions.data.stata.test'
   }
   {
-    'captures': {
-      '1': {
+    'captures':
+      '1':
         'name': 'keyword.functions.data.stata'
-      }
-    },
     'comment': 'miscellaneous to deal with later',
-    'match': '\\b(tostring|note|label|drop|keep|format|gen)\\b'
+    'match': '\\b(tostring|note|label|drop|keep|format)\\b'
+  }
+  # Start manual functions:
+  {
+    'match': '\\b(g(e|en|ene|erer|enera|enerat|enerate)?)\\s+((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s+)?([A-Za-z_][A-Za-z0-9_]{0,31})'
+    'captures':
+      '1':
+        'name': 'keyword.functions.data.stata'
+      '3':
+        'name': 'support.type.stata'
   }
 ]
 'repository':
@@ -441,7 +433,7 @@
       'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
   'illegal_names':
       'match':
-       '\\bgen(e|er|era|erat|erate)?\\s*(byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s*(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with|[0-9][A-Za-z0-9_]+|[A-Za-z_][A-Za-z0-9_]{32,})\\b\\s*(///)?\\s*\\n?\\s*='
+       '\\bgen(e|er|era|erat|erate)?\\s((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s)?(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with|[0-9][A-Za-z0-9_]+|[A-Za-z_][A-Za-z0-9_]{32,})\\b\\s*(///)?\\s*\\n?\\s*='
       'name': 'invalid.illegal.name.stata'
       'comment': 'highlights as illegal if variable name is more than 32 characters'
   'varlist':

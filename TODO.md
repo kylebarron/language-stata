@@ -19,6 +19,8 @@
     - local test = blah; gen di`test' = 2; that is acceptable and gives a variable name of diblah
     - half done; long names that are over 32 chars but have `' or $ in it are not flagged
 
+[ ] Remove
+
 [ ] Get all option possibilities; put all of them in like "options.builtin.stata"?
 [ ] get all command names, put them in 'commands.builtin.stata'...
 
