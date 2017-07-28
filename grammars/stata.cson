@@ -405,6 +405,7 @@
         'match': '(?:<=|>=|:=|==|!=|~=|<|>|=|!)' 
         'name': 'keyword.operator.comparison.stata'
       }
+      {
         'match': '\\(|\\)' 
         'name': 'keyword.operator.parentheses.stata' 
       } 
