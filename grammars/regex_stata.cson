@@ -11,11 +11,11 @@
   }
   {
     'match': '[\\?\\+\\*]'
-    'name': 'keyword.operator.quantifier.regexp'
+    'name': 'keyword.control.quantifier.regexp'
   }
   {
     'match': '\\|'
-    'name': 'keyword.operator.or.regexp'
+    'name': 'keyword.control.or.regexp'
   }
   {
     'begin': '(\\()'
@@ -36,16 +36,22 @@
     'include': '#character-class'
   }
   {
-    'match': '[a-zA-Z_]+'
+    'match': '[^\\^\\$\\?\\+\\*\\|\\(\\)\\.\\\\\\[\\]]'
     'name': 'string.quoted.double.compound.stata'
+    'comment': 'color anything other than special characters the string color'
   }
 ]
 'repository':
   'character-class':
     'patterns': [
       {
+        'match': '\\.'
+        'name': 'constant.character.character-class.regexp'
+      }
+      {
         'match': '\\\\.'
         'name': 'constant.character.escape.backslash.regexp'
+        'comment': 'this changes the color of an escaped character'
       }
       {
         'begin': '(\\[)(\\^)?'
