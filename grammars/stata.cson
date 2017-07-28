@@ -70,9 +70,6 @@
     'include': '#string-regular'
   }
   {
-    'include': '#builtin_types'
-  }
-  {
     'include': '#illegal_names'
   }
   {
@@ -189,9 +186,11 @@
       '1':
         'name': 'keyword.functions.data.stata'
     'comment': 'miscellaneous to deal with later',
-    'match': '\\b(tostring|note|label|drop|keep|format)\\b'
+    'match': '\\b(sa(v|ve)|saveold|destring|tostring|note(s)?|format)\\b'
   }
   # Start manual functions:
+  # Prefixes: 
+  # # prefix commands: by (bysort) statsby rolling bootstrap jackknife permute simulate svy "mi estimate" nestreg stepwise xi fp mfp capture noisily quietly version 
   {
     'match': '\\b(g(e|en|ene|erer|enera|enerat|enerate)?)\\s+((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s+)?([A-Za-z_][A-Za-z0-9_]{0,31})'
     'captures':
@@ -200,6 +199,45 @@
       '3':
         'name': 'support.type.stata'
   }
+  { 
+    'match': '\\b(la(b|be|bel)?)\\s+(da(t|ta)?|var(i|ia|iab|iabl|iable)?|de(f|fi|fin|fine)?|val(u|ue|ues)?|di(r)?|l(i|is|ist)?|copy|drop|save|lang(u|ua|uag|uage)?)' 
+    'captures': 
+      '1': 
+        'name': 'keyword.functions.data.stata' 
+      '3': 
+        'name': 'keyword.functions.data.stata' 
+  } 
+  { 
+    'match': 
+      '\\b(drop|keep)\\s+((if)\\s+(.+)\\s+(in)|(in)\\s+(.+)\\s+(if)|(if)|(in))?' 
+    'captures': 
+      '1': 
+        'name': 'keyword.functions.data.stata' 
+      '3': 
+        'name': 'keyword.functions.data.stata' 
+      '4': 
+        'patterns': [ 
+          { 
+            'include': '$self' 
+          } 
+        ] 
+      '5': 
+        'name': 'keyword.functions.data.stata' 
+      '6': 
+        'name': 'keyword.functions.data.stata' 
+      '7': 
+        'patterns': [ 
+          { 
+            'include': '$self' 
+          } 
+        ] 
+      '8': 
+        'name': 'keyword.functions.data.stata' 
+      '9': 
+        'name': 'keyword.functions.data.stata' 
+      '10': 
+        'name': 'keyword.functions.data.stata' 
+  }       
 ]
 'repository':
   'builtin_functions':
@@ -282,7 +320,7 @@
   'macro-local':
     'patterns': [
       {
-        'begin': '`'
+        'begin': '`(?!")'
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.string.begin.stata'
@@ -350,8 +388,9 @@
   'operators':
     'patterns': [
       {
-        'match': '\\+|\\-|\\*|\\^'
+        'match': '\\+\\+|\\-\\-|\\+|\\-|\\*|\\^' 
         'name': 'keyword.operator.arithmetic.stata'
+        'comment': '++ and -- must come first to support ligatures' 
       }
       {
         'comment': 'match division operator but not path separator'
@@ -363,9 +402,12 @@
         'name': 'keyword.operator.logical.stata'
       }
       {
-        'match': '(?:<=|>=|<|>|:=|==|!=|~=|=)'
+        'match': '(?:<=|>=|:=|==|!=|~=|<|>|=|!)' 
         'name': 'keyword.operator.comparison.stata'
       }
+        'match': '\\(|\\)' 
+        'name': 'keyword.operator.parentheses.stata' 
+      } 
       {
         'match': '(##|#)'
         'name': 'keyword.operator.factor-variables.stata'
@@ -392,11 +434,16 @@
             'name': 'punctuation.definition.string.end.stata'
         'name': 'string.quoted.double.compound.stata'
         'patterns': [
+          { 
+            'match': '"' 
+            'name': 'string.quoted.double.compound.stata' 
+            'comment': 'This must come before #string-regular and #string-compound to accurately color `"""\' in strings' 
+          } 
           {
             'include': '#string-regular'
           }
           {
-            'include': '$self'
+            'include': '#string-compound'
           }
           {
             'include': '#macro-local'
