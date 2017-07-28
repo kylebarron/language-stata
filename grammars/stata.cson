@@ -30,6 +30,9 @@
             'include': '#macro-global'
           }
           {
+            'include': '#builtin_functions'
+          }
+          {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'variable.parameter.function.stata'
           }
