@@ -1,0 +1,22 @@
+'.source.stata':
+  'ado-file Header':
+    'prefix': 'adohead'
+    'body': '*! version 1.0.0  `date +%d%b%Y | tr \'[A-Z]\' \'[a-z]\'`\n// ${1:description}\n\nprogram ${2:pgmname}\n\tversion 12.1\n\t$0\n\nend\n'
+  'do-file Header':
+    'prefix': 'dohead'
+    'body': '// ${1:description}\n\nversion 14.1\n$0'
+  'export excel':
+    'prefix': 'export exc'
+    'body': 'export excel${1: varlist} using ${2:filename}${3: if $4}${5: in $6}${7:,${8: sheet("${9:sheetname}")}${10: cell(${11:start})}${12| sheetmodify, sheetreplace, replace|}${13: firstrow(${14|variables,varlabels|})}${15: nolabel}${16: datestring("${17:datetime_format}")}${18: missing("${19:repval}")}${20: locale("${21:locale}")}}'
+  'foreach':
+    'prefix': 'fore'
+    'body': 'foreach ${1:lname} ${2:|in,of local,of global,of varlist,of newlist,of numlist|} ${3:list} {\n\t$0\n}'
+  'forvalues':
+    'prefix': 'forv'
+    'body': 'forvalues ${1:lname} = ${2:range} {\n\t$0\n}'
+  'import excel':
+    'prefix': 'import exc'
+    'body': 'import excel${1: extvarlist} using ${2:filename}${3:,${4: describe}${5:${6: sheet("${7:sheetname}")}${8: cellrange(${9:start}${10::end})}${11: firstrow}${12: case(${13|preserve,lower,upper|})}${14: allstring}${15: clear}${16: locale("${17:locale}")}}}'
+  'mixed':
+    'prefix': 'mix'
+    'body': 'mixed ${1:dv} ${2:fixed} || ${3:nesting}: ${4:reffects}, '

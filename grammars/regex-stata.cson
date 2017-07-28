@@ -5,6 +5,7 @@
 ]
 'name': 'Regular Expressions (Stata)'
 'patterns': [
+  # REGULAR EXPRESSIONS:
   {
     'match': '\\^|\\$'
     'name': 'keyword.control.anchor.regexp'
@@ -36,10 +37,14 @@
     'include': '#character-class'
   }
   {
-    'match': '[^\\^\\$\\?\\+\\*\\|\\(\\)\\.\\\\\\[\\]]'
-    'name': 'string.quoted.double.compound.stata'
-    'comment': 'color anything other than special characters the string color'
+    'match': '[a-zA-Z_0-9]+'
+    'name': 'string.quoted.stata'
   }
+  # {
+  #   'match': '[^\\^\\$\\?\\+\\*\\|\\(\\)\\.\\\\\\[\\]\"\']+'
+  #   'name': 'string.quoted.double.compound.stata'
+  #   'comment': 'color anything other than special characters the string color'
+  # }
 ]
 'repository':
   'character-class':
