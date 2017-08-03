@@ -1,4 +1,17 @@
 '.source.stata':
+  "bracket-matcher":
+    autocompleteCharacters: [
+      "()"
+      "[]"
+      "{}"
+      "''"
+      "`'"
+      "\"\""
+      "“”"
+      "‘’"
+      "«»"
+      "‹›"
+    ]
   autocomplete:
     symbols:
       function:

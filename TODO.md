@@ -1,6 +1,8 @@
 # To do list:
 
 [ ] [Improve autocompletion support](https://github.com/atom/autocomplete-plus/wiki/SymbolProvider-Config-API)
+[ ] Highlight commas in function calls
+[ ] Color the . as a system constant. It's basically NA. Any situations where . is used outside strings to not mean NA?
 
 [ ] how should prefixes be colored? 
     - Should prefixes only be colored at the beginning of the line? I.e. \n\s*[prefix]. Mauricio uses "capture" as an option to some of his functions
@@ -9,17 +11,10 @@
 [ ] Color general commands
     - In something like "label var ..." what should be colored?
     - What about "merge ... using"?
-[ ] Python colors brackets and parentheses sometimes but not other times...
-    - See screenshot to see how python does it.
-    - Colors them when part of a function call. Doesn't color them when not inside a function's ()
-[ ] Why does reshape long color long? (Same with str)
-    - It's considered support.type.stata
 [ ] Put an option in the settings as for whether to color locals and macros inside quotes
 [/] Change acceptable variable names to include macro identifiers
     - local test = blah; gen di`test' = 2; that is acceptable and gives a variable name of diblah
     - half done; long names that are over 32 chars but have `' or $ in it are not flagged
-
-[ ] Remove
 
 [ ] Get all option possibilities; put all of them in like "options.builtin.stata"?
 [ ] get all command names, put them in 'commands.builtin.stata'...

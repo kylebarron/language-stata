@@ -9,6 +9,7 @@
 'foldingStopMarker': '^\\s*\\}'
 'patterns': [
   {
+    'comment': 'Add Regular Expression support'
     'match': '(regexm)(\\()(.+),\\s*(\"|`\")(.+)(\"|\"\')(\\))'
     'captures':
       '1':
