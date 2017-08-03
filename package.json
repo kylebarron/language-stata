@@ -1,13 +1,13 @@
 {
-    "name": "language-stata-plus",
-    "version": "0.0.0",
-    "description": "Enhanced Stata syntax highlighting in Atom",
-    "license": "MIT",
-    "repository": "https://github.com/kylebarron/language-stata",
-    "bugs": {
-        "url": "https://github.com/kylebarron/language-stata/issues"
-    },
-    "engines": {
-        "atom": ">=0.1.0"
-    }
+  "name": "language-stata-plus",
+  "version": "0.1.0",
+  "description": "Enhanced Stata syntax highlighting in Atom",
+  "license": "MIT",
+  "repository": "https://github.com/kylebarron/language-stata",
+  "bugs": {
+    "url": "https://github.com/kylebarron/language-stata/issues"
+  },
+  "engines": {
+    "atom": ">=0.1.0"
+  }
 }
