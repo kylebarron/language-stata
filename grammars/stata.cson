@@ -10,7 +10,7 @@
 'patterns': [
   {
     'comment': 'Add Regular Expression support'
-    'match': '(regexm)(\\()(.+),\\s*(\"|`\")(.+)(\"|\"\')(\\))'
+    'match': '(regexm)(\\()(.+)(,)\\s*(\"|`\")(.+)(\"|\"\')\\s*(\\))'
     'captures':
       '1':
         'name': 'support.function.builtin.stata'
@@ -37,18 +37,176 @@
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'variable.parameter.function.stata'
           }
+          {
+            'include': '#comments'
+          }
         ]
       '4':
-        'name': 'punctuation.definition.string.begin.stata'
+        'name': 'punctuation.definition.variable.begin.stata' # the comma
       '5':
+        'name': 'punctuation.definition.string.begin.stata'
+      '6':
         'patterns': [
           {'include': 'source.regexp.stata'}
         ]
-      '6': 
+      '7': 
         'name': 'punctuation.definition.string.end.stata'
-      '7':
+      '8':
         'name': 'punctuation.definition.parameters.end.stata'
   }
+  {
+    'comment': 'Add Regex support for regexr() too'
+    'match': '(regexr)(\\()(.+)(,)\\s*(\"|`\")(.+)(\"|\"\')\\s*(,)([^\\)]*)(\\))'
+    'captures':
+      '1':
+        'name': 'support.function.builtin.stata'
+      '2':
+        'name': 'punctuation.definition.parameters.begin.stata'
+      '3':
+        'patterns': [
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#string-regular'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'include': '#builtin_functions'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'variable.parameter.function.stata'
+          }
+          {
+            'include': '#comments'
+          }          
+        ]
+      '4':
+        'name': 'punctuation.definition.variable.begin.stata' # the comma
+      '5':
+        'name': 'punctuation.definition.string.begin.stata'
+      '6':
+        'patterns': [
+          {'include': 'source.regexp.stata'}
+        ]
+      '7': 
+        'name': 'punctuation.definition.string.end.stata'
+      '8':
+        'name': 'punctuation.definition.variable.begin.stata' # the comma
+      '9':
+        'patterns': [
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#string-regular'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'include': '#builtin_functions'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'variable.parameter.function.stata'
+          }
+          {
+            'include': '#comments'
+          }          
+        ]
+      '10':
+        'name': 'punctuation.definition.parameters.end.stata'      
+  }
+  # {
+  #   'comment': 'Add Regex support for regexr() too'
+  #   'begin': '(regexr)(\\()(.*)(,)\\s*(\"|`\")(.+)(\"|\"\')\\s*'
+  #   'beginCaptures':
+  #     '1':
+  #       'name': 'support.function.builtin.stata'
+  #     '2':
+  #       'name': 'punctuation.definition.parameters.begin.stata'
+  #     '3':
+  #       'patterns': [
+  #         {
+  #           'include': '#string-compound'
+  #         }
+  #         {
+  #           'include': '#string-regular'
+  #         }
+  #         {
+  #           'include': '#macro-local'
+  #         }
+  #         {
+  #           'include': '#macro-global'
+  #         }
+  #         {
+  #           'include': '#builtin_functions'
+  #         }
+  #         {
+  #           'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+  #           'name': 'variable.parameter.function.stata'
+  #         }
+  #         {
+  #           'include': '#comments'
+  #         }          
+  #       ]
+  #     '4':
+  #       'name': 'punctuation.definition.variable.begin.stata' # the comma
+  #   'contentName': 
+  #     'patterns': [
+  #       
+  #     ]
+  #     '5':
+  #       'name': 'punctuation.definition.string.begin.stata'
+  #     '6':
+  #       'patterns': [
+  #         {'include': 'source.regexp.stata'}
+  #       ]
+  #     '7': 
+  #       'name': 'punctuation.definition.string.end.stata'
+  #     '8':
+  #       'name': 'punctuation.definition.variable.begin.stata' # the comma
+  #     '9':
+  #       'patterns': [
+  #         {
+  #           'include': '#string-compound'
+  #         }
+  #         {
+  #           'include': '#string-regular'
+  #         }
+  #         {
+  #           'include': '#macro-local'
+  #         }
+  #         {
+  #           'include': '#macro-global'
+  #         }
+  #         {
+  #           'include': '#builtin_functions'
+  #         }
+  #         {
+  #           'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+  #           'name': 'variable.parameter.function.stata'
+  #         }
+  #         {
+  #           'include': '#comments'
+  #         }          
+  #       ]
+  #   'end': '(,)(.*)(\\))'
+  #   'endCaptures':
+  #     '1':
+  #       'name': 'punctuation.definition.parameters.end.stata'      
+  # }
+
   {
     'include': '#builtin_functions'
   }
@@ -147,7 +305,16 @@
         'name': 'entity.name.type.class.stata'
       '3':
         'name': 'keyword.operator.assignment.stata'
-    'match': '\\b(forvalues)\\s+([a-zA-Z0-9_]{1,31})\\s*(=)\\s*[0-9\\(\\)/:\. ]+\\s*\\{'
+      '4':
+        'patterns': [
+          {
+            'include': '#numbers'
+          }
+          {
+            'include': '#operators'
+          }
+        ]
+    'match': '\\b(forvalues)\\s+([a-zA-Z0-9_]{1,31})\\s*(=)\\s*([0-9\\(\\)/:\. ]+)\\s*'
   }
   {
     'comment': 'keywords that delimit loops'
@@ -193,7 +360,21 @@
     "comment": "model commands."
     "match": "\\b(anova|xtmixed|regress|ivregress|xtreg|xtreg_be|xtreg_fe|xtreg_ml|xtreg_pa_p|xtreg_re|xtregar|xtrere_p|xtset|xtsf_ll|xtsf_llti|xtsum|xttab|xttest0|xttobit|xttobit_8|xttobit_p|xttrans)\\b"
   }
-
+  {
+    'begin': '(\\{)'
+    'beginCaptures':
+      '0':
+        'name': 'keyword.control.block.begin.stata'
+    'end': '(\\})'
+    'endCaptures':
+      '0':
+        'name': 'keyword.control.block.begin.stata'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  }
   # Start manual functions:
   {
     'captures':
@@ -274,6 +455,9 @@
       }
     ]
   }
+  {
+    'include': '#commands-other'
+  }
 ]
 'repository':
   'builtin_functions':
@@ -309,6 +493,13 @@
       {
         'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
         'name': 'variable.parameter.function.stata'
+      }
+      {
+        'include': '#comments'
+      }
+      {
+        'match': ','
+        'name': 'punctuation.definition.variable.begin.stata'
       }
     ]
   'builtin_types':
@@ -428,6 +619,10 @@
       {
         'match': '\\b([0-9]+|0)'
         'name': 'constant.numeric.integer.decimal.stata'
+      }
+      {
+        'match': '(?<![a-zA-Z0-9])(\\.)(?![a-zA-Z0-9])'
+        'name': 'constant.language.stata'
       }
     ]
   'operators':
