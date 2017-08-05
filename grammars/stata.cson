@@ -158,27 +158,7 @@
     'include': '#builtin_variables'
   }
   {
-    'comment': 'highlight [_n], etc when subsetting variable'
-    'begin': '[0-9a-zA-Z_]+(\\[)'
-    'beginCaptures':
-      '1':
-        'name': 'punctuation.definition.parameters.begin.stata'
-    'end': '(\\])'
-    'endCaptures':
-      '1':
-        'name': 'punctuation.definition.parameters.end.stata'
-    'name': 'meta.function.stata'
-    'patterns': [
-      {
-        'include': '#builtin_variables'
-      }
-      {
-        'include': '#operators'
-      }
-      {
-        'include': '#numbers'
-      }
-    ]
+    'include': '#subsetting'
   }
   {
     'match': '\\b(gl(o|ob|oba|obal)?)\\s+\\b([A-Za-z_][A-Za-z0-9_]{0,31})\\b'
@@ -633,6 +613,32 @@
           }
           {
             'include': '#macro-global'
+          }
+        ]
+      }
+    ]
+  'subsetting':
+    'patterns': [
+      {
+        'comment': 'highlight [_n], etc when subsetting variable'
+        'begin': '(?<=[0-9a-zA-Z_])(\\[)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.parameters.begin.stata'
+        'end': '(\\])'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.parameters.end.stata'
+        'name': 'meta.function.stata'
+        'patterns': [
+          {
+            'include': '#builtin_variables'
+          }
+          {
+            'include': '#operators'
+          }
+          {
+            'include': '#numbers'
           }
         ]
       }
