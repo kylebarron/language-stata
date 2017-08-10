@@ -521,7 +521,7 @@
         'name': 'constant.numeric.integer.decimal.stata'
       }
       {
-        'match': '(?<![a-zA-Z0-9])(\\.)(?![a-zA-Z0-9])'
+        'match': '(?<![a-zA-Z0-9])(\\.(?![\\./]))(?![a-zA-Z0-9])'
         'name': 'constant.language.stata'
       }
     ]
