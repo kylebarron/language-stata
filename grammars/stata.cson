@@ -538,6 +538,10 @@
         'name': 'keyword.operator.arithmetic.stata'
       }
       {
+        'match': '\\|\\|'
+        'name': 'keyword.operator.graphcombine.stata'
+      }
+      {
         'match': '\\&|\\|'
         'name': 'keyword.operator.logical.stata'
       }
