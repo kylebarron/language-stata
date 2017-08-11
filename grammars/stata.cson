@@ -160,6 +160,21 @@
   {
     'include': '#subsetting'
   }
+  # {
+  #   'begin': '(\\()'
+  #   'beginCaptures':
+  #     '1':
+  #       'name': 'keyword.operator.parentheses.stata'
+  #   'end': '(\\))'
+  #   'endCaptures':
+  #     '1':
+  #       'name': 'keyword.operator.parentheses.stata'
+  #   'patterns': [
+  #     {
+  #       'include': '$self'
+  #     }
+  #   ]
+  # }
   {
     'match': '\\b(gl(o|ob|oba|obal)?)\\s+\\b([A-Za-z_][A-Za-z0-9_]{0,31})\\b'
     'captures':
@@ -373,29 +388,11 @@
         'name': 'punctuation.definition.parameters.end.stata'
     'patterns': [
       {
-        'include': '#string-compound'
-      }
-      {
-        'include': '#string-regular'
-      }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
-      {
-        'include': '#builtin_functions'
-      }
-      {
-        'include': '#numbers'
+        'include': '$self'
       }
       {
         'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
         'name': 'variable.parameter.function.stata'
-      }
-      {
-        'include': '#comments'
       }
       {
         'match': ','
