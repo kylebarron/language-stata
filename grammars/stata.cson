@@ -295,6 +295,68 @@
   }
   # Start manual functions:
   {
+    'comment': 'Color the syntax command'
+    'begin': '^\\s+(?=(syntax))'
+    'end': '\\n'
+    'patterns': [
+      {
+        'comment': 'color before the comma'
+        'begin': '(syntax)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.functions.program.stata'
+        'end': '(?=,)'
+        # 'patterns': [
+        #   # {
+        #   #   
+        #   # }
+        # ]              
+      }
+      {
+        'comment': 'things to color after the comma'
+        'begin': '(,)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.variable.begin.stata'
+        'end': '(?=\\n)'
+        'patterns': [
+          {
+            'comment': 'color options with parentheses'
+            'begin': '([a-zA-Z_]+)(\\()'
+            'beginCaptures':
+              '1':
+                'comment': 'these are the names that become macros'
+                'name': 'entity.name.type.class.stata'
+              '2':
+                'name': 'keyword.operator.parentheses.stata'
+            'end': '(\\))'
+            'endCaptures':
+              '1':
+                'name': 'keyword.operator.parentheses.stata'
+            'patterns': [
+              {
+                'comment': 'the first word is often a type'
+                'match': '(int(e|eg|ege|eger)?|real|str(i|in|ing)?)'
+                'name': 'support.type.stata'
+              }
+              {
+                'include': '$self'
+              }
+            ]
+          }
+          {
+            'comment': 'true/false options'
+            'match': '[A-Za-z_]+'
+            'name': 'entity.name.type.class.stata'
+          }
+          {
+            'include': '$self'
+          }
+        ]
+      }
+    ]
+  }
+  {
     'captures':
       '1':
         'name': 'keyword.functions.data.stata'
