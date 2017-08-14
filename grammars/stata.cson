@@ -637,7 +637,7 @@
         'name': 'keyword.operator.logical.stata'
       }
       {
-        'match': '(?:<=|>=|:=|==|!=|~=|<|>|=|!)' 
+        'match': '(?:<=|>=|:=|==|!=|~=|<|>|=|!!|!)' # !! is for xshell
         'name': 'keyword.operator.comparison.stata'
       }
       {
