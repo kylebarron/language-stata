@@ -453,15 +453,17 @@
         'name': 'punctuation.definition.parameters.end.stata'
     'patterns': [
       {
-        'include': '$self'
+        'include': '#builtin_functions'
+      }
+      {
+        'include': '#other_functions'
       }
       {
         'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
         'name': 'variable.parameter.function.stata'
       }
       {
-        'match': ','
-        'name': 'punctuation.definition.variable.begin.stata'
+        'include': '$self'
       }
     ]
   'other_functions':
@@ -478,15 +480,17 @@
         'name': 'punctuation.definition.parameters.end.stata'
     'patterns': [
       {
-        'include': '$self'
+        'include': '#builtin_functions'
+      }
+      {
+        'include': '#other_functions'
       }
       {
         'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
         'name': 'variable.parameter.function.stata'
       }
       {
-        'match': ','
-        'name': 'punctuation.definition.variable.begin.stata'
+        'include': '$self'
       }
     ]
   'builtin_types':
