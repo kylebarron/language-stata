@@ -131,6 +131,9 @@
     'include': '#builtin_functions'
   }
   {
+    'include': '#other_functions'
+  }
+  {
     'include': '#comments'
   }
   {
@@ -380,6 +383,31 @@
     'beginCaptures':
       '1':
         'name': 'support.function.builtin.stata'
+      '2':
+        'name': 'punctuation.definition.parameters.begin.stata'
+    'end': '(\\))'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.parameters.end.stata'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+      {
+        'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+        'name': 'variable.parameter.function.stata'
+      }
+      {
+        'match': ','
+        'name': 'punctuation.definition.variable.begin.stata'
+      }
+    ]
+  'other_functions':
+    'comment': 'this is to color [a-z]+() in options and custom functions'
+    'begin': '([a-zA-Z_]+)(\\()'
+    'beginCaptures':
+      '1':
+        'name': 'support.function.custom.stata'
       '2':
         'name': 'punctuation.definition.parameters.begin.stata'
     'end': '(\\))'
