@@ -17,8 +17,8 @@ Other nice features:
 ## Installation
 
 To install, do one of the following:
-    - Go to Preferences/Settings > Install > Packages; and then search for "language-stata-plus"
-    - At the command line, type `apm install language-stata-plus`
+- Go to Preferences/Settings > Install > Packages; and then search for "language-stata-plus"
+- At the command line, type `apm install language-stata-plus`
 
 ## Running Code
 
