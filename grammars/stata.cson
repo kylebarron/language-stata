@@ -598,6 +598,10 @@
         'match': '\\]'
         'name': 'punctuation.definition.parameters.end.stata'
       }
+      {
+        'match': ','
+        'name': 'punctuation.definition.variable.begin.stata'
+      }
     ]
   'string-compound':
     'patterns': [
