@@ -577,7 +577,7 @@
       {
         'match': '\\(|\\)' 
         'name': 'keyword.operator.parentheses.stata' 
-      } 
+      }
       {
         'match': '(##|#)'
         'name': 'keyword.operator.factor-variables.stata'
@@ -589,6 +589,14 @@
       {
         'match': ':'
         'name': 'punctuation.separator.key-value'
+      }
+      {
+        'match': '\\['
+        'name': 'punctuation.definition.parameters.begin.stata'
+      }
+      {
+        'match': '\\]'
+        'name': 'punctuation.definition.parameters.end.stata'
       }
     ]
   'string-compound':
