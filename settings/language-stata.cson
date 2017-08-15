@@ -1,4 +1,6 @@
 '.source.stata':
+  'editor':
+    'decreaseIndentPattern': '^\\s*\\}|^\\s*\\)'
   "bracket-matcher":
     autocompleteCharacters: [
       "()"
