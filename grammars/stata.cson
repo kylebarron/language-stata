@@ -206,8 +206,8 @@
     'match': '^\\s*(sca(l|la|lar)?(\\s+de(f|fi|fin|fine)?)?)\\s+(?!(drop|dir?|l(i|is|ist)?)\\s+)'
   }
   {
-    'match': '\\b(mer(g|ge)?)\\s+(1|m|n)(:)(1|m|n)'
-    'captures':
+    'begin': '\\b(mer(g|ge)?)\\s+(1|m|n)(:)(1|m|n)'
+    'beginCaptures':
       '1':
         'name': 'keyword.control.flow.stata'
       '3':
@@ -232,6 +232,21 @@
             'name': ''
           }
         ]
+    'end': 'using'
+    'patterns': [
+      {
+        'include': '#builtin_variables'
+      }
+      {
+        'include': '#macro-local'
+      }
+      {
+        'include': '#macro-global'
+      }
+      {
+        'include': '#comments'
+      }
+    ]
   }
   {
     'captures':
