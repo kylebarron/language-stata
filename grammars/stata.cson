@@ -352,19 +352,24 @@
       '0':
         'name': 'keyword.control.block.begin.stata'
     'comment': 'It\'s a complicated regex so that it\'ll alert you if you have text on the same line as the }'
-    'end': '^\\s*([^\\}\\s]+)\\s*(\\})|^\\s*([^\\}\\s]+)?\\s*(\\})\\s*([^\\}/\\n\\s]+)|(\\})'
+    'comment': 'before and after; before; after; correct'
+    'end': '^\\s*([^\\}\\s]+)\\s*(\\})\\s*([^\\}/\\n\\s]+)|^\\s*([^\\}\\s]+)\\s*(\\})|\\s*(\\})\\s*([^\\}/\\n\\s]+)|(\\})'
     'endCaptures':
       '1':
-        'name': 'invalid.illegal.name.stata'
+        'name': 'invalid.illegal.name.stata'  
       '2':
         'name': 'keyword.control.block.end.stata'
       '3':
-        'name': 'invalid.illegal.name.stata'
+        'name': 'invalid.illegal.name.stata'  
       '4':
-        'name': 'keyword.control.block.end.stata'
-      '5':
         'name': 'invalid.illegal.name.stata'
+      '5':
+        'name': 'keyword.control.block.end.stata'
       '6':
+        'name': 'keyword.control.block.end.stata'
+      '7':
+        'name': 'invalid.illegal.name.stata'
+      '8':
         'name': 'keyword.control.block.end.stata'
     'patterns': [
       {
