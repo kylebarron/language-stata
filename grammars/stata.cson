@@ -286,7 +286,7 @@
     'end': '(\\})'
     'endCaptures':
       '0':
-        'name': 'keyword.control.block.begin.stata'
+        'name': 'keyword.control.block.end.stata'
     'patterns': [
       {
         'include': '$self'
