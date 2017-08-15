@@ -310,7 +310,7 @@
         'name': 'entity.name.function.stata'
   }
   {
-    'begin': '\\s*(pr(o|og|ogr|ogra|ogram)?)\\s+(de(f|fi|fin|fine)?\\s+)?'
+    'begin': '^\\s*(pr(o|og|ogr|ogra|ogram)?)\\s+(de(f|fi|fin|fine)?\\s+)?'
     'beginCaptures':
       '1':
         'name': 'storage.type.function.stata'
@@ -351,9 +351,20 @@
     'beginCaptures':
       '0':
         'name': 'keyword.control.block.begin.stata'
-    'end': '(\\})'
+    'comment': 'It\'s a complicated regex so that it\'ll alert you if you have text on the same line as the }'
+    'end': '^\\s*([^\\}\\s]+)\\s*(\\})|^\\s*([^\\}\\s]+)?\\s*(\\})\\s*([^\\}/\\n\\s]+)|(\\})'
     'endCaptures':
-      '0':
+      '1':
+        'name': 'invalid.illegal.name.stata'
+      '2':
+        'name': 'keyword.control.block.end.stata'
+      '3':
+        'name': 'invalid.illegal.name.stata'
+      '4':
+        'name': 'keyword.control.block.end.stata'
+      '5':
+        'name': 'invalid.illegal.name.stata'
+      '6':
         'name': 'keyword.control.block.end.stata'
     'patterns': [
       {
