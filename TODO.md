@@ -24,19 +24,19 @@
 
 
 Completed:
-* [/] color regular expressions
-* [/] Maybe look in material ui syntax package to see all the names that they give a color to
+* [x] color regular expressions
+* [x] Maybe look in material ui syntax package to see all the names that they give a color to
     - The names are listed in grammars/names_python.txt and grammars/names_regexp.txt
-* [/] Color brackets that subset, like [_N] or [_n]
-* [/] Why is TODO colored... everwhere?
+* [x] Color brackets that subset, like [_N] or [_n]
+* [x] Why is TODO colored... everwhere?
     - The [language-todo](https://github.com/atom/language-todo) package; installed by default.
-* [/] Add support for ligatures. See here: <https://github.com/JuliaEditorSupport/atom-language-julia/issues/49>
-* [/] Globals and locals
+* [x] Add support for ligatures. See here: <https://github.com/JuliaEditorSupport/atom-language-julia/issues/49>
+* [x] Globals and locals
     - Should they be the same color as types?
     - Outer symbol is colored
     - Colored in strings
-* [/] Figure out why "meta.function-call.python" is colored in python but "meta.function-call.stata" isn't colored in stata.
+* [x] Figure out why "meta.function-call.python" is colored in python but "meta.function-call.stata" isn't colored in stata.
     - Because there's a special python.less file in the atom-material-syntax package that colors those
-* [/] Correct function names with global variables as arguments, like mi(${global}) (also correct regexm())
-* [/] In Python, if I go to the argument of a function call and look at its scope, it's "meta.function-call.python"; but if I use that for Stata: "meta.function-call.stata", it's not colored!
+* [x] Correct function names with global variables as arguments, like mi(${global}) (also correct regexm())
+* [x] In Python, if I go to the argument of a function call and look at its scope, it's "meta.function-call.python"; but if I use that for Stata: "meta.function-call.stata", it's not colored!
     - This is because there's a special python.less file in the material syntax theme
