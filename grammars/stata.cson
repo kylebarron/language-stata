@@ -352,24 +352,26 @@
       '0':
         'name': 'keyword.control.block.begin.stata'
     'comment': 'It\'s a complicated regex so that it\'ll alert you if you have text on the same line as the }'
-    'comment': 'before and after; before; after; correct'
-    'end': '^\\s*([^\\}\\s]+)\\s*(\\})\\s*([^\\}/\\n\\s]+)|^\\s*([^\\}\\s]+)\\s*(\\})|\\s*(\\})\\s*([^\\}/\\n\\s]+)|(\\})'
+    'comment': 'correct with nothing else on the line but whitespace; before and after; before; after; correct'
+    'end': '^\\s*(\\})\\s*$|^\\s*([^\\}]+)\\s*(\\})\\s*([^\\}/\\n]+)|^\\s*([^\\}]+)\\s*(\\})|\\s*(\\})\\s*([^\\}/\\n]+)|(\\})$'
     'endCaptures':
       '1':
-        'name': 'invalid.illegal.name.stata'  
+        'name': 'keyword.control.block.end.stata'
       '2':
-        'name': 'keyword.control.block.end.stata'
-      '3':
         'name': 'invalid.illegal.name.stata'  
-      '4':
-        'name': 'invalid.illegal.name.stata'
-      '5':
+      '3':
         'name': 'keyword.control.block.end.stata'
+      '4':
+        'name': 'invalid.illegal.name.stata'  
+      '5':
+        'name': 'invalid.illegal.name.stata'
       '6':
         'name': 'keyword.control.block.end.stata'
       '7':
-        'name': 'invalid.illegal.name.stata'
+        'name': 'keyword.control.block.end.stata'
       '8':
+        'name': 'invalid.illegal.name.stata'
+      '9':
         'name': 'keyword.control.block.end.stata'
     'patterns': [
       {
