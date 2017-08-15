@@ -285,7 +285,7 @@
   'match': '\\b(qui(e|et|etl|etly)?|n(o|oi|ois|oisi|oisil|oisily)?|cap(t|tu|tur|ture)?)\\b:?'
   }
   {
-    'match': '\\s*(pr(o|og|ogr|ogra|ogram)?)\\s+((de(f|fi|fin|fine)?|di(r)?|drop|l(i|is|ist)?)?\\s+)?([A-Za-z_][A-Za-z0-9_]{0,31})'
+    'match': '\\s*(pr(o|og|ogr|ogra|ogram)?)\\s+((di(r)?|drop|l(i|is|ist)?)\\s+)([A-Za-z_][A-Za-z0-9_]{0,31})'
     'captures':
       '1':
         'name': 'storage.type.function.stata'
@@ -293,6 +293,31 @@
         'name': 'storage.type.function.stata'
       '7':
         'name': 'entity.name.function.stata'
+  }
+  {
+    'begin': '\\s*(pr(o|og|ogr|ogra|ogram)?)\\s+(de(f|fi|fin|fine)?\\s+)?'
+    'beginCaptures':
+      '1':
+        'name': 'storage.type.function.stata'
+      '3':
+        'name': 'storage.type.function.stata'
+    'end': '(?=,|\\n|/)'
+    'patterns': [
+      {
+        'include': '#macro-local'
+      }
+      {
+        'include': '#macro-global'
+      }
+      {
+        'match': '([A-Za-z_][A-Za-z0-9_]{0,31})'
+        'name': 'entity.name.function.stata'
+      }
+      {
+        'match': '[^A-za-z_0-9,\\n/ ]+'
+        'name': 'invalid.illegal.name.stata'
+      }
+    ]
   }
   {
     'match': '\\b(form(a|at)?)\\s*([A-Za-z_][A-Za-z0-9_]{0,31})*\\s*(%)(\-)?(0)?([0-9]+)(\.)([0-9]+)(e|f|g)(c)?'
