@@ -435,6 +435,7 @@
       }
       {
         'comment': 'things to color after the comma'
+        'comment': 'TODO: This can be improved to alert when new macros are created with illegal meaning'
         'begin': '(,)'
         'beginCaptures':
           '1':
@@ -443,7 +444,7 @@
         'patterns': [
           {
             'comment': 'color options with parentheses'
-            'begin': '([a-zA-Z_]+)(\\()'
+            'begin': '([a-zA-Z_0-9]+)(\\()'
             'beginCaptures':
               '1':
                 'comment': 'these are the names that become macros'
@@ -467,7 +468,7 @@
           }
           {
             'comment': 'true/false options'
-            'match': '[A-Za-z_]+'
+            'match': '[A-Za-z_0-9]+'
             'name': 'entity.name.type.class.stata'
           }
           {
