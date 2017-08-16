@@ -744,7 +744,7 @@
             'include': '#macro-global'
           }
           {
-            'match': '[^\\\\`\'\\$\\{\\}]+'
+            'match': '[^\\\\`\'\\$\\{\\}\\"\\s\\n/,]+'
             'name': 'entity.name.type.class.stata'
           }
         ]
@@ -769,7 +769,7 @@
             'include': '#macro-global'
           }
           {
-            'match': '[^`\'\\$\\{\\}]+'
+            'match': '[^`\'\\$\\{\\}\\"\\s\\n/,]+'
             'name': 'entity.name.type.class.stata'
           }
         ]
