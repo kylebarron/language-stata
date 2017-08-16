@@ -6,6 +6,7 @@ Stata syntax highlighting, built from the ground up
 This package highlights:
 - System commands, functions, and function arguments
 - Macros, both global and local
+    - Accurately colors nested macros and escaped macros in strings when you want the inner macro to evaluate at runtime
 - Regular expressions
 
 Other nice features:
