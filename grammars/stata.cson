@@ -687,17 +687,14 @@
             'name': 'punctuation.definition.string.end.stata'
         'patterns': [
           {
-            'include': '#reserved_names'
-          }
-          {
-            'match': '([A-Za-z_][A-Za-z0-9_]{0,31})'
-            'name': 'entity.name.type.class.stata'
-          }
-          {
             'include': '#macro-local'
           }
           {
             'include': '#macro-global'
+          }
+          {
+            'match': '[^\\\\`\'\\$\\{\\}]+'
+            'name': 'entity.name.type.class.stata'
           }
         ]
       }
@@ -715,18 +712,14 @@
             'name': 'punctuation.definition.string.end.stata'
         'patterns': [
           {
-            'include': '#reserved_names'
-          }
-          {
-            'comment': 'it was [^\']+ but that didn\'t color the @ in `p@ct\''
-            'match': '([A-Za-z_][A-Za-z0-9_]{0,31})'
-            'name': 'entity.name.type.class.stata'
-          }
-          {
             'include': '#macro-local'
           }
           {
             'include': '#macro-global'
+          }
+          {
+            'match': '[^`\'\\$\\{\\}]+'
+            'name': 'entity.name.type.class.stata'
           }
         ]
       }
@@ -744,17 +737,14 @@
             'name': 'punctuation.definition.string.end.stata'
         'patterns': [
           {
-            'include': '#reserved_names'
-          }
-          {
-            'match': '([A-Za-z_][A-Za-z0-9_]{0,31})'
-            'name': 'entity.name.type.class.stata'
-          }
-          {
             'include': '#macro-local'
           }
           {
             'include': '#macro-global'
+          }
+          {
+            'match': '[^\\\\`\'\\$\\{\\}]+'
+            'name': 'entity.name.type.class.stata'
           }
         ]
       }
@@ -772,17 +762,14 @@
             'name': 'punctuation.definition.string.end.stata'
         'patterns': [
           {
-            'include': '#reserved_names'
-          }
-          {
-            'match': '([A-Za-z_][A-Za-z0-9_]{0,31})'
-            'name': 'entity.name.type.class.stata'
-          }
-          {
             'include': '#macro-local'
           }
           {
             'include': '#macro-global'
+          }
+          {
+            'match': '[^`\'\\$\\{\\}]+'
+            'name': 'entity.name.type.class.stata'
           }
         ]
       }
