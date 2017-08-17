@@ -426,7 +426,7 @@
         'beginCaptures':
           '1':
             'name': 'keyword.functions.program.stata'
-        'end': '(?=,)'
+        'end': '(?=,|\\s|\\n)'
         # 'patterns': [
         #   # {
         #   #   
@@ -853,6 +853,10 @@
       {
         'match': ','
         'name': 'punctuation.definition.variable.begin.stata'
+      }
+      {
+        'match': ';'
+        'name': 'keyword.operator.delimiter.stata'
       }
     ]
   'string-compound':
