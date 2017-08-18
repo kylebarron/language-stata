@@ -382,10 +382,25 @@
     "match": "\\b(anova|xtmixed|regress|ivregress|xtreg|xtreg_be|xtreg_fe|xtreg_ml|xtreg_pa_p|xtreg_re|xtregar|xtrere_p|xtset|xtsf_ll|xtsf_llti|xtsum|xttab|xttest0|xttobit|xttobit_8|xttobit_p|xttrans)\\b"
   }
   {
-    'begin': '(\\{)'
+    'comment': ' If you put braces following the if or else, (same with foreach, etc)
+        1.  the open brace must appear on the same line as the if or else;
+        2.  nothing may follow the open brace except, of course, comments;
+            the first command to be executed must appear on a new line;
+        3.  the close brace must appear on a line by itself.'
+    'begin': '(\\{)\\s*([^\\n]*)(?=\\n)'
     'beginCaptures':
-      '0':
+      '1':
         'name': 'keyword.control.block.begin.stata'
+      '2':
+        'patterns': [
+          {
+            'include': '#comments'
+          }
+          {
+            'match': '[^\\n]+'
+            'name': 'illegal.invalid.name.stata'
+          }
+        ]
     'comment': 'It\'s a complicated regex so that it\'ll alert you if you have text on the same line as the }'
     'comment': 'correct with nothing else on the line but whitespace; before and after; before; after; correct'
     'end': '^\\s*(\\})\\s*$|^\\s*([^\\}]+)\\s*(\\})\\s*([^\\}/\\n]+)|^\\s*([^\\}]+)\\s*(\\})|\\s*(\\})\\s*([^\\}/\\n]+)|(\\})$'
