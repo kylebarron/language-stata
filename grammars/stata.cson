@@ -190,7 +190,7 @@
     'beginCaptures':
       '1':
         'name': 'storage.modifier.macro.test.stata'
-    'end': '(?=\\"|\\s|\\n|/|,)'
+    'end': '(?=:|\\"|\\s|\\n|/|,)'
     'patterns': [
       {
         'include': '#reserved_names'
@@ -403,7 +403,8 @@
         ]
     'comment': 'It\'s a complicated regex so that it\'ll alert you if you have text on the same line as the }'
     'comment': 'correct with nothing else on the line but whitespace; before and after; before; after; correct'
-    'end': '^\\s*(\\})\\s*$|^\\s*([^\\}]+)\\s*(\\})\\s*([^\\}/\\n]+)|^\\s*([^\\}]+)\\s*(\\})|\\s*(\\})\\s*([^\\}/\\n]+)|(\\})$'
+    'end': '^\\s*(\\})\\s*$|^\\s*([^\\*"\\}]+)\\s*(\\})\\s*([^\\*"\\}/\\n]+)|^\\s*([^"\\*\\}]+)\\s*(\\})|\\s*(\\})\\s*([^"\\*\\}/\\n]+)|(\\})$'
+    # 'end': '(\\})'
     'endCaptures':
       '1':
         'name': 'keyword.control.block.end.stata'
