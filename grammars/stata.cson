@@ -291,7 +291,33 @@
         'name': 'entity.name.type.class.stata'
       '3':
         'name': 'keyword.control.flow.stata'
-    'match': '\\b(foreach)\\s+([a-zA-Z0-9_]{1,31})\\s+(in|of loc(a|al)?|of glo(b|ba|bal)?|of var(l|li|lis|list)?|of new(l|li|lis|list)?|of num(l|li|lis|list)?)\\b'
+    'match': '\\b(foreach)\\s+([a-zA-Z0-9_]{1,31})\\s+(in|of var(l|li|lis|list)?|of new(l|li|lis|list)?|of num(l|li|lis|list)?)\\b'
+  }
+  {
+    'begin': '\\b(foreach)\\s+([a-zA-Z0-9_]{1,31})\\s+(of loc(a|al)?|of glo(b|ba|bal)?)\\b\\s*'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.flow.stata'
+      '2':
+        'name': 'entity.name.type.class.stata'
+      '3':
+        'name': 'keyword.control.flow.stata'
+    'end': '(?=\\s*\\{)'
+    'patterns': [
+      {
+        'include': '#reserved_names'
+      }
+      {
+        'match': '([A-Za-z_][A-Za-z0-9_]{0,31})'
+        'name': 'entity.name.type.class.stata'
+      }
+      {
+        'include': '#macro-local'
+      }
+      {
+        'include': '#macro-global'
+      }
+    ]
   }
   {
     'captures':
@@ -404,7 +430,6 @@
     'comment': 'It\'s a complicated regex so that it\'ll alert you if you have text on the same line as the }'
     'comment': 'correct with nothing else on the line but whitespace; before and after; before; after; correct'
     'end': '^\\s*(\\})\\s*$|^\\s*([^\\*"\\}]+)\\s*(\\})\\s*([^\\*"\\}/\\n]+)|^\\s*([^"\\*\\}]+)\\s*(\\})|\\s*(\\})\\s*([^"\\*\\}/\\n]+)|(\\})$'
-    # 'end': '(\\})'
     'endCaptures':
       '1':
         'name': 'keyword.control.block.end.stata'
