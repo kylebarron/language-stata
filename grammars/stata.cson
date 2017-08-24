@@ -190,6 +190,8 @@
     'beginCaptures':
       '1':
         'name': 'storage.modifier.macro.test.stata'
+      '3':
+        'name': 'keyword.operator.arithmetic.stata'
     'end': '(?=:|\\"|\\s|\\n|/|,)'
     'patterns': [
       {
