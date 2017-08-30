@@ -1,5 +1,5 @@
-# Language-stata-plus package for Atom
-Stata syntax highlighting, built from the ground up
+# Language-stata-plus
+#### Stata syntax highlighting in Atom, built from the ground up.
 
 ## Features
 
