@@ -22,6 +22,8 @@ To install, do one of the following:
 - Go to Preferences/Settings > Install > Packages; and then search for "language-stata-plus"
 - At the command line, type `apm install language-stata-plus`
 
+The local macro back tick autocompletion won't function until you fully restart Atom. Do `ctrl-shift-P` or `cmd-shift-P` to bring up the command palette, and type `Window: Reload` and click enter.
+
 ## Running Code
 
 Check out the `script` or `stata-exec` packages. If you're using Linux, you can use my [scripts](https://github.com/kylebarron/stata-autokey) with the [Autokey](https://github.com/autokey-py3/autokey) automation utility to quickly run selections of your files in a graphical session of Stata.
