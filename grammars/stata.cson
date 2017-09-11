@@ -38,7 +38,7 @@
             'name': 'variable.parameter.function.stata'
           }
           {
-            'include': '#comments'
+            'include': '#comments-triple-slash'
           }
         ]
       '4':
@@ -48,6 +48,10 @@
       '6':
         'patterns': [
           {'include': 'source.regexp.stata'}
+          # {
+          #   'include': '#comments-triple-slash'
+          # }
+          # Unknown if this helps. Regex not colored when regexm split over multiple lines as of 9/11/2017, 1:32:26 AM
         ]
       '7': 
         'name': 'punctuation.definition.string.end.stata'
@@ -121,7 +125,7 @@
             'name': 'variable.parameter.function.stata'
           }
           {
-            'include': '#comments'
+            'include': '#comments-triple-slash'
           }          
         ]
       '10':
@@ -685,6 +689,21 @@
   'comments':
     'patterns': [
       {
+        'include': '#comments-block'
+      }
+      {
+        'include': '#comments-star'
+      }
+      {
+        'include': '#comments-triple-slash'
+      }
+      {
+        'include': '#comments-double-slash'
+      }
+    ]
+  'comments-block':
+    'patterns': [
+      {
         'comment': 'There could be a * as a glob in a path'
         'begin': '^/\\*|(?<=\\s)/\\*'
         'beginCaptures':
@@ -701,6 +720,9 @@
           }
         ]
       }
+    ]
+  'comments-star':
+    'patterns': [
       {
         'captures':
           '0':
@@ -715,6 +737,9 @@
           }
         ]
       }
+    ]
+  'comments-triple-slash':
+    'patterns': [
       {
         'captures':
           '0':
@@ -728,6 +753,9 @@
           }
         ]
       }
+    ]
+  'comments-double-slash':
+    'patterns': [
       {
         'captures':
           '0':
@@ -745,9 +773,9 @@
   'docblockr-comment':
     'patterns': [
       {
-        'match': '\\*?\\s*(@[A-za-z0-9]+)'
+        'match': '(^\\s*\\*\\s*|\\s+)(@[A-za-z0-9]+)'
         'captures':
-          '1':
+          '2':
             'name': 'keyword.docblockr.stata'
       }
     ]
