@@ -1,5 +1,7 @@
-# Language-stata-plus
+# Language-stata
 #### Stata syntax highlighting in Atom, built from the ground up.
+
+Note: This is a new package that replaces the [previous](https://github.com/benwhalley/atom-language-stata) syntax highlighter. Please add [issues](https://github.com/kylebarron/language-stata/issues) for any bugs, comments, or suggestions.
 
 ## Features
 
@@ -23,7 +25,7 @@ To install, do one of the following:
 - Go to Preferences/Settings > Install > Packages; and then search for "language-stata-plus"
 - At the command line, type `apm install language-stata-plus`
 
-The local macro back tick autocompletion won't function until you fully restart Atom. Do `ctrl-shift-P` or `cmd-shift-P` to bring up the command palette, and type `Window: Reload` and click enter.
+The local macro back tick autocompletion won't function until you fully restart Atom. Do `ctrl-shift-P` or `cmd-shift-P` to bring up the command palette, type `Window: Reload`, and click enter.
 
 ## Running Code
 
