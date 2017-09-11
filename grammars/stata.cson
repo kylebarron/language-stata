@@ -705,7 +705,7 @@
         'captures':
           '0':
             'name': 'punctuation.definition.comment.stata'
-        'begin': '^\\s*(\\*).*$\\n?'
+        'begin': '^\\s*(\\*)'
         'name': 'comment.line.star.stata'
         'end': '(?=\\n)'
         'comment': 'TODO! need to except out the occasion that a * comes after a /// on the previous line. May be easiest to join with the comment.line.triple-slash.stata below'
