@@ -1,5 +1,5 @@
 {
-  "name": "language-stata-plus",
+  "name": "language-stata",
   "version": "0.5.3",
   "description": "Enhanced Stata syntax highlighting in Atom",
   "license": "MIT",
