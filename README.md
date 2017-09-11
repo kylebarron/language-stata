@@ -1,4 +1,11 @@
 # Language-stata
+[![Installs!](https://img.shields.io/apm/dm/language-stata.svg?style=flat-square)](https://atom.io/packages/language-stata)
+[![Version!](https://img.shields.io/apm/v/language-stata.svg?style=flat-square)](https://atom.io/packages/language-stata)
+[![License](https://img.shields.io/apm/l/language-stata.svg?style=flat-square)](https://github.com/kylebarron/language-stata/blob/master/LICENSE)
+
+[![GitHub stars](https://img.shields.io/github/stars/kylebarron/language-stata.svg?style=social&label=Star)](https://github.com/kylebarron/language-stata)
+[![GitHub forks](https://img.shields.io/github/forks/kylebarron/language-stata.svg?style=social&label=Fork)](https://github.com/kylebarron/language-stata)
+
 #### Stata syntax highlighting in Atom, built from the ground up.
 
 Note: This is a new package that replaces the [previous](https://github.com/benwhalley/atom-language-stata) syntax highlighter. Please add [issues](https://github.com/kylebarron/language-stata/issues) for any bugs, comments, or suggestions.
