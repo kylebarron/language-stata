@@ -15,6 +15,7 @@ Other nice features:
 - Alerts you if you have any text other than } on a line ending a foreach/forvalues/if/else command
 - Support for programming ligatures for all valid Stata syntax for fonts that support them, like the [Fira Code](https://github.com/tonsky/FiraCode) font.
 - Local macro back tick autocompletion. When you write a `, Atom automatically fills in a ' after your cursor
+- Highlights [Docblockr](https://atom.io/packages/docblockr)-style keywords inside comments (anything like `@Note`)
 
 ## Installation
 

@@ -697,10 +697,7 @@
         'name': 'comment.block.stata'
         'patterns': [
           {
-            'match': '\\*\\s*(@[A-za-z0-9]+)'
-            'captures':
-              '1':
-                'name': 'keyword.docblockr.stata'
+            'include': '#docblockr-comment'
           }
         ]
       }
@@ -708,23 +705,50 @@
         'captures':
           '0':
             'name': 'punctuation.definition.comment.stata'
-        'match': '^\\s*(\\*).*$\\n?'
+        'begin': '^\\s*(\\*).*$\\n?'
         'name': 'comment.line.star.stata'
+        'end': '(?=\\n)'
         'comment': 'TODO! need to except out the occasion that a * comes after a /// on the previous line. May be easiest to join with the comment.line.triple-slash.stata below'
+        'patterns': [
+          {
+            'include': '#docblockr-comment'
+          }
+        ]
       }
       {
         'captures':
           '0':
             'name': 'punctuation.definition.comment.stata'
-        'match': '(///).*$\\n?'
+        'begin': '(///)'
+        'end': '(?=\\n)'
         'name': 'comment.line.triple-slash.stata'
+        'patterns': [
+          {
+            'include': '#docblockr-comment'
+          }
+        ]
       }
       {
         'captures':
           '0':
             'name': 'punctuation.definition.comment.stata'
-        'match': '(//).*$\\n?'
+        'begin': '(//)'
+        'end': '(?=\\n)'
         'name': 'comment.line.double-slash.stata'
+        'patterns': [
+          {
+            'include': '#docblockr-comment'
+          }
+        ]
+      }
+    ]
+  'docblockr-comment':
+    'patterns': [
+      {
+        'match': '\\*?\\s*(@[A-za-z0-9]+)'
+        'captures':
+          '1':
+            'name': 'keyword.docblockr.stata'
       }
     ]
   'macro-local-escaped':
