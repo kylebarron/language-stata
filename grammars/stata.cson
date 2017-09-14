@@ -1133,10 +1133,12 @@
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.string.begin.stata'
-        'end': '"'
+        'end': '(")(\')?'
         'endCaptures':
-          '0':
+          '1':
             'name': 'punctuation.definition.string.end.stata'
+          '2':
+            'name': 'invalid.illegal.punctuation.stata'
         'name': 'string.quoted.double.stata'
         'patterns': [
           {

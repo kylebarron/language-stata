@@ -22,8 +22,9 @@ Other nice features:
 - Autocomplete for built-in commands and functions, and for your macros as you write them.
 - Alerts you if your variable name is illegal, i.e. if your variable name is more than 32 chars, starts with a number, or is a reserved name.
 - Alerts you if you have any text other than } on a line ending a foreach/forvalues/if/else command
-- Support for programming ligatures for all valid Stata syntax for fonts that support them, like the [Fira Code](https://github.com/tonsky/FiraCode) font.
 - Local macro back tick autocompletion. When you write a `, Atom automatically fills in a ' after your cursor
+- Makes it easy to spot incorrect nesting of compound quotes
+- Support for programming ligatures for all valid Stata syntax for fonts that support them, like the [Fira Code](https://github.com/tonsky/FiraCode) font.
 - Highlights [Docblockr](https://atom.io/packages/docblockr)-style keywords inside comments (anything like `@Note`)
 
 ## Installation
