@@ -9,8 +9,8 @@
 'foldingStopMarker': '^\\s*\\}'
 'patterns': [
   {
-    'comment': 'Add Regular Expression support'
-    'match': '(regexm)(\\()([^,]+)(,)\\s*(\"|`\")([^"]+)(\"|\"\')\\s*(\\))'
+    'comment': 'color regexm with regular quotes i.e. " '
+    'match': '(regexm)(\\()([^,]+)(,)\\s*(\")([^"]+)(\")\\s*(\\))'
     'captures':
       '1':
         'name': 'support.function.builtin.stata'
@@ -59,8 +59,131 @@
         'name': 'punctuation.definition.parameters.end.stata'
   }
   {
-    'comment': 'Add Regex support for regexr() too'
-    'match': '(regexr)(\\()([^,]+)(,)\\s*(\"|`\")([^"]+)(\"|\"\')\\s*(,)([^\\)]*)(\\))'
+    'comment': 'color regexm with compound quotes'
+    'match': '(regexm)(\\()([^,]+)(,)\\s*(`\")([^"]+)(\"\')\\s*(\\))'
+    'captures':
+      '1':
+        'name': 'support.function.builtin.stata'
+      '2':
+        'name': 'punctuation.definition.parameters.begin.stata'
+      '3':
+        'patterns': [
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#string-regular'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'include': '#builtin_functions'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'variable.parameter.function.stata'
+          }
+          {
+            'include': '#comments-triple-slash'
+          }
+        ]
+      '4':
+        'name': 'punctuation.definition.variable.begin.stata' # the comma
+      '5':
+        'name': 'punctuation.definition.string.begin.stata'
+      '6':
+        'patterns': [
+          {'include': 'source.regexp.stata'}
+          # {
+          #   'include': '#comments-triple-slash'
+          # }
+          # Unknown if this helps. Regex not colored when regexm split over multiple lines as of 9/11/2017, 1:32:26 AM
+        ]
+      '7': 
+        'name': 'punctuation.definition.string.end.stata'
+      '8':
+        'name': 'punctuation.definition.parameters.end.stata'
+  }
+  {
+    'comment': 'color regexm with regular quotes i.e. " '
+    'match': '(regexr)(\\()([^,]+)(,)\\s*(\")([^"]+)(\")\\s*(,)([^\\)]*)(\\))'
+    'captures':
+      '1':
+        'name': 'support.function.builtin.stata'
+      '2':
+        'name': 'punctuation.definition.parameters.begin.stata'
+      '3':
+        'patterns': [
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#string-regular'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'include': '#builtin_functions'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'variable.parameter.function.stata'
+          }
+          {
+            'include': '#comments'
+          }          
+        ]
+      '4':
+        'name': 'punctuation.definition.variable.begin.stata' # the comma
+      '5':
+        'name': 'punctuation.definition.string.begin.stata'
+      '6':
+        'patterns': [
+          {'include': 'source.regexp.stata'}
+        ]
+      '7': 
+        'name': 'punctuation.definition.string.end.stata'
+      '8':
+        'name': 'punctuation.definition.variable.begin.stata' # the comma
+      '9':
+        'patterns': [
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#string-regular'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'include': '#builtin_functions'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'variable.parameter.function.stata'
+          }
+          {
+            'include': '#comments-triple-slash'
+          }          
+        ]
+      '10':
+        'name': 'punctuation.definition.parameters.end.stata'      
+  }
+  {
+    'comment': 'color regexm with compound quotes i.e. `"text"\' '
+    'match': '(regexr)(\\()([^,]+)(,)\\s*(`\")([^"]+)(\"\')\\s*(,)([^\\)]*)(\\))'
     'captures':
       '1':
         'name': 'support.function.builtin.stata'
