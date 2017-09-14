@@ -10,7 +10,7 @@
 'patterns': [
   {
     'comment': 'Add Regular Expression support'
-    'match': '(regexm)(\\()(.+)(,)\\s*(\"|`\")(.+)(\"|\"\')\\s*(\\))'
+    'match': '(regexm)(\\()([^,]+)(,)\\s*(\"|`\")([^"]+)(\"|\"\')\\s*(\\))'
     'captures':
       '1':
         'name': 'support.function.builtin.stata'
@@ -60,7 +60,7 @@
   }
   {
     'comment': 'Add Regex support for regexr() too'
-    'match': '(regexr)(\\()(.+)(,)\\s*(\"|`\")(.+)(\"|\"\')\\s*(,)([^\\)]*)(\\))'
+    'match': '(regexr)(\\()([^,]+)(,)\\s*(\"|`\")([^"]+)(\"|\"\')\\s*(,)([^\\)]*)(\\))'
     'captures':
       '1':
         'name': 'support.function.builtin.stata'
