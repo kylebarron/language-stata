@@ -37,14 +37,11 @@
     'include': '#character-class'
   }
   {
-    'match': '[a-zA-Z_0-9]+'
+    # 'comment' 'NOTE: Error if I have \.+ No idea why but it works fine it seems with just \.'
+    # Also extremely weird but if I have the previous 'comment' line uncommented, everything inside the regexm(, "...") goes white.
+    'match': '.'
     'name': 'string.quoted.stata'
   }
-  # {
-  #   'match': '[^\\^\\$\\?\\+\\*\\|\\(\\)\\.\\\\\\[\\]\"\']+'
-  #   'name': 'string.quoted.double.compound.stata'
-  #   'comment': 'color anything other than special characters the string color'
-  # }
 ]
 'repository':
   'character-class':
