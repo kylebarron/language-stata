@@ -1,11 +1,8 @@
 'scopeName': 'source.regexp.stata'
 'comment': 'Match Stata\'s (limited) regular expression syntax.'
-'fileTypes': [
-    're'
-]
 'name': 'Regular Expressions (Stata)'
 'patterns': [
-  # REGULAR EXPRESSIONS:
+  # The following match the insides of a regular expression
   {
     'match': '\\^|\\$'
     'name': 'keyword.control.anchor.regexp'
