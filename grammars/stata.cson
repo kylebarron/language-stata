@@ -47,7 +47,9 @@
         'name': 'punctuation.definition.string.begin.stata'
       '6':
         'patterns': [
-          {'include': 'source.regexp.stata'}
+          {
+            'include': '#regex'
+          }
           # {
           #   'include': '#comments-triple-slash'
           # }
@@ -97,7 +99,9 @@
         'name': 'punctuation.definition.string.begin.stata'
       '6':
         'patterns': [
-          {'include': 'source.regexp.stata'}
+          {
+            'include': '#regex'
+          }
           # {
           #   'include': '#comments-triple-slash'
           # }
@@ -147,7 +151,9 @@
         'name': 'punctuation.definition.string.begin.stata'
       '6':
         'patterns': [
-          {'include': 'source.regexp.stata'}
+          {
+            'include': '#regex'
+          }
         ]
       '7': 
         'name': 'punctuation.definition.string.end.stata'
@@ -220,7 +226,9 @@
         'name': 'punctuation.definition.string.begin.stata'
       '6':
         'patterns': [
-          {'include': 'source.regexp.stata'}
+          {
+            'include': '#regex'
+          }
         ]
       '7': 
         'name': 'punctuation.definition.string.end.stata'
@@ -1223,5 +1231,84 @@
          '\\b(gen(e|er|era|erat|erate)?|egen)\\s((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s)?(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with|[0-9][A-Za-z0-9_]+|[A-Za-z_][A-Za-z0-9_]{32,})\\b\\s*(///)?\\s*\\n?\\s*='
         'name': 'invalid.illegal.name.stata'
         'comment': 'highlights as illegal if variable name is more than 32 characters'
+      }
+    ]
+  'regex':
+    'patterns': [
+      # The following match the insides of a regular expression
+      {
+        'match': '\\^|\\$'
+        'name': 'keyword.control.anchor.stata'
+      }
+      {
+        'match': '[\\?\\+\\*]'
+        'name': 'keyword.control.quantifier.stata'
+      }
+      {
+        'match': '\\|'
+        'name': 'keyword.control.or.stata'
+      }
+      {
+        'begin': '(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.string.group.stata'
+        'end': '(\\))'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.string.group.stata'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+      {
+        'include': '#character-class'
+      }
+      {
+        # 'comment' 'NOTE: Error if I have \.+ No idea why but it works fine it seems with just \.'
+        # Also extremely weird but if I have the previous 'comment' line uncommented, everything inside the regexm(, "...") goes white.
+        'match': '.'
+        'name': 'string.quoted.stata'
+      }
+    ]
+  'character-class':
+    'patterns': [
+      {
+        'match': '\\.'
+        'name': 'constant.character.character-class.stata'
+      }
+      {
+        'match': '\\\\.'
+        'name': 'constant.character.escape.backslash.stata'
+        'comment': 'this changes the color of an escaped character'
+      }
+      {
+        'begin': '(\\[)(\\^)?'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.character-class.stata'
+          '2':
+            'name': 'keyword.operator.negation.stata'
+        'end': '(\\])'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.character-class.stata'
+        'name': 'constant.other.character-class.set.stata'
+        'patterns': [
+          {
+            'include': '#character-class'
+          }
+          {
+            'captures':
+              '2':
+                'name': 'constant.character.escape.backslash.stata'
+              '4':
+                'name': 'constant.character.escape.backslash.stata'
+            'match': '((\\\\.)|.)\\-((\\\\.)|[^\\]])'
+            'name': 'constant.other.character-class.range.stata'
+          }
+        ]
       }
     ]
