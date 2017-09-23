@@ -1825,5 +1825,5 @@
           'set scheme'
         ]
       '':
-        selector: '.source.'
+        selector: '.source'
         typePriority: 1
