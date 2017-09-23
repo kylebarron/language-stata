@@ -20,8 +20,8 @@
         "Languages"
     ],
     "galleryBanner": {
-    "color": "#bb7216",
-    "theme": "dark"
+        "color": "#1d5f6d",
+        "theme": "dark"
     },
     "contributes": {
         "languages": [{
