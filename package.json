@@ -1,13 +1,39 @@
 {
-  "name": "language-stata",
-  "version": "0.5.16",
-  "description": "Enhanced Stata syntax highlighting in Atom",
-  "license": "MIT",
-  "repository": "https://github.com/kylebarron/language-stata",
-  "bugs": {
-    "url": "https://github.com/kylebarron/language-stata/issues"
-  },
-  "engines": {
-    "atom": ">=0.1.0"
-  }
+    "name": "Stata",
+    "displayName": "Stata Enhanced",
+    "description": "Enhanced Stata syntax highlighting in Visual Studio Code",
+    "version": "0.5.16",
+    "publisher": "kylebarron",
+    "engines": {
+        "vscode": "^1.0.0"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/kylebarron/language-stata/issues"
+    },
+    "homepage": "https://github.com/kylebarron/language-stata/tree/vscode",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kylebarron/language-stata.git"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "galleryBanner": {
+    "color": "#bb7216",
+    "theme": "dark"
+    },
+    "contributes": {
+        "languages": [{
+            "id": "stata",
+            "aliases": ["Stata Enhanced", "Stata", "stata"],
+            "extensions": [".do",".ado",".mata"],
+            "configuration": "./language_config.json"
+        }],
+        "grammars": [{
+            "language": "stata",
+            "scopeName": "source.stata",
+            "path": "./grammars/stata.json"
+        }]
+    }
 }
