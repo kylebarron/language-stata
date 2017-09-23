@@ -1,5 +1,5 @@
 {
-    "name": "Stata",
+    "name": "stata-enhanced",
     "displayName": "Stata Enhanced",
     "description": "Enhanced Stata syntax highlighting in Visual Studio Code",
     "author": {
@@ -17,7 +17,7 @@
     "homepage": "https://github.com/kylebarron/language-stata/blob/vscode/README.md",
     "repository": {
         "type": "git",
-        "url": "https://github.com/kylebarron/language-stata.git"
+        "url": "https://github.com/kylebarron/language-stata/tree/vscode"
     },
     "categories": [
         "Languages"
