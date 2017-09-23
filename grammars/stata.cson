@@ -1265,7 +1265,7 @@
             'name': 'punctuation.string.group.stata'
         'patterns': [
           {
-            'include': '$self'
+            'include': '#regex'
           }
         ]
       }
