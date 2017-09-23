@@ -1,8 +1,12 @@
-# Stata language support in Visual Code
+# Stata language support in Visual Studio Code
 [![GitHub stars](https://img.shields.io/github/stars/kylebarron/language-stata.svg?style=social&label=Star)](https://github.com/kylebarron/language-stata)
 [![GitHub forks](https://img.shields.io/github/forks/kylebarron/language-stata.svg?style=social&label=Fork)](https://github.com/kylebarron/language-stata)
 
-#### Stata syntax highlighting in Visual Code, built from the ground up.
+#### Stata syntax highlighting in Visual Studio Code, built from the ground up.
+
+![stata](./img/stata.png)
+Code snippet from [Gtools](https://github.com/mcaceresb/stata-gtools), a faster implementation of Stata's collapse and egen using C plugins. Shown with the [Material](https://marketplace.visualstudio.com/items?itemName=Equinusocio.vsc-material-theme) theme. 
+
 
 ## Features
 
@@ -15,9 +19,12 @@ This package highlights:
 Other nice features:
 - Alerts you if your variable name is illegal, i.e. if your variable name is more than 32 chars, starts with a number, or is a reserved name.
 - Alerts you if you have any text other than } on a line ending a foreach/forvalues/if/else command
-- Local macro back tick autocompletion. When you write a `, Visual Code automatically fills in a ' after your cursor
+- Local macro back tick autocompletion. When you write a `, Visual Studio Code automatically fills in a ' after your cursor
 - Makes it easy to spot incorrect nesting of compound quotes
 - Support for programming ligatures for all valid Stata syntax for fonts that support them, like the [Fira Code](https://github.com/tonsky/FiraCode) font.
+
+#### Note
+Some themes may not color all parts of the syntax.
 
 ## Running Code
 
