@@ -926,6 +926,12 @@
   'docblockr-comment':
     'patterns': [
       {
+        'match': '(^\\s*\\*\\s*|\\s+)(@(error|ERROR))'
+        'captures':
+          '2':
+            'name': 'invalid.illegal.name.stata'
+      }
+      {
         'match': '(^\\s*\\*\\s*|\\s+)(@[A-za-z0-9]+)'
         'captures':
           '2':
