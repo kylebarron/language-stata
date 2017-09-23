@@ -1,6 +1,6 @@
 {
   "name": "language-stata",
-  "version": "0.5.18",
+  "version": "0.5.19",
   "description": "Enhanced Stata syntax highlighting in Atom",
   "license": "MIT",
   "repository": "https://github.com/kylebarron/language-stata",
