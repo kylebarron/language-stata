@@ -1434,7 +1434,7 @@
         "illegal_names": {
             "patterns": [
                 {
-                    "match": "(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with|[0-9][A-Za-z0-9_]+|[A-Za-z_][A-Za-z0-9_]{32,})",
+                    "match": "(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with|\\b[0-9][A-Za-z0-9_]+\\b|[A-Za-z_][A-Za-z0-9_]{32,})",
                     "name": "invalid.illegal.name.stata",
                     "comment": "highlights as illegal reserved names and those with more than 32 characters"
                 }
