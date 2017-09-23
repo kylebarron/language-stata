@@ -18,7 +18,6 @@ Other nice features:
 - Local macro back tick autocompletion. When you write a `, Visual Code automatically fills in a ' after your cursor
 - Makes it easy to spot incorrect nesting of compound quotes
 - Support for programming ligatures for all valid Stata syntax for fonts that support them, like the [Fira Code](https://github.com/tonsky/FiraCode) font.
-- Highlights [Docblockr](https://atom.io/packages/docblockr)-style keywords inside comments (anything like `@Note`)
 
 ## Running Code
 
