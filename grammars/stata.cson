@@ -643,8 +643,10 @@
             'patterns': [
               {
                 'comment': 'the first word is often a type'
-                'match': '(int(e|eg|ege|eger)?|real|str(i|in|ing)?)'
-                'name': 'support.type.stata'
+                'match': '(integer|intege|integ|inte|int|real|string|strin|stri|str)'
+                'captures':
+                  '1':
+                    'name': 'support.type.stata'
               }
               {
                 'include': '$self'
