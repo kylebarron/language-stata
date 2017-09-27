@@ -300,7 +300,7 @@
     'beginCaptures':
       '1':
         'name': 'storage.modifier.macro.test.stata'
-    'end': '(\\})|(?=\\"|\\s|\\n|/|,)'
+    'end': '(\\})|(?=\\"|\\s|\\n|/|,|=)'
     'patterns': [
       {
         'include': '#reserved_names'
@@ -324,7 +324,7 @@
         'name': 'storage.modifier.macro.test.stata'
       '3':
         'name': 'keyword.operator.arithmetic.stata'
-    'end': '(?=:|\\"|\\s|\\n|/|,)'
+    'end': '(?=:|\\"|\\s|\\n|/|,|=)'
     'patterns': [
       {
         'include': '#reserved_names'
