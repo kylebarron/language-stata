@@ -7,6 +7,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/kylebarron/language-stata.svg?style=social&label=Fork)](https://github.com/kylebarron/language-stata)
 
 #### Stata syntax highlighting in Atom, built from the ground up.
+Also [available for Visual Studio Code](https://github.com/kylebarron/language-stata/tree/vscode).
 
 ![stata](./img/stata.png)
 Code snippet (mostly) from [Gtools](https://github.com/mcaceresb/stata-gtools), a faster implementation of Stata's collapse and egen using C plugins. Shown with the [Atom Material Syntax](https://github.com/atom-material/atom-material-syntax) theme and [Fira Code](https://github.com/tonsky/FiraCode) font. 
