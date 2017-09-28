@@ -1141,7 +1141,7 @@
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.string.begin.stata'
-        'end': '"\''
+        'end': '"\'|(?=\n)'
         'endCaptures':
           '0':
             'name': 'punctuation.definition.string.end.stata'
@@ -1180,7 +1180,7 @@
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.string.begin.stata'
-        'end': '(")(\')?'
+        'end': '(")(\')?|(?=\n)'
         'endCaptures':
           '1':
             'name': 'punctuation.definition.string.end.stata'
