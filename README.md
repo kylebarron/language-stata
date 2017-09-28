@@ -3,6 +3,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/kylebarron/language-stata.svg?style=social&label=Fork)](https://github.com/kylebarron/language-stata)
 
 #### Stata syntax highlighting in Visual Studio Code, built from the ground up.
+Also [available for Atom](https://github.com/kylebarron/language-stata).
 
 ![stata](./img/stata-vscode.png)
 Code snippet from [Gtools](https://github.com/mcaceresb/stata-gtools), a faster implementation of Stata's collapse and egen using C plugins. Shown with the [Material](https://marketplace.visualstudio.com/items?itemName=Equinusocio.vsc-material-theme) theme. 
@@ -25,6 +26,12 @@ Other nice features:
 
 #### Note
 Some themes may not color all parts of the syntax.
+
+## Installation
+Launch VS Code Quick Open (Ctrl+P), paste the following command, and press enter.
+```
+ext install stata-enhanced
+```
 
 ## Running Code
 
