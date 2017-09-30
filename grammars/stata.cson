@@ -799,7 +799,7 @@
     'patterns': [
       {
         'comment': 'this is to color [a-z]+() in options and custom functions'
-        'begin': '([a-zA-Z_]+)(\\()'
+        'begin': '([A-Za-z_][A-Za-z0-9_]{0,31})(\\()'
         'beginCaptures':
           '1':
             'name': 'support.function.custom.stata'
