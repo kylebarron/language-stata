@@ -1036,7 +1036,7 @@
     'patterns': [
       {
         'comment': 'color regexm with regular quotes i.e. " '
-        'match': '\\b(regexm)(\\()([^,]+)(,)\\s*(\")([^"]+)(\")\\s*(\\))'
+        'match': '\\b(regexm)(\\()([^,]+)(,)\\s*(\")([^"]+)(\"(\')?)\\s*(\\))'
         'captures':
           '1':
             'name': 'support.function.builtin.stata'
@@ -1084,6 +1084,8 @@
           '7': 
             'name': 'punctuation.definition.string.end.stata'
           '8':
+            'name': 'invalid.illegal.punctuation.stata'
+          '9':
             'name': 'punctuation.definition.parameters.end.stata'
       }
       {
@@ -1139,8 +1141,8 @@
             'name': 'punctuation.definition.parameters.end.stata'
       }
       {
-        'comment': 'color regexm with regular quotes i.e. " '
-        'match': '\\b(regexr)(\\()([^,]+)(,)\\s*(\")([^"]+)(\")\\s*(,)([^\\)]*)(\\))'
+        'comment': 'color regexr with regular quotes i.e. " '
+        'match': '\\b(regexr)(\\()([^,]+)(,)\\s*(\")([^"]+)(\"(\')?)\\s*(,)([^\\)]*)(\\))'
         'captures':
           '1':
             'name': 'support.function.builtin.stata'
@@ -1184,8 +1186,10 @@
           '7': 
             'name': 'punctuation.definition.string.end.stata'
           '8':
-            'name': 'punctuation.definition.variable.begin.stata' # the comma
+            'name': 'invalid.illegal.punctuation.stata'
           '9':
+            'name': 'punctuation.definition.variable.begin.stata' # the comma
+          '10':
             'patterns': [
               {
                 'include': '#string-compound'
@@ -1210,11 +1214,11 @@
                 'include': '#comments-triple-slash'
               }          
             ]
-          '10':
+          '11':
             'name': 'punctuation.definition.parameters.end.stata'      
       }
       {
-        'comment': 'color regexm with compound quotes i.e. `"text"\' '
+        'comment': 'color regexr with compound quotes i.e. `"text"\' '
         'match': '\\b(regexr)(\\()([^,]+)(,)\\s*(`\")([^"]+)(\"\')\\s*(,)([^\\)]*)(\\))'
         'captures':
           '1':
