@@ -12,6 +12,9 @@
     'include': '#ascii-regex-functions'
   }
   {
+    'include': '#unicode-regex-functions'
+  }
+  {
     'include': '#builtin_functions'
   }
   {
@@ -514,7 +517,7 @@
   'builtin_functions':
     'patterns': [
       {
-        'begin': '\\b(bofd|Cdhms|Chms|Clock|clock|Cmdyhms|Cofc|cofC|Cofd|cofd|daily|date|day|dhms|dofb|dofC|dofc|dofh|dofm|dofq|dofw|dofy|dow|doy|halfyear|halfyearly|hh|hhC|hms|hofd|hours|mdy|mdyhms|minutes|mm|mmC|mofd|month|monthly|msofhours|msofminutes|msofseconds|qofd|quarter|quarterly|seconds|ss|ssC|tC|tc|td|th|tm|tq|tw|week|weekly|wofd|year|yearly|yh|ym|yofd|yq|yw|betaden|ibeta|ibetatail|invibeta|invibetatail|nbetaden|nibeta|invnibeta|binomialp|binomial|binomialtail|invbinomial|invbinomialtail|cauchyden|cauchy|cauchytail|invcauchy|invcauchytail|lncauchyden|chi2den|chi2|chi2tail|invchi2|invchi2tail|nchi2den|nchi2|nchi2tail|invnchi2|invnchi2tail|npnchi2|dunnettprob|invdunnettprob|exponentialden|exponential|exponentialtail|invexponential|invexponentialtail|Fden|F|Ftail|invF|invFtail|nFden|nF|nFtail|invnF|invnFtail|npnF|gammaden|gammap|gammaptail|invgammap|invgammaptail|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|lnigammaden|hypergeometricp|hypergeometric|igaussianden|igaussian|igaussiantail|invigaussian|invigaussiantail|lnigaussianden|laplaceden|laplace|laplacetail|invlaplace|invlaplacetail|lnlaplaceden|logisticden|logisticden|logisticden|logistic|logistic|logistic|logistictail|logistictail|logistictail|invlogistic|invlogistic|invlogistic|invlogistictail|invlogistictail|invlogistictail|nbinomialp|nbinomial|nbinomialtail|invnbinomial|invnbinomialtail|normalden|normalden|normalden|normal|invnormal|lnnormalden|lnnormalden|lnnormalden|lnnormal|binormal|lnmvnormalden|poissonp|poisson|poissontail|invpoisson|invpoissontail|tden|t|ttail|invt|invttail|invnt|invnttail|ntden|nt|nttail|npnt|tukeyprob|invtukeyprob|weibullden|weibullden|weibull|weibull|weibulltail|weibulltail|invweibull|invweibull|invweibulltail|invweibulltail|weibullphden|weibullphden|weibullph|weibullph|weibullphtail|weibullphtail|invweibullph|invweibullph|invweibullphtail|invweibullphtail|lnwishartden|lniwishartden|abs|ceil|cloglog|comb|digamma|exp|floor|int|invcloglog|invlogit|ln|lnfactorial|lngamma|log|log10|logit|max|min|mod|reldif|round|sign|sqrt|sum|trigamma|trunc|cholesky|corr|diag|get|hadamard|I|inv|invsym|J|matuniform|nullmat|sweep|vec|vecdiag|coleqnumb|colnfreeparms|colnumb|colsof|det|diag0cnt|el|issymmetric|matmissing|mreldif|roweqnumb|rownfreeparms|rownumb|rowsof|trace|autocode|byteorder|c|chop|clip|cond|e|e|epsdouble|epsfloat|fileexists|fileread|filereaderror|filewrite|float|fmtwidth|inlist|inrange|irecode|matrix|maxbyte|maxdouble|maxfloat|maxint|maxlong|mi|minbyte|mindouble|minfloat|minint|minlong|missing|r|recode|replay|return|s|scalar|smallestdouble|runiform|runiform|runiformint|rbeta|rbinomial|rcauchy|rchi2|rexponential|rgamma|rhypergeometric|rigaussian|rlaplace|rlogistic|rlogistic|rlogistic|rnbinomial|rnormal|rnormal|rnormal|rpoisson|rt|rweibull|rweibull|rweibullph|rweibullph|abbrev|char|uchar|collatorlocale|collatorversion|indexnot|plural|plural|real|regexs|ustrregexm|ustrregexrf|ustrregexra|ustrregexs|soundex|strcat|strdup|string|string|stritrim|strlen|ustrlen|udstrlen|strlower|ustrlower|strltrim|ustrltrim|strmatch|strofreal|strofreal|strpos|ustrpos|strproper|ustrtitle|strreverse|ustrreverse|strrpos|ustrrpos|strrtrim|ustrrtrim|strtoname|ustrtoname|strtrim|ustrtrim|strupper|ustrupper|subinstr|usubinstr|subinword|substr|usubstr|udsubstr|tobytes|uisdigit|uisletter|ustrcompare|ustrcompareex|ustrfix|ustrfrom|ustrinvalidcnt|ustrleft|ustrnormalize|ustrright|ustrsortkey|ustrsortkeyex|ustrto|ustrtohex|ustrunescape|word|ustrword|wordbreaklocale|wordcount|ustrwordcount|abbrev|char|indexnot|itrim|length|lower|ltrim|plural|proper|real|regexs|reverse|rtrim|soundex|strcat|strdup|string|string|strmatch|strpos|strtoname|strtoname|subinstr|subinword|substr|trim|upper|word|wordcount|tin|twithin|acos|acosh|asin|asinh|atan|atan2|atanh|cos|cosh|sin|sinh|tan|tanh|mi)(\\()'
+        'begin': '\\b(bofd|Cdhms|Chms|Clock|clock|Cmdyhms|Cofc|cofC|Cofd|cofd|daily|date|day|dhms|dofb|dofC|dofc|dofh|dofm|dofq|dofw|dofy|dow|doy|halfyear|halfyearly|hh|hhC|hms|hofd|hours|mdy|mdyhms|minutes|mm|mmC|mofd|month|monthly|msofhours|msofminutes|msofseconds|qofd|quarter|quarterly|seconds|ss|ssC|tC|tc|td|th|tm|tq|tw|week|weekly|wofd|year|yearly|yh|ym|yofd|yq|yw|betaden|ibeta|ibetatail|invibeta|invibetatail|nbetaden|nibeta|invnibeta|binomialp|binomial|binomialtail|invbinomial|invbinomialtail|cauchyden|cauchy|cauchytail|invcauchy|invcauchytail|lncauchyden|chi2den|chi2|chi2tail|invchi2|invchi2tail|nchi2den|nchi2|nchi2tail|invnchi2|invnchi2tail|npnchi2|dunnettprob|invdunnettprob|exponentialden|exponential|exponentialtail|invexponential|invexponentialtail|Fden|F|Ftail|invF|invFtail|nFden|nF|nFtail|invnF|invnFtail|npnF|gammaden|gammap|gammaptail|invgammap|invgammaptail|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|lnigammaden|hypergeometricp|hypergeometric|igaussianden|igaussian|igaussiantail|invigaussian|invigaussiantail|lnigaussianden|laplaceden|laplace|laplacetail|invlaplace|invlaplacetail|lnlaplaceden|logisticden|logisticden|logisticden|logistic|logistic|logistic|logistictail|logistictail|logistictail|invlogistic|invlogistic|invlogistic|invlogistictail|invlogistictail|invlogistictail|nbinomialp|nbinomial|nbinomialtail|invnbinomial|invnbinomialtail|normalden|normalden|normalden|normal|invnormal|lnnormalden|lnnormalden|lnnormalden|lnnormal|binormal|lnmvnormalden|poissonp|poisson|poissontail|invpoisson|invpoissontail|tden|t|ttail|invt|invttail|invnt|invnttail|ntden|nt|nttail|npnt|tukeyprob|invtukeyprob|weibullden|weibullden|weibull|weibull|weibulltail|weibulltail|invweibull|invweibull|invweibulltail|invweibulltail|weibullphden|weibullphden|weibullph|weibullph|weibullphtail|weibullphtail|invweibullph|invweibullph|invweibullphtail|invweibullphtail|lnwishartden|lniwishartden|abs|ceil|cloglog|comb|digamma|exp|floor|int|invcloglog|invlogit|ln|lnfactorial|lngamma|log|log10|logit|max|min|mod|reldif|round|sign|sqrt|sum|trigamma|trunc|cholesky|corr|diag|get|hadamard|I|inv|invsym|J|matuniform|nullmat|sweep|vec|vecdiag|coleqnumb|colnfreeparms|colnumb|colsof|det|diag0cnt|el|issymmetric|matmissing|mreldif|roweqnumb|rownfreeparms|rownumb|rowsof|trace|autocode|byteorder|c|chop|clip|cond|e|e|epsdouble|epsfloat|fileexists|fileread|filereaderror|filewrite|float|fmtwidth|inlist|inrange|irecode|matrix|maxbyte|maxdouble|maxfloat|maxint|maxlong|mi|minbyte|mindouble|minfloat|minint|minlong|missing|r|recode|replay|return|s|scalar|smallestdouble|runiform|runiform|runiformint|rbeta|rbinomial|rcauchy|rchi2|rexponential|rgamma|rhypergeometric|rigaussian|rlaplace|rlogistic|rlogistic|rlogistic|rnbinomial|rnormal|rnormal|rnormal|rpoisson|rt|rweibull|rweibull|rweibullph|rweibullph|abbrev|char|uchar|collatorlocale|collatorversion|indexnot|plural|plural|real|regexs|ustrregexs|soundex|strcat|strdup|string|string|stritrim|strlen|ustrlen|udstrlen|strlower|ustrlower|strltrim|ustrltrim|strmatch|strofreal|strofreal|strpos|ustrpos|strproper|ustrtitle|strreverse|ustrreverse|strrpos|ustrrpos|strrtrim|ustrrtrim|strtoname|ustrtoname|strtrim|ustrtrim|strupper|ustrupper|subinstr|usubinstr|subinword|substr|usubstr|udsubstr|tobytes|uisdigit|uisletter|ustrcompare|ustrcompareex|ustrfix|ustrfrom|ustrinvalidcnt|ustrleft|ustrnormalize|ustrright|ustrsortkey|ustrsortkeyex|ustrto|ustrtohex|ustrunescape|word|ustrword|wordbreaklocale|wordcount|ustrwordcount|abbrev|char|indexnot|itrim|length|lower|ltrim|plural|proper|real|regexs|reverse|rtrim|soundex|strcat|strdup|string|string|strmatch|strpos|strtoname|strtoname|subinstr|subinword|substr|trim|upper|word|wordcount|tin|twithin|acos|acosh|asin|asinh|atan|atan2|atanh|cos|cosh|sin|sinh|tan|tanh|mi)(\\()'
         'beginCaptures':
           '1':
             'name': 'support.function.builtin.stata'
@@ -527,6 +530,9 @@
         'patterns': [
           {
             'include': '#ascii-regex-functions'
+          }
+          {
+            'include': '#unicode-regex-functions'
           }
           {
             'include': '#builtin_functions'
@@ -585,6 +591,9 @@
         'patterns': [
           {
             'include': '#ascii-regex-functions'
+          }
+          {
+            'include': '#unicode-regex-functions'
           }
           {
             'include': '#builtin_functions'
@@ -1362,6 +1371,432 @@
         'patterns': [
           {
             'include': '#ascii-regex-character-class'
+          }
+          {
+            'captures':
+              '2':
+                'name': 'constant.character.escape.backslash.stata'
+              '4':
+                'name': 'constant.character.escape.backslash.stata'
+            'match': '((\\\\.)|.)\\-((\\\\.)|[^\\]])'
+            'name': 'constant.other.character-class.range.stata'
+          }
+        ]
+      }
+    ]
+  'unicode-regex-functions':
+    'patterns': [
+      {
+        'comment': 'color regexm with regular quotes i.e. " '
+        'match': '\\b(ustrregexm)(\\()([^,]+)(,)\\s*(\")([^"]+)(\"(\')?)([,0-9\\s]*)?\\s*(\\))'
+        'captures':
+          '1':
+            'name': 'support.function.builtin.stata'
+          '2':
+            'name': 'punctuation.definition.parameters.begin.stata'
+          '3':
+            'patterns': [
+              {
+                'include': '#string-compound'
+              }
+              {
+                'include': '#string-regular'
+              }
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+              {
+                'include': '#builtin_functions'
+              }
+              {
+                'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+                'name': 'variable.parameter.function.stata'
+              }
+              {
+                'include': '#comments-triple-slash'
+              }
+            ]
+          '4':
+            'name': 'punctuation.definition.variable.begin.stata' # the comma
+          '5':
+            'name': 'punctuation.definition.string.begin.stata'
+          '6':
+            'patterns': [
+              {
+                'include': '#unicode-regex-internals'
+              }
+              # {
+              #   'include': '#comments-triple-slash'
+              # }
+              # Unknown if this helps. Regex not colored when regexm split over multiple lines as of 9/11/2017, 1:32:26 AM
+            ]
+          '7': 
+            'name': 'punctuation.definition.string.end.stata'
+          '8':
+            'name': 'invalid.illegal.punctuation.stata'
+          '9':
+            'patterns': [
+              {
+                'include': '#numbers'
+              }
+              {
+                'match': ','
+                'name': 'punctuation.definition.variable.begin.stata' # the comma
+              }
+            ]
+          '10':
+            'name': 'punctuation.definition.parameters.end.stata'
+      }
+      {
+        'comment': 'color regexm with compound quotes'
+        'match': '\\b(ustrregexm)(\\()([^,]+)(,)\\s*(`\")([^"]+)(\"\')([,0-9\\s]*)?\\s*(\\))'
+        'captures':
+          '1':
+            'name': 'support.function.builtin.stata'
+          '2':
+            'name': 'punctuation.definition.parameters.begin.stata'
+          '3':
+            'patterns': [
+              {
+                'include': '#string-compound'
+              }
+              {
+                'include': '#string-regular'
+              }
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+              {
+                'include': '#builtin_functions'
+              }
+              {
+                'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+                'name': 'variable.parameter.function.stata'
+              }
+              {
+                'include': '#comments-triple-slash'
+              }
+            ]
+          '4':
+            'name': 'punctuation.definition.variable.begin.stata' # the comma
+          '5':
+            'name': 'punctuation.definition.string.begin.stata'
+          '6':
+            'patterns': [
+              {
+                'include': '#unicode-regex-internals'
+              }
+              # {
+              #   'include': '#comments-triple-slash'
+              # }
+              # Unknown if this helps. Regex not colored when regexm split over multiple lines as of 9/11/2017, 1:32:26 AM
+            ]
+          '7': 
+            'name': 'punctuation.definition.string.end.stata'
+          '8':
+            'patterns': [
+              {
+                'include': '#numbers'
+              }
+              {
+                'match': ','
+                'name': 'punctuation.definition.variable.begin.stata' # the comma
+              }
+            ]
+          '9':
+            'name': 'punctuation.definition.parameters.end.stata'
+      }
+      {
+        'comment': 'color regexr with regular quotes i.e. " '
+        'match': '\\b(ustrregexrf|ustrregexra)(\\()([^,]+)(,)\\s*(\")([^"]+)(\"(\')?)\\s*(,)([^\\),]*)([,0-9\\s]*)?\\s*(\\))'
+        'captures':
+          '1':
+            'name': 'support.function.builtin.stata'
+          '2':
+            'name': 'punctuation.definition.parameters.begin.stata'
+          '3':
+            'patterns': [
+              {
+                'include': '#string-compound'
+              }
+              {
+                'include': '#string-regular'
+              }
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+              {
+                'include': '#builtin_functions'
+              }
+              {
+                'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+                'name': 'variable.parameter.function.stata'
+              }
+              {
+                'include': '#comments'
+              }          
+            ]
+          '4':
+            'name': 'punctuation.definition.variable.begin.stata' # the comma
+          '5':
+            'name': 'punctuation.definition.string.begin.stata'
+          '6':
+            'patterns': [
+              {
+                'include': '#unicode-regex-internals'
+              }
+            ]
+          '7': 
+            'name': 'punctuation.definition.string.end.stata'
+          '8':
+            'name': 'invalid.illegal.punctuation.stata'
+          '9':
+            'name': 'punctuation.definition.variable.begin.stata' # the comma
+          '10':
+            'patterns': [
+              {
+                'include': '#string-compound'
+              }
+              {
+                'include': '#string-regular'
+              }
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+              {
+                'include': '#builtin_functions'
+              }
+              {
+                'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+                'name': 'variable.parameter.function.stata'
+              }
+              {
+                'include': '#comments-triple-slash'
+              }          
+            ]
+          '11':
+            'patterns': [
+              {
+                'include': '#numbers'
+              }
+              {
+                'match': ','
+                'name': 'punctuation.definition.variable.begin.stata' # the comma
+              }
+            ]
+          '12':
+            'name': 'punctuation.definition.parameters.end.stata'      
+      }
+      {
+        'comment': 'color regexr with compound quotes i.e. `"text"\' '
+        'match': '\\b(ustrregexrf|ustrregexra)(\\()([^,]+)(,)\\s*(`\")([^"]+)(\"\')\\s*(,)([^\\)]*)(\\))'
+        'captures':
+          '1':
+            'name': 'support.function.builtin.stata'
+          '2':
+            'name': 'punctuation.definition.parameters.begin.stata'
+          '3':
+            'patterns': [
+              {
+                'include': '#string-compound'
+              }
+              {
+                'include': '#string-regular'
+              }
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+              {
+                'include': '#builtin_functions'
+              }
+              {
+                'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+                'name': 'variable.parameter.function.stata'
+              }
+              {
+                'include': '#comments'
+              }          
+            ]
+          '4':
+            'name': 'punctuation.definition.variable.begin.stata' # the comma
+          '5':
+            'name': 'punctuation.definition.string.begin.stata'
+          '6':
+            'patterns': [
+              {
+                'include': '#unicode-regex-internals'
+              }
+            ]
+          '7': 
+            'name': 'punctuation.definition.string.end.stata'
+          '8':
+            'name': 'punctuation.definition.variable.begin.stata' # the comma
+          '9':
+            'patterns': [
+              {
+                'include': '#string-compound'
+              }
+              {
+                'include': '#string-regular'
+              }
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+              {
+                'include': '#builtin_functions'
+              }
+              {
+                'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+                'name': 'variable.parameter.function.stata'
+              }
+              {
+                'include': '#comments-triple-slash'
+              }          
+            ]
+          '10':
+            'patterns': [
+              {
+                'include': '#numbers'
+              }
+              {
+                'match': ','
+                'name': 'punctuation.definition.variable.begin.stata' # the comma
+              }
+            ]
+          '11':
+            'name': 'punctuation.definition.parameters.end.stata'      
+      }
+    ]
+  'unicode-regex-internals':
+    'patterns': [
+      {
+        'match': '\\\\[bBAZzG]|\\^|\\$'
+        'name': 'keyword.control.anchor.stata'
+      }
+      {
+        'match': '\\\\[1-9][0-9]?'
+        'name': 'keyword.other.back-reference.stata'
+      }
+      {
+        'match': '[?+*][?+]?|\\{(\\d+,\\d+|\\d+,|,\\d+|\\d+)\\}\\??'
+        'name': 'keyword.operator.quantifier.stata'
+      }
+      {
+        'match': '\\|'
+        'name': 'keyword.operator.or.stata'
+      }
+      {
+        'begin': '\\(\\?\\#'
+        'end': '\\)'
+        'name': 'comment.block.stata'
+      }
+      {
+        'comment': 'We are restrictive in what we allow to go after the comment character to avoid false positives, since the availability of comments depend on regexp flags.'
+        'match': '(?<=^|\\s)#\\s[[a-zA-Z0-9,. \\t?!-:][^\\x{00}-\\x{7F}]]*$'
+        'name': 'comment.line.number-sign.stata'
+      }
+      {
+        'match': '\\(\\?[iLmsux]+\\)'
+        'name': 'keyword.other.option-toggle.stata'
+        # @NOTE not sure if this is included in the ICU regex
+      }
+      {
+        'begin': '(\\()((\\?=)|(\\?!)|(\\?<=)|(\\?<!))'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.group.stata'
+          '2':
+            'name': 'punctuation.definition.group.assertion.stata'
+          '3':
+            'name': 'meta.assertion.look-ahead.stata'
+          '4':
+            'name': 'meta.assertion.negative-look-ahead.stata'
+          '5':
+            'name': 'meta.assertion.look-behind.stata'
+          '6':
+            'name': 'meta.assertion.negative-look-behind.stata'
+        'end': '(\\))'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.group.stata'
+        'name': 'meta.group.assertion.stata'
+        'patterns': [
+          {
+            'include': '#unicode-regex-internals'
+          }
+        ]
+      }
+      {
+        'begin': '(\\()(\\?\\(([1-9][0-9]?|[a-zA-Z_][a-zA-Z_0-9]*)\\))'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.group.stata'
+          '2':
+            'name': 'punctuation.definition.group.assertion.conditional.stata'
+          '3':
+            'name': 'entity.name.section.back-reference.stata'
+        'comment': 'we can make this more sophisticated to match the | character that separates yes-pattern from no-pattern, but it\'s not really necessary.'
+        'end': '(\\))'
+        'name': 'meta.group.assertion.conditional.stata'
+        'patterns': [
+          {
+            'include': '#unicode-regex-internals'
+          }
+        ]
+      }
+      {
+        'include': '#unicode-regex-character-class'
+      }
+      {
+        # 'comment' 'NOTE: Error if I have \.+ No idea why but it works fine it seems with just \.'
+        # Also extremely weird but if I have the previous 'comment' line uncommented, everything inside the regexm(, "...") goes white.
+        'match': '.'
+        'name': 'string.quoted.stata'
+      }
+    ]
+  'unicode-regex-character-class':
+    'patterns': [
+      {
+        'match': '\\\\[wWsSdD]|\\.'
+        'name': 'constant.character.character-class.stata'
+      }
+      {
+        'match': '\\\\.'
+        'name': 'constant.character.escape.backslash.stata'
+      }
+      {
+        'begin': '(\\[)(\\^)?'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.character-class.stata'
+          '2':
+            'name': 'keyword.operator.negation.stata'
+        'end': '(\\])'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.character-class.stata'
+        'name': 'constant.other.character-class.set.stata'
+        'patterns': [
+          {
+            'include': '#unicode-regex-character-class'
           }
           {
             'captures':
