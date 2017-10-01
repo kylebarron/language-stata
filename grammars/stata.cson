@@ -1336,13 +1336,16 @@
   'ascii-regex-character-class':
     'patterns': [
       {
+        'match': '\\\\[\\*\\+\\?\\-\\.\\^\\$\\|\\[\\]\\(\\)\\\\]'
+        'name': 'constant.character.escape.backslash.stata'
+      }
+      {
         'match': '\\.'
         'name': 'constant.character.character-class.stata'
       }
       {
         'match': '\\\\.'
-        'name': 'constant.character.escape.backslash.stata'
-        'comment': 'this changes the color of an escaped character'
+        'name': 'illegal.invalid.character-class.stata'
       }
       {
         'begin': '(\\[)(\\^)?'
