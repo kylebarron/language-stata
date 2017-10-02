@@ -1,8 +1,8 @@
 'scopeName': 'source.stata'
 'name': 'Stata'
 'fileTypes': [
-  'do',
-  'ado',
+  'do'
+  'ado'
   'mata'
 ]
 'foldingStartMarker': '\\{\\s*$'
@@ -1151,7 +1151,7 @@
       }
       {
         'comment': 'color regexr with regular quotes i.e. " '
-        'match': '\\b(regexr)(\\()([^,]+)(,)\\s*(\")([^"]+)(\"(\')?)\\s*(,)([^\\)]*)(\\))'
+        'match': '\\b(regexr)(\\()([^,]+)(,)\\s*(\")([^"]+)(\"(\')?)\\s*([^\\)]*)(\\))'
         'captures':
           '1':
             'name': 'support.function.builtin.stata'
@@ -1197,9 +1197,11 @@
           '8':
             'name': 'invalid.illegal.punctuation.stata'
           '9':
-            'name': 'punctuation.definition.variable.begin.stata' # the comma
-          '10':
             'patterns': [
+              {
+                'match': ','
+                'name': 'punctuation.definition.variable.begin.stata' # the comma
+              }
               {
                 'include': '#string-compound'
               }
@@ -1223,12 +1225,12 @@
                 'include': '#comments-triple-slash'
               }          
             ]
-          '11':
+          '10':
             'name': 'punctuation.definition.parameters.end.stata'      
       }
       {
         'comment': 'color regexr with compound quotes i.e. `"text"\' '
-        'match': '\\b(regexr)(\\()([^,]+)(,)\\s*(`\")([^"]+)(\"\')\\s*(,)([^\\)]*)(\\))'
+        'match': '\\b(regexr)(\\()([^,]+)(,)\\s*(`\")([^"]+)(\"\')\\s*([^\\)]*)(\\))'
         'captures':
           '1':
             'name': 'support.function.builtin.stata'
@@ -1272,9 +1274,11 @@
           '7': 
             'name': 'punctuation.definition.string.end.stata'
           '8':
-            'name': 'punctuation.definition.variable.begin.stata' # the comma
-          '9':
             'patterns': [
+              {
+                'match': ','
+                'name': 'punctuation.definition.variable.begin.stata' # the comma
+              }
               {
                 'include': '#string-compound'
               }
@@ -1298,7 +1302,7 @@
                 'include': '#comments-triple-slash'
               }          
             ]
-          '10':
+          '9':
             'name': 'punctuation.definition.parameters.end.stata'      
       }
     ]
@@ -1514,7 +1518,7 @@
       }
       {
         'comment': 'color regexr with regular quotes i.e. " '
-        'match': '\\b(ustrregexrf|ustrregexra)(\\()([^,]+)(,)\\s*(\")([^"]+)(\"(\')?)\\s*(,)([^\\),]*)([,0-9\\s]*)?\\s*(\\))'
+        'match': '\\b(ustrregexrf|ustrregexra)(\\()([^,]+)(,)\\s*(\")([^"]+)(\"(\')?)\\s*([^\\)]*)(\\))'
         'captures':
           '1':
             'name': 'support.function.builtin.stata'
@@ -1560,9 +1564,11 @@
           '8':
             'name': 'invalid.illegal.punctuation.stata'
           '9':
-            'name': 'punctuation.definition.variable.begin.stata' # the comma
-          '10':
             'patterns': [
+              {
+                'match': ','
+                'name': 'punctuation.definition.variable.begin.stata' # the comma
+              }
               {
                 'include': '#string-compound'
               }
@@ -1585,23 +1591,16 @@
               {
                 'include': '#comments-triple-slash'
               }          
-            ]
-          '11':
-            'patterns': [
               {
                 'include': '#numbers'
               }
-              {
-                'match': ','
-                'name': 'punctuation.definition.variable.begin.stata' # the comma
-              }
             ]
-          '12':
+          '10':
             'name': 'punctuation.definition.parameters.end.stata'      
       }
       {
         'comment': 'color regexr with compound quotes i.e. `"text"\' '
-        'match': '\\b(ustrregexrf|ustrregexra)(\\()([^,]+)(,)\\s*(`\")([^"]+)(\"\')\\s*(,)([^\\)]*)(\\))'
+        'match': '\\b(ustrregexrf|ustrregexra)(\\()([^,]+)(,)\\s*(`\")([^"]+)(\"\')\\s*([^\\)]*)(\\))'
         'captures':
           '1':
             'name': 'support.function.builtin.stata'
@@ -1645,9 +1644,11 @@
           '7': 
             'name': 'punctuation.definition.string.end.stata'
           '8':
-            'name': 'punctuation.definition.variable.begin.stata' # the comma
-          '9':
             'patterns': [
+              {
+                'match': ','
+                'name': 'punctuation.definition.variable.begin.stata' # the comma
+              }
               {
                 'include': '#string-compound'
               }
@@ -1670,18 +1671,11 @@
               {
                 'include': '#comments-triple-slash'
               }          
-            ]
-          '10':
-            'patterns': [
               {
                 'include': '#numbers'
               }
-              {
-                'match': ','
-                'name': 'punctuation.definition.variable.begin.stata' # the comma
-              }
             ]
-          '11':
+          '9':
             'name': 'punctuation.definition.parameters.end.stata'      
       }
     ]
