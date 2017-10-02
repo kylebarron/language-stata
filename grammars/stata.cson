@@ -729,13 +729,13 @@
   'docblockr-comment':
     'patterns': [
       {
-        'match': '(@(error|ERROR))\\b'
+        'match': '(?<!\\w)(@(error|ERROR))\\b'
         'captures':
           '1':
             'name': 'invalid.illegal.name.stata'
       }
       {
-        'match': '(@[A-za-z0-9]+)\\b'
+        'match': '(?<!\\w)(@[A-za-z0-9]+)\\b'
         'captures':
           '1':
             'name': 'keyword.docblockr.stata'
