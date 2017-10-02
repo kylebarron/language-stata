@@ -639,6 +639,9 @@
   'comments':
     'patterns': [
       {
+        'include': '#docblockr-comment'
+      }
+      {
         'include': '#comments-block'
       }
       {
@@ -666,7 +669,7 @@
         'name': 'comment.block.stata'
         'patterns': [
           {
-            'include': '#docblockr-comment'
+            'include': '#comments'
           }
         ]
       }
@@ -683,7 +686,7 @@
         'comment': 'TODO! need to except out the occasion that a * comes after a /// on the previous line. May be easiest to join with the comment.line.triple-slash.stata below'
         'patterns': [
           {
-            'include': '#docblockr-comment'
+            'include': '#comments'
           }
         ]
       }
@@ -699,7 +702,7 @@
         'name': 'comment.line.triple-slash.stata'
         'patterns': [
           {
-            'include': '#docblockr-comment'
+            'include': '#comments'
           }
         ]
       }
@@ -715,7 +718,7 @@
         'name': 'comment.line.double-slash.stata'
         'patterns': [
           {
-            'include': '#docblockr-comment'
+            'include': '#comments'
           }
         ]
       }
@@ -723,15 +726,15 @@
   'docblockr-comment':
     'patterns': [
       {
-        'match': '(^\\s*\\*\\s*|\\s+)(@(error|ERROR))'
+        'match': '[\\s*]*(@(error|ERROR))'
         'captures':
-          '2':
+          '1':
             'name': 'invalid.illegal.name.stata'
       }
       {
-        'match': '(^\\s*\\*\\s*|\\s+)(@[A-za-z0-9]+)'
+        'match': '^[\\s*]*(@[A-za-z0-9]+)'
         'captures':
-          '2':
+          '1':
             'name': 'keyword.docblockr.stata'
       }
     ]
