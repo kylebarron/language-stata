@@ -669,7 +669,10 @@
         'name': 'comment.block.stata'
         'patterns': [
           {
-            'include': '#comments'
+            'include': '#docblockr-comment'
+          }
+          {
+            'include': '#comments-block'
           }
         ]
       }
