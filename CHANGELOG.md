@@ -3,6 +3,9 @@
 ## [1.0.4] - 2017-10-02
 - Fix highlighting for global macro with braces inside loop
 - Now the `}` line can only be colored as error if there's text on that line and if there's at least one space before the `}`. 
+- Remove some deprecated functions
+- Turn off docblockr tag if appears immediately after word character
+- Show error for `gen var == 5`
 
 ## [1.0.3] - 2017-10-02
 - Fix comment bug created in 1.0.2.
