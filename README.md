@@ -16,6 +16,7 @@ This package highlights:
 - Macros, both global and local
     - Accurately colors nested macros and escaped macros in strings when you want the inner macro to evaluate at runtime
 - Regular expressions
+    - Colors both the limited syntax provided through the `regexr()` and `regexm()` functions, as well as the vastly expanded regex syntax provided in Stata 14 and 15 through the `ustrregexm()`, `ustrregexrf()`, and `ustrregexra()` functions.
 
 Other nice features:
 - Alerts you if your variable name is illegal, i.e. if your variable name is more than 32 chars, starts with a number, or is a reserved name.
