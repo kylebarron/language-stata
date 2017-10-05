@@ -641,9 +641,6 @@
   'comments':
     'patterns': [
       {
-        'include': '#docblockr-comment'
-      }
-      {
         'include': '#comments-block'
       }
       {
@@ -691,6 +688,9 @@
         'comment': 'TODO! need to except out the occasion that a * comes after a /// on the previous line. May be easiest to join with the comment.line.triple-slash.stata below'
         'patterns': [
           {
+            'include': '#docblockr-comment'
+          }
+          {
             'include': '#comments'
           }
         ]
@@ -707,6 +707,9 @@
         'name': 'comment.line.triple-slash.stata'
         'patterns': [
           {
+            'include': '#docblockr-comment'
+          }
+          {
             'include': '#comments'
           }
         ]
@@ -722,6 +725,9 @@
         'end': '(?=\\n)'
         'name': 'comment.line.double-slash.stata'
         'patterns': [
+          {
+            'include': '#docblockr-comment'
+          }
           {
             'include': '#comments'
           }
