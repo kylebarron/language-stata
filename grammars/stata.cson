@@ -207,14 +207,15 @@
     ]
   }
   {
-    'captures':
+    'begin': '\\b(forvalues|forvalue|forvalu|forval|forva|forv)\\s*'
+    'end': '\\s*(=)\\s*([^\\{]+)\\s*|(?=\\n)'
+    'beginCaptures':
       '1':
         'name': 'keyword.control.flow.stata'
-      '2':
-        'name': 'entity.name.type.class.stata'
-      '3':
+    'endCaptures':
+      '1':
         'name': 'keyword.operator.assignment.stata'
-      '4':
+      '2':
         'patterns': [
           {
             'include': '#numbers'
@@ -222,8 +223,28 @@
           {
             'include': '#operators'
           }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
         ]
-    'match': '\\b(forvalues)\\s+([a-zA-Z0-9_]{1,31})\\s*(=)\\s*([0-9\\(\\)/:\. ]+)\\s*'
+    'patterns': [
+      {
+        'include': '#reserved_names'
+      }
+      {
+        'match': '([A-Za-z_][A-Za-z0-9_]{0,31})'
+        'name': 'entity.name.type.class.stata'
+      }
+      {
+        'include': '#macro-local'
+      }
+      {
+        'include': '#macro-global'
+      }      
+    ]
   }
   {
     'comment': 'keywords that delimit loops'
