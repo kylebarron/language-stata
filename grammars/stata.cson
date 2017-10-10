@@ -860,9 +860,9 @@
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.string.begin.stata'
-        'end': '(\\})'
+        'end': '\\}'
         'endCaptures':
-          '1':
+          '0':
             'name': 'punctuation.definition.string.end.stata'
         'patterns': [
           {
@@ -878,11 +878,11 @@
         ]
       }
       {
-        'begin': '(\\$)'
+        'begin': '\\$'
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.string.begin.stata'
-        'end': '(?=\\"|\\s|\\n|/|,)'
+        'end': '(?=\\"|\\s|\\n|/|,|\\$)'
         'endCaptures':
           '1':
             'name': 'punctuation.definition.string.end.stata'
@@ -1374,7 +1374,11 @@
     'patterns': [
       # The following match the insides of a regular expression
       {
-        'match': '\\^|\\$'
+        'match': '\\^'
+        'name': 'keyword.control.anchor.stata'
+      }
+      {
+        'match': '\\$(?![a-zA-Z\\{])'
         'name': 'keyword.control.anchor.stata'
       }
       {
@@ -1402,6 +1406,12 @@
       }
       {
         'include': '#ascii-regex-character-class'
+      }
+      {
+        'include': '#macro-local'
+      }
+      {
+        'include': '#macro-global'
       }
       {
         # 'comment' 'NOTE: Error if I have \.+ No idea why but it works fine it seems with just \.'
@@ -1746,7 +1756,11 @@
   'unicode-regex-internals':
     'patterns': [
       {
-        'match': '\\\\[bBAZzG]|\\^|\\$'
+        'match': '\\\\[bBAZzG]|\\^'
+        'name': 'keyword.control.anchor.stata'
+      }
+      {
+        'match': '\\$(?![a-zA-Z\\{])'
         'name': 'keyword.control.anchor.stata'
       }
       {
@@ -1822,6 +1836,12 @@
       }
       {
         'include': '#unicode-regex-character-class'
+      }
+      {
+        'include': '#macro-local'
+      }
+      {
+        'include': '#macro-global'
       }
       {
         # 'comment' 'NOTE: Error if I have \.+ No idea why but it works fine it seems with just \.'
