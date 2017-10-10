@@ -365,27 +365,29 @@
   }
   # Start manual functions:
   {
-    'comment': 'Color the syntax command'
-    'begin': '^\\s*(?=(syntax))'
+    'begin': '(?=syntax)'
     'end': '\\n'
     'patterns': [
       {
+        'begin': '///'
+        'end': '\\n'
+        'name': 'comment.block.stata'
+      }
+      {
         'comment': 'color before the comma'
-        'begin': '(syntax)\\s*'
+        'begin': 'syntax'
         'beginCaptures':
-          '1':
+          '0':
             'name': 'keyword.functions.program.stata'
-        'end': '(?=,|\\n)'
+        'end': '(?=,)'
         'patterns': [
           {
-            'match': '((\\[?)(varlist|varname|newvarlist|newvarname|namelist|name|anything|if|in|using|exp|fweight|aweight|pweight|iweight)(\\])?)+\\s*'
-            'captures':
-              '2':
-                'name': 'punctuation.definition.parameters.begin.stata'
-              '3':
-                'name': 'entity.name.type.class.stata'
-              '4':
-                'name': 'punctuation.definition.parameters.end.stata'
+            'match': '\\[|\\]'
+            'name': 'punctuation.definition.parameters.stata'
+          }
+          {
+            'match': 'varlist|varname|newvarlist|newvarname|namelist|name|anything|if|in|using|exp|fweight|aweight|pweight|iweight'
+            'name': 'entity.name.type.class.stata'
           }
           {
             'include': '$self'
@@ -395,12 +397,17 @@
       {
         'comment': 'things to color after the comma'
         'comment': 'TODO: This can be improved to alert when new macros are created with illegal meaning'
-        'begin': '(,)'
+        'begin': ','
         'beginCaptures':
-          '1':
+          '0':
             'name': 'punctuation.definition.variable.begin.stata'
         'end': '(?=\\n)'
         'patterns': [
+          {
+            'begin': '///'
+            'end': '\\n'
+            'name': 'comment.block.stata'
+          }
           {
             'comment': 'color options with parentheses'
             'begin': '([a-zA-Z_0-9]+)(\\()'
