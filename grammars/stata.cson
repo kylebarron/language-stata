@@ -926,6 +926,10 @@
         'match': '(?<![a-zA-Z0-9])(\\.(?![\\./]))(?![a-zA-Z0-9])'
         'name': 'constant.language.stata'
       }
+      {
+        'match': '_all'
+        'name': 'constant.language.stata'
+      }
     ]
   'operators':
     'patterns': [
