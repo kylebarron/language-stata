@@ -24,7 +24,7 @@
     'include': '#comments'
   }
   {
-    'include': '#numbers'
+    'include': '#constants'
   }
   {
     'include': '#operators'
@@ -135,7 +135,7 @@
       '3':
         'patterns': [
           {
-            'include': '#numbers'
+            'include': '#constants'
           }
           {
             'match': 'm|n'
@@ -147,7 +147,7 @@
       '5':
         'patterns': [
           {
-            'include': '#numbers'
+            'include': '#constants'
           }
           {
             'match': 'm|n'
@@ -218,7 +218,7 @@
       '2':
         'patterns': [
           {
-            'include': '#numbers'
+            'include': '#constants'
           }
           {
             'include': '#operators'
@@ -598,7 +598,7 @@
             'name': 'punctuation.definition.parameters.end.stata'
         'patterns': [
           {
-            'include': '#numbers'
+            'include': '#constants'
           }
           {
             'match': '(\\{|\\})'
@@ -900,7 +900,7 @@
         ]
       }
     ]
-  'numbers':
+  'constants':
     'patterns': [
       {
         'match': '\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))(?=[^a-zA-Z_])'
@@ -1074,16 +1074,9 @@
             'include': '#operators'
           }
           {
-            'include': '#numbers'
+            'include': '#constants'
           }
         ]
-      }
-    ]
-  'generic_names':
-    'patterns': [
-      {
-        'comment': 'this currently doesn\'t do anything'
-        'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
       }
     ]
   'reserved_names':
@@ -1518,7 +1511,7 @@
           '9':
             'patterns': [
               {
-                'include': '#numbers'
+                'include': '#constants'
               }
               {
                 'match': ','
@@ -1580,7 +1573,7 @@
           '8':
             'patterns': [
               {
-                'include': '#numbers'
+                'include': '#constants'
               }
               {
                 'match': ','
@@ -1666,7 +1659,7 @@
                 'include': '#comments-triple-slash'
               }          
               {
-                'include': '#numbers'
+                'include': '#constants'
               }
             ]
           '10':
@@ -1746,7 +1739,7 @@
                 'include': '#comments-triple-slash'
               }          
               {
-                'include': '#numbers'
+                'include': '#constants'
               }
             ]
           '9':
