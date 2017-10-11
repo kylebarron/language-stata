@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.1.1] - 2017-10-11
+- Fixed bug where, e.g. only `label vari` was colored of `label variable ...`. There were many instances of code that could have been affected that were fixed.
+
 ## [1.1.0] - 2017-10-10
 - Improved `syntax` command to correctly color across multiple lines. Solves https://github.com/kylebarron/language-stata/issues/19
 - Colors extended macro functions inside local macros as well as during macro instantiation.
