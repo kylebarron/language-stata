@@ -48,73 +48,7 @@
     'include': '#subsetting'
   }
   {
-    'begin': '\\b(gl(o|ob|oba|obal)?)\\s+(?=[a-zA-Z_`\\$])'
-    'beginCaptures':
-      '1':
-        'name': 'storage.modifier.macro.test.stata'
-    'end': '(\\})|(?=\\"|\\s|\\n|/|,|=)'
-    'patterns': [
-      {
-        'include': '#reserved_names'
-      }
-      {
-        'match': '([A-Za-z_][A-Za-z0-9_]{0,31})'
-        'name': 'entity.name.type.class.stata'
-      }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
-    ]
-  }
-  {
-    'begin': '\\b(loc(a|al)?)\\s+(\\+\\+|\\-\\-)?(?=[a-zA-Z_`\\$])'
-    'beginCaptures':
-      '1':
-        'name': 'storage.modifier.macro.test.stata'
-      '3':
-        'name': 'keyword.operator.arithmetic.stata'
-    'end': '(?=:|\\"|\\s|\\n|/|,|=)'
-    'patterns': [
-      {
-        'match': '[^a-zA-Z0-9_\'`\\$\\(\\)]'
-        'name': 'invalid.illegal.name.stata'
-      }
-      {
-        'match': '([A-Za-z_][A-Za-z0-9_]{0,31})'
-        'name': 'entity.name.type.class.stata'
-      }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
-    ]
-  }
-  {
-    'begin': '\\b(tempvar|tempname|tempfile)\\s+(?=[a-zA-Z_`\\$])'
-    'beginCaptures':
-      '1':
-        'name': 'storage.modifier.macro.test.stata'
-    'end': '(?=\\"|\\s|\\n|/|,)'
-    'patterns': [
-      {
-        'include': '#reserved_names'
-      }
-      {
-        'match': '([A-Za-z_][A-Za-z0-9_]{0,31})'
-        'name': 'entity.name.type.class.stata'
-      }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
-    ]
+    'include': '#macro-commands'
   }
   {
     'comment': 'keywords that delimit flow conditionals'
@@ -775,6 +709,103 @@
         'captures':
           '1':
             'name': 'keyword.docblockr.stata'
+      }
+    ]
+  'macro-commands':
+    'patterns': [
+      {
+        'begin': '\\b(gl(o|ob|oba|obal)?)\\s+(?=[a-zA-Z_`\\$])'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.macro.stata'
+        'end': '(\\})|(?=\\"|\\s|\\n|/|,|=)'
+        'patterns': [
+          {
+            'include': '#reserved_names'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'entity.name.type.class.stata'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+        ]
+      }
+      {
+        'begin': '\\b(loc(a|al)?)\\s+(\\+\\+|\\-\\-)?(?=[a-zA-Z_`\\$])'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.macro.stata'
+          '3':
+            'name': 'keyword.operator.arithmetic.stata'
+        'end': '(?=\\"|\\s|\\n|/|,|=)'
+        'patterns': [
+          {
+            'match': '[^a-zA-Z0-9_\'`\\$\\(\\)]'
+            'name': 'invalid.illegal.name.stata'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'entity.name.type.class.stata'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+        ]
+      }
+      {
+        'begin': '\\b(tempvar|tempname|tempfile)\\s+(?=[a-zA-Z_`\\$])'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.macro.stata'
+        'end': '(?=\\"|\\s|\\n|/|,)'
+        'patterns': [
+          {
+            'include': '#reserved_names'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'entity.name.type.class.stata'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+        ]
+      }
+      {
+        'begin': '\\b(ma(c|cr|cro)?)\\s+(drop|l(i|is|ist)?)'
+        'beginCaptures':
+          '0':
+            'name': 'keyword.macro.stata'
+        'end': '(?=\\n)'
+        'patterns': [
+          {
+            'include': '#constants'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#comments'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'entity.name.type.class.stata'
+          }
+        ]
       }
     ]
   'macro-local-escaped':
