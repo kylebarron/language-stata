@@ -714,6 +714,53 @@
   'macro-commands':
     'patterns': [
       {
+        'begin': '\\b(loc(a|al)?|gl(o|ob|oba|obal)?)\\s+([a-zA-Z0-9_\'`\\$\\(\\)\\{\\}]+)\\s*(?=:|=)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.macro.stata'
+          '4':
+            'patterns': [
+              {
+                'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+                'name': 'entity.name.type.class.stata'
+              }
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+            ]
+            'name': 'entity.name.type.class.stata'
+        'end': '\\n'
+        'patterns': [
+          {
+            'begin': '='
+            'beginCaptures':
+              '0':
+                'name': 'keyword.operator.arithmetic.stata'
+            'end': '(?=\\n)'
+            'patterns': [
+              {
+                'include': '$self'
+              }
+            ]
+          }
+          {
+            'begin': ':'
+            'beginCaptures':
+              '0':
+                'name': 'keyword.operator.arithmetic.stata'
+            'end': '(?=\\n)'
+            'patterns': [
+              {
+                'include': '#macro-extended-functions'
+              }
+            ]
+          }          
+        ]
+      }
+      {
         'begin': '\\b(gl(o|ob|oba|obal)?)\\s+(?=[a-zA-Z_`\\$])'
         'beginCaptures':
           '1':
@@ -808,6 +855,109 @@
         ]
       }
     ]
+  'macro-extended-functions':
+    'patterns': [
+      {
+        'include': '#comments'
+      }
+      {
+        'match': '\\b(properties)\\b'
+        'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b(t(y|yp|ype)?|f(o|or|orm|orma|ormat)?|val(u|ue)?\\s+l(a|ab|abl|able)?|var(i|ia|iab|iabl|iable)?\\s+l(a|ab|abl|able)?|data\\s+l(a|ab|abl|able)?|sort(e|ed|edb|edby)?|lab(e|el)?|maxlength|constraint|char)\\b'
+        'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b(permname)\\b'
+        'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b(adosubdir|dir|files?|dirs?|other|sysdir)\\b'
+        'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b(env(i|ir|iro|iron|ironm|ironme|ironmen|ironment)?)\\b'
+        'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b(all\\s+(globals|scalars|matrices)|((numeric|string)\\s+scalars))\\b'
+        'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b(di(s|sp|spl|spla|splay)?)\\b'
+        'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b(list)\\b'
+        'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b(rown(a|am|ame|ames)?|coln(a|am|ame|ames)?|rowf(u|ul|ull|ulln|ullna|ullnam|ullname|ullnames)?|colf(u|ul|ull|ulln|ullna|ullnam|ullname|ullnames)?|roweq?|coleq?|rownumb|colnumb|roweqnumb|coleqnumb|rownfreeparms|colnfreeparms|rownlfs|colnlfs|rowsof|colsof|rowvarlist|colvarlist|rowlfnames|collfnames)\\b'
+        'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b(tsnorm)\\b'
+        'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b((copy|(u|ud)?strlen)\\s+(loc(a|al)?|gl(o|ob|oba|obal)?))\\s+([^\']+)'
+        'captures':
+          '1':
+            'name': 'keyword.macro.extendedfcn.stata'
+          '7':
+            'patterns': [
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+              {
+                'match': '.'
+                'name': 'entity.name.type.class.stata'
+              }
+            ]
+      }
+      {
+        'match': '\\b(word\\s+count)'
+        'captures':
+          '1':
+            'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '(word|piece)\\s+([\\s0-9]+)\\s+(of)'
+        'captures':
+          '1':
+            'name': 'keyword.macro.extendedfcn.stata'
+          '2':
+            'name': 'constant.numeric.integer.stata'
+          '3':
+            'name': 'keyword.macro.extendedfcn.stata'
+      }
+      {
+        'match': '\\b(subinstr\\s+(loc(a|al)?|gl(o|ob|oba|obal)?))\\s+([^\']+)'
+        'captures':
+          '1':
+            'name': 'keyword.macro.extendedfcn.stata'
+          '5':
+            'patterns': [
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+              {
+                'include': '#string-regular'
+              }
+              {
+                'match': '.'
+                'name': 'entity.name.type.class.stata'
+              }
+            ]
+      }
+    ]
   'macro-local-escaped':
     'patterns': [
       {
@@ -837,6 +987,53 @@
   'macro-local':
     'patterns': [
       {
+        'begin': '(`)(=)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.string.begin.stata'
+          '2':
+            'name': 'keyword.operator.comparison.stata'
+        'end': '\''
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.blahblah.string.end.stata'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
+      }
+      {
+        'begin': '(`)(:)'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.string.begin.stata'
+          '2':
+            'name': 'keyword.operator.comparison.stata'
+        'end': '\''
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.blahblah.string.end.stata'
+        'contentName': 'meta.macro-extended-function.stata'
+        'patterns': [
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-extended-functions'
+          }
+          {
+            'include': '#constants'
+          }
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#string-regular'
+          }
+        ]
+      }
+      {
         'begin': '`(?!")'
         'beginCaptures':
           '0':
@@ -846,6 +1043,10 @@
           '0':
             'name': 'punctuation.definition.string.end.stata'
         'patterns': [
+          {
+            'match': '\\+\\+|\\-\\-'
+            'name': 'keyword.operator.arithmetic.stata'
+          }
           {
             'include': '#macro-local'
           }
@@ -1061,7 +1262,7 @@
   'string-regular':
     'patterns': [
       {
-        'begin': '"'
+        'begin': '(?<!`)"'
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.string.begin.stata'
