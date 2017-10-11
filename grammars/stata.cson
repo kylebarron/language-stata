@@ -429,37 +429,30 @@
         'name': 'keyword.functions.data.stata' 
       '3': 
         'name': 'keyword.functions.data.stata' 
-  } 
-  { 
-    'match': 
-      '\\b(drop|keep)\\s+((if)\\s+(.+)\\s+(in)|(in)\\s+(.+)\\s+(if)|(if)|(in))?' 
-    'captures': 
-      '1': 
-        'name': 'keyword.functions.data.stata' 
-      '3': 
-        'name': 'keyword.functions.data.stata' 
-      '4': 
-        'patterns': [ 
-          { 
-            'include': '$self' 
-          } 
-        ] 
-      '5': 
-        'name': 'keyword.functions.data.stata' 
-      '6': 
-        'name': 'keyword.functions.data.stata' 
-      '7': 
-        'patterns': [ 
-          { 
-            'include': '$self' 
-          } 
-        ] 
-      '8': 
-        'name': 'keyword.functions.data.stata' 
-      '9': 
-        'name': 'keyword.functions.data.stata' 
-      '10': 
-        'name': 'keyword.functions.data.stata' 
+  }
+  {
+    'begin': '\\b(drop|keep)\\s+(?!if|in)'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.functions.data.stata'
+    'end': '\\n'
+    'patterns': [
+      {
+        'match': '\\b(if|in)\\b'
+        'name': 'invalid.illegal.name.stata'
+      }
+      {
+        'include': '#comments'
+      }
+    ]
+  }
+  {
+    'match': '\\b(drop|keep)\\s+(if|in)'
+    'captures':
+      '1':
+        'name': 'keyword.functions.data.stata'
+      '2':
+        'name': 'keyword.functions.data.stata'
   }
   {
     'begin': '^\\s*mata:?\\s*$'
