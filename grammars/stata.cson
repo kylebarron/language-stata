@@ -59,10 +59,10 @@
     'captures':
       '1':
         'name': 'storage.type.scalar.stata'
-    'match': '^\\s*(sca(l|la|lar)?(\\s+de(f|fi|fin|fine)?)?)\\s+(?!(drop|dir?|l(i|is|ist)?)\\s+)'
+    'match': '^\\s*(sca(lar|la|l)?(\\s+de(fine|fin|fi|f)?)?)\\s+(?!(drop|dir?|l(ist|is|i)?)\\s+)'
   }
   {
-    'begin': '\\b(mer(g|ge)?)\\s+(1|m|n)(:)(1|m|n)'
+    'begin': '\\b(mer(ge|g)?)\\s+(1|m|n)(:)(1|m|n)'
     'beginCaptures':
       '1':
         'name': 'keyword.control.flow.stata'
@@ -112,10 +112,10 @@
         'name': 'entity.name.type.class.stata'
       '3':
         'name': 'keyword.control.flow.stata'
-    'match': '\\b(foreach)\\s+([a-zA-Z0-9_]{1,31})\\s+(in|of var(l|li|lis|list)?|of new(l|li|lis|list)?|of num(l|li|lis|list)?)\\b'
+    'match': '\\b(foreach)\\s+([a-zA-Z0-9_]{1,31})\\s+(in|of var(list|lis|li|l)?|of new(list|lis|li|l)?|of num(list|lis|li|l)?)\\b'
   }
   {
-    'begin': '\\b(foreach)\\s+([a-zA-Z0-9_]{1,31})\\s+(of loc(a|al)?|of glo(b|ba|bal)?)\\b\\s*'
+    'begin': '\\b(foreach)\\s+([a-zA-Z0-9_]{1,31})\\s+(of loc(al|a)?|of glo(bal|ba|b)?)\\b\\s*'
     'beginCaptures':
       '1':
         'name': 'keyword.control.flow.stata'
@@ -193,17 +193,17 @@
     'match': '\\b(as|ass|asse|asser|assert)\\b'
   }
   {
-    'match': '\\b(by(s|so|sor|sort)?|statsby|rolling|bootstrap|jackknife|permute|simulate|svy|mi est(i|im|ima|imat|imate)?|nestreg|stepwise|xi|fp|mfp|vers(i|io|ion)?)\\b'
+    'match': '\\b(by(sort|sor|so|s)?|statsby|rolling|bootstrap|jackknife|permute|simulate|svy|mi est(imate|imat|ima|im|i)?|nestreg|stepwise|xi|fp|mfp|vers(ion|io|i)?)\\b'
     'name': 'storage.type.function.stata'
     'comment': 'prefixes that require a colon'
   }
   {
   'comment': 'prefixes that don\'t need a colon'
   'name': 'keyword.control.flow.stata'
-  'match': '\\b(qui(e|et|etl|etly)?|n(o|oi|ois|oisi|oisil|oisily)?|cap(t|tu|tur|ture)?)\\b:?'
+  'match': '\\b(qui(etly|etl|et|e)?|n(oisily|oisil|oisi|ois|oi|o)?|cap(ture|tur|tu|t)?)\\b:?'
   }
   {
-    'match': '\\s*(pr(o|og|ogr|ogra|ogram)?)\\s+((di(r)?|drop|l(i|is|ist)?)\\s+)([A-Za-z_][A-Za-z0-9_]{0,31})'
+    'match': '\\s*(pr(ogram|ogra|ogr|og|o)?)\\s+((di(r)?|drop|l(ist|is|i)?)\\s+)([A-Za-z_][A-Za-z0-9_]{0,31})'
     'captures':
       '1':
         'name': 'storage.type.function.stata'
@@ -213,7 +213,7 @@
         'name': 'entity.name.function.stata'
   }
   {
-    'begin': '^\\s*(pr(o|og|ogr|ogra|ogram)?)\\s+(de(f|fi|fin|fine)?\\s+)?'
+    'begin': '^\\s*(pr(ogram|ogra|ogr|og|o)?)\\s+(de(fine|fin|fi|f)?\\s+)?'
     'beginCaptures':
       '1':
         'name': 'storage.type.function.stata'
@@ -238,7 +238,7 @@
     ]
   }
   {
-    'match': '\\b(form(a|at)?)\\s*([A-Za-z_][A-Za-z0-9_]{0,31})*\\s*(%)(\-)?(0)?([0-9]+)(\.)([0-9]+)(e|f|g)(c)?'
+    'match': '\\b(form(at|a)?)\\s*([A-Za-z_][A-Za-z0-9_]{0,31})*\\s*(%)(\-)?(0)?([0-9]+)(\.)([0-9]+)(e|f|g)(c)?'
     'captures':
       '1': 'keyword.functions.data.stata.test'
   }
@@ -385,7 +385,7 @@
       '1':
         'name': 'keyword.functions.data.stata'
     'comment': 'one-word commands',
-    'match': '\\b(sa(v|ve)|saveold|destring|replace|tostring|u(s|se)?|note(s)?|form(a|at)?)\\b'
+    'match': '\\b(sa(v|ve)|saveold|destring|replace|tostring|u(se|s)?|note(s)?|form(at|a)?)\\b'
   }
   {
     'match': '\\b(exit|end)\\b'
@@ -394,7 +394,7 @@
   }
   {
     'match':
-     '\\b(gen(e|er|era|erat|erate)?|egen)\\s+((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)\\s+)?([^=]+)\\s*((==)|(=))'
+     '\\b(gen(erate|erat|era|er|e)?|egen)\\s+((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)\\s+)?([^=]+)\\s*((==)|(=))'
     'captures':
       '1':
         'name': 'keyword.functions.data.stata'
@@ -415,7 +415,7 @@
         'name': 'keyword.operator.assignment.stata'
   }
   {
-    'match': '\\b(set ty(p|pe)?)\\s+((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s+)'
+    'match': '\\b(set ty(pe|p)?)\\s+((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s+)'
     'captures':
       '1':
         'name': 'keyword.functions.data.stata'
@@ -423,7 +423,7 @@
         'name': 'support.type.stata'
   }
   { 
-    'match': '\\b(la(b|be|bel)?)\\s+(da(t|ta)?|var(i|ia|iab|iabl|iable)?|de(f|fi|fin|fine)?|val(u|ue|ues)?|di(r)?|l(i|is|ist)?|copy|drop|save|lang(u|ua|uag|uage)?)' 
+    'match': '\\b(la(bel|be|b)?)\\s+(da(ta|t)?|var(iable|iabl|iab|ia|i)?|de(f|fi|fin|fine)?|val(ues|ue|u)?|di(r)?|l(ist|is|i)?|copy|drop|save|lang(uage|uag|ua|u)?)' 
     'captures': 
       '1': 
         'name': 'keyword.functions.data.stata' 
@@ -732,7 +732,7 @@
   'macro-commands':
     'patterns': [
       {
-        'begin': '\\b(loc(a|al)?|gl(o|ob|oba|obal)?)\\s+([a-zA-Z0-9_\'`\\$\\(\\)\\{\\}]+)\\s*(?=:|=)'
+        'begin': '\\b(loc(al|a)?|gl(obal|oba|ob|o)?)\\s+([a-zA-Z0-9_\'`\\$\\(\\)\\{\\}]+)\\s*(?=:|=)'
         'beginCaptures':
           '1':
             'name': 'keyword.macro.stata'
@@ -779,7 +779,7 @@
         ]
       }
       {
-        'begin': '\\b(gl(o|ob|oba|obal)?)\\s+(?=[a-zA-Z_`\\$])'
+        'begin': '\\b(gl(obal|oba|ob|o)?)\\s+(?=[a-zA-Z_`\\$])'
         'beginCaptures':
           '1':
             'name': 'keyword.macro.stata'
@@ -801,7 +801,7 @@
         ]
       }
       {
-        'begin': '\\b(loc(a|al)?)\\s+(\\+\\+|\\-\\-)?(?=[a-zA-Z_`\\$])'
+        'begin': '\\b(loc(al|a)?)\\s+(\\+\\+|\\-\\-)?(?=[a-zA-Z_`\\$])'
         'beginCaptures':
           '1':
             'name': 'keyword.macro.stata'
@@ -848,7 +848,7 @@
         ]
       }
       {
-        'begin': '\\b(ma(c|cr|cro)?)\\s+(drop|l(i|is|ist)?)'
+        'begin': '\\b(ma(cro|cr|c)?)\\s+(drop|l(ist|is|i)?)'
         'beginCaptures':
           '0':
             'name': 'keyword.macro.stata'
@@ -883,7 +883,7 @@
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'match': '\\b(t(y|yp|ype)?|f(o|or|orm|orma|ormat)?|val(u|ue)?\\s+l(a|ab|abl|able)?|var(i|ia|iab|iabl|iable)?\\s+l(a|ab|abl|able)?|data\\s+l(a|ab|abl|able)?|sort(e|ed|edb|edby)?|lab(e|el)?|maxlength|constraint|char)\\b'
+        'match': '\\b(t(ype|yp|y)?|f(ormat|orma|orm|or|o)?|val(ue|u)?\\s+l(able|abl|ab|a)?|var(iable|iabl|iab|ia|i)?\\s+l(able|abl|ab|a)?|data\\s+l(able|abl|ab|a)?|sort(edby|edb|ed|e)?|lab(el|e)?|maxlength|constraint|char)\\b'
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
@@ -895,7 +895,7 @@
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'match': '\\b(env(i|ir|iro|iron|ironm|ironme|ironmen|ironment)?)\\b'
+        'match': '\\b(env(ironment|ironmen|ironme|ironm|iron|iro|ir|i)?)\\b'
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
@@ -903,7 +903,7 @@
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'match': '\\b(di(s|sp|spl|spla|splay)?)\\b'
+        'match': '\\b(di(splay|spla|spl|sp|s)?)\\b'
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
@@ -911,7 +911,7 @@
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'match': '\\b(rown(a|am|ame|ames)?|coln(a|am|ame|ames)?|rowf(u|ul|ull|ulln|ullna|ullnam|ullname|ullnames)?|colf(u|ul|ull|ulln|ullna|ullnam|ullname|ullnames)?|roweq?|coleq?|rownumb|colnumb|roweqnumb|coleqnumb|rownfreeparms|colnfreeparms|rownlfs|colnlfs|rowsof|colsof|rowvarlist|colvarlist|rowlfnames|collfnames)\\b'
+        'match': '\\b(rown(ames|ame|am|a)?|coln(ames|ame|am|a)?|rowf(ullnames|ullname|ullnam|ullna|ulln|ull|ul|u)?|colf(ullnames|ullname|ullnam|ullna|ulln|ull|ul|u)?|roweq?|coleq?|rownumb|colnumb|roweqnumb|coleqnumb|rownfreeparms|colnfreeparms|rownlfs|colnlfs|rowsof|colsof|rowvarlist|colvarlist|rowlfnames|collfnames)\\b'
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
@@ -919,7 +919,7 @@
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'match': '\\b((copy|(u|ud)?strlen)\\s+(loc(a|al)?|gl(o|ob|oba|obal)?))\\s+([^\']+)'
+        'match': '\\b((copy|(ud|u)?strlen)\\s+(loc(al|a)?|gl(obal|oba|ob|o)?))\\s+([^\']+)'
         'captures':
           '1':
             'name': 'keyword.macro.extendedfcn.stata'
@@ -954,7 +954,7 @@
             'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'match': '\\b(subinstr\\s+(loc(a|al)?|gl(o|ob|oba|obal)?))\\s+([^\']+)'
+        'match': '\\b(subinstr\\s+(loc(al|a)?|gl(obal|oba|ob|o)?))\\s+([^\']+)'
         'captures':
           '1':
             'name': 'keyword.macro.extendedfcn.stata'
