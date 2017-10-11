@@ -5,7 +5,7 @@
     "author": {
         "name": "Kyle Barron"
     },
-    "version": "1.0.4",
+    "version": "1.1.0",
     "publisher": "kylebarron",
     "engines": {
         "vscode": "^1.0.0"
