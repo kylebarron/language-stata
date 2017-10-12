@@ -385,12 +385,28 @@
       '1':
         'name': 'keyword.functions.data.stata'
     'comment': 'one-word commands',
-    'match': '\\b(sa(v|ve)|saveold|destring|replace|tostring|u(se|s)?|note(s)?|form(at|a)?)\\b'
+    'match': '\\b(sa(v|ve)|saveold|destring|tostring|u(se|s)?|note(s)?|form(at|a)?)\\b'
   }
   {
     'match': '\\b(exit|end)\\b'
     'name': 'keyword.functions.data.stata'
     'comment': 'programming commands'
+  }
+  {
+    'match': '\\b(replace)\\s+([^=]+)\\s*((==)|(=))'
+    'captures': 
+      '1':
+        'name': 'keyword.functions.data.stata'
+      '2':
+        'patterns': [
+          {
+            'include': '#macro-local'
+          }
+        ]
+      '4':
+        'name': 'invalid.illegal.name.stata'
+      '5':
+        'name': 'keyword.operator.assignment.stata'
   }
   {
     'match':
