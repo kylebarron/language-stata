@@ -771,7 +771,6 @@
                 'include': '#macro-global'
               }
             ]
-            'name': 'entity.name.type.class.stata'
         'end': '\\n'
         'patterns': [
           {
@@ -966,12 +965,19 @@
             'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'match': '(word|piece)\\s+([\\s0-9]+)\\s+(of)'
+        'match': '(word|piece)\\s+([\\s0-9`\'A-Za-z_]+)\\s+(of)'
         'captures':
           '1':
             'name': 'keyword.macro.extendedfcn.stata'
           '2':
-            'name': 'constant.numeric.integer.stata'
+            'patterns': [
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#constants'
+              }
+            ]
           '3':
             'name': 'keyword.macro.extendedfcn.stata'
       }
@@ -996,6 +1002,12 @@
                 'name': 'entity.name.type.class.stata'
               }
             ]
+      }
+      {
+        'include': '#macro-local'
+      }
+      {
+        'include': '#macro-global'
       }
     ]
   'macro-local-escaped':
