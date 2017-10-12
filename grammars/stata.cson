@@ -431,7 +431,7 @@
         'name': 'keyword.functions.data.stata' 
   }
   {
-    'begin': '\\b(drop|keep)\\s+(?!if|in)'
+    'begin': '\\b(drop|keep)(?!\\s+(if|in)\\b)'
     'beginCaptures':
       '1':
         'name': 'keyword.functions.data.stata'
