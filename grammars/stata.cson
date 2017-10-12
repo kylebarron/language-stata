@@ -431,7 +431,7 @@
         'name': 'keyword.operator.assignment.stata'
   }
   {
-    'match': '\\b(set ty(pe|p)?)\\s+((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s+)'
+    'match': '\\b(set ty(pe|p)?)\\s+((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)?\\s+)\\b'
     'captures':
       '1':
         'name': 'keyword.functions.data.stata'
@@ -439,7 +439,7 @@
         'name': 'support.type.stata'
   }
   { 
-    'match': '\\b(la(bel|be|b)?)\\s+(da(ta|t)?|var(iable|iabl|iab|ia|i)?|de(f|fi|fin|fine)?|val(ues|ue|u)?|di(r)?|l(ist|is|i)?|copy|drop|save|lang(uage|uag|ua|u)?)' 
+    'match': '\\b(la(bel|be|b)?)\\s+(da(ta|t)?|var(iable|iabl|iab|ia|i)?|de(f|fi|fin|fine)?|val(ues|ue|u)?|di(r)?|l(ist|is|i)?|copy|drop|save|lang(uage|uag|ua|u)?)\\b' 
     'captures': 
       '1': 
         'name': 'keyword.functions.data.stata' 
@@ -1199,20 +1199,16 @@
         'name': 'constant.numeric.float.stata'
       }
       {
-        'match': '\\b(?i:([1-9]+[0-9]*|0)L)'
-        'name': 'constant.numeric.integer.long.decimal.stata'
-      }
-      {
-        'match': '\\b([0-9]+|0)'
+        'match': '\\b(\\d+)\\b'
         'name': 'constant.numeric.integer.decimal.stata'
       }
       {
         'match': '(?<![a-zA-Z0-9])(\\.(?![\\./]))(?![a-zA-Z0-9])'
-        'name': 'constant.language.stata'
+        'name': 'constant.language.missing.stata'
       }
       {
         'match': '_all'
-        'name': 'constant.language.stata'
+        'name': 'constant.language.allvars.stata'
       }
     ]
   'operators':
