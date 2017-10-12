@@ -447,7 +447,7 @@
         'name': 'keyword.functions.data.stata' 
   }
   {
-    'begin': '\\b(drop|keep)(?!\\s+(if|in)\\b)'
+    'begin': '\\b(drop|keep)\\b(?!\\s+(if|in)\\b)'
     'beginCaptures':
       '1':
         'name': 'keyword.functions.data.stata'
@@ -460,10 +460,16 @@
       {
         'include': '#comments'
       }
+      {
+        'include': '#macro-local'
+      }
+      {
+        'include': '#macro-global'
+      }
     ]
   }
   {
-    'match': '\\b(drop|keep)\\s+(if|in)'
+    'match': '\\b(drop|keep)\\s+(if|in)\\b'
     'captures':
       '1':
         'name': 'keyword.functions.data.stata'
