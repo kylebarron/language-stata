@@ -15,10 +15,7 @@
     'include': '#unicode-regex-functions'
   }
   {
-    'include': '#builtin_functions'
-  }
-  {
-    'include': '#other_functions'
+    'include': '#functions'
   }
   {
     'include': '#comments'
@@ -518,48 +515,10 @@
   }
 ]
 'repository':
-  'builtin_functions':
+  'functions':
     'patterns': [
       {
-        'begin': '\\b(bofd|Cdhms|Chms|Clock|clock|Cmdyhms|Cofc|cofC|Cofd|cofd|daily|date|day|dhms|dofb|dofC|dofc|dofh|dofm|dofq|dofw|dofy|dow|doy|halfyear|halfyearly|hh|hhC|hms|hofd|hours|mdy|mdyhms|minutes|mm|mmC|mofd|month|monthly|msofhours|msofminutes|msofseconds|qofd|quarter|quarterly|seconds|ss|ssC|tC|tc|td|th|tm|tq|tw|week|weekly|wofd|year|yearly|yh|ym|yofd|yq|yw|betaden|ibeta|ibetatail|invibeta|invibetatail|nbetaden|nibeta|invnibeta|binomialp|binomial|binomialtail|invbinomial|invbinomialtail|cauchyden|cauchy|cauchytail|invcauchy|invcauchytail|lncauchyden|chi2den|chi2|chi2tail|invchi2|invchi2tail|nchi2den|nchi2|nchi2tail|invnchi2|invnchi2tail|npnchi2|dunnettprob|invdunnettprob|exponentialden|exponential|exponentialtail|invexponential|invexponentialtail|Fden|F|Ftail|invF|invFtail|nFden|nF|nFtail|invnF|invnFtail|npnF|gammaden|gammap|gammaptail|invgammap|invgammaptail|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|lnigammaden|hypergeometricp|hypergeometric|igaussianden|igaussian|igaussiantail|invigaussian|invigaussiantail|lnigaussianden|laplaceden|laplace|laplacetail|invlaplace|invlaplacetail|lnlaplaceden|logisticden|logisticden|logisticden|logistic|logistic|logistic|logistictail|logistictail|logistictail|invlogistic|invlogistic|invlogistic|invlogistictail|invlogistictail|invlogistictail|nbinomialp|nbinomial|nbinomialtail|invnbinomial|invnbinomialtail|normalden|normalden|normalden|normal|invnormal|lnnormalden|lnnormalden|lnnormalden|lnnormal|binormal|lnmvnormalden|poissonp|poisson|poissontail|invpoisson|invpoissontail|tden|t|ttail|invt|invttail|invnt|invnttail|ntden|nt|nttail|npnt|tukeyprob|invtukeyprob|weibullden|weibullden|weibull|weibull|weibulltail|weibulltail|invweibull|invweibull|invweibulltail|invweibulltail|weibullphden|weibullphden|weibullph|weibullph|weibullphtail|weibullphtail|invweibullph|invweibullph|invweibullphtail|invweibullphtail|lnwishartden|lniwishartden|abs|ceil|cloglog|comb|digamma|exp|floor|int|invcloglog|invlogit|ln|lnfactorial|lngamma|log|log10|logit|max|min|mod|reldif|round|sign|sqrt|sum|trigamma|trunc|cholesky|corr|diag|get|hadamard|I|inv|invsym|J|matuniform|nullmat|sweep|vec|vecdiag|coleqnumb|colnfreeparms|colnumb|colsof|det|diag0cnt|el|issymmetric|matmissing|mreldif|roweqnumb|rownfreeparms|rownumb|rowsof|trace|autocode|byteorder|c|chop|clip|cond|e|e|epsdouble|epsfloat|fileexists|fileread|filereaderror|filewrite|float|fmtwidth|inlist|inrange|irecode|matrix|maxbyte|maxdouble|maxfloat|maxint|maxlong|mi|minbyte|mindouble|minfloat|minint|minlong|missing|r|recode|replay|return|s|scalar|smallestdouble|runiform|runiform|runiformint|rbeta|rbinomial|rcauchy|rchi2|rexponential|rgamma|rhypergeometric|rigaussian|rlaplace|rlogistic|rlogistic|rlogistic|rnbinomial|rnormal|rnormal|rnormal|rpoisson|rt|rweibull|rweibull|rweibullph|rweibullph|abbrev|char|uchar|collatorlocale|collatorversion|indexnot|plural|plural|real|regexs|ustrregexs|soundex|strcat|strdup|string|string|stritrim|strlen|ustrlen|udstrlen|strlower|ustrlower|strltrim|ustrltrim|strmatch|strofreal|strofreal|strpos|ustrpos|strproper|ustrtitle|strreverse|ustrreverse|strrpos|ustrrpos|strrtrim|ustrrtrim|strtoname|ustrtoname|strtrim|ustrtrim|strupper|ustrupper|subinstr|usubinstr|subinword|substr|usubstr|udsubstr|tobytes|uisdigit|uisletter|ustrcompare|ustrcompareex|ustrfix|ustrfrom|ustrinvalidcnt|ustrleft|ustrnormalize|ustrright|ustrsortkey|ustrsortkeyex|ustrto|ustrtohex|ustrunescape|word|ustrword|wordbreaklocale|wordcount|ustrwordcount|abbrev|char|indexnot|itrim|length|lower|ltrim|plural|proper|real|regexs|reverse|rtrim|soundex|strcat|strdup|string|string|strmatch|strpos|strtoname|strtoname|subinstr|subinword|substr|trim|upper|word|wordcount|tin|twithin|acos|acosh|asin|asinh|atan|atan2|atanh|cos|cosh|sin|sinh|tan|tanh|mi)(\\()'
-        'beginCaptures':
-          '1':
-            'name': 'support.function.builtin.stata'
-          '2':
-            'name': 'punctuation.definition.parameters.begin.stata'
-        'end': '(\\))'
-        'endCaptures':
-          '1':
-            'name': 'punctuation.definition.parameters.end.stata'
-        'patterns': [
-          {
-            'include': '#ascii-regex-functions'
-          }
-          {
-            'include': '#unicode-regex-functions'
-          }
-          {
-            'include': '#builtin_functions'
-          }
-          {
-            'include': '#other_functions'
-          }
-          {
-            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
-            'name': 'variable.parameter.function.stata'
-          }
-          {
-            'include': '#subsetting'
-          }
-          {
-            'include': '$self'
-          }
-        ]
-      }
-    ]
-  'other_functions':
-    'patterns': [
-      {
+        'comment': 'This is for outreg'
         'begin': '\\b(spacebef|spaceaft)(\\()'
         'beginCaptures':
           '1':
@@ -581,12 +540,13 @@
         ]    
       }
       {
-        'comment': 'this is to color [a-z]+() in options and custom functions'
-        'begin': '([A-Za-z_][A-Za-z0-9_]{0,31})(\\()'
+        'begin': '\\b((abbrev|abs|acos|acosh|asin|asinh|atan|atan2|atanh|autocode|betaden|binomial|binomialp|binomialtail|binormalbofd|byteorder|c|cauchy|cauchyden|cauchytail|Cdhms|ceil|char|chi2|chi2den|chi2tail|Chms|cholesky|chop|clip|clock|Clock|cloglog|Cmdyhms|cofC|Cofc|cofd|Cofd|coleqnumb|collatorlocale|collatorversion|colnfreeparms|colnumb|colsof|comb|cond|corr|cos|cosh|daily|date|day|det|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|dhms|diag|diag0cnt|digamma|dofb|dofc|dofC|dofh|dofm|dofq|dofw|dofy|dow|doy|dunnettprob|e|el|epsdouble|epsfloat|exp|exponential|exponentialden|exponentialtail|F|Fden|fileexists|fileread|filereaderror|filewrite|float|floor|fmtwidth|Ftail|gammaden|gammap|gammaptail|get|hadamard|halfyear|halfyearly|hh|hhC|hms|hofd|hours|hypergeometric|hypergeometricp|I|ibeta|ibetatail|igaussian|igaussianden|igaussiantail|indexnot|inlist|inrange|int|inv|invbinomial|invbinomialtail|invcauchy|invcauchytail|invchi2|invchi2tail|invcloglog|invdunnettprob|invexponential|invexponentialtail|invF|invFtail|invgammap|invgammaptail|invibeta|invibetatail|invigaussian|invigaussiantail|invlaplace|invlaplacetail|invlogistic|invlogistictail|invlogit|invnbinomial|invnbinomialtail|invnchi2|invnchi2tail|invnF|invnFtail|invnibeta|invnormal|invnt|invnttail|invpoisson|invpoissontail|invsym|invt|invttail|invtukeyprob|invweibull|invweibullph|invweibullphtail|invweibulltail|irecode|issymmetric|itrim|J|laplace|laplaceden|laplacetail|length|ln|lncauchyden|lnfactorial|lngamma|lnigammaden|lnigaussianden|lniwishartden|lnlaplaceden|lnmvnormalden|lnnormal|lnnormalden|lnwishartden|log|log10|logistic|logisticden|logistictail|logit|lower|ltrim|matmissing|matrix|matuniform|max|maxbyte|maxdouble|maxfloat|maxint|maxlong|mdy|mdyhms|mi|min|minbyte|mindouble|minfloat|minint|minlong|minutes|missing|mm|mmC|mod|mofd|month|monthly|mreldif|msofhours|msofminutes|msofseconds|nbetaden|nbinomial|nbinomialp|nbinomialtail|nchi2|nchi2den|nchi2tail|nF|nFden|nFtail|nibeta|normal|normalden|npnchi2|npnF|npnt|nt|ntden|nttail|nullmat|plural|poisson|poissonp|poissontail|proper|qofd|quarter|quarterly|r|rbeta|rbinomial|rcauchy|rchi2|real|recode|regexs|reldif|replay|return|reverse|rexponential|rgamma|rhypergeometric|rigaussian|rlaplace|rlogistic|rnbinomial|rnormal|round|roweqnumb|rownfreeparms|rownumb|rowsof|rpoisson|rt|rtrim|runiform|runiformint|rweibull|rweibullph|s|scalar|seconds|sign|sin|sinh|smallestdouble|soundex|sqrt|ss|ssC|string|stritrim|strlen|strlower|strltrim|strmatch|strofreal|strpos|strproper|strreverse|strrpos|strrtrim|strtoname|strtrim|strupper|subinstr|subinword|substr|sum|sweep|t|tan|tanh|tc|tC|td|tden|th|tin|tm|tobytes|tq|trace|trigamma|trim|trunc|ttail|tukeyprob|tw|twithin|uchar|udstrlen|udsubstr|uisdigit|uisletter|upper|ustrcompare|ustrcompareex|ustrfix|ustrfrom|ustrinvalidcnt|ustrleft|ustrlen|ustrlower|ustrltrim|ustrnormalize|ustrpos|ustrregexs|ustrreverse|ustrright|ustrrpos|ustrrtrim|ustrsortkey|ustrsortkeyex|ustrtitle|ustrto|ustrtohex|ustrtoname|ustrtrim|ustrunescape|ustrupper|ustrword|ustrwordcount|usubinstr|usubstr|vec|vecdiag|week|weekly|weibull|weibullden|weibullph|weibullphden|weibullphtail|weibulltail|wofd|word|wordbreaklocale|wordcount|year|yearly|yh|ym|yofd|yq|yw)|([A-Za-z_][A-Za-z0-9_]{0,31}))(\\()'
         'beginCaptures':
-          '1':
-            'name': 'support.function.custom.stata'
           '2':
+            'name': 'support.function.builtin.stata'
+          '3':
+            'name': 'support.function.custom.stata'
+          '4':
             'name': 'punctuation.definition.parameters.begin.stata'
         'end': '(\\))'
         'endCaptures':
@@ -600,17 +560,14 @@
             'include': '#unicode-regex-functions'
           }
           {
-            'include': '#builtin_functions'
+            'include': '#functions'
           }
           {
-            'include': '#other_functions'
+            'include': '#subsetting'
           }
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'variable.parameter.function.stata'
-          }
-          {
-            'include': '#subsetting'
           }
           {
             'include': '$self'
@@ -1207,7 +1164,7 @@
         'name': 'constant.language.missing.stata'
       }
       {
-        'match': '_all'
+        'match': '\\b_all\\b'
         'name': 'constant.language.allvars.stata'
       }
     ]
