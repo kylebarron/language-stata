@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.0] - 2017-11-03
+- Color SQL queries used in the `odbc` command. (The `language-sql` base package must be active.)
+- Regex bug fixes and enhancements:
+  - Color parentheses forming capture groups
+  - In regular `regexm()`, color as illegal any group starting with `*`, `?`, or `+`.
+  - Color lookaheads and lookbehinds in `ustrregexm()`
+  - Fix highlighting of enclosed functions in `regexm()` and `ustrregexm()`
+- Standardize highlighting for `regress` and other "model commands". (Had been colored as _functions_, should be colored as _commands_.)
+
 ## [1.1.2] - 2017-10-12
 - Color `==` as illegal in `replace var == 0`
 - Fix `log` coloring so that `filename.log` isn't colored
