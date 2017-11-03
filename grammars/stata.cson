@@ -1617,6 +1617,17 @@
         'name': 'keyword.control.or.stata'
       }
       {
+        'begin': '(\\()(?=\\?|\\*|\\+)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.operator.group.stata'
+        'end': '\\)'
+        'endCaptures':
+          '0':
+            'name': 'keyword.operator.group.stata'
+        'contentName': 'invalid.illegal.regexm.stata'
+      }
+      {
         'begin': '(\\()'
         'beginCaptures':
           '1':
