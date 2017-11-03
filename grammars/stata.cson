@@ -2025,13 +2025,13 @@
           '2':
             'name': 'punctuation.definition.group.assertion.stata'
           '3':
-            'name': 'meta.assertion.look-ahead.stata'
+            'name': 'keyword.assertion.look-ahead.stata'
           '4':
-            'name': 'meta.assertion.negative-look-ahead.stata'
+            'name': 'keyword.assertion.negative-look-ahead.stata'
           '5':
-            'name': 'meta.assertion.look-behind.stata'
+            'name': 'keyword.assertion.look-behind.stata'
           '6':
-            'name': 'meta.assertion.negative-look-behind.stata'
+            'name': 'keyword.assertion.negative-look-behind.stata'
         'end': '(\\))'
         'endCaptures':
           '1':
