@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.2.0] - 2017-11-03
+- Color SQL queries used in the `odbc` command. (The `language-sql` base package must be active.)
+- Regex bug fixes and enhancements:
+  - Color parentheses forming capture groups
+  - In regular `regexm()`, color as illegal any group starting with `*`, `?`, or `+`.
+  - Color lookaheads and lookbehinds in `ustrregexm()`
+  - Fix highlighting of enclosed functions in `regexm()` and `ustrregexm()`
+- Standardize highlighting for `regress` and other "model commands". (Had been colored as _functions_, should be colored as _commands_.)
+
+## [1.1.2] - 2017-10-12
+- Color `==` as illegal in `replace var == 0`
+- Fix `log` coloring so that `filename.log` isn't colored
+- Bugfixes with `drop` and `keep` commands
+- Allow embedded macros in extended macro functions
+- Miscellaneous bugs fixed by adding `\\b` so that something like `if_yes` doesn't color `if`
+
+## [1.1.1] - 2017-10-11
+- Fixed bug where, e.g. only `label vari` was colored of `label variable ...`. There were many instances of code that could have been affected that were fixed.
+
 ## [1.1.0] - 2017-10-11
 - Improved `syntax` command to correctly color across multiple lines. Solves https://github.com/kylebarron/language-stata/issues/19
 - Colors extended macro functions inside local macros as well as during macro instantiation.
