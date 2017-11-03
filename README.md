@@ -13,9 +13,6 @@ Also [available for Visual Studio Code](https://github.com/kylebarron/language-s
 <!-- ![stata](./img/stata.png) -->
 Code snippet (mostly) from [Gtools](https://github.com/mcaceresb/stata-gtools), a faster implementation of Stata's collapse and egen using C plugins. Shown with the [Atom Material Syntax](https://github.com/atom-material/atom-material-syntax) theme and [Fira Code](https://github.com/tonsky/FiraCode) font. 
 
-
-Note: This is a new package that replaces the [previous](https://github.com/benwhalley/atom-language-stata) syntax highlighter. Please add [issues](https://github.com/kylebarron/language-stata/issues) for any bugs, comments, or suggestions.
-
 ## Features
 
 This package highlights:
@@ -33,6 +30,7 @@ Other nice features:
 - Local macro back tick autocompletion. When you write a `, Atom automatically fills in a ' after your cursor
 - Makes it easy to spot incorrect nesting of compound quotes
 - Support for programming ligatures for all valid Stata syntax for fonts that support them, like the [Fira Code](https://github.com/tonsky/FiraCode) font.
+- Highlights SQL queries used in the [`odbc`](https://www.stata.com/help.cgi?odbc) command. (The `language-sql` base package must be active.)
 - Highlights [Docblockr](https://atom.io/packages/docblockr)-style keywords inside comments (anything like `@Note`)
 
 ## Installation
