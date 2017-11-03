@@ -1631,11 +1631,11 @@
         'begin': '(\\()'
         'beginCaptures':
           '1':
-            'name': 'punctuation.string.group.stata'
+            'name': 'keyword.operator.group.stata'
         'end': '(\\))'
         'endCaptures':
           '1':
-            'name': 'punctuation.string.group.stata'
+            'name': 'keyword.operator.group.stata'
         'patterns': [
           {
             'include': '#ascii-regex-internals'
@@ -2014,6 +2014,16 @@
         'name': 'keyword.operator.or.stata'
       }
       {
+        'begin': '\\((?!\\?\\#|\\?=|\\?!|\\?<=|\\?<!)'
+        'end': '\\)'
+        'name': 'keyword.operator.group.stata'
+        'patterns': [
+          {
+            'include': '#unicode-regex-internals'
+          }
+        ]
+      }
+      {
         'begin': '\\(\\?\\#'
         'end': '\\)'
         'name': 'comment.block.stata'
@@ -2032,7 +2042,7 @@
         'begin': '(\\()((\\?=)|(\\?!)|(\\?<=)|(\\?<!))'
         'beginCaptures':
           '1':
-            'name': 'punctuation.definition.group.stata'
+            'name': 'keyword.operator.group.stata'
           '2':
             'name': 'punctuation.definition.group.assertion.stata'
           '3':
@@ -2046,7 +2056,7 @@
         'end': '(\\))'
         'endCaptures':
           '1':
-            'name': 'punctuation.definition.group.stata'
+            'name': 'keyword.operator.group.stata'
         'name': 'meta.group.assertion.stata'
         'patterns': [
           {
