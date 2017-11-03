@@ -1357,7 +1357,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1411,7 +1411,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1463,7 +1463,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1506,7 +1506,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1542,7 +1542,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1583,7 +1583,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1714,7 +1714,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1778,7 +1778,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1840,7 +1840,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1883,7 +1883,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1922,7 +1922,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1963,7 +1963,7 @@
                 'include': '#macro-global'
               }
               {
-                'include': '#builtin_functions'
+                'include': '#functions'
               }
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
