@@ -1208,6 +1208,11 @@
         'name': 'keyword.operator.arithmetic.stata'
       }
       {
+        'comment': 'match division operator but not path separator'
+        'match': '(?<![a-zA-Z.])\\\\(?![a-zA-Z.]|$)'
+        'name': 'keyword.operator.matrix.addrow.stata'
+      }
+      {
         'match': '\\|\\|'
         'name': 'keyword.operator.graphcombine.stata'
       }
