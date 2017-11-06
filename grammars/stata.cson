@@ -306,8 +306,12 @@
         'end': '(?=,)'
         'patterns': [
           {
-            'match': '\\[|\\]'
-            'name': 'punctuation.definition.parameters.stata'
+            'match': '\\['
+            'name': 'punctuation.definition.parameters.begin.stata'
+          }
+          {
+            'match': '\\]'
+            'name': 'punctuation.definition.parameters.end.stata'
           }
           {
             'match': 'varlist|varname|newvarlist|newvarname|namelist|name|anything|if|in|using|exp|fweight|aweight|pweight|iweight'
