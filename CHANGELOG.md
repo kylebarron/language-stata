@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.3] - 2017-11-11
+- Fix bugs created in 1.2.1
+    - Namely, fix the list of macro reserved names
+
 ## [1.2.2] - 2017-11-11
 - Fix bugs created in 1.2.1
 

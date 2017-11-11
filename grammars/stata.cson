@@ -108,7 +108,7 @@
       '2':
         'patterns': [
           {
-            'include': '#reserved_names'
+            'include': '#macro-reserved_names'
           }
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -133,7 +133,7 @@
       '2':
         'patterns': [
           {
-            'include': '#reserved_names'
+            'include': '#macro-reserved_names'
           }
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -151,7 +151,7 @@
     'end': '(?=\\s*\\{)'
     'patterns': [
       {
-        'include': '#reserved_names'
+        'include': '#macro-reserved_names'
       }
       {
         'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -191,7 +191,7 @@
         ]
     'patterns': [
       {
-        'include': '#reserved_names'
+        'include': '#macro-reserved_names'
       }
       {
         'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -371,7 +371,7 @@
               '1':
                 'patterns': [
                   {
-                    'include': '#reserved_names'
+                    'include': '#macro-reserved_names'
                   }
                   {
                     'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -837,7 +837,7 @@
         'end': '(\\})|(?=\\"|\\s|\\n|/|,|=)'
         'patterns': [
           {
-            'include': '#reserved_names'
+            'include': '#macro-reserved_names'
           }
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -884,7 +884,7 @@
         'end': '(?=\\"|\\s|\\n|/|,)'
         'patterns': [
           {
-            'include': '#reserved_names'
+            'include': '#macro-reserved_names'
           }
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
@@ -1444,6 +1444,17 @@
     'patterns': [
       {
         'match': '\\b(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with|[0-9][A-Za-z0-9_]+|[A-Za-z_][A-Za-z0-9_]{32,})\\b'
+        'name': 'invalid.illegal.name.stata'
+      }
+      {
+        'match': '[^a-zA-Z0-9_\'`\\$\\(\\)\\s]'
+        'name': 'invalid.illegal.name.stata'
+      }
+    ]
+  'macro-reserved_names':
+    'patterns': [
+      {
+        'match': '\\b([A-Za-z_][A-Za-z0-9_]{32,})\\b'
         'name': 'invalid.illegal.name.stata'
       }
       {
