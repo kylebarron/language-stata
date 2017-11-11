@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1] - 2017-11-10
+- Fix macro extended function bugs
+- Add macro checking to `foreach` and `syntax`
+- Restore name checking to `gen`
+- Fix bug for brackets before comma in the `syntax` command
+- Add `\` as an operator for use with matrices
+- Allow functions to be embedded within subscripts
+
 ## [1.2.0] - 2017-11-03
 - Color SQL queries used in the `odbc` command. (The `language-sql` base package must be active.)
 - Regex bug fixes and enhancements:
