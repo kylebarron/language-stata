@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.2] - 2017-11-11
+- Fix bugs created in 1.2.1
+
 ## [1.2.1] - 2017-11-10
 - Fix macro extended function bugs
 - Add macro checking to `foreach` and `syntax`
