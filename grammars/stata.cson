@@ -927,14 +927,11 @@
   'macro-extended-functions':
     'patterns': [
       {
-        'include': '#comments'
-      }
-      {
         'match': '\\b(properties)\\b'
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'match': '\\b(t(ype|yp|y)?|f(ormat|orma|orm|or|o)?|val(ue|u)?\\s+l(able|abl|ab|a)?|var(iable|iabl|iab|ia|i)?\\s+l(able|abl|ab|a)?|data\\s+l(able|abl|ab|a)?|sort(edby|edb|ed|e)?|lab(el|e)?|maxlength|constraint|char)\\b'
+        'match': '\\b(t(ype|yp|y)?|f(ormat|orma|orm|or|o)?|val(ue|u)?\\s+l(able|abl|ab|a)?|var(iable|iabl|iab|ia|i)?\\s+l(abel|abe|ab|a)?|data\\s+l(able|abl|ab|a)?|sort(edby|edb|ed|e)?|lab(el|e)?|maxlength|constraint|char)\\b'
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
@@ -954,8 +951,15 @@
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'match': '\\b(di(splay|spla|spl|sp|s)?)\\b'
-        'name': 'keyword.macro.extendedfcn.stata'
+        'begin': '\\b(display|displa|displ|disp|dis|di)\\b'
+        'end': '(?=//|\\n)'
+        'beginCaptures':
+          '0': 'keyword.macro.extendedfcn.stata'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
       }
       {
         'match': '\\b(list)\\b'
@@ -981,10 +985,6 @@
               }
               {
                 'include': '#macro-global'
-              }
-              {
-                'match': '.'
-                'name': 'entity.name.type.class.stata'
               }
             ]
       }
@@ -1012,26 +1012,44 @@
             'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'match': '\\b(subinstr\\s+(loc(al|a)?|gl(obal|oba|ob|o)?))\\s+([^\']+)'
-        'captures':
+        'begin': '\\b(subinstr\\s+(loc(al|a)?|gl(obal|oba|ob|o)?))\\s+([A-Za-z_][A-Za-z0-9_]{0,31})'
+        'end': '(?=//|\\n)'
+        'beginCaptures':
           '1':
             'name': 'keyword.macro.extendedfcn.stata'
           '5':
-            'patterns': [
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'match': '.'
+            'name': 'entity.name.type.class.stata'
+        'patterns': [
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#string-regular'
+          }
+          {
+            'match': '(count|coun|cou|co|c)(\\()(local|loca|loc|global|globa|glob|glo|gl)\\s+([A-Za-z_][A-Za-z0-9_]{0,31})(\\))'
+            'captures':
+              '1':
+                'name': 'support.function.builtin.stata'
+              '2':
+                'name': 'punctuation.definition.parameters.begin.stata'
+              '3':
+                'name': 'keyword.macro.extendedfcn.stata'
+              '4':
                 'name': 'entity.name.type.class.stata'
-              }
-            ]
+              '5':
+                'name': 'punctuation.definition.parameters.end.stata'
+          }
+        ]
+      }
+      {
+        'include': '#comments'
       }
       {
         'include': '#macro-local'
@@ -1078,7 +1096,7 @@
         'end': '\''
         'endCaptures':
           '0':
-            'name': 'punctuation.definition.blahblah.string.end.stata'
+            'name': 'punctuation.definition.string.end.stata'
         'patterns': [
           {
             'include': '$self'
@@ -1095,7 +1113,7 @@
         'end': '\''
         'endCaptures':
           '0':
-            'name': 'punctuation.definition.blahblah.string.end.stata'
+            'name': 'punctuation.definition.string.end.stata'
         'contentName': 'meta.macro-extended-function.stata'
         'patterns': [
           {
@@ -1112,6 +1130,35 @@
           }
           {
             'include': '#string-regular'
+          }
+        ]
+      }
+      {
+        'begin': '(`)(macval)(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.string.begin.stata'
+          '2':
+            'name': 'support.function.builtin.stata'
+          '3':
+            'name': 'punctuation.definition.parameters.begin.stata'
+        'end': '(\\))(\')'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.parameters.begin.stata'
+          '2':
+            'name': 'punctuation.definition.string.end.stata'
+        'contentName': 'meta.macro-extended-function.stata'
+        'patterns': [
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'entity.name.type.class.stata'
           }
         ]
       }
@@ -1394,6 +1441,9 @@
           }
           {
             'include': '#constants'
+          }
+          {
+            'include': '#functions'
           }
         ]
       }
