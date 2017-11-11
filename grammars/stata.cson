@@ -106,18 +106,46 @@
       '1':
         'name': 'keyword.control.flow.stata'
       '2':
-        'name': 'entity.name.type.class.stata'
+        'patterns': [
+          {
+            'include': '#reserved_names'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'entity.name.type.class.stata'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+        ]
       '3':
         'name': 'keyword.control.flow.stata'
-    'match': '\\b(foreach)\\s+([a-zA-Z0-9_]{1,31})\\s+(in|of var(list|lis|li|l)?|of new(list|lis|li|l)?|of num(list|lis|li|l)?)\\b'
+    'match': '\\b(foreach)\\s+((?!in|of).+)\\s+(in|of var(list|lis|li|l)?|of new(list|lis|li|l)?|of num(list|lis|li|l)?)\\b'
   }
   {
-    'begin': '\\b(foreach)\\s+([a-zA-Z0-9_]{1,31})\\s+(of loc(al|a)?|of glo(bal|ba|b)?)\\b\\s*'
+    'begin': '\\b(foreach)\\s+((?!in|of).+)\\s+(of loc(al|a)?|of glo(bal|ba|b)?)\\b\\s*'
     'beginCaptures':
       '1':
         'name': 'keyword.control.flow.stata'
       '2':
-        'name': 'entity.name.type.class.stata'
+        'patterns': [
+          {
+            'include': '#reserved_names'
+          }
+          {
+            'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+            'name': 'entity.name.type.class.stata'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+        ]
       '3':
         'name': 'keyword.control.flow.stata'
     'end': '(?=\\s*\\{)'
@@ -338,23 +366,37 @@
           }
           {
             'comment': 'color options with parentheses'
-            'begin': '([a-zA-Z_0-9]+)(\\()'
+            'begin': '([\\S]+)(\\()'
             'beginCaptures':
               '1':
+                'patterns': [
+                  {
+                    'include': '#reserved_names'
+                  }
+                  {
+                    'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
+                    'name': 'entity.name.type.class.stata'
+                  }
+                  {
+                    'include': '#macro-local'
+                  }
+                  {
+                    'include': '#macro-global'
+                  }
+                ]
                 'comment': 'these are the names that become macros'
-                'name': 'entity.name.type.class.stata'
               '2':
                 'name': 'keyword.operator.parentheses.stata'
-            'end': '(\\))'
+            'end': '\\)'
             'endCaptures':
-              '1':
+              '0':
                 'name': 'keyword.operator.parentheses.stata'
             'patterns': [
               {
                 'comment': 'the first word is often a type'
-                'match': '(integer|intege|integ|inte|int|real|string|strin|stri|str)'
+                'match': 'integer|intege|integ|inte|int|real|string|strin|stri|str'
                 'captures':
-                  '1':
+                  '0':
                     'name': 'support.type.stata'
               }
               {
