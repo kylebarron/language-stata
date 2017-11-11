@@ -366,7 +366,7 @@
           }
           {
             'comment': 'color options with parentheses'
-            'begin': '([\\S]+)(\\()'
+            'begin': '([^\\s\\[\\]]+)(\\()'
             'beginCaptures':
               '1':
                 'patterns': [
@@ -951,17 +951,6 @@
         'name': 'keyword.macro.extendedfcn.stata'
       }
       {
-        'begin': '\\b(display|displa|displ|disp|dis|di)\\b'
-        'end': '(?=//|\\n)'
-        'beginCaptures':
-          '0': 'keyword.macro.extendedfcn.stata'
-        'patterns': [
-          {
-            'include': '$self'
-          }
-        ]
-      }
-      {
         'match': '\\b(list)\\b'
         'name': 'keyword.macro.extendedfcn.stata'
       }
@@ -1056,6 +1045,9 @@
       }
       {
         'include': '#macro-global'
+      }
+      {
+        'include': '$self'
       }
     ]
   'macro-local-escaped':
