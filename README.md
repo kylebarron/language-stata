@@ -6,7 +6,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/kylebarron/language-stata.svg?style=social&label=Star)](https://github.com/kylebarron/language-stata)
 [![GitHub forks](https://img.shields.io/github/forks/kylebarron/language-stata.svg?style=social&label=Fork)](https://github.com/kylebarron/language-stata)
 
-Also [available for Visual Studio Code](https://github.com/kylebarron/language-stata/tree/vscode).
+Also [available for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=kylebarron.stata-enhanced).
 
 <img src="./img/stata.png" alt="stata" style="width: 500px;"/>
 
