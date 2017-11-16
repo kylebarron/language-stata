@@ -446,7 +446,7 @@
   }
   {
     'match':
-      '\\b(g(enerate|nerate|erate|erat|era|er|e)?|egen)\\s+((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)\\s+)?([^=\\s]+)\\s+((==)|(=))'
+      '\\b(g(enerate|enerat|enera|ener|ene|en|e)?|egen)\\s+((byte|int|long|float|double|str[1-9]?[0-9]?[0-9]?[0-9]?|strL)\\s+)?([^=\\s]+)\\s+((==)|(=))'
     'captures':
       '1':
         'name': 'keyword.functions.data.stata'
