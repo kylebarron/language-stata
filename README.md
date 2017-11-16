@@ -6,6 +6,9 @@
 [![GitHub stars](https://img.shields.io/github/stars/kylebarron/language-stata.svg?style=social&label=Star)](https://github.com/kylebarron/language-stata)
 [![GitHub forks](https://img.shields.io/github/forks/kylebarron/language-stata.svg?style=social&label=Fork)](https://github.com/kylebarron/language-stata)
 
+## News:
+The [stata-exec](https://atom.io/packages/stata-exec) package has been updated and now makes it extremely easy to run code in Stata on macOS.
+
 Also [available for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=kylebarron.stata-enhanced).
 
 <img src="./img/stata.png" alt="stata" style="width: 500px;"/>
