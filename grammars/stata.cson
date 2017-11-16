@@ -202,7 +202,7 @@
       }
       {
         'include': '#macro-global'
-      }      
+      }
     ]
   }
   {
@@ -294,11 +294,11 @@
       '1':
         'name': 'keyword.control.block.end.stata'
       '2':
-        'name': 'invalid.illegal.name.stata'  
+        'name': 'invalid.illegal.name.stata'
       '3':
         'name': 'keyword.control.block.end.stata'
       '4':
-        'name': 'invalid.illegal.name.stata'  
+        'name': 'invalid.illegal.name.stata'
       '5':
         'name': 'invalid.illegal.name.stata'
       '6':
@@ -348,7 +348,7 @@
           {
             'include': '$self'
           }
-        ]              
+        ]
       }
       {
         'comment': 'things to color after the comma'
@@ -430,7 +430,7 @@
   }
   {
     'match': '\\b(replace)\\s+([^=]+)\\s*((==)|(=))'
-    'captures': 
+    'captures':
       '1':
         'name': 'keyword.functions.data.stata'
       '2':
@@ -474,13 +474,13 @@
       '3':
         'name': 'support.type.stata'
   }
-  { 
-    'match': '\\b(la(bel|be|b)?)\\s+(da(ta|t)?|var(iable|iabl|iab|ia|i)?|de(f|fi|fin|fine)?|val(ues|ue|u)?|di(r)?|l(ist|is|i)?|copy|drop|save|lang(uage|uag|ua|u)?)\\b' 
-    'captures': 
-      '1': 
-        'name': 'keyword.functions.data.stata' 
-      '3': 
-        'name': 'keyword.functions.data.stata' 
+  {
+    'match': '\\b(la(bel|be|b)?)\\s+(da(ta|t)?|var(iable|iabl|iab|ia|i)?|de(f|fi|fin|fine)?|val(ues|ue|u)?|di(r)?|l(ist|is|i)?|copy|drop|save|lang(uage|uag|ua|u)?)\\b'
+    'captures':
+      '1':
+        'name': 'keyword.functions.data.stata'
+      '3':
+        'name': 'keyword.functions.data.stata'
   }
   {
     'begin': '\\b(drop|keep)\\b(?!\\s+(if|in)\\b)'
@@ -610,7 +610,7 @@
             'match': '(\\{|\\})'
             'name': 'keyword.operator.brace.stata'
           }
-        ]    
+        ]
       }
       {
         'begin': '\\b((abbrev|abs|acos|acosh|asin|asinh|atan|atan2|atanh|autocode|betaden|binomial|binomialp|binomialtail|binormalbofd|byteorder|c|cauchy|cauchyden|cauchytail|Cdhms|ceil|char|chi2|chi2den|chi2tail|Chms|cholesky|chop|clip|clock|Clock|cloglog|Cmdyhms|cofC|Cofc|cofd|Cofd|coleqnumb|collatorlocale|collatorversion|colnfreeparms|colnumb|colsof|comb|cond|corr|cos|cosh|daily|date|day|det|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|dhms|diag|diag0cnt|digamma|dofb|dofc|dofC|dofh|dofm|dofq|dofw|dofy|dow|doy|dunnettprob|e|el|epsdouble|epsfloat|exp|exponential|exponentialden|exponentialtail|F|Fden|fileexists|fileread|filereaderror|filewrite|float|floor|fmtwidth|Ftail|gammaden|gammap|gammaptail|get|hadamard|halfyear|halfyearly|hh|hhC|hms|hofd|hours|hypergeometric|hypergeometricp|I|ibeta|ibetatail|igaussian|igaussianden|igaussiantail|indexnot|inlist|inrange|int|inv|invbinomial|invbinomialtail|invcauchy|invcauchytail|invchi2|invchi2tail|invcloglog|invdunnettprob|invexponential|invexponentialtail|invF|invFtail|invgammap|invgammaptail|invibeta|invibetatail|invigaussian|invigaussiantail|invlaplace|invlaplacetail|invlogistic|invlogistictail|invlogit|invnbinomial|invnbinomialtail|invnchi2|invnchi2tail|invnF|invnFtail|invnibeta|invnormal|invnt|invnttail|invpoisson|invpoissontail|invsym|invt|invttail|invtukeyprob|invweibull|invweibullph|invweibullphtail|invweibulltail|irecode|issymmetric|itrim|J|laplace|laplaceden|laplacetail|length|ln|lncauchyden|lnfactorial|lngamma|lnigammaden|lnigaussianden|lniwishartden|lnlaplaceden|lnmvnormalden|lnnormal|lnnormalden|lnwishartden|log|log10|logistic|logisticden|logistictail|logit|lower|ltrim|matmissing|matrix|matuniform|max|maxbyte|maxdouble|maxfloat|maxint|maxlong|mdy|mdyhms|mi|min|minbyte|mindouble|minfloat|minint|minlong|minutes|missing|mm|mmC|mod|mofd|month|monthly|mreldif|msofhours|msofminutes|msofseconds|nbetaden|nbinomial|nbinomialp|nbinomialtail|nchi2|nchi2den|nchi2tail|nF|nFden|nFtail|nibeta|normal|normalden|npnchi2|npnF|npnt|nt|ntden|nttail|nullmat|plural|poisson|poissonp|poissontail|proper|qofd|quarter|quarterly|r|rbeta|rbinomial|rcauchy|rchi2|real|recode|regexs|reldif|replay|return|reverse|rexponential|rgamma|rhypergeometric|rigaussian|rlaplace|rlogistic|rnbinomial|rnormal|round|roweqnumb|rownfreeparms|rownumb|rowsof|rpoisson|rt|rtrim|runiform|runiformint|rweibull|rweibullph|s|scalar|seconds|sign|sin|sinh|smallestdouble|soundex|sqrt|ss|ssC|string|stritrim|strlen|strlower|strltrim|strmatch|strofreal|strpos|strproper|strreverse|strrpos|strrtrim|strtoname|strtrim|strupper|subinstr|subinword|substr|sum|sweep|t|tan|tanh|tc|tC|td|tden|th|tin|tm|tobytes|tq|trace|trigamma|trim|trunc|ttail|tukeyprob|tw|twithin|uchar|udstrlen|udsubstr|uisdigit|uisletter|upper|ustrcompare|ustrcompareex|ustrfix|ustrfrom|ustrinvalidcnt|ustrleft|ustrlen|ustrlower|ustrltrim|ustrnormalize|ustrpos|ustrregexs|ustrreverse|ustrright|ustrrpos|ustrrtrim|ustrsortkey|ustrsortkeyex|ustrtitle|ustrto|ustrtohex|ustrtoname|ustrtrim|ustrunescape|ustrupper|ustrword|ustrwordcount|usubinstr|usubstr|vec|vecdiag|week|weekly|weibull|weibullden|weibullph|weibullphden|weibullphtail|weibulltail|wofd|word|wordbreaklocale|wordcount|year|yearly|yh|ym|yofd|yq|yw)|([A-Za-z_][A-Za-z0-9_]{0,31}))(\\()'
@@ -645,7 +645,7 @@
           {
             'include': '$self'
           }
-        ]    
+        ]
       }
     ]
   'builtin_types':
@@ -826,7 +826,7 @@
                 'include': '#macro-extended-functions'
               }
             ]
-          }          
+          }
         ]
       }
       {
@@ -1283,9 +1283,9 @@
   'operators':
     'patterns': [
       {
-        'match': '\\+\\+|\\-\\-|\\+|\\-|\\*|\\^' 
+        'match': '\\+\\+|\\-\\-|\\+|\\-|\\*|\\^'
         'name': 'keyword.operator.arithmetic.stata'
-        'comment': '++ and -- must come first to support ligatures' 
+        'comment': '++ and -- must come first to support ligatures'
       }
       {
         'comment': 'match division operator but not path separator'
@@ -1310,8 +1310,8 @@
         'name': 'keyword.operator.comparison.stata'
       }
       {
-        'match': '\\(|\\)' 
-        'name': 'keyword.operator.parentheses.stata' 
+        'match': '\\(|\\)'
+        'name': 'keyword.operator.parentheses.stata'
       }
       {
         'match': '(##|#)'
@@ -1355,11 +1355,11 @@
             'name': 'punctuation.definition.string.end.stata'
         'name': 'string.quoted.double.compound.stata'
         'patterns': [
-          { 
-            'match': '"' 
-            'name': 'string.quoted.double.compound.stata' 
-            'comment': 'This must come before #string-regular and #string-compound to accurately color `"""\' in strings' 
-          } 
+          {
+            'match': '"'
+            'name': 'string.quoted.double.compound.stata'
+            'comment': 'This must come before #string-regular and #string-compound to accurately color `"""\' in strings'
+          }
           {
             'include': '#string-regular'
           }
@@ -1511,7 +1511,7 @@
               # }
               # Unknown if this helps. Regex not colored when regexm split over multiple lines as of 9/11/2017, 1:32:26 AM
             ]
-          '7': 
+          '7':
             'name': 'punctuation.definition.string.end.stata'
           '8':
             'name': 'invalid.illegal.punctuation.stata'
@@ -1565,7 +1565,7 @@
               # }
               # Unknown if this helps. Regex not colored when regexm split over multiple lines as of 9/11/2017, 1:32:26 AM
             ]
-          '7': 
+          '7':
             'name': 'punctuation.definition.string.end.stata'
           '8':
             'name': 'punctuation.definition.parameters.end.stata'
@@ -1601,7 +1601,7 @@
               }
               {
                 'include': '#comments'
-              }          
+              }
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -1613,7 +1613,7 @@
                 'include': '#ascii-regex-internals'
               }
             ]
-          '7': 
+          '7':
             'name': 'punctuation.definition.string.end.stata'
           '8':
             'name': 'invalid.illegal.punctuation.stata'
@@ -1644,10 +1644,10 @@
               }
               {
                 'include': '#comments-triple-slash'
-              }          
+              }
             ]
           '10':
-            'name': 'punctuation.definition.parameters.end.stata'      
+            'name': 'punctuation.definition.parameters.end.stata'
       }
       {
         'comment': 'color regexr with compound quotes i.e. `"text"\' '
@@ -1680,7 +1680,7 @@
               }
               {
                 'include': '#comments'
-              }          
+              }
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -1692,7 +1692,7 @@
                 'include': '#ascii-regex-internals'
               }
             ]
-          '7': 
+          '7':
             'name': 'punctuation.definition.string.end.stata'
           '8':
             'patterns': [
@@ -1721,10 +1721,10 @@
               }
               {
                 'include': '#comments-triple-slash'
-              }          
+              }
             ]
           '9':
-            'name': 'punctuation.definition.parameters.end.stata'      
+            'name': 'punctuation.definition.parameters.end.stata'
       }
     ]
   'ascii-regex-internals':
@@ -1879,7 +1879,7 @@
               # }
               # Unknown if this helps. Regex not colored when regexm split over multiple lines as of 9/11/2017, 1:32:26 AM
             ]
-          '7': 
+          '7':
             'name': 'punctuation.definition.string.end.stata'
           '8':
             'name': 'invalid.illegal.punctuation.stata'
@@ -1943,7 +1943,7 @@
               # }
               # Unknown if this helps. Regex not colored when regexm split over multiple lines as of 9/11/2017, 1:32:26 AM
             ]
-          '7': 
+          '7':
             'name': 'punctuation.definition.string.end.stata'
           '8':
             'patterns': [
@@ -1989,7 +1989,7 @@
               }
               {
                 'include': '#comments'
-              }          
+              }
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -2001,7 +2001,7 @@
                 'include': '#unicode-regex-internals'
               }
             ]
-          '7': 
+          '7':
             'name': 'punctuation.definition.string.end.stata'
           '8':
             'name': 'invalid.illegal.punctuation.stata'
@@ -2032,13 +2032,13 @@
               }
               {
                 'include': '#comments-triple-slash'
-              }          
+              }
               {
                 'include': '#constants'
               }
             ]
           '10':
-            'name': 'punctuation.definition.parameters.end.stata'      
+            'name': 'punctuation.definition.parameters.end.stata'
       }
       {
         'comment': 'color regexr with compound quotes i.e. `"text"\' '
@@ -2071,7 +2071,7 @@
               }
               {
                 'include': '#comments'
-              }          
+              }
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -2083,7 +2083,7 @@
                 'include': '#unicode-regex-internals'
               }
             ]
-          '7': 
+          '7':
             'name': 'punctuation.definition.string.end.stata'
           '8':
             'patterns': [
@@ -2112,13 +2112,13 @@
               }
               {
                 'include': '#comments-triple-slash'
-              }          
+              }
               {
                 'include': '#constants'
               }
             ]
           '9':
-            'name': 'punctuation.definition.parameters.end.stata'      
+            'name': 'punctuation.definition.parameters.end.stata'
       }
     ]
   'unicode-regex-internals':

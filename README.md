@@ -11,7 +11,7 @@ Also [available for Visual Studio Code](https://marketplace.visualstudio.com/ite
 <img src="./img/stata.png" alt="stata" style="width: 500px;"/>
 
 <!-- ![stata](./img/stata.png) -->
-Code snippet (mostly) from [Gtools](https://github.com/mcaceresb/stata-gtools), a faster implementation of Stata's collapse and egen using C plugins. Shown with the [Atom Material Syntax](https://github.com/atom-material/atom-material-syntax) theme and [Fira Code](https://github.com/tonsky/FiraCode) font. 
+Code snippet (mostly) from [Gtools](https://github.com/mcaceresb/stata-gtools), a faster implementation of Stata's collapse and egen using C plugins. Shown with the [Atom Material Syntax](https://github.com/atom-material/atom-material-syntax) theme and [Fira Code](https://github.com/tonsky/FiraCode) font.
 
 ## Features
 

@@ -40,12 +40,12 @@
 - Allow macros in `forvalues` loop statement, like ``forval i = `start_num' / `end_num' {``
 - Allow for local and global macros within regular expression match strings
 - Color `_all` as a constant
-- Include Mata functions from old [atom-language-stata](https://github.com/benwhalley/atom-language-stata) package 
+- Include Mata functions from old [atom-language-stata](https://github.com/benwhalley/atom-language-stata) package
 - `drop` and `keep` alert you if you type `drop varlist if` or `drop varlist in`. (It's only legal to use `if` or `in` without a _varlist_).
 
 ## [1.0.4] - 2017-10-02
 - Fix highlighting for global macro with braces inside loop
-- Now the `}` line can only be colored as error if there's text on that line and if there's at least one space before the `}`. 
+- Now the `}` line can only be colored as error if there's text on that line and if there's at least one space before the `}`.
 - Remove some deprecated functions
 - Turn off docblockr tag if appears immediately after word character
 - Show error for `gen var == 5`
@@ -64,7 +64,7 @@
 ## [1.0.0] - 2017-09-30
 ### Added
 - Unicode regex support. This includes support for the entire (or at least most) of the ICU regex engine.
-- Colors invalid escapes as illegal in the standard regex parser, like \w or \s. 
+- Colors invalid escapes as illegal in the standard regex parser, like \w or \s.
 
 ### Fixed
 - color regex functions within other functions
