@@ -1235,7 +1235,7 @@
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.string.begin.stata'
-        'end': '(?=\\"|\\s|\\n|/|,|\\$)'
+        'end': '(?=\\"|\\s|\\n|/|\\\\|,|\\$)'
         'endCaptures':
           '1':
             'name': 'punctuation.definition.string.end.stata'
@@ -1247,7 +1247,7 @@
             'include': '#macro-global'
           }
           {
-            'match': '[^`\'\\$\\{\\}\\"\\s\\n/,]+'
+            'match': '[^`\'\\$\\{\\}\\"\\s\\n/\\\\,]+'
             'name': 'entity.name.type.class.stata'
           }
         ]
