@@ -688,8 +688,7 @@
   'comments-block':
     'patterns': [
       {
-        'comment': 'There could be a * as a glob in a path'
-        'begin': '^/\\*|(?<=\\s)/\\*'
+        'begin': '/\\*'
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.comment.begin.stata'
