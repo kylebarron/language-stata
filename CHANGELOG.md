@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.4] - 2017-11-18
+- Fix `gen` command
+- Fix global macro coloring when using `\` as a path delimiter in strings. (i.e. `"$datadir\file.dta"`). Fixes [#52](https://github.com/kylebarron/language-stata/issues/52).
+- Allow for markdown code block in strings to not apply "macro" tags in specific situations. Allows e.g. `di "```stata"` as long as there's no `'` character in the text. Fixes [#53](https://github.com/kylebarron/language-stata/issues/53).
+
 ## [1.2.3] - 2017-11-11
 - Fix bugs created in 1.2.1
     - Namely, fix the list of macro reserved names
