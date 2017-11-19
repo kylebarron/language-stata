@@ -1361,6 +1361,12 @@
             'comment': 'This must come before #string-regular and #string-compound to accurately color `"""\' in strings'
           }
           {
+            'match': '```(?=[^\']*")'
+            'name': 'meta.markdown.code.block.stata'
+            'comment': 'color "```" as regular text, allowing for words after ```'
+            'comment': 'see https://github.com/kylebarron/language-stata/issues/53'
+          }
+          {
             'include': '#string-regular'
           }
           {
@@ -1396,6 +1402,12 @@
             'name': 'invalid.illegal.punctuation.stata'
         'name': 'string.quoted.double.stata'
         'patterns': [
+          {
+            'match': '```(?=[^\']*")'
+            'name': 'meta.markdown.code.block.stata'
+            'comment': 'color "```" as regular text, allowing for words after ```'
+            'comment': 'see https://github.com/kylebarron/language-stata/issues/53'
+          }
           {
             'include': '#macro-local-escaped'
           }
