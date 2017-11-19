@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.5] - 2017-11-18
+- allow /* to start a comment block anywhere, not just after whitespace. Fixes https://github.com/kylebarron/language-stata/issues/55
+
 ## [1.2.4] - 2017-11-18
 - Fix `gen` command
 - Fix global macro coloring when using `\` as a path delimiter in strings. (i.e. `"$datadir\file.dta"`). Fixes [#52](https://github.com/kylebarron/language-stata/issues/52).
