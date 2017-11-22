@@ -321,18 +321,18 @@
     'end': '\\n'
     'patterns': [
       {
-        'begin': '///'
-        'end': '\\n'
-        'name': 'comment.block.stata'
-      }
-      {
         'comment': 'color before the comma'
         'begin': 'syntax'
         'beginCaptures':
           '0':
             'name': 'keyword.functions.program.stata'
-        'end': '(?=,)'
+        'end': '(?=,|\\n)'
         'patterns': [
+          {
+            'begin': '///'
+            'end': '\\n'
+            'name': 'comment.block.stata'
+          }
           {
             'match': '\\['
             'name': 'punctuation.definition.parameters.begin.stata'
@@ -352,7 +352,6 @@
       }
       {
         'comment': 'things to color after the comma'
-        'comment': 'TODO: This can be improved to alert when new macros are created with illegal meaning'
         'begin': ','
         'beginCaptures':
           '0':
