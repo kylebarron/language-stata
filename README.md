@@ -7,7 +7,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/kylebarron/language-stata.svg?style=social&label=Fork)](https://github.com/kylebarron/language-stata)
 
 ## News:
-The [stata-exec](https://atom.io/packages/stata-exec) package has been updated and now makes it extremely easy to run code line-by-line in Stata on macOS.
+The [stata-exec](https://atom.io/packages/stata-exec) package has been updated and now makes it extremely easy to run code line-by-line in Stata on macOS and Linux.
 
 Also [available for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=kylebarron.stata-enhanced).
 
@@ -46,5 +46,5 @@ The local macro back tick autocompletion won't function until you fully restart 
 
 ## Running Code
 
-Check out the `script` or `stata-exec` packages. If you're using Linux, you can use my [scripts](https://github.com/kylebarron/stata-autokey) with the [Autokey](https://github.com/autokey-py3/autokey) automation utility to quickly run selections of your files in a graphical session of Stata.
+The [`stata-exec`](https://atom.io/packages/stata-exec) package has functionality to run code on macOS and Linux. Windows support is forthcoming.
 
