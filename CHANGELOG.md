@@ -1,7 +1,14 @@
 # Changelog
 
-## [1.2.6] - 2017-11-20
+## [1.2.8] - 2017-11-28
+- Fix syntax command. Fixes #61
+- Add some user-written commands. Fixes #64
+
+## [1.2.7] - 2017-11-20
 - allow there to be no spaces before = in gen command. Fixes https://github.com/kylebarron/language-stata/issues/59.
+
+## [1.2.6] - 2017-11-18
+- No changes
 
 ## [1.2.5] - 2017-11-18
 - allow /* to start a comment block anywhere, not just after whitespace. Fixes https://github.com/kylebarron/language-stata/issues/55
