@@ -6,7 +6,7 @@
 Also [available for Atom](https://github.com/kylebarron/language-stata).
 
 ![stata](./img/stata-vscode.png)
-Code snippet from [Gtools](https://github.com/mcaceresb/stata-gtools), a faster implementation of Stata's collapse and egen using C plugins. Shown with the [Material](https://marketplace.visualstudio.com/items?itemName=Equinusocio.vsc-material-theme) theme. 
+Code snippet from [Gtools](https://github.com/mcaceresb/stata-gtools), a faster implementation of Stata's collapse and egen using C plugins. Shown with the [Material](https://marketplace.visualstudio.com/items?itemName=Equinusocio.vsc-material-theme) theme.
 
 
 ## Features
@@ -40,4 +40,4 @@ ext install stata-enhanced
 
 This package doesn't have the capabilities to run your code in Stata. If you're using Linux, you can use my [scripts](https://github.com/kylebarron/stata-autokey) with the [Autokey](https://github.com/autokey-py3/autokey) automation utility to quickly run selections of your files in a graphical session of Stata.
 
-You might also be interested in trying to port Atom's `script` or `stata-exec` packages.
+You might also be interested in trying to port Atom's `stata-exec` package.
