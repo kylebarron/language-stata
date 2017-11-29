@@ -342,8 +342,24 @@
             'name': 'punctuation.definition.parameters.end.stata'
           }
           {
-            'match': 'varlist|varname|newvarlist|newvarname|namelist|name|anything|if|in|using|exp|fweight|aweight|pweight|iweight'
+            'match': '\\b(varlist|varname|newvarlist|newvarname|namelist|name|anything)\\b'
             'name': 'entity.name.type.class.stata'
+          }
+          {
+            'match': '\\b((if|in|using|fweight|aweight|pweight|iweight))\\b(/)?'
+            'captures':
+              '2':
+                'name': 'entity.name.type.class.stata'
+              '3':
+                'name': 'keyword.operator.arithmetic.stata'
+          }
+          {
+            'match': '(/)?(exp)'
+            'captures':
+              '1':
+                'name': 'keyword.operator.arithmetic.stata'
+              '2':
+                'name': 'entity.name.type.class.stata'
           }
           {
             'include': '#constants'
@@ -411,7 +427,7 @@
             'patterns': [
               {
                 'comment': 'the first word is often a type'
-                'match': 'integer|intege|integ|inte|int|real|string|strin|stri|str'
+                'match': '\\b(integer|intege|integ|inte|int|real|string|strin|stri|str)\\b'
                 'captures':
                   '0':
                     'name': 'support.type.stata'
