@@ -346,7 +346,25 @@
             'name': 'entity.name.type.class.stata'
           }
           {
-            'include': '$self'
+            'include': '#constants'
+          }
+          {
+            'include': '#operators'
+          }
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#string-regular'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'include': '#builtin_variables'
           }
         ]
       }
@@ -399,7 +417,25 @@
                     'name': 'support.type.stata'
               }
               {
-                'include': '$self'
+                'include': '#constants'
+              }
+              {
+                'include': '#operators'
+              }
+              {
+                'include': '#string-compound'
+              }
+              {
+                'include': '#string-regular'
+              }
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+              {
+                'include': '#builtin_variables'
               }
             ]
           }
@@ -409,7 +445,25 @@
             'name': 'entity.name.type.class.stata'
           }
           {
-            'include': '$self'
+            'include': '#constants'
+          }
+          {
+            'include': '#operators'
+          }
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#string-regular'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'include': '#builtin_variables'
           }
         ]
       }
