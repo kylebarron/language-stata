@@ -857,7 +857,8 @@
   'macro-commands':
     'patterns': [
       {
-        'begin': '\\b(loc(al|a)?|gl(obal|oba|ob|o)?)\\s+([a-zA-Z0-9_\'`\\$\\(\\)\\{\\}]+)\\s*(?=:|=)'
+        # 'begin': '\\b(loc(al|a)?|gl(obal|oba|ob|o)?)\\s+([a-zA-Z0-9_\'`\\$\\(\\)\\{\\}]+)'
+        'begin': '\\b(loc(al|a)?|gl(obal|oba|ob|o)?)\\s+([^\\s]+)\\s*?'
         'beginCaptures':
           '1':
             'name': 'keyword.macro.stata'
@@ -876,6 +877,11 @@
             ]
         'end': '\\n'
         'patterns': [
+          {
+            'begin': '///'
+            'end': '\\n'
+            'name': 'comment.block.stata'
+          }
           {
             'begin': '='
             'beginCaptures':
@@ -897,6 +903,31 @@
             'patterns': [
               {
                 'include': '#macro-extended-functions'
+              }
+            ]
+          }
+          {
+            'begin': '.'
+            'end': '(?=\\n)'
+            'patterns': [
+              {
+                'include': '#comments'
+              }
+              {
+                'include': '#macro-local'
+              }
+              {
+                'include': '#macro-global'
+              }
+              {
+                'include': '#string-compound'
+              }
+              {
+                'include': '#string-regular'
+              }
+              {
+                'match': '[^\\s\\n]'
+                'name': 'string.unquoted.stata'
               }
             ]
           }
