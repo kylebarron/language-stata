@@ -950,12 +950,18 @@
         ]
       }
       {
-        'begin': '\\b(tempvar|tempname|tempfile)\\s+(?=[a-zA-Z_`\\$])'
+        'begin': '\\b(tempvar|tempname|tempfile)\\s*(?=\\s)'
+        'comment': 'The \\s*(?=\\s) means that if you have `tempvar\\n`, the next line won\'t be colored as a macro. This is because the newline character is whitespace, so you have to let the \\n be caught by the end pattern.'
         'beginCaptures':
           '1':
             'name': 'keyword.macro.stata'
-        'end': '(?=\\"|\\s|\\n|/|,)'
+        'end': '\\n'
         'patterns': [
+          {
+            'begin': '///'
+            'end': '\\n'
+            'name': 'comment.block.stata'
+          }
           {
             'include': '#macro-reserved_names'
           }
@@ -972,12 +978,22 @@
         ]
       }
       {
-        'begin': '\\b(ma(cro|cr|c)?)\\s+(drop|l(ist|is|i)?)'
+        'begin': '\\b(ma(cro|cr|c)?)\\s+(drop|l(ist|is|i)?)\\s*(?=\\s)'
+        'comment': 'The \\s*(?=\\s) means that if you have `tempvar\\n`, the next line won\'t be colored as a macro. This is because the newline character is whitespace, so you have to let the \\n be caught by the end pattern.'
         'beginCaptures':
           '0':
             'name': 'keyword.macro.stata'
-        'end': '(?=\\n)'
+        'end': '\\n'
         'patterns': [
+          {
+            'begin': '///'
+            'end': '\\n'
+            'name': 'comment.block.stata'
+          }
+          {
+            'match': '\\*'
+            'name': 'keyword.operator.arithmetic.stata'
+          }
           {
             'include': '#constants'
           }
