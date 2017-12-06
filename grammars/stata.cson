@@ -15,13 +15,13 @@
     'include': '#unicode-regex-functions'
   }
   {
+    'include': '#constants'
+  }
+  {
     'include': '#functions'
   }
   {
     'include': '#comments'
-  }
-  {
-    'include': '#constants'
   }
   {
     'include': '#subscripts'
@@ -842,7 +842,7 @@
   'docblockr-comment':
     'patterns': [
       {
-        'match': '(?<!\\w)(@(error|ERROR))\\b'
+        'match': '(?<!\\w)(@(error|ERROR|Error))\\b'
         'captures':
           '1':
             'name': 'invalid.illegal.name.stata'
@@ -1345,6 +1345,9 @@
   'constants':
     'patterns': [
       {
+        'include': '#factorvariables'
+      }
+      {
         'match': '\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))(?=[^a-zA-Z_])'
         'name': 'constant.numeric.float.stata'
       }
@@ -1367,6 +1370,74 @@
       {
         'match': '\\b_all\\b'
         'name': 'constant.language.allvars.stata'
+      }
+    ]
+  'factorvariables':
+    'patterns': [
+      {
+        'match': '\\b(i|c|o)\\.(?=[a-zA-Z_]|\\([a-zA-Z_])'
+        'name': 'constant.language.factorvars.stata'
+      }
+      {
+        'match': '\\b(i?b)((\\d+)|n)\\.(?=[a-zA-Z_]|\\([a-zA-Z_])'
+        'captures':
+          '0':
+            'name': 'constant.language.factorvars.stata'
+          '3':
+            'patterns': [
+              {
+                'include': '#constants'
+              }
+            ]
+      }
+      {
+        'match': '\\b(i?b)(\\()(#\\d+|first|last|freq)(\\))\\.(?=[a-zA-Z_]|\\([a-zA-Z_])'
+        'captures':
+          '0':
+            'name': 'constant.language.factorvars.stata'
+          '2':
+            'name': 'keyword.operator.parentheses.stata'
+          '3':
+            'patterns': [
+              {
+                'include': '#constants'
+              }
+              {
+                'include': '#operators'
+              }
+            ]
+          '4':
+            'name': 'keyword.operator.parentheses.stata'
+      }
+      {
+        'match': '\\b(i?o?)(\\d+)\\.(?=[a-zA-Z_]|\\([a-zA-Z_])'
+        'captures':
+          '0':
+            'name': 'constant.language.factorvars.stata'
+          '2':
+            'patterns': [
+              {
+                'include': '#constants'
+              }
+            ]
+      }
+      {
+        'match': '\\b(i?o?)(\\()(.*?)(\\))(\\.)(?=[a-zA-Z_]|\\([a-zA-Z_])'
+        'captures':
+          '1':
+            'name': 'constant.language.factorvars.stata'
+          '2':
+            'name': 'keyword.operator.parentheses.stata'
+          '3':
+            'patterns': [
+              {
+                'include': '$self'
+              }
+            ]
+          '4':
+            'name': 'keyword.operator.parentheses.stata'
+          '5':
+            'name': 'constant.language.factorvars.stata'
       }
     ]
   'operators':
