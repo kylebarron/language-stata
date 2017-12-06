@@ -544,6 +544,79 @@
         'name': 'support.type.stata'
   }
   {
+    'match': '\\b(la(bel|be|b)?)\\s+(var(iable|iabl|iab|ia|i)?)\\s+([a-zA-Z_][0-9a-zA-Z_]+)\\s+(`")(.+)("\')'
+    'captures':
+      '1':
+        'name': 'keyword.functions.data.stata'
+      '3':
+        'name': 'keyword.functions.data.stata'
+      '6':
+        'name': 'punctuation.definition.string.begin.stata'
+      '7':
+        'patterns': [
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#macro-local-escaped'
+          }
+          {
+            'include': '#macro-global-escaped'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'match': '[^`\\$]{81,}'
+            'name': 'invalid.illegal.name.stata'
+          }
+          {
+            'match': '.'
+            'name': 'string.quoted.double.compound.stata'
+          }
+        ]
+      '8':
+        'name': 'punctuation.definition.string.begin.stata'
+  }
+  {
+    'match': '\\b(la(bel|be|b)?)\\s+(var(iable|iabl|iab|ia|i)?)\\s+([a-zA-Z_][0-9a-zA-Z_]+)\\s+(")(.+)(")'
+    'captures':
+      '1':
+        'name': 'keyword.functions.data.stata'
+      '3':
+        'name': 'keyword.functions.data.stata'
+      '6':
+        'name': 'punctuation.definition.string.begin.stata'
+      '7':
+        'patterns': [
+          {
+            'include': '#macro-local-escaped'
+          }
+          {
+            'include': '#macro-global-escaped'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'match': '[^`\\$]{81,}'
+            'name': 'invalid.illegal.name.stata'
+          }
+          {
+            'match': '.'
+            'name': 'string.quoted.double.stata'
+          }
+        ]
+      '8':
+        'name': 'punctuation.definition.string.begin.stata'
+  }
+  {
     'match': '\\b(la(bel|be|b)?)\\s+(da(ta|t)?|var(iable|iabl|iab|ia|i)?|de(f|fi|fin|fine)?|val(ues|ue|u)?|di(r)?|l(ist|is|i)?|copy|drop|save|lang(uage|uag|ua|u)?)\\b'
     'captures':
       '1':
