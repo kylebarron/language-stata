@@ -644,6 +644,9 @@
       {
         'include': '#macro-global'
       }
+      {
+        'include': '#operators'
+      }
     ]
   }
   {
