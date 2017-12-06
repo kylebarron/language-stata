@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.0] - 2017-12-06
+- Add support for factor variables. Fixes #70
+- Fix coloring for macro functions that take multiple new macros as arguments, i.e. `tempvar`, `tempfile`, and `tempname`. Fixes #71
+- Add regex functions to autocomplete. Fixes #69
+- Alert when variable labels are >80 characters. Fixes #72
+
 ## [1.2.8] - 2017-11-28
 - Fix syntax command. Fixes #61
 - Add some user-written commands. Fixes #64
