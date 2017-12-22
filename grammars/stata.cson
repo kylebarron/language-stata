@@ -902,7 +902,7 @@
         'captures':
           '0':
             'name': 'punctuation.definition.comment.stata'
-        'begin': '(//)'
+        'begin': '((?<!:)//)'
         'end': '(?=\\n)'
         'name': 'comment.line.double-slash.stata'
         'patterns': [
