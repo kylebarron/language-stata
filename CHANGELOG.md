@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.1] - 2018-02-26
+- Don't alert for error around braces (`{}`) inside function calls
+
 ## [1.3.0] - 2017-12-06
 - Add support for factor variables. Fixes #70
 - Fix coloring for macro functions that take multiple new macros as arguments, i.e. `tempvar`, `tempfile`, and `tempname`. Fixes #71
