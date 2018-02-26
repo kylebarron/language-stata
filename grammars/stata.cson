@@ -268,52 +268,7 @@
       '1': 'keyword.functions.data.stata.test'
   }
   {
-    'comment': ' If you put braces following the if or else, (same with foreach, etc)
-        1.  the open brace must appear on the same line as the if or else;
-        2.  nothing may follow the open brace except, of course, comments;
-            the first command to be executed must appear on a new line;
-        3.  the close brace must appear on a line by itself.'
-    'begin': '(\\{)\\s*([^\\n]*)(?=\\n)'
-    'beginCaptures':
-      '1':
-        'name': 'keyword.control.block.begin.stata'
-      '2':
-        'patterns': [
-          {
-            'include': '#comments'
-          }
-          {
-            'match': '[^\\n]+'
-            'name': 'illegal.invalid.name.stata'
-          }
-        ]
-    'comment': 'It\'s a complicated regex so that it\'ll alert you if you have text on the same line as the }'
-    'comment': 'correct with nothing else on the line but whitespace; before and after; before; after; correct'
-    'end': '^\\s*(\\})\\s*$|^\\s*([^\\*"\\}]+)\\s+(\\})\\s*([^\\*"\\}/\\n]+)|^\\s*([^"\\*\\}]+)\\s+(\\})|\\s*(\\})\\s*([^"\\*\\}/\\n]+)|(\\})$'
-    'endCaptures':
-      '1':
-        'name': 'keyword.control.block.end.stata'
-      '2':
-        'name': 'invalid.illegal.name.stata'
-      '3':
-        'name': 'keyword.control.block.end.stata'
-      '4':
-        'name': 'invalid.illegal.name.stata'
-      '5':
-        'name': 'invalid.illegal.name.stata'
-      '6':
-        'name': 'keyword.control.block.end.stata'
-      '7':
-        'name': 'keyword.control.block.end.stata'
-      '8':
-        'name': 'invalid.illegal.name.stata'
-      '9':
-        'name': 'keyword.control.block.end.stata'
-    'patterns': [
-      {
-        'include': '$self'
-      }
-    ]
+    'include': '#braces-with-error'
   }
   # Start manual functions:
   {
@@ -736,28 +691,6 @@
   'functions':
     'patterns': [
       {
-        'comment': 'This is for outreg'
-        'begin': '\\b(spacebef|spaceaft)(\\()'
-        'beginCaptures':
-          '1':
-            'name': 'support.function.option.outreg.stata'
-          '2':
-            'name': 'punctuation.definition.parameters.begin.stata'
-        'end': '(\\))'
-        'endCaptures':
-          '1':
-            'name': 'punctuation.definition.parameters.end.stata'
-        'patterns': [
-          {
-            'include': '#constants'
-          }
-          {
-            'match': '(\\{|\\})'
-            'name': 'keyword.operator.brace.stata'
-          }
-        ]
-      }
-      {
         'begin': '\\b((abbrev|abs|acos|acosh|asin|asinh|atan|atan2|atanh|autocode|betaden|binomial|binomialp|binomialtail|binormalbofd|byteorder|c|cauchy|cauchyden|cauchytail|Cdhms|ceil|char|chi2|chi2den|chi2tail|Chms|cholesky|chop|clip|clock|Clock|cloglog|Cmdyhms|cofC|Cofc|cofd|Cofd|coleqnumb|collatorlocale|collatorversion|colnfreeparms|colnumb|colsof|comb|cond|corr|cos|cosh|daily|date|day|det|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|dhms|diag|diag0cnt|digamma|dofb|dofc|dofC|dofh|dofm|dofq|dofw|dofy|dow|doy|dunnettprob|e|el|epsdouble|epsfloat|exp|exponential|exponentialden|exponentialtail|F|Fden|fileexists|fileread|filereaderror|filewrite|float|floor|fmtwidth|Ftail|gammaden|gammap|gammaptail|get|hadamard|halfyear|halfyearly|hh|hhC|hms|hofd|hours|hypergeometric|hypergeometricp|I|ibeta|ibetatail|igaussian|igaussianden|igaussiantail|indexnot|inlist|inrange|int|inv|invbinomial|invbinomialtail|invcauchy|invcauchytail|invchi2|invchi2tail|invcloglog|invdunnettprob|invexponential|invexponentialtail|invF|invFtail|invgammap|invgammaptail|invibeta|invibetatail|invigaussian|invigaussiantail|invlaplace|invlaplacetail|invlogistic|invlogistictail|invlogit|invnbinomial|invnbinomialtail|invnchi2|invnchi2tail|invnF|invnFtail|invnibeta|invnormal|invnt|invnttail|invpoisson|invpoissontail|invsym|invt|invttail|invtukeyprob|invweibull|invweibullph|invweibullphtail|invweibulltail|irecode|issymmetric|itrim|J|laplace|laplaceden|laplacetail|length|ln|lncauchyden|lnfactorial|lngamma|lnigammaden|lnigaussianden|lniwishartden|lnlaplaceden|lnmvnormalden|lnnormal|lnnormalden|lnwishartden|log|log10|logistic|logisticden|logistictail|logit|lower|ltrim|matmissing|matrix|matuniform|max|maxbyte|maxdouble|maxfloat|maxint|maxlong|mdy|mdyhms|mi|min|minbyte|mindouble|minfloat|minint|minlong|minutes|missing|mm|mmC|mod|mofd|month|monthly|mreldif|msofhours|msofminutes|msofseconds|nbetaden|nbinomial|nbinomialp|nbinomialtail|nchi2|nchi2den|nchi2tail|nF|nFden|nFtail|nibeta|normal|normalden|npnchi2|npnF|npnt|nt|ntden|nttail|nullmat|plural|poisson|poissonp|poissontail|proper|qofd|quarter|quarterly|r|rbeta|rbinomial|rcauchy|rchi2|real|recode|regexs|reldif|replay|return|reverse|rexponential|rgamma|rhypergeometric|rigaussian|rlaplace|rlogistic|rnbinomial|rnormal|round|roweqnumb|rownfreeparms|rownumb|rowsof|rpoisson|rt|rtrim|runiform|runiformint|rweibull|rweibullph|s|scalar|seconds|sign|sin|sinh|smallestdouble|soundex|sqrt|ss|ssC|string|stritrim|strlen|strlower|strltrim|strmatch|strofreal|strpos|strproper|strreverse|strrpos|strrtrim|strtoname|strtrim|strupper|subinstr|subinword|substr|sum|sweep|t|tan|tanh|tc|tC|td|tden|th|tin|tm|tobytes|tq|trace|trigamma|trim|trunc|ttail|tukeyprob|tw|twithin|uchar|udstrlen|udsubstr|uisdigit|uisletter|upper|ustrcompare|ustrcompareex|ustrfix|ustrfrom|ustrinvalidcnt|ustrleft|ustrlen|ustrlower|ustrltrim|ustrnormalize|ustrpos|ustrregexs|ustrreverse|ustrright|ustrrpos|ustrrtrim|ustrsortkey|ustrsortkeyex|ustrtitle|ustrto|ustrtohex|ustrtoname|ustrtrim|ustrunescape|ustrupper|ustrword|ustrwordcount|usubinstr|usubstr|vec|vecdiag|week|weekly|weibull|weibullden|weibullph|weibullphden|weibullphtail|weibulltail|wofd|word|wordbreaklocale|wordcount|year|yearly|yh|ym|yofd|yq|yw)|([A-Za-z_][A-Za-z0-9_]{0,31}))(\\()'
         'beginCaptures':
           '2':
@@ -788,7 +721,34 @@
             'name': 'variable.parameter.function.stata'
           }
           {
-            'include': '$self'
+            'include': '#constants'
+          }
+          {
+            'include': '#comments'
+          }
+          {
+            'include': '#operators'
+          }
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
+          {
+            'include': '#string-compound'
+          }
+          {
+            'include': '#string-regular'
+          }
+          {
+            'include': '#builtin_variables'
+          }
+          {
+            'include': '#macro-commands'
+          }
+          {
+            'include': '#braces-without-error'
           }
         ]
       }
@@ -805,6 +765,70 @@
       {
         'match': '\\b(_b|_coef|_cons|_n|_N|_rc|_se)\\b'
         'name': 'variable.object.stata'
+      }
+    ]
+  'braces-without-error':
+    'patterns': [
+      {
+        'begin': '\\{'
+        'beginCaptures':
+          '0':
+            'name': 'keyword.control.block.begin.stata'
+        'end': '\\}'
+        'endCaptures':
+          '0':
+            'name': 'keyword.control.block.end.stata'
+      }
+    ]
+  'braces-with-error':
+    'patterns': [
+      {
+        'comment': ' If you put braces following the if or else, (same with foreach, etc)
+            1.  the open brace must appear on the same line as the if or else;
+            2.  nothing may follow the open brace except, of course, comments;
+                the first command to be executed must appear on a new line;
+            3.  the close brace must appear on a line by itself.'
+        'begin': '(\\{)\\s*([^\\n]*)(?=\\n)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.control.block.begin.stata'
+          '2':
+            'patterns': [
+              {
+                'include': '#comments'
+              }
+              {
+                'match': '[^\\n]+'
+                'name': 'illegal.invalid.name.stata'
+              }
+            ]
+        'comment': 'It\'s a complicated regex so that it\'ll alert you if you have text on the same line as the }'
+        'comment': 'correct with nothing else on the line but whitespace; before and after; before; after; correct'
+        'end': '^\\s*(\\})\\s*$|^\\s*([^\\*"\\}]+)\\s+(\\})\\s*([^\\*"\\}/\\n]+)|^\\s*([^"\\*\\}]+)\\s+(\\})|\\s*(\\})\\s*([^"\\*\\}/\\n]+)|(\\})$'
+        'endCaptures':
+          '1':
+            'name': 'keyword.control.block.end.stata'
+          '2':
+            'name': 'invalid.illegal.name.stata'
+          '3':
+            'name': 'keyword.control.block.end.stata'
+          '4':
+            'name': 'invalid.illegal.name.stata'
+          '5':
+            'name': 'invalid.illegal.name.stata'
+          '6':
+            'name': 'keyword.control.block.end.stata'
+          '7':
+            'name': 'keyword.control.block.end.stata'
+          '8':
+            'name': 'invalid.illegal.name.stata'
+          '9':
+            'name': 'keyword.control.block.end.stata'
+        'patterns': [
+          {
+            'include': '$self'
+          }
+        ]
       }
     ]
   'commands-other':
