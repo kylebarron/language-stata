@@ -1,0 +1,18 @@
+{
+  "name": "the_language_name",
+  "rules": {
+    "source_file": {
+      "type": "STRING",
+      "value": "hello"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "externals": [],
+  "inline": []
+}

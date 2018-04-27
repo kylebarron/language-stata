@@ -12,5 +12,8 @@
   ],
   "engines": {
     "atom": ">=0.1.0"
+  },
+  "dependencies": {
+    "tree-sitter-cli": "^0.10.2"
   }
 }
