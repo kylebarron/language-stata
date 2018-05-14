@@ -878,6 +878,9 @@
           {
             'include': '#comments-block'
           }
+          {
+            'include': '#docstring'
+          }
         ]
       }
     ]
@@ -952,6 +955,31 @@
         'captures':
           '1':
             'name': 'keyword.docblockr.stata'
+      }
+    ]
+  'docstring':
+    'patterns': [
+      {
+        'begin': "'''"
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.stata'
+        'end': "'''"
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.stata'
+        'name': 'string.quoted.docstring.stata'
+      }
+      {
+        'begin': '"""'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.stata'
+        'end': '"""'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.stata'
+        'name': 'string.quoted.docstring.stata'
       }
     ]
   'macro-commands':
