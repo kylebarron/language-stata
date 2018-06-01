@@ -149,7 +149,4 @@
     'end': '<</dd_remove>>'
     'name': 'comment.block.dyndoc.stata'
   }
-  {
-    'include': 'text.md'
-  }
 ]
