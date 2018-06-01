@@ -33,7 +33,7 @@
         'name': 'punctuation.definition.tag.end.html'
       '6':
         'name': 'invalid.illegal.name.dyndoc.stata'
-    'end': '(<</)(dd_do)(>>)'
+    'end': '(<</)(dd_do)(>>)([^\r\n]*)?'
     'endCaptures':
       '1':
         'name': 'punctuation.definition.tag.begin.html'
@@ -41,6 +41,8 @@
         'name': 'entity.name.tag.block.$2.html'
       '3':
         'name': 'punctuation.definition.tag.end.html'
+      '4':
+        'name': 'invalid.illegal.name.dyndoc.stata'
     'name': 'meta.tag.block.$2.html'
     'patterns': [
       {
@@ -96,7 +98,7 @@
         'name': 'punctuation.definition.tag.end.html'
       '4':
         'name': 'invalid.illegal.name.dyndoc.stata'
-    'end': '(<</)(dd_ignore)(>>)'
+    'end': '(<</)(dd_ignore)(>>)([^\r\n]*)?'
     'endCaptures':
       '1':
         'name': 'punctuation.definition.tag.begin.html'
@@ -104,6 +106,8 @@
         'name': 'entity.name.tag.block.$2.html'
       '3':
         'name': 'punctuation.definition.tag.end.html'
+      '4':
+        'name': 'invalid.illegal.name.dyndoc.stata'
     'name': 'meta.tag.block.$2.html'
     'patterns': [
       {
