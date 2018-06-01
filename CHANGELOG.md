@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.4.1] - 2018-06-01
+
+- Add note to README that language-latex and language-markdown must be installed for dynamic documents syntax highlighting to work
+
 ## [1.4.0] - 2018-06-01
 
 - Update to highlight dynamic documents in Markdown and LaTeX
