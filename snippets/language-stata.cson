@@ -5,6 +5,20 @@
   'do-file Header':
     'prefix': 'dohead'
     'body': '// ${1:description}\n\nversion 14.1\n$0'
+  'else':
+    'prefix': 'else'
+    'body':
+      """else {
+          $1
+      }
+      """
+  'else if':
+    'prefix': 'elif'
+    'body':
+      """else if (${1:exp}) {
+          $2
+      }
+      """
   'export excel':
     'prefix': 'export exc'
     'body': 'export excel${1: varlist} using ${2:filename}${3: if $4}${5: in $6}${7:,${8: sheet("${9:sheetname}")}${10: cell(${11:start})}${12| sheetmodify, sheetreplace, replace|}${13: firstrow(${14|variables,varlabels|})}${15: nolabel}${16: datestring("${17:datetime_format}")}${18: missing("${19:repval}")}${20: locale("${21:locale}")}}'
@@ -14,9 +28,71 @@
   'forvalues':
     'prefix': 'forv'
     'body': 'forvalues ${1:lname} = ${2:range} {\n\t$0\n}'
+  'if':
+    'prefix': 'if'
+    'body':
+      """if (${1:exp}) {
+          $2
+      }
+      """
   'import excel':
     'prefix': 'import exc'
     'body': 'import excel${1: extvarlist} using ${2:filename}${3:,${4: describe}${5:${6: sheet("${7:sheetname}")}${8: cellrange(${9:start}${10::end})}${11: firstrow}${12: case(${13|preserve,lower,upper|})}${14: allstring}${15: clear}${16: locale("${17:locale}")}}}'
   'mixed':
     'prefix': 'mix'
     'body': 'mixed ${1:dv} ${2:fixed} || ${3:nesting}: ${4:reffects}, '
+  'program':
+    'prefix': 'program'
+    'body':
+      """cap program drop ${1:program_name}
+      program ${1:program_name}
+          $2
+      end
+      """
+'.source.dyndoc.stata':
+  'dd_do':
+    'prefix': 'dd_do'
+    'body':
+      """<<dd_do>>
+      $1
+      <</dd_do>>
+      """
+  'dd_display':
+    'prefix': 'dd_display'
+    'body': '<<dd_display: $1>>'
+  'dd_graph':
+    'prefix': 'dd_graph'
+    'body': '<<dd_graph: $1>>'
+  'dd_ignore':
+    'prefix': 'dd_ignore'
+    'body':
+      """<<dd_ignore>>
+      $1
+      <</dd_ignore>>
+      """
+  'dd_include':
+    'prefix': 'dd_include'
+    'body':
+      """<<dd_include: ${1:filename}>>
+      """
+  'dd_remove':
+    'prefix': 'dd_remove'
+    'body':
+      """<<dd_remove>>
+      $1
+      <</dd_remove>>
+      """
+  'dd_skip_if':
+    'prefix': 'dd_skip_if'
+    'body':
+      """<<dd_skip_if: ${1:exp}>>
+      $2
+      ${3:<<dd_skip_else>>}
+      $4
+      <<dd_skip_end>>
+      """
+  'dd_version':
+    'prefix': 'dd_version'
+    'body':
+      """<<dd_version: ${1:1}>>
+      """

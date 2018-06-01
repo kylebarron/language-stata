@@ -1,0 +1,164 @@
+'scopeName': 'source.dyndoc.stata'
+'name': 'Stata Dyndoc'
+'fileTypes': [
+  'domd'
+]
+'foldingStartMarker': '\\{\\s*$'
+'foldingStopMarker': '^\\s*\\}'
+'patterns': [
+  {
+    'begin': '^\\s*([`~]{3,})(stata)?$',
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.md'
+    'end': '^\\s*(\\1)$',
+    'endCaptures':
+      '1':
+        'name': 'punctuation.md'
+    'name': 'fenced.code.md'
+    'patterns': [
+      {
+        'include': '#dd_do'
+      }
+    ]
+  }
+  {
+    'include': '#dd_do'
+  }
+  {
+    'begin': '(<<)(dd_display|dd_graph)(:)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.block.$2.html'
+      '3':
+        'name': 'punctuation.separator.key-value.dyndoc.stata'
+    'end': '(>>)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.end.html'
+    'name': 'meta.tag.block.$2.html'
+    'patterns': [
+      {
+        'include': 'source.stata'
+      }
+    ]
+  }
+  {
+    'begin': '(<<)(dd_include|dd_skip_if)(:)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.block.$2.html'
+      '3':
+        'name': 'punctuation.separator.key-value.dyndoc.stata'
+    'end': '(>>)([^\r\n]*)?'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.end.html'
+      '2':
+        'name': 'invalid.illegal.name.dyndoc.stata'
+    'name': 'meta.tag.block.$2.html'
+  }
+  {
+    'begin': '(<<)(dd_ignore)(>>)([^\r\n]*)?'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.block.$2.html'
+      '3':
+        'name': 'punctuation.definition.tag.end.html'
+      '4':
+        'name': 'invalid.illegal.name.dyndoc.stata'
+    'end': '(<</)(dd_ignore)(>>)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.block.$2.html'
+      '3':
+        'name': 'punctuation.definition.tag.end.html'
+    'name': 'meta.tag.block.$2.html'
+    'patterns': [
+      {
+        'include': 'source.stata'
+      }
+    ]
+  }
+  {
+    'match': '(<<)(dd_skip_else|dd_skip_end)(>>)'
+    'Captures':
+      '1':
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.block.$2.html'
+      '3':
+        'name': 'punctuation.separator.key-value.dyndoc.stata'
+    'name': 'meta.tag.block.$2.html'
+  }
+  {
+    'begin': '<<dd_remove>>'
+    'captures':
+      '0':
+        'name': 'punctuation.definition.comment.dyndoc.stata'
+    'end': '<</dd_remove>>'
+    'name': 'comment.block.dyndoc.stata'
+  }
+  {
+    'include': 'text.md'
+  }
+]
+'repository':
+  'dd_do':
+    'patterns': [
+      {
+        'begin': '(<<)(dd_do)(:)?([^>]+)?(>>)([^\r\n]*)?'
+        'beginCaptures':
+          '1':
+            'name': 'punctuation.definition.tag.begin.html'
+          '2':
+            'name': 'entity.name.tag.block.$2.html'
+          '3':
+            'name': 'punctuation.separator.key-value.dyndoc.stata'
+          '4':
+            'patterns': [
+              {
+                'match': 'quietly|quietl|quiet|quie|qui'
+                'name': 'keyword.control.flow.dyndoc.stata'
+              }
+              {
+                'match': 'nocommands|nocommand|nocomman|nocomma|nocomm|nocom'
+                'name': 'keyword.control.flow.dyndoc.stata'
+              }
+              {
+                'match': 'nooutput|nooutpu|nooutp|noout'
+                'name': 'keyword.control.flow.dyndoc.stata'
+              }
+              {
+                'match': 'noprompt|nopromp|noprom'
+                'name': 'keyword.control.flow.dyndoc.stata'
+              }
+            ]
+          '5':
+            'name': 'punctuation.definition.tag.end.html'
+          '6':
+            'name': 'invalid.illegal.name.dyndoc.stata'
+        'end': '(<</)(dd_do)(>>)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.tag.begin.html'
+          '2':
+            'name': 'entity.name.tag.block.$2.html'
+          '3':
+            'name': 'punctuation.definition.tag.end.html'
+        'name': 'meta.tag.block.$2.html'
+        'patterns': [
+          {
+            'include': 'source.stata'
+          }
+        ]
+      }
+    ]
