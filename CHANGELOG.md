@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.0] - 2018-06-01
+
+- Update to highlight dynamic documents in Markdown and LaTeX
+- Add more snippets (i.e. `if`, `else`, `program`)
+- Add highlighting for Python-like docstrings in block comments
+
 ## [1.3.1] - 2018-02-26
 - Don't alert for error around braces (`{}`) inside function calls
 
