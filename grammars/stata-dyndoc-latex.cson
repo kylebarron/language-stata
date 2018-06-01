@@ -1,0 +1,13 @@
+'scopeName': 'source.dyndoc.latex.stata'
+'name': 'Stata Dyndoc (LaTeX)'
+'fileTypes': [
+  'dotex'
+]
+'patterns': [
+  {
+    'include': 'source.dyndoc.stata'
+  }
+  {
+    'include': 'text.tex.latex'
+  }
+]

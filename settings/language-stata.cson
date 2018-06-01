@@ -1,8 +1,13 @@
-'.source.dyndoc.stata:not(.code)':
+'.source.dyndoc.md.stata:not(.code)':
   editor:
     softWrap: true
     commentStart: '<!-- '
     commentEnd: ' -->'
+'.source.dyndoc.latex.stata:not(.code)':
+  editor:
+    increaseIndentPattern: '^\\s*\\\\begin\\{(?!document).*\\}'
+    decreaseIndentPattern: '^\\s*\\\\end(\\{(?!document).*\\})?$'
+    commentStart: '% '
 '.source.stata':
   'editor':
     'decreaseIndentPattern': '^\\s*\\}|^\\s*\\)'

@@ -1,29 +1,52 @@
 'scopeName': 'source.dyndoc.stata'
 'name': 'Stata Dyndoc'
-'fileTypes': [
-  'domd'
-]
-'foldingStartMarker': '\\{\\s*$'
-'foldingStopMarker': '^\\s*\\}'
 'patterns': [
   {
-    'begin': '^\\s*([`~]{3,})(stata)?$',
+    'begin': '(<<)(dd_do)(:)?([^>]+)?(>>)([^\r\n]*)?'
     'beginCaptures':
       '1':
-        'name': 'punctuation.md'
-    'end': '^\\s*(\\1)$',
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.block.$2.html'
+      '3':
+        'name': 'punctuation.separator.key-value.dyndoc.stata'
+      '4':
+        'patterns': [
+          {
+            'match': 'quietly|quietl|quiet|quie|qui'
+            'name': 'keyword.control.flow.dyndoc.stata'
+          }
+          {
+            'match': 'nocommands|nocommand|nocomman|nocomma|nocomm|nocom'
+            'name': 'keyword.control.flow.dyndoc.stata'
+          }
+          {
+            'match': 'nooutput|nooutpu|nooutp|noout'
+            'name': 'keyword.control.flow.dyndoc.stata'
+          }
+          {
+            'match': 'noprompt|nopromp|noprom'
+            'name': 'keyword.control.flow.dyndoc.stata'
+          }
+        ]
+      '5':
+        'name': 'punctuation.definition.tag.end.html'
+      '6':
+        'name': 'invalid.illegal.name.dyndoc.stata'
+    'end': '(<</)(dd_do)(>>)'
     'endCaptures':
       '1':
-        'name': 'punctuation.md'
-    'name': 'fenced.code.md'
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.block.$2.html'
+      '3':
+        'name': 'punctuation.definition.tag.end.html'
+    'name': 'meta.tag.block.$2.html'
     'patterns': [
       {
-        'include': '#dd_do'
+        'include': 'source.stata'
       }
     ]
-  }
-  {
-    'include': '#dd_do'
   }
   {
     'begin': '(<<)(dd_display|dd_graph)(:)'
@@ -84,19 +107,38 @@
     'name': 'meta.tag.block.$2.html'
     'patterns': [
       {
-        'include': 'source.stata'
+        'include': '$self'
       }
     ]
   }
   {
-    'match': '(<<)(dd_skip_else|dd_skip_end)(>>)'
-    'Captures':
+    'match': '(<<)(dd_skip_else|dd_skip_end)(>>)([^\r\n]*)?'
+    'captures':
+      '1':
+        'name': 'punctuation.definition.tag.begin.html'
+      '2':
+        'name': 'entity.name.tag.block.$2.html'
+      '3':
+        'name': 'punctuation.definition.tag.end.html'
+      '4':
+        'name': 'invalid.illegal.name.dyndoc.stata'
+    'name': 'meta.tag.block.$2.html'
+  }
+  {
+    'match': '(<<)(dd_version)(:)\\s*([0-9]+)(>>)([^\r\n]*)?'
+    'captures':
       '1':
         'name': 'punctuation.definition.tag.begin.html'
       '2':
         'name': 'entity.name.tag.block.$2.html'
       '3':
         'name': 'punctuation.separator.key-value.dyndoc.stata'
+      '4':
+        'name': 'constant.numeric.integer.dyndoc.stata'
+      '5':
+        'name': 'punctuation.definition.tag.end.html'
+      '6':
+        'name': 'invalid.illegal.name.dyndoc.stata'
     'name': 'meta.tag.block.$2.html'
   }
   {
@@ -111,54 +153,3 @@
     'include': 'text.md'
   }
 ]
-'repository':
-  'dd_do':
-    'patterns': [
-      {
-        'begin': '(<<)(dd_do)(:)?([^>]+)?(>>)([^\r\n]*)?'
-        'beginCaptures':
-          '1':
-            'name': 'punctuation.definition.tag.begin.html'
-          '2':
-            'name': 'entity.name.tag.block.$2.html'
-          '3':
-            'name': 'punctuation.separator.key-value.dyndoc.stata'
-          '4':
-            'patterns': [
-              {
-                'match': 'quietly|quietl|quiet|quie|qui'
-                'name': 'keyword.control.flow.dyndoc.stata'
-              }
-              {
-                'match': 'nocommands|nocommand|nocomman|nocomma|nocomm|nocom'
-                'name': 'keyword.control.flow.dyndoc.stata'
-              }
-              {
-                'match': 'nooutput|nooutpu|nooutp|noout'
-                'name': 'keyword.control.flow.dyndoc.stata'
-              }
-              {
-                'match': 'noprompt|nopromp|noprom'
-                'name': 'keyword.control.flow.dyndoc.stata'
-              }
-            ]
-          '5':
-            'name': 'punctuation.definition.tag.end.html'
-          '6':
-            'name': 'invalid.illegal.name.dyndoc.stata'
-        'end': '(<</)(dd_do)(>>)'
-        'endCaptures':
-          '1':
-            'name': 'punctuation.definition.tag.begin.html'
-          '2':
-            'name': 'entity.name.tag.block.$2.html'
-          '3':
-            'name': 'punctuation.definition.tag.end.html'
-        'name': 'meta.tag.block.$2.html'
-        'patterns': [
-          {
-            'include': 'source.stata'
-          }
-        ]
-      }
-    ]

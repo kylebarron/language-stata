@@ -1,11 +1,11 @@
-'.platform-darwin atom-text-editor[data-grammar="source dyndoc stata"]':
+'.platform-darwin atom-text-editor[data-grammar="source dyndoc md stata"]':
   'cmd-shift-x': 'markdown:toggle-task'
-'.platform-win32 atom-text-editor[data-grammar="source dyndoc stata"]':
+'.platform-win32 atom-text-editor[data-grammar="source dyndoc md stata"]':
   'ctrl-shift-x': 'markdown:toggle-task'
-'.platform-linux atom-text-editor[data-grammar="source dyndoc stata"]':
+'.platform-linux atom-text-editor[data-grammar="source dyndoc md stata"]':
   'ctrl-shift-x': 'markdown:toggle-task'
 
-'atom-text-editor[data-grammar="source dyndoc stata"]':
+'atom-text-editor[data-grammar="source dyndoc md stata"]':
   'tab': 'markdown:indent-list-item'
   'shift-tab': 'markdown:outdent-list-item'
   '_': 'markdown:emphasis'

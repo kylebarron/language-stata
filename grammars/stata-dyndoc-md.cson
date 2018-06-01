@@ -1,0 +1,29 @@
+'scopeName': 'source.dyndoc.md.stata'
+'name': 'Stata Dyndoc (Markdown)'
+'fileTypes': [
+  'domd'
+]
+'patterns': [
+  {
+    'begin': '^\\s*([`~]{3,})(stata)?$',
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.md'
+    'end': '^\\s*(\\1)$',
+    'endCaptures':
+      '1':
+        'name': 'punctuation.md'
+    'name': 'fenced.code.md'
+    'patterns': [
+      {
+        'include': 'source.dyndoc.stata'
+      }
+    ]
+  }
+  {
+    'include': 'source.dyndoc.stata'
+  }
+  {
+    'include': 'text.md'
+  }
+]
