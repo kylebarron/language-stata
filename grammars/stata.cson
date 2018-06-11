@@ -8,45 +8,19 @@
 'foldingStartMarker': '\\{\\s*$'
 'foldingStopMarker': '^\\s*\\}'
 'patterns': [
-  {
-    'include': '#ascii-regex-functions'
-  }
-  {
-    'include': '#unicode-regex-functions'
-  }
-  {
-    'include': '#constants'
-  }
-  {
-    'include': '#functions'
-  }
-  {
-    'include': '#comments'
-  }
-  {
-    'include': '#subscripts'
-  }
-  {
-    'include': '#operators'
-  }
-  {
-    'include': '#macro-local'
-  }
-  {
-    'include': '#macro-global'
-  }
-  {
-    'include': '#string-compound'
-  }
-  {
-    'include': '#string-regular'
-  }
-  {
-    'include': '#builtin_variables'
-  }
-  {
-    'include': '#macro-commands'
-  }
+  {include: '#ascii-regex-functions'}
+  {include: '#unicode-regex-functions'}
+  {include: '#constants'}
+  {include: '#functions'}
+  {include: '#comments'}
+  {include: '#subscripts'}
+  {include: '#operators'}
+  {include: '#macro-local'}
+  {include: '#macro-global'}
+  {include: '#string-compound'}
+  {include: '#string-regular'}
+  {include: '#builtin_variables'}
+  {include: '#macro-commands'}
   {
     'comment': 'keywords that delimit flow conditionals'
     'name': 'keyword.control.conditional.stata'
@@ -65,9 +39,7 @@
         'name': 'keyword.control.flow.stata'
       '3':
         'patterns': [
-          {
-            'include': '#constants'
-          }
+          {include: '#constants'}
           {
             'match': 'm|n'
             'name': ''
@@ -77,9 +49,7 @@
         'name': 'punctuation.separator.key-value'
       '5':
         'patterns': [
-          {
-            'include': '#constants'
-          }
+          {include: '#constants'}
           {
             'match': 'm|n'
             'name': ''
@@ -87,18 +57,10 @@
         ]
     'end': 'using'
     'patterns': [
-      {
-        'include': '#builtin_variables'
-      }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
-      {
-        'include': '#comments'
-      }
+      {include: '#builtin_variables'}
+      {include: '#macro-local'}
+      {include: '#macro-global'}
+      {include: '#comments'}
     ]
   }
   {
@@ -107,19 +69,13 @@
         'name': 'keyword.control.flow.stata'
       '2':
         'patterns': [
-          {
-            'include': '#macro-reserved_names'
-          }
+          {include: '#macro-reserved_names'}
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'entity.name.type.class.stata'
           }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
         ]
       '3':
         'name': 'keyword.control.flow.stata'
@@ -132,37 +88,25 @@
         'name': 'keyword.control.flow.stata'
       '2':
         'patterns': [
-          {
-            'include': '#macro-reserved_names'
-          }
+          {include: '#macro-reserved_names'}
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'entity.name.type.class.stata'
           }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
         ]
       '3':
         'name': 'keyword.control.flow.stata'
     'end': '(?=\\s*\\{)'
     'patterns': [
-      {
-        'include': '#macro-reserved_names'
-      }
+      {include: '#macro-reserved_names'}
       {
         'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
         'name': 'entity.name.type.class.stata'
       }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
+      {include: '#macro-local'}
+      {include: '#macro-global'}
     ]
   }
   {
@@ -176,33 +120,19 @@
         'name': 'keyword.operator.assignment.stata'
       '2':
         'patterns': [
-          {
-            'include': '#constants'
-          }
-          {
-            'include': '#operators'
-          }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#constants'}
+          {include: '#operators'}
+          {include: '#macro-local'}
+          {include: '#macro-global'}
         ]
     'patterns': [
-      {
-        'include': '#macro-reserved_names'
-      }
+      {include: '#macro-reserved_names'}
       {
         'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
         'name': 'entity.name.type.class.stata'
       }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
+      {include: '#macro-local'}
+      {include: '#macro-global'}
     ]
   }
   {
@@ -246,12 +176,8 @@
         'name': 'storage.type.function.stata'
     'end': '(?=,|\\n|/)'
     'patterns': [
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
+      {include: '#macro-local'}
+      {include: '#macro-global'}
       {
         'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
         'name': 'entity.name.function.stata'
@@ -267,9 +193,7 @@
     'captures':
       '1': 'keyword.functions.data.stata.test'
   }
-  {
-    'include': '#braces-with-error'
-  }
+  {include: '#braces-with-error'}
   # Start manual functions:
   {
     'begin': '(?=syntax)'
@@ -316,27 +240,13 @@
               '2':
                 'name': 'entity.name.type.class.stata'
           }
-          {
-            'include': '#constants'
-          }
-          {
-            'include': '#operators'
-          }
-          {
-            'include': '#string-compound'
-          }
-          {
-            'include': '#string-regular'
-          }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
-          {
-            'include': '#builtin_variables'
-          }
+          {include: '#constants'}
+          {include: '#operators'}
+          {include: '#string-compound'}
+          {include: '#string-regular'}
+          {include: '#macro-local'}
+          {include: '#macro-global'}
+          {include: '#builtin_variables'}
         ]
       }
       {
@@ -358,19 +268,13 @@
             'beginCaptures':
               '1':
                 'patterns': [
-                  {
-                    'include': '#macro-reserved_names'
-                  }
+                  {include: '#macro-reserved_names'}
                   {
                     'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                     'name': 'entity.name.type.class.stata'
                   }
-                  {
-                    'include': '#macro-local'
-                  }
-                  {
-                    'include': '#macro-global'
-                  }
+                  {include: '#macro-local'}
+                  {include: '#macro-global'}
                 ]
                 'comment': 'these are the names that become macros'
               '2':
@@ -387,27 +291,13 @@
                   '0':
                     'name': 'support.type.stata'
               }
-              {
-                'include': '#constants'
-              }
-              {
-                'include': '#operators'
-              }
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#builtin_variables'
-              }
+              {include: '#constants'}
+              {include: '#operators'}
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#builtin_variables'}
             ]
           }
           {
@@ -415,27 +305,13 @@
             'match': '[A-Za-z_0-9]+'
             'name': 'entity.name.type.class.stata'
           }
-          {
-            'include': '#constants'
-          }
-          {
-            'include': '#operators'
-          }
-          {
-            'include': '#string-compound'
-          }
-          {
-            'include': '#string-regular'
-          }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
-          {
-            'include': '#builtin_variables'
-          }
+          {include: '#constants'}
+          {include: '#operators'}
+          {include: '#string-compound'}
+          {include: '#string-regular'}
+          {include: '#macro-local'}
+          {include: '#macro-global'}
+          {include: '#builtin_variables'}
         ]
       }
     ]
@@ -459,9 +335,7 @@
         'name': 'keyword.functions.data.stata'
       '2':
         'patterns': [
-          {
-            'include': '#macro-local'
-          }
+          {include: '#macro-local'}
         ]
       '4':
         'name': 'invalid.illegal.name.stata'
@@ -478,12 +352,8 @@
         'name': 'support.type.stata'
       '5':
         'patterns': [
-          {
-            'include': '#reserved_names'
-          }
-          {
-            'include': '#macro-local'
-          }
+          {include: '#reserved_names'}
+          {include: '#macro-local'}
         ]
       '7':
         'name': 'invalid.illegal.name.stata'
@@ -509,21 +379,11 @@
         'name': 'punctuation.definition.string.begin.stata'
       '7':
         'patterns': [
-          {
-            'include': '#string-compound'
-          }
-          {
-            'include': '#macro-local-escaped'
-          }
-          {
-            'include': '#macro-global-escaped'
-          }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#string-compound'}
+          {include: '#macro-local-escaped'}
+          {include: '#macro-global-escaped'}
+          {include: '#macro-local'}
+          {include: '#macro-global'}
           {
             'match': '[^`\\$]{81,}'
             'name': 'invalid.illegal.name.stata'
@@ -547,18 +407,10 @@
         'name': 'punctuation.definition.string.begin.stata'
       '7':
         'patterns': [
-          {
-            'include': '#macro-local-escaped'
-          }
-          {
-            'include': '#macro-global-escaped'
-          }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local-escaped'}
+          {include: '#macro-global-escaped'}
+          {include: '#macro-local'}
+          {include: '#macro-global'}
           {
             'match': '[^`\\$]{81,}'
             'name': 'invalid.illegal.name.stata'
@@ -590,18 +442,10 @@
         'match': '\\b(if|in)\\b'
         'name': 'invalid.illegal.name.stata'
       }
-      {
-        'include': '#comments'
-      }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
-      {
-        'include': '#operators'
-      }
+      {include: '#comments'}
+      {include: '#macro-local'}
+      {include: '#macro-global'}
+      {include: '#operators'}
     ]
   }
   {
@@ -644,9 +488,7 @@
         'match': '\\!|\\+\\+|\\-\\-|\\&|\\\'|\\?|\\\\|\\:\\:|\\,|\\.\\.|\\||\\=|\\=\\=|\\>\\=|\\<\\=|\\<|\\>|\\!\\=|\\#|\\+|\\-|\\*|\\^|\\/'
         'name': 'keyword.operator.mata'
       }
-      {
-        'include': '$self'
-      }
+      {include: '$self'}
     ]
   }
   {
@@ -673,19 +515,13 @@
           '0':
             'name': 'punctuation.definition.parameters.end.stata'
         'patterns': [
-          {
-            'include': 'source.sql'
-          }
+          {include: 'source.sql'}
         ]
       }
-      {
-        'include': '$self'
-      }
+      {include: '$self'}
     ]
   }
-  {
-    'include': '#commands-other'
-  }
+  {include: '#commands-other'}
 ]
 'repository':
   'functions':
@@ -704,52 +540,24 @@
           '1':
             'name': 'punctuation.definition.parameters.end.stata'
         'patterns': [
-          {
-            'include': '#ascii-regex-functions'
-          }
-          {
-            'include': '#unicode-regex-functions'
-          }
-          {
-            'include': '#functions'
-          }
-          {
-            'include': '#subscripts'
-          }
+          {include: '#ascii-regex-functions'}
+          {include: '#unicode-regex-functions'}
+          {include: '#functions'}
+          {include: '#subscripts'}
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'variable.parameter.function.stata'
           }
-          {
-            'include': '#constants'
-          }
-          {
-            'include': '#comments'
-          }
-          {
-            'include': '#operators'
-          }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
-          {
-            'include': '#string-compound'
-          }
-          {
-            'include': '#string-regular'
-          }
-          {
-            'include': '#builtin_variables'
-          }
-          {
-            'include': '#macro-commands'
-          }
-          {
-            'include': '#braces-without-error'
-          }
+          {include: '#constants'}
+          {include: '#comments'}
+          {include: '#operators'}
+          {include: '#macro-local'}
+          {include: '#macro-global'}
+          {include: '#string-compound'}
+          {include: '#string-regular'}
+          {include: '#builtin_variables'}
+          {include: '#macro-commands'}
+          {include: '#braces-without-error'}
         ]
       }
     ]
@@ -794,9 +602,7 @@
             'name': 'keyword.control.block.begin.stata'
           '2':
             'patterns': [
-              {
-                'include': '#comments'
-              }
+              {include: '#comments'}
               {
                 'match': '[^\\n]+'
                 'name': 'illegal.invalid.name.stata'
@@ -825,9 +631,7 @@
           '9':
             'name': 'keyword.control.block.end.stata'
         'patterns': [
-          {
-            'include': '$self'
-          }
+          {include: '$self'}
         ]
       }
     ]
@@ -846,18 +650,10 @@
     ]
   'comments':
     'patterns': [
-      {
-        'include': '#comments-double-slash'
-      }
-      {
-        'include': '#comments-star'
-      }
-      {
-        'include': '#comments-block'
-      }
-      {
-        'include': '#comments-triple-slash'
-      }
+      {include: '#comments-double-slash'}
+      {include: '#comments-star'}
+      {include: '#comments-block'}
+      {include: '#comments-triple-slash'}
     ]
   'comments-block':
     'patterns': [
@@ -876,15 +672,9 @@
             'match': '\\*/\\*'
             'comment': 'this ends and restarts a comment block. but need to catch this so that it doesn\'t start _another_ level of comment blocks'
           }
-          {
-            'include': '#docblockr-comment'
-          }
-          {
-            'include': '#comments-block'
-          }
-          {
-            'include': '#docstring'
-          }
+          {include: '#docblockr-comment'}
+          {include: '#comments-block'}
+          {include: '#docstring'}
         ]
       }
     ]
@@ -899,17 +689,13 @@
         'end': '(?=\\n)'
         'comment': 'TODO! need to except out the occasion that a * comes after a /// on the previous line. May be easiest to join with the comment.line.triple-slash.stata below'
         'patterns': [
-          {
-            'include': '#docblockr-comment'
-          }
+          {include: '#docblockr-comment'}
           {
             'begin': '///'
             'end': '\\n'
             'name': 'comment.line-continuation.stata'
           }
-          {
-            'include': '#comments'
-          }
+          {include: '#comments'}
         ]
       }
     ]
@@ -923,9 +709,7 @@
         'end': '(?=\\n)'
         'name': 'comment.line.triple-slash.stata'
         'patterns': [
-          {
-            'include': '#docblockr-comment'
-          }
+          {include: '#docblockr-comment'}
         ]
       }
     ]
@@ -939,9 +723,7 @@
         'end': '(?=\\n)'
         'name': 'comment.line.double-slash.stata'
         'patterns': [
-          {
-            'include': '#docblockr-comment'
-          }
+          {include: '#docblockr-comment'}
         ]
       }
     ]
@@ -998,12 +780,8 @@
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'entity.name.type.class.stata'
               }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
+              {include: '#macro-local'}
+              {include: '#macro-global'}
             ]
         'end': '\\n'
         'patterns': [
@@ -1014,9 +792,7 @@
                 'name': 'keyword.operator.arithmetic.stata'
             'end': '(?=\\n)'
             'patterns': [
-              {
-                'include': '$self'
-              }
+              {include: '$self'}
             ]
           }
           {
@@ -1026,9 +802,7 @@
                 'name': 'keyword.operator.arithmetic.stata'
             'end': '(?=\\n)'
             'patterns': [
-              {
-                'include': '#macro-extended-functions'
-              }
+              {include: '#macro-extended-functions'}
             ]
           }
         ]
@@ -1040,19 +814,13 @@
             'name': 'keyword.macro.stata'
         'end': '(\\})|(?=\\"|\\s|\\n|/|,|=)'
         'patterns': [
-          {
-            'include': '#macro-reserved_names'
-          }
+          {include: '#macro-reserved_names'}
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'entity.name.type.class.stata'
           }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
         ]
       }
       {
@@ -1072,12 +840,8 @@
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'entity.name.type.class.stata'
           }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
         ]
       }
       {
@@ -1093,19 +857,13 @@
             'end': '\\n'
             'name': 'comment.block.stata'
           }
-          {
-            'include': '#macro-reserved_names'
-          }
+          {include: '#macro-reserved_names'}
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'entity.name.type.class.stata'
           }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
         ]
       }
       {
@@ -1125,18 +883,10 @@
             'match': '\\*'
             'name': 'keyword.operator.arithmetic.stata'
           }
-          {
-            'include': '#constants'
-          }
-          {
-            'include': '#macro-global'
-          }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#comments'
-          }
+          {include: '#constants'}
+          {include: '#macro-global'}
+          {include: '#macro-local'}
+          {include: '#comments'}
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'entity.name.type.class.stata'
@@ -1189,12 +939,8 @@
             'name': 'keyword.macro.extendedfcn.stata'
           '7':
             'patterns': [
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
+              {include: '#macro-local'}
+              {include: '#macro-global'}
             ]
       }
       {
@@ -1210,12 +956,8 @@
             'name': 'keyword.macro.extendedfcn.stata'
           '2':
             'patterns': [
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#constants'
-              }
+              {include: '#macro-local'}
+              {include: '#constants'}
             ]
           '3':
             'name': 'keyword.macro.extendedfcn.stata'
@@ -1229,18 +971,10 @@
           '5':
             'name': 'entity.name.type.class.stata'
         'patterns': [
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
-          {
-            'include': '#string-compound'
-          }
-          {
-            'include': '#string-regular'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
+          {include: '#string-compound'}
+          {include: '#string-regular'}
           {
             'match': '(count|coun|cou|co|c)(\\()(local|loca|loc|global|globa|glob|glo|gl)\\s+([A-Za-z_][A-Za-z0-9_]{0,31})(\\))'
             'captures':
@@ -1257,18 +991,10 @@
           }
         ]
       }
-      {
-        'include': '#comments'
-      }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
-      {
-        'include': '$self'
-      }
+      {include: '#comments'}
+      {include: '#macro-local'}
+      {include: '#macro-global'}
+      {include: '$self'}
     ]
   'macro-local-escaped':
     'patterns': [
@@ -1283,12 +1009,8 @@
           '0':
             'name': 'punctuation.definition.string.end.stata'
         'patterns': [
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
           {
             'match': '[^\\\\`\'\\$\\{\\}]+'
             'name': 'entity.name.type.class.stata'
@@ -1310,9 +1032,7 @@
           '0':
             'name': 'punctuation.definition.string.end.stata'
         'patterns': [
-          {
-            'include': '$self'
-          }
+          {include: '$self'}
         ]
       }
       {
@@ -1328,21 +1048,11 @@
             'name': 'punctuation.definition.string.end.stata'
         'contentName': 'meta.macro-extended-function.stata'
         'patterns': [
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-extended-functions'
-          }
-          {
-            'include': '#constants'
-          }
-          {
-            'include': '#string-compound'
-          }
-          {
-            'include': '#string-regular'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-extended-functions'}
+          {include: '#constants'}
+          {include: '#string-compound'}
+          {include: '#string-regular'}
         ]
       }
       {
@@ -1362,12 +1072,8 @@
             'name': 'punctuation.definition.string.end.stata'
         'contentName': 'meta.macro-extended-function.stata'
         'patterns': [
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
           {
             'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
             'name': 'entity.name.type.class.stata'
@@ -1388,12 +1094,8 @@
             'match': '\\+\\+|\\-\\-'
             'name': 'keyword.operator.arithmetic.stata'
           }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
           {
             'match': '[^`\'\\$\\{\\}]+'
             'name': 'entity.name.type.class.stata'
@@ -1413,12 +1115,8 @@
           '1':
             'name': 'punctuation.definition.string.end.stata'
         'patterns': [
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
           {
             'match': '[^\\\\`\'\\$\\{\\}\\"\\s\\n/,]+'
             'name': 'entity.name.type.class.stata'
@@ -1460,12 +1158,8 @@
           '1':
             'name': 'punctuation.definition.string.end.stata'
         'patterns': [
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
           {
             'match': '[^`\'\\$\\{\\}\\"\\s\\n/\\\\,]+'
             'name': 'entity.name.type.class.stata'
@@ -1475,9 +1169,7 @@
     ]
   'constants':
     'patterns': [
-      {
-        'include': '#factorvariables'
-      }
+      {include: '#factorvariables'}
       {
         'match': '\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))(?=[^a-zA-Z_])'
         'name': 'constant.numeric.float.stata'
@@ -1516,9 +1208,7 @@
             'name': 'constant.language.factorvars.stata'
           '3':
             'patterns': [
-              {
-                'include': '#constants'
-              }
+              {include: '#constants'}
             ]
       }
       {
@@ -1530,12 +1220,8 @@
             'name': 'keyword.operator.parentheses.stata'
           '3':
             'patterns': [
-              {
-                'include': '#constants'
-              }
-              {
-                'include': '#operators'
-              }
+              {include: '#constants'}
+              {include: '#operators'}
             ]
           '4':
             'name': 'keyword.operator.parentheses.stata'
@@ -1547,9 +1233,7 @@
             'name': 'constant.language.factorvars.stata'
           '2':
             'patterns': [
-              {
-                'include': '#constants'
-              }
+              {include: '#constants'}
             ]
       }
       {
@@ -1561,9 +1245,7 @@
             'name': 'keyword.operator.parentheses.stata'
           '3':
             'patterns': [
-              {
-                'include': '$self'
-              }
+              {include: '$self'}
             ]
           '4':
             'name': 'keyword.operator.parentheses.stata'
@@ -1657,24 +1339,12 @@
             'comment': 'color "```" as regular text, allowing for words after ```'
             'comment': 'see https://github.com/kylebarron/language-stata/issues/53'
           }
-          {
-            'include': '#string-regular'
-          }
-          {
-            'include': '#string-compound'
-          }
-          {
-            'include': '#macro-local-escaped'
-          }
-          {
-            'include': '#macro-global-escaped'
-          }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#string-regular'}
+          {include: '#string-compound'}
+          {include: '#macro-local-escaped'}
+          {include: '#macro-global-escaped'}
+          {include: '#macro-local'}
+          {include: '#macro-global'}
         ]
       }
     ]
@@ -1699,18 +1369,10 @@
             'comment': 'color "```" as regular text, allowing for words after ```'
             'comment': 'see https://github.com/kylebarron/language-stata/issues/53'
           }
-          {
-            'include': '#macro-local-escaped'
-          }
-          {
-            'include': '#macro-global-escaped'
-          }
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
+          {include: '#macro-local-escaped'}
+          {include: '#macro-global-escaped'}
+          {include: '#macro-local'}
+          {include: '#macro-global'}
         ]
       }
     ]
@@ -1728,24 +1390,12 @@
             'name': 'punctuation.definition.parameters.end.stata'
         'name': 'meta.subscripts.stata'
         'patterns': [
-          {
-            'include': '#macro-local'
-          }
-          {
-            'include': '#macro-global'
-          }
-          {
-            'include': '#builtin_variables'
-          }
-          {
-            'include': '#operators'
-          }
-          {
-            'include': '#constants'
-          }
-          {
-            'include': '#functions'
-          }
+          {include: '#macro-local'}
+          {include: '#macro-global'}
+          {include: '#builtin_variables'}
+          {include: '#operators'}
+          {include: '#constants'}
+          {include: '#functions'}
         ]
       }
     ]
@@ -1783,28 +1433,16 @@
             'name': 'punctuation.definition.parameters.begin.stata'
           '3':
             'patterns': [
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments-triple-slash'
-              }
+              {include: '#comments-triple-slash'}
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -1812,9 +1450,7 @@
             'name': 'punctuation.definition.string.begin.stata'
           '6':
             'patterns': [
-              {
-                'include': '#ascii-regex-internals'
-              }
+              {include: '#ascii-regex-internals'}
               # {
               #   'include': '#comments-triple-slash'
               # }
@@ -1837,28 +1473,16 @@
             'name': 'punctuation.definition.parameters.begin.stata'
           '3':
             'patterns': [
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments-triple-slash'
-              }
+              {include: '#comments-triple-slash'}
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -1866,9 +1490,7 @@
             'name': 'punctuation.definition.string.begin.stata'
           '6':
             'patterns': [
-              {
-                'include': '#ascii-regex-internals'
-              }
+              {include: '#ascii-regex-internals'}
               # {
               #   'include': '#comments-triple-slash'
               # }
@@ -1889,28 +1511,16 @@
             'name': 'punctuation.definition.parameters.begin.stata'
           '3':
             'patterns': [
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments'
-              }
+              {include: '#comments'}
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -1918,9 +1528,7 @@
             'name': 'punctuation.definition.string.begin.stata'
           '6':
             'patterns': [
-              {
-                'include': '#ascii-regex-internals'
-              }
+              {include: '#ascii-regex-internals'}
             ]
           '7':
             'name': 'punctuation.definition.string.end.stata'
@@ -1932,28 +1540,16 @@
                 'match': ','
                 'name': 'punctuation.definition.variable.begin.stata' # the comma
               }
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments-triple-slash'
-              }
+              {include: '#comments-triple-slash'}
             ]
           '10':
             'name': 'punctuation.definition.parameters.end.stata'
@@ -1968,28 +1564,16 @@
             'name': 'punctuation.definition.parameters.begin.stata'
           '3':
             'patterns': [
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments'
-              }
+              {include: '#comments'}
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -1997,9 +1581,7 @@
             'name': 'punctuation.definition.string.begin.stata'
           '6':
             'patterns': [
-              {
-                'include': '#ascii-regex-internals'
-              }
+              {include: '#ascii-regex-internals'}
             ]
           '7':
             'name': 'punctuation.definition.string.end.stata'
@@ -2009,28 +1591,16 @@
                 'match': ','
                 'name': 'punctuation.definition.variable.begin.stata' # the comma
               }
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments-triple-slash'
-              }
+              {include: '#comments-triple-slash'}
             ]
           '9':
             'name': 'punctuation.definition.parameters.end.stata'
@@ -2076,20 +1646,12 @@
           '1':
             'name': 'keyword.operator.group.stata'
         'patterns': [
-          {
-            'include': '#ascii-regex-internals'
-          }
+          {include: '#ascii-regex-internals'}
         ]
       }
-      {
-        'include': '#ascii-regex-character-class'
-      }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
+      {include: '#ascii-regex-character-class'}
+      {include: '#macro-local'}
+      {include: '#macro-global'}
       {
         # 'comment' 'NOTE: Error if I have \.+ No idea why but it works fine it seems with just \.'
         # Also extremely weird but if I have the previous 'comment' line uncommented, everything inside the regexm(, "...") goes white.
@@ -2124,9 +1686,7 @@
             'name': 'punctuation.definition.character-class.stata'
         'name': 'constant.other.character-class.set.stata'
         'patterns': [
-          {
-            'include': '#ascii-regex-character-class'
-          }
+          {include: '#ascii-regex-character-class'}
           {
             'captures':
               '2':
@@ -2151,28 +1711,16 @@
             'name': 'punctuation.definition.parameters.begin.stata'
           '3':
             'patterns': [
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments-triple-slash'
-              }
+              {include: '#comments-triple-slash'}
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -2180,9 +1728,7 @@
             'name': 'punctuation.definition.string.begin.stata'
           '6':
             'patterns': [
-              {
-                'include': '#unicode-regex-internals'
-              }
+              {include: '#unicode-regex-internals'}
               # {
               #   'include': '#comments-triple-slash'
               # }
@@ -2194,9 +1740,7 @@
             'name': 'invalid.illegal.punctuation.stata'
           '9':
             'patterns': [
-              {
-                'include': '#constants'
-              }
+              {include: '#constants'}
               {
                 'match': ','
                 'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -2215,28 +1759,16 @@
             'name': 'punctuation.definition.parameters.begin.stata'
           '3':
             'patterns': [
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments-triple-slash'
-              }
+              {include: '#comments-triple-slash'}
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -2244,9 +1776,7 @@
             'name': 'punctuation.definition.string.begin.stata'
           '6':
             'patterns': [
-              {
-                'include': '#unicode-regex-internals'
-              }
+              {include: '#unicode-regex-internals'}
               # {
               #   'include': '#comments-triple-slash'
               # }
@@ -2256,9 +1786,7 @@
             'name': 'punctuation.definition.string.end.stata'
           '8':
             'patterns': [
-              {
-                'include': '#constants'
-              }
+              {include: '#constants'}
               {
                 'match': ','
                 'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -2277,28 +1805,16 @@
             'name': 'punctuation.definition.parameters.begin.stata'
           '3':
             'patterns': [
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments'
-              }
+              {include: '#comments'}
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -2306,9 +1822,7 @@
             'name': 'punctuation.definition.string.begin.stata'
           '6':
             'patterns': [
-              {
-                'include': '#unicode-regex-internals'
-              }
+              {include: '#unicode-regex-internals'}
             ]
           '7':
             'name': 'punctuation.definition.string.end.stata'
@@ -2320,31 +1834,17 @@
                 'match': ','
                 'name': 'punctuation.definition.variable.begin.stata' # the comma
               }
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments-triple-slash'
-              }
-              {
-                'include': '#constants'
-              }
+              {include: '#comments-triple-slash'}
+              {include: '#constants'}
             ]
           '10':
             'name': 'punctuation.definition.parameters.end.stata'
@@ -2359,28 +1859,16 @@
             'name': 'punctuation.definition.parameters.begin.stata'
           '3':
             'patterns': [
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments'
-              }
+              {include: '#comments'}
             ]
           '4':
             'name': 'punctuation.definition.variable.begin.stata' # the comma
@@ -2388,9 +1876,7 @@
             'name': 'punctuation.definition.string.begin.stata'
           '6':
             'patterns': [
-              {
-                'include': '#unicode-regex-internals'
-              }
+              {include: '#unicode-regex-internals'}
             ]
           '7':
             'name': 'punctuation.definition.string.end.stata'
@@ -2400,31 +1886,17 @@
                 'match': ','
                 'name': 'punctuation.definition.variable.begin.stata' # the comma
               }
-              {
-                'include': '#string-compound'
-              }
-              {
-                'include': '#string-regular'
-              }
-              {
-                'include': '#macro-local'
-              }
-              {
-                'include': '#macro-global'
-              }
-              {
-                'include': '#functions'
-              }
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#functions'}
               {
                 'match': '[A-Za-z_][A-Za-z0-9_]{0,31}'
                 'name': 'variable.parameter.function.stata'
               }
-              {
-                'include': '#comments-triple-slash'
-              }
-              {
-                'include': '#constants'
-              }
+              {include: '#comments-triple-slash'}
+              {include: '#constants'}
             ]
           '9':
             'name': 'punctuation.definition.parameters.end.stata'
@@ -2457,9 +1929,7 @@
         'end': '\\)'
         'name': 'keyword.operator.group.stata'
         'patterns': [
-          {
-            'include': '#unicode-regex-internals'
-          }
+          {include: '#unicode-regex-internals'}
         ]
       }
       {
@@ -2498,9 +1968,7 @@
             'name': 'keyword.operator.group.stata'
         'name': 'meta.group.assertion.stata'
         'patterns': [
-          {
-            'include': '#unicode-regex-internals'
-          }
+          {include: '#unicode-regex-internals'}
         ]
       }
       {
@@ -2516,20 +1984,12 @@
         'end': '(\\))'
         'name': 'meta.group.assertion.conditional.stata'
         'patterns': [
-          {
-            'include': '#unicode-regex-internals'
-          }
+          {include: '#unicode-regex-internals'}
         ]
       }
-      {
-        'include': '#unicode-regex-character-class'
-      }
-      {
-        'include': '#macro-local'
-      }
-      {
-        'include': '#macro-global'
-      }
+      {include: '#unicode-regex-character-class'}
+      {include: '#macro-local'}
+      {include: '#macro-global'}
       {
         # 'comment' 'NOTE: Error if I have \.+ No idea why but it works fine it seems with just \.'
         # Also extremely weird but if I have the previous 'comment' line uncommented, everything inside the regexm(, "...") goes white.
@@ -2560,9 +2020,7 @@
             'name': 'punctuation.definition.character-class.stata'
         'name': 'constant.other.character-class.set.stata'
         'patterns': [
-          {
-            'include': '#unicode-regex-character-class'
-          }
+          {include: '#unicode-regex-character-class'}
           {
             'captures':
               '2':
