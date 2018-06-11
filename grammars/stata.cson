@@ -866,12 +866,16 @@
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.comment.begin.stata'
-        'end': '(\\*/\\*[^\\n]*)|(\\*/)'
+        'end': '(\\*/\\s+\\*[^\\n]*)|(\\*/(?!\\*))'
         'endCaptures':
           '0':
             'name': 'punctuation.definition.comment.end.stata'
         'name': 'comment.block.stata'
         'patterns': [
+          {
+            'match': '\\*/\\*'
+            'comment': 'this ends and restarts a comment block. but need to catch this so that it doesn\'t start _another_ level of comment blocks'
+          }
           {
             'include': '#docblockr-comment'
           }
@@ -921,9 +925,6 @@
         'patterns': [
           {
             'include': '#docblockr-comment'
-          }
-          {
-            'include': '#comments'
           }
         ]
       }
