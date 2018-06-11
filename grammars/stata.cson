@@ -847,16 +847,16 @@
   'comments':
     'patterns': [
       {
-        'include': '#comments-block'
+        'include': '#comments-double-slash'
       }
       {
         'include': '#comments-star'
       }
       {
-        'include': '#comments-triple-slash'
+        'include': '#comments-block'
       }
       {
-        'include': '#comments-double-slash'
+        'include': '#comments-triple-slash'
       }
     ]
   'comments-block':
@@ -866,7 +866,7 @@
         'beginCaptures':
           '0':
             'name': 'punctuation.definition.comment.begin.stata'
-        'end': '\\*/'
+        'end': '(\\*/\\*[^\\n]*)|(\\*/)'
         'endCaptures':
           '0':
             'name': 'punctuation.definition.comment.end.stata'
@@ -899,6 +899,11 @@
             'include': '#docblockr-comment'
           }
           {
+            'begin': '///'
+            'end': '\\n'
+            'name': 'comment.line-continuation.stata'
+          }
+          {
             'include': '#comments'
           }
         ]
@@ -910,7 +915,7 @@
         'captures':
           '0':
             'name': 'punctuation.definition.comment.stata'
-        'begin': '(///)'
+        'begin': '(^///|(?<=\\s)///)'
         'end': '(?=\\n)'
         'name': 'comment.line.triple-slash.stata'
         'patterns': [
@@ -929,15 +934,12 @@
         'captures':
           '0':
             'name': 'punctuation.definition.comment.stata'
-        'begin': '((?<!:)//)'
+        'begin': '(^//|(?<=\\s)//)(?!/)'
         'end': '(?=\\n)'
         'name': 'comment.line.double-slash.stata'
         'patterns': [
           {
             'include': '#docblockr-comment'
-          }
-          {
-            'include': '#comments'
           }
         ]
       }

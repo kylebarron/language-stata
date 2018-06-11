@@ -1,4 +1,10 @@
-# Dynamic Documents Examples
+# Examples
+
+## Comments
+
+See [comments.md](comments.md) for information on how Stata deals with comments.
+
+## Dynamic Documents
 
 The file [`dyntext.pdf`](dyntext.pdf) in this folder was created with
 
