@@ -1725,8 +1725,14 @@
         'endCaptures':
           '1':
             'name': 'punctuation.definition.parameters.end.stata'
-        'name': 'meta.function.stata'
+        'name': 'meta.subscripts.stata'
         'patterns': [
+          {
+            'include': '#macro-local'
+          }
+          {
+            'include': '#macro-global'
+          }
           {
             'include': '#builtin_variables'
           }
