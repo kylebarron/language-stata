@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.0] - 2018-06-11
+
+- Make comment highlighting stubbornly accurate. See [this Statalist post](https://www.statalist.org/forums/forum/general-stata-discussion/general/1448244-understanding-stata-s-comment-hierarchy) for more information about how Stata highlights in practice, and [go here for an example](examples/comments.md).
+
 ## [1.4.1] - 2018-06-01
 
 - Add note to README that language-latex and language-markdown must be installed for dynamic documents syntax highlighting to work

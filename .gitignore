@@ -1,2 +1,3 @@
 node_modules/
 .ropeproject/
+.DS_Store

@@ -31,6 +31,7 @@ This package highlights:
 - Macros, both global and local
     - Accurately colors nested macros and escaped macros in strings when you want the inner macro to evaluate at runtime
     - Colors macro extended functions inside `` `: ... '`` as well as after `local lname:`
+- Comments, [more accurately than Stata's Do-file Editor](examples/comments.md).
 - Regular expressions
     - Colors both the limited syntax provided through the `regexr()` and `regexm()` functions, as well as the vastly expanded regex syntax provided in Stata 14 and 15 through the `ustrregexm()`, `ustrregexrf()`, and `ustrregexra()` functions.
 - Dynamic Markdown and LaTeX documents. [Instructions below.](#dynamic-documents)
