@@ -469,14 +469,42 @@ patterns: [
         endCaptures:
           1: name: 'punctuation.definition.parameters.end.stata'
         patterns: [
-          {include: '#ascii-regex-functions'}
-          {include: '#unicode-regex-functions'}
-          {include: '#functions'}
-          {include: '#subscripts'}
           {
             match: '[\\w&&[^0-9]]\\w{0,31}'
             name: 'variable.parameter.function.stata'
           }
+          {
+            begin: '\\('
+            end: '\\)'
+            beginCaptures:
+              0: name: 'keyword.operator.parentheses.stata'
+            endCaptures:
+              0: name: 'keyword.operator.parentheses.stata'
+            patterns: [
+              {include: '#ascii-regex-functions'}
+              {include: '#unicode-regex-functions'}
+              {include: '#functions'}
+              {include: '#subscripts'}
+              {include: '#constants'}
+              {include: '#comments'}
+              {include: '#operators'}
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+              {include: '#string-compound'}
+              {include: '#string-regular'}
+              {include: '#builtin_variables'}
+              {include: '#macro-commands'}
+              {include: '#braces-without-error'}
+              {
+                match: '[\\w&&[^0-9]]\\w{0,31}'
+                name: 'variable.parameter.function.stata'
+              }
+            ]
+          }
+          {include: '#ascii-regex-functions'}
+          {include: '#unicode-regex-functions'}
+          {include: '#functions'}
+          {include: '#subscripts'}
           {include: '#constants'}
           {include: '#comments'}
           {include: '#operators'}
