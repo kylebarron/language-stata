@@ -1,6 +1,18 @@
 # Changelog
 
-## [1.3.0] - 2017-12-06
+## [1.6.0] - 2018-06-12
+
+- Update for Unicode identifiers. You should be able to use unicode anywhere it's legal now and have it be correctly colored. #84
+- Fix bug with multiple expressions in parentheses. #46
+- Fix comments inside locals, and fix comments inside globals used with `${...}`. #90
+- Color macros better in list extended function. #75
+- Allow macros within subscripts. #74 and #57
+- Make comment highlighting stubbornly accurate. See [this Statalist post](https://www.statalist.org/forums/forum/general-stata-discussion/general/1448244-understanding-stata-s-comment-hierarchy) for more information about how Stata highlights in practice, and [go here for an example](examples/comments.md).
+- Add note to README that language-latex and language-markdown must be installed for dynamic documents syntax highlighting to work
+- Update to highlight dynamic documents in Markdown and LaTeX
+- Add highlighting for Python-like docstrings in block comments
+- Don't alert for error around braces (`{}`) inside function calls
+
 - Add support for factor variables. Fixes #70
 - Fix coloring for macro functions that take multiple new macros as arguments, i.e. `tempvar`, `tempfile`, and `tempname`. Fixes #71
 - Add regex functions to autocomplete. Fixes #69

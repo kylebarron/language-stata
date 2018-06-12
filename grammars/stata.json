@@ -110,6 +110,7 @@
             ]
         },
         {
+            "match": "\\b(foreach)\\s+((?!in|of).+)\\s+(in|of var(list|lis|li|l)?|of new(list|lis|li|l)?|of num(list|lis|li|l)?)\\b",
             "captures": {
                 "1": {
                     "name": "keyword.control.flow.stata"
@@ -117,11 +118,7 @@
                 "2": {
                     "patterns": [
                         {
-                            "include": "#macro-reserved_names"
-                        },
-                        {
-                            "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
-                            "name": "entity.name.type.class.stata"
+                            "include": "#macro-local-identifiers"
                         },
                         {
                             "include": "#macro-local"
@@ -134,8 +131,7 @@
                 "3": {
                     "name": "keyword.control.flow.stata"
                 }
-            },
-            "match": "\\b(foreach)\\s+((?!in|of).+)\\s+(in|of var(list|lis|li|l)?|of new(list|lis|li|l)?|of num(list|lis|li|l)?)\\b"
+            }
         },
         {
             "begin": "\\b(foreach)\\s+((?!in|of).+)\\s+(of loc(al|a)?|of glo(bal|ba|b)?)\\b\\s*",
@@ -146,11 +142,7 @@
                 "2": {
                     "patterns": [
                         {
-                            "include": "#macro-reserved_names"
-                        },
-                        {
-                            "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
-                            "name": "entity.name.type.class.stata"
+                            "include": "#macro-local-identifiers"
                         },
                         {
                             "include": "#macro-local"
@@ -167,11 +159,7 @@
             "end": "(?=\\s*\\{)",
             "patterns": [
                 {
-                    "include": "#macro-reserved_names"
-                },
-                {
-                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
-                    "name": "entity.name.type.class.stata"
+                    "include": "#macro-local-identifiers"
                 },
                 {
                     "include": "#macro-local"
@@ -212,11 +200,7 @@
             },
             "patterns": [
                 {
-                    "include": "#macro-reserved_names"
-                },
-                {
-                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
-                    "name": "entity.name.type.class.stata"
+                    "include": "#macro-local-identifiers"
                 },
                 {
                     "include": "#macro-local"
@@ -251,12 +235,12 @@
             "match": "\\b(qui(etly|etl|et|e)?|n(oisily|oisil|oisi|ois|oi|o)?|cap(ture|tur|tu|t)?)\\b:?"
         },
         {
-            "match": "\\s*(pr(ogram|ogra|ogr|og|o)?)\\s+((di(r)?|drop|l(ist|is|i)?)\\s+)([A-Za-z_][A-Za-z0-9_]{0,31})",
+            "match": "\\s*(pr(ogram|ogra|ogr|og|o)?)\\s+((di(r)?|drop|l(ist|is|i)?)\\s+)([\\w&&[^0-9]]\\w{0,31})",
             "captures": {
                 "1": {
                     "name": "storage.type.function.stata"
                 },
-                "2": {
+                "3": {
                     "name": "storage.type.function.stata"
                 },
                 "7": {
@@ -283,7 +267,7 @@
                     "include": "#macro-global"
                 },
                 {
-                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                     "name": "entity.name.function.stata"
                 },
                 {
@@ -293,65 +277,13 @@
             ]
         },
         {
-            "match": "\\b(form(at|a)?)\\s*([A-Za-z_][A-Za-z0-9_]{0,31})*\\s*(%)(-)?(0)?([0-9]+)(.)([0-9]+)(e|f|g)(c)?",
+            "match": "\\b(form(at|a)?)\\s*([\\w&&[^0-9]]\\w{0,31})*\\s*(%)(-)?(0)?([0-9]+)(.)([0-9]+)(e|f|g)(c)?",
             "captures": {
                 "1": "keyword.functions.data.stata.test"
             }
         },
         {
-            "comment": "correct with nothing else on the line but whitespace; before and after; before; after; correct",
-            "begin": "(\\{)\\s*([^\\n]*)(?=\\n)",
-            "beginCaptures": {
-                "1": {
-                    "name": "keyword.control.block.begin.stata"
-                },
-                "2": {
-                    "patterns": [
-                        {
-                            "include": "#comments"
-                        },
-                        {
-                            "match": "[^\\n]+",
-                            "name": "illegal.invalid.name.stata"
-                        }
-                    ]
-                }
-            },
-            "end": "^\\s*(\\})\\s*$|^\\s*([^\\*\"\\}]+)\\s+(\\})\\s*([^\\*\"\\}/\\n]+)|^\\s*([^\"\\*\\}]+)\\s+(\\})|\\s*(\\})\\s*([^\"\\*\\}/\\n]+)|(\\})$",
-            "endCaptures": {
-                "1": {
-                    "name": "keyword.control.block.end.stata"
-                },
-                "2": {
-                    "name": "invalid.illegal.name.stata"
-                },
-                "3": {
-                    "name": "keyword.control.block.end.stata"
-                },
-                "4": {
-                    "name": "invalid.illegal.name.stata"
-                },
-                "5": {
-                    "name": "invalid.illegal.name.stata"
-                },
-                "6": {
-                    "name": "keyword.control.block.end.stata"
-                },
-                "7": {
-                    "name": "keyword.control.block.end.stata"
-                },
-                "8": {
-                    "name": "invalid.illegal.name.stata"
-                },
-                "9": {
-                    "name": "keyword.control.block.end.stata"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "$self"
-                }
-            ]
+            "include": "#braces-with-error"
         },
         {
             "begin": "(?=syntax)",
@@ -451,11 +383,7 @@
                                 "1": {
                                     "patterns": [
                                         {
-                                            "include": "#macro-reserved_names"
-                                        },
-                                        {
-                                            "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
-                                            "name": "entity.name.type.class.stata"
+                                            "include": "#macro-local-identifiers"
                                         },
                                         {
                                             "include": "#macro-local"
@@ -510,9 +438,7 @@
                             ]
                         },
                         {
-                            "comment": "true/false options",
-                            "match": "[A-Za-z_0-9]+",
-                            "name": "entity.name.type.class.stata"
+                            "include": "#macro-local-identifiers"
                         },
                         {
                             "include": "#constants"
@@ -586,7 +512,7 @@
                 "5": {
                     "patterns": [
                         {
-                            "include": "#reserved_names"
+                            "include": "#reserved-names"
                         },
                         {
                             "include": "#macro-local"
@@ -613,7 +539,7 @@
             }
         },
         {
-            "match": "\\b(la(bel|be|b)?)\\s+(var(iable|iabl|iab|ia|i)?)\\s+([a-zA-Z_][0-9a-zA-Z_]+)\\s+(`\")(.+)(\"')",
+            "match": "\\b(la(bel|be|b)?)\\s+(var(iable|iabl|iab|ia|i)?)\\s+([\\w&&[^0-9]]\\w{0,31})\\s+(`\")(.+)(\"')",
             "captures": {
                 "1": {
                     "name": "keyword.functions.data.stata"
@@ -657,7 +583,7 @@
             }
         },
         {
-            "match": "\\b(la(bel|be|b)?)\\s+(var(iable|iabl|iab|ia|i)?)\\s+([a-zA-Z_][0-9a-zA-Z_]+)\\s+(\")(.+)(\")",
+            "match": "\\b(la(bel|be|b)?)\\s+(var(iable|iabl|iab|ia|i)?)\\s+([\\w&&[^0-9]]\\w{0,31})\\s+(\")(.+)(\")",
             "captures": {
                 "1": {
                     "name": "keyword.functions.data.stata"
@@ -729,6 +655,9 @@
                 },
                 {
                     "include": "#macro-global"
+                },
+                {
+                    "include": "#operators"
                 }
             ]
         },
@@ -832,34 +761,7 @@
         "functions": {
             "patterns": [
                 {
-                    "comment": "This is for outreg",
-                    "begin": "\\b(spacebef|spaceaft)(\\()",
-                    "beginCaptures": {
-                        "1": {
-                            "name": "support.function.option.outreg.stata"
-                        },
-                        "2": {
-                            "name": "punctuation.definition.parameters.begin.stata"
-                        }
-                    },
-                    "end": "(\\))",
-                    "endCaptures": {
-                        "1": {
-                            "name": "punctuation.definition.parameters.end.stata"
-                        }
-                    },
-                    "patterns": [
-                        {
-                            "include": "#constants"
-                        },
-                        {
-                            "match": "(\\{|\\})",
-                            "name": "keyword.operator.brace.stata"
-                        }
-                    ]
-                },
-                {
-                    "begin": "\\b((abbrev|abs|acos|acosh|asin|asinh|atan|atan2|atanh|autocode|betaden|binomial|binomialp|binomialtail|binormalbofd|byteorder|c|cauchy|cauchyden|cauchytail|Cdhms|ceil|char|chi2|chi2den|chi2tail|Chms|cholesky|chop|clip|clock|Clock|cloglog|Cmdyhms|cofC|Cofc|cofd|Cofd|coleqnumb|collatorlocale|collatorversion|colnfreeparms|colnumb|colsof|comb|cond|corr|cos|cosh|daily|date|day|det|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|dhms|diag|diag0cnt|digamma|dofb|dofc|dofC|dofh|dofm|dofq|dofw|dofy|dow|doy|dunnettprob|e|el|epsdouble|epsfloat|exp|exponential|exponentialden|exponentialtail|F|Fden|fileexists|fileread|filereaderror|filewrite|float|floor|fmtwidth|Ftail|gammaden|gammap|gammaptail|get|hadamard|halfyear|halfyearly|hh|hhC|hms|hofd|hours|hypergeometric|hypergeometricp|I|ibeta|ibetatail|igaussian|igaussianden|igaussiantail|indexnot|inlist|inrange|int|inv|invbinomial|invbinomialtail|invcauchy|invcauchytail|invchi2|invchi2tail|invcloglog|invdunnettprob|invexponential|invexponentialtail|invF|invFtail|invgammap|invgammaptail|invibeta|invibetatail|invigaussian|invigaussiantail|invlaplace|invlaplacetail|invlogistic|invlogistictail|invlogit|invnbinomial|invnbinomialtail|invnchi2|invnchi2tail|invnF|invnFtail|invnibeta|invnormal|invnt|invnttail|invpoisson|invpoissontail|invsym|invt|invttail|invtukeyprob|invweibull|invweibullph|invweibullphtail|invweibulltail|irecode|issymmetric|itrim|J|laplace|laplaceden|laplacetail|length|ln|lncauchyden|lnfactorial|lngamma|lnigammaden|lnigaussianden|lniwishartden|lnlaplaceden|lnmvnormalden|lnnormal|lnnormalden|lnwishartden|log|log10|logistic|logisticden|logistictail|logit|lower|ltrim|matmissing|matrix|matuniform|max|maxbyte|maxdouble|maxfloat|maxint|maxlong|mdy|mdyhms|mi|min|minbyte|mindouble|minfloat|minint|minlong|minutes|missing|mm|mmC|mod|mofd|month|monthly|mreldif|msofhours|msofminutes|msofseconds|nbetaden|nbinomial|nbinomialp|nbinomialtail|nchi2|nchi2den|nchi2tail|nF|nFden|nFtail|nibeta|normal|normalden|npnchi2|npnF|npnt|nt|ntden|nttail|nullmat|plural|poisson|poissonp|poissontail|proper|qofd|quarter|quarterly|r|rbeta|rbinomial|rcauchy|rchi2|real|recode|regexs|reldif|replay|return|reverse|rexponential|rgamma|rhypergeometric|rigaussian|rlaplace|rlogistic|rnbinomial|rnormal|round|roweqnumb|rownfreeparms|rownumb|rowsof|rpoisson|rt|rtrim|runiform|runiformint|rweibull|rweibullph|s|scalar|seconds|sign|sin|sinh|smallestdouble|soundex|sqrt|ss|ssC|string|stritrim|strlen|strlower|strltrim|strmatch|strofreal|strpos|strproper|strreverse|strrpos|strrtrim|strtoname|strtrim|strupper|subinstr|subinword|substr|sum|sweep|t|tan|tanh|tc|tC|td|tden|th|tin|tm|tobytes|tq|trace|trigamma|trim|trunc|ttail|tukeyprob|tw|twithin|uchar|udstrlen|udsubstr|uisdigit|uisletter|upper|ustrcompare|ustrcompareex|ustrfix|ustrfrom|ustrinvalidcnt|ustrleft|ustrlen|ustrlower|ustrltrim|ustrnormalize|ustrpos|ustrregexs|ustrreverse|ustrright|ustrrpos|ustrrtrim|ustrsortkey|ustrsortkeyex|ustrtitle|ustrto|ustrtohex|ustrtoname|ustrtrim|ustrunescape|ustrupper|ustrword|ustrwordcount|usubinstr|usubstr|vec|vecdiag|week|weekly|weibull|weibullden|weibullph|weibullphden|weibullphtail|weibulltail|wofd|word|wordbreaklocale|wordcount|year|yearly|yh|ym|yofd|yq|yw)|([A-Za-z_][A-Za-z0-9_]{0,31}))(\\()",
+                    "begin": "\\b((abbrev|abs|acos|acosh|asin|asinh|atan|atan2|atanh|autocode|betaden|binomial|binomialp|binomialtail|binormalbofd|byteorder|c|cauchy|cauchyden|cauchytail|Cdhms|ceil|char|chi2|chi2den|chi2tail|Chms|cholesky|chop|clip|clock|Clock|cloglog|Cmdyhms|cofC|Cofc|cofd|Cofd|coleqnumb|collatorlocale|collatorversion|colnfreeparms|colnumb|colsof|comb|cond|corr|cos|cosh|daily|date|day|det|dgammapda|dgammapdada|dgammapdadx|dgammapdx|dgammapdxdx|dhms|diag|diag0cnt|digamma|dofb|dofc|dofC|dofh|dofm|dofq|dofw|dofy|dow|doy|dunnettprob|e|el|epsdouble|epsfloat|exp|exponential|exponentialden|exponentialtail|F|Fden|fileexists|fileread|filereaderror|filewrite|float|floor|fmtwidth|Ftail|gammaden|gammap|gammaptail|get|hadamard|halfyear|halfyearly|hh|hhC|hms|hofd|hours|hypergeometric|hypergeometricp|I|ibeta|ibetatail|igaussian|igaussianden|igaussiantail|indexnot|inlist|inrange|int|inv|invbinomial|invbinomialtail|invcauchy|invcauchytail|invchi2|invchi2tail|invcloglog|invdunnettprob|invexponential|invexponentialtail|invF|invFtail|invgammap|invgammaptail|invibeta|invibetatail|invigaussian|invigaussiantail|invlaplace|invlaplacetail|invlogistic|invlogistictail|invlogit|invnbinomial|invnbinomialtail|invnchi2|invnchi2tail|invnF|invnFtail|invnibeta|invnormal|invnt|invnttail|invpoisson|invpoissontail|invsym|invt|invttail|invtukeyprob|invweibull|invweibullph|invweibullphtail|invweibulltail|irecode|issymmetric|itrim|J|laplace|laplaceden|laplacetail|length|ln|lncauchyden|lnfactorial|lngamma|lnigammaden|lnigaussianden|lniwishartden|lnlaplaceden|lnmvnormalden|lnnormal|lnnormalden|lnwishartden|log|log10|logistic|logisticden|logistictail|logit|lower|ltrim|matmissing|matrix|matuniform|max|maxbyte|maxdouble|maxfloat|maxint|maxlong|mdy|mdyhms|mi|min|minbyte|mindouble|minfloat|minint|minlong|minutes|missing|mm|mmC|mod|mofd|month|monthly|mreldif|msofhours|msofminutes|msofseconds|nbetaden|nbinomial|nbinomialp|nbinomialtail|nchi2|nchi2den|nchi2tail|nF|nFden|nFtail|nibeta|normal|normalden|npnchi2|npnF|npnt|nt|ntden|nttail|nullmat|plural|poisson|poissonp|poissontail|proper|qofd|quarter|quarterly|r|rbeta|rbinomial|rcauchy|rchi2|real|recode|regexs|reldif|replay|return|reverse|rexponential|rgamma|rhypergeometric|rigaussian|rlaplace|rlogistic|rnbinomial|rnormal|round|roweqnumb|rownfreeparms|rownumb|rowsof|rpoisson|rt|rtrim|runiform|runiformint|rweibull|rweibullph|s|scalar|seconds|sign|sin|sinh|smallestdouble|soundex|sqrt|ss|ssC|string|stritrim|strlen|strlower|strltrim|strmatch|strofreal|strpos|strproper|strreverse|strrpos|strrtrim|strtoname|strtrim|strupper|subinstr|subinword|substr|sum|sweep|t|tan|tanh|tc|tC|td|tden|th|tin|tm|tobytes|tq|trace|trigamma|trim|trunc|ttail|tukeyprob|tw|twithin|uchar|udstrlen|udsubstr|uisdigit|uisletter|upper|ustrcompare|ustrcompareex|ustrfix|ustrfrom|ustrinvalidcnt|ustrleft|ustrlen|ustrlower|ustrltrim|ustrnormalize|ustrpos|ustrregexs|ustrreverse|ustrright|ustrrpos|ustrrtrim|ustrsortkey|ustrsortkeyex|ustrtitle|ustrto|ustrtohex|ustrtoname|ustrtrim|ustrunescape|ustrupper|ustrword|ustrwordcount|usubinstr|usubstr|vec|vecdiag|week|weekly|weibull|weibullden|weibullph|weibullphden|weibullphtail|weibulltail|wofd|word|wordbreaklocale|wordcount|year|yearly|yh|ym|yofd|yq|yw)|([\\w&&[^0-9]]\\w{0,31}))(\\()",
                     "beginCaptures": {
                         "2": {
                             "name": "support.function.builtin.stata"
@@ -879,6 +781,72 @@
                     },
                     "patterns": [
                         {
+                            "match": "[\\w&&[^0-9]]\\w{0,31}",
+                            "name": "variable.parameter.function.stata"
+                        },
+                        {
+                            "begin": "\\(",
+                            "end": "\\)",
+                            "beginCaptures": {
+                                "0": {
+                                    "name": "keyword.operator.parentheses.stata"
+                                }
+                            },
+                            "endCaptures": {
+                                "0": {
+                                    "name": "keyword.operator.parentheses.stata"
+                                }
+                            },
+                            "patterns": [
+                                {
+                                    "include": "#ascii-regex-functions"
+                                },
+                                {
+                                    "include": "#unicode-regex-functions"
+                                },
+                                {
+                                    "include": "#functions"
+                                },
+                                {
+                                    "include": "#subscripts"
+                                },
+                                {
+                                    "include": "#constants"
+                                },
+                                {
+                                    "include": "#comments"
+                                },
+                                {
+                                    "include": "#operators"
+                                },
+                                {
+                                    "include": "#macro-local"
+                                },
+                                {
+                                    "include": "#macro-global"
+                                },
+                                {
+                                    "include": "#string-compound"
+                                },
+                                {
+                                    "include": "#string-regular"
+                                },
+                                {
+                                    "include": "#builtin_variables"
+                                },
+                                {
+                                    "include": "#macro-commands"
+                                },
+                                {
+                                    "include": "#braces-without-error"
+                                },
+                                {
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
+                                    "name": "variable.parameter.function.stata"
+                                }
+                            ]
+                        },
+                        {
                             "include": "#ascii-regex-functions"
                         },
                         {
@@ -891,11 +859,34 @@
                             "include": "#subscripts"
                         },
                         {
-                            "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
-                            "name": "variable.parameter.function.stata"
+                            "include": "#constants"
                         },
                         {
-                            "include": "$self"
+                            "include": "#comments"
+                        },
+                        {
+                            "include": "#operators"
+                        },
+                        {
+                            "include": "#macro-local"
+                        },
+                        {
+                            "include": "#macro-global"
+                        },
+                        {
+                            "include": "#string-compound"
+                        },
+                        {
+                            "include": "#string-regular"
+                        },
+                        {
+                            "include": "#builtin_variables"
+                        },
+                        {
+                            "include": "#macro-commands"
+                        },
+                        {
+                            "include": "#braces-without-error"
                         }
                     ]
                 }
@@ -917,6 +908,83 @@
                 }
             ]
         },
+        "braces-without-error": {
+            "patterns": [
+                {
+                    "begin": "\\{",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "keyword.control.block.begin.stata"
+                        }
+                    },
+                    "end": "\\}",
+                    "endCaptures": {
+                        "0": {
+                            "name": "keyword.control.block.end.stata"
+                        }
+                    }
+                }
+            ]
+        },
+        "braces-with-error": {
+            "patterns": [
+                {
+                    "comment": "correct with nothing else on the line but whitespace; before and after; before; after; correct",
+                    "begin": "(\\{)\\s*([^\\n]*)(?=\\n)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.begin.stata"
+                        },
+                        "2": {
+                            "patterns": [
+                                {
+                                    "include": "#comments"
+                                },
+                                {
+                                    "match": "[^\\n]+",
+                                    "name": "illegal.invalid.name.stata"
+                                }
+                            ]
+                        }
+                    },
+                    "end": "^\\s*(\\})\\s*$|^\\s*([^\\*\"\\}]+)\\s+(\\})\\s*([^\\*\"\\}/\\n]+)|^\\s*([^\"\\*\\}]+)\\s+(\\})|\\s*(\\})\\s*([^\"\\*\\}/\\n]+)|(\\})$",
+                    "endCaptures": {
+                        "1": {
+                            "name": "keyword.control.block.end.stata"
+                        },
+                        "2": {
+                            "name": "invalid.illegal.name.stata"
+                        },
+                        "3": {
+                            "name": "keyword.control.block.end.stata"
+                        },
+                        "4": {
+                            "name": "invalid.illegal.name.stata"
+                        },
+                        "5": {
+                            "name": "invalid.illegal.name.stata"
+                        },
+                        "6": {
+                            "name": "keyword.control.block.end.stata"
+                        },
+                        "7": {
+                            "name": "keyword.control.block.end.stata"
+                        },
+                        "8": {
+                            "name": "invalid.illegal.name.stata"
+                        },
+                        "9": {
+                            "name": "keyword.control.block.end.stata"
+                        }
+                    },
+                    "patterns": [
+                        {
+                            "include": "$self"
+                        }
+                    ]
+                }
+            ]
+        },
         "commands-other": {
             "patterns": [
                 {
@@ -934,16 +1002,16 @@
         "comments": {
             "patterns": [
                 {
-                    "include": "#comments-block"
+                    "include": "#comments-double-slash"
                 },
                 {
                     "include": "#comments-star"
                 },
                 {
-                    "include": "#comments-triple-slash"
+                    "include": "#comments-block"
                 },
                 {
-                    "include": "#comments-double-slash"
+                    "include": "#comments-triple-slash"
                 }
             ]
         },
@@ -956,7 +1024,7 @@
                             "name": "punctuation.definition.comment.begin.stata"
                         }
                     },
-                    "end": "\\*/",
+                    "end": "(\\*/\\s+\\*[^\\n]*)|(\\*/(?!\\*))",
                     "endCaptures": {
                         "0": {
                             "name": "punctuation.definition.comment.end.stata"
@@ -965,10 +1033,17 @@
                     "name": "comment.block.stata",
                     "patterns": [
                         {
+                            "match": "\\*/\\*",
+                            "comment": "this ends and restarts a comment block. but need to catch this so that it doesn't start _another_ level of comment blocks"
+                        },
+                        {
                             "include": "#docblockr-comment"
                         },
                         {
                             "include": "#comments-block"
+                        },
+                        {
+                            "include": "#docstring"
                         }
                     ]
                 }
@@ -991,6 +1066,11 @@
                             "include": "#docblockr-comment"
                         },
                         {
+                            "begin": "///",
+                            "end": "\\n",
+                            "name": "comment.line-continuation.stata"
+                        },
+                        {
                             "include": "#comments"
                         }
                     ]
@@ -1005,15 +1085,12 @@
                             "name": "punctuation.definition.comment.stata"
                         }
                     },
-                    "begin": "(///)",
+                    "begin": "(^///|(?<=\\s)///)",
                     "end": "(?=\\n)",
                     "name": "comment.line.triple-slash.stata",
                     "patterns": [
                         {
                             "include": "#docblockr-comment"
-                        },
-                        {
-                            "include": "#comments"
                         }
                     ]
                 }
@@ -1027,15 +1104,12 @@
                             "name": "punctuation.definition.comment.stata"
                         }
                     },
-                    "begin": "(//)",
+                    "begin": "(^//|(?<=\\s)//)(?!/)",
                     "end": "(?=\\n)",
                     "name": "comment.line.double-slash.stata",
                     "patterns": [
                         {
                             "include": "#docblockr-comment"
-                        },
-                        {
-                            "include": "#comments"
                         }
                     ]
                 }
@@ -1052,7 +1126,7 @@
                     }
                 },
                 {
-                    "match": "(?<!\\w)(@[A-za-z0-9]+)\\b",
+                    "match": "(?<!\\w)(@\\w+)\\b",
                     "captures": {
                         "1": {
                             "name": "keyword.docblockr.stata"
@@ -1061,19 +1135,52 @@
                 }
             ]
         },
+        "docstring": {
+            "patterns": [
+                {
+                    "begin": "'''",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.stata"
+                        }
+                    },
+                    "end": "'''",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.stata"
+                        }
+                    },
+                    "name": "string.quoted.docstring.stata"
+                },
+                {
+                    "begin": "\"\"\"",
+                    "beginCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.stata"
+                        }
+                    },
+                    "end": "\"\"\"",
+                    "endCaptures": {
+                        "0": {
+                            "name": "punctuation.definition.string.begin.stata"
+                        }
+                    },
+                    "name": "string.quoted.docstring.stata"
+                }
+            ]
+        },
         "macro-commands": {
             "patterns": [
                 {
-                    "begin": "\\b(loc(al|a)?|gl(obal|oba|ob|o)?)\\s+([a-zA-Z0-9_'`\\$\\(\\)\\{\\}]+)\\s*(?=:|=)",
+                    "begin": "\\b(loc(al|a)?)\\s+([\\w'`\\$\\(\\)\\{\\}]+)\\s*(?=:|=)",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.macro.stata"
                         },
-                        "4": {
+                        "3": {
                             "patterns": [
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
-                                    "name": "entity.name.type.class.stata"
+                                    "include": "#macro-local-identifiers"
                                 },
                                 {
                                     "include": "#macro-local"
@@ -1117,7 +1224,7 @@
                     ]
                 },
                 {
-                    "begin": "\\b(gl(obal|oba|ob|o)?)\\s+(?=[a-zA-Z_`\\$])",
+                    "begin": "\\b(gl(obal|oba|ob|o)?)\\s+(?=[\\w`\\$])",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.macro.stata"
@@ -1126,10 +1233,10 @@
                     "end": "(\\})|(?=\\\"|\\s|\\n|/|,|=)",
                     "patterns": [
                         {
-                            "include": "#macro-reserved_names"
+                            "include": "#reserved-names"
                         },
                         {
-                            "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                            "match": "[\\w&&[^0-9_]]\\w{0,31}",
                             "name": "entity.name.type.class.stata"
                         },
                         {
@@ -1141,7 +1248,7 @@
                     ]
                 },
                 {
-                    "begin": "\\b(loc(al|a)?)\\s+(\\+\\+|\\-\\-)?(?=[a-zA-Z_`\\$])",
+                    "begin": "\\b(loc(al|a)?)\\s+(\\+\\+|\\-\\-)?(?=[\\w`\\$])",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.macro.stata"
@@ -1153,12 +1260,7 @@
                     "end": "(?=\\\"|\\s|\\n|/|,|=)",
                     "patterns": [
                         {
-                            "match": "[^a-zA-Z0-9_'`\\$\\(\\)]",
-                            "name": "invalid.illegal.name.stata"
-                        },
-                        {
-                            "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
-                            "name": "entity.name.type.class.stata"
+                            "include": "#macro-local-identifiers"
                         },
                         {
                             "include": "#macro-local"
@@ -1170,7 +1272,6 @@
                 },
                 {
                     "begin": "\\b(tempvar|tempname|tempfile)\\s*(?=\\s)",
-                    "comment": "The \\s*(?=\\s) means that if you have `tempvar\\n`, the next line won't be colored as a macro. This is because the newline character is whitespace, so you have to let the \\n be caught by the end pattern.",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.macro.stata"
@@ -1184,11 +1285,7 @@
                             "name": "comment.block.stata"
                         },
                         {
-                            "include": "#macro-reserved_names"
-                        },
-                        {
-                            "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
-                            "name": "entity.name.type.class.stata"
+                            "include": "#macro-local-identifiers"
                         },
                         {
                             "include": "#macro-local"
@@ -1200,7 +1297,6 @@
                 },
                 {
                     "begin": "\\b(ma(cro|cr|c)?)\\s+(drop|l(ist|is|i)?)\\s*(?=\\s)",
-                    "comment": "The \\s*(?=\\s) means that if you have `tempvar\\n`, the next line won't be colored as a macro. This is because the newline character is whitespace, so you have to let the \\n be caught by the end pattern.",
                     "beginCaptures": {
                         "0": {
                             "name": "keyword.macro.stata"
@@ -1230,7 +1326,7 @@
                             "include": "#comments"
                         },
                         {
-                            "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                            "match": "\\w{1,31}",
                             "name": "entity.name.type.class.stata"
                         }
                     ]
@@ -1264,8 +1360,58 @@
                     "name": "keyword.macro.extendedfcn.stata"
                 },
                 {
-                    "match": "\\b(list)\\b",
-                    "name": "keyword.macro.extendedfcn.stata"
+                    "match": "\\b(list)\\s+(uniq|dups|sort|clean|retok(enize|eniz|eni|en|e)?|sizeof)\\s+(\\w{1,32})",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.macro.extendedfcn.stata"
+                        },
+                        "2": {
+                            "name": "keyword.macro.extendedfcn.stata"
+                        },
+                        "3": {
+                            "name": "entity.name.type.class.stata"
+                        }
+                    }
+                },
+                {
+                    "match": "\\b(list)\\s+(\\w{1,32})\\s+(\\||&|\\-|===|==|in)\\s+(\\w{1,32})",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.macro.extendedfcn.stata"
+                        },
+                        "2": {
+                            "name": "entity.name.type.class.stata"
+                        },
+                        "3": {
+                            "name": "keyword.operator.list.stata"
+                        },
+                        "4": {
+                            "name": "entity.name.type.class.stata"
+                        }
+                    }
+                },
+                {
+                    "match": "\\b(list\\s+posof)\\s+(\")(\\w+)(\")\\s+(in)\\s+(\\w{1,32})",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.macro.extendedfcn.stata"
+                        },
+                        "2": {
+                            "name": "punctuation.definition.string.begin.stata"
+                        },
+                        "3": {
+                            "name": "string.quoted.double.stata"
+                        },
+                        "4": {
+                            "name": "punctuation.definition.string.end.stata"
+                        },
+                        "5": {
+                            "name": "keyword.macro.extendedfcn.stata"
+                        },
+                        "6": {
+                            "name": "entity.name.type.class.stata"
+                        }
+                    }
                 },
                 {
                     "match": "\\b(rown(ames|ame|am|a)?|coln(ames|ame|am|a)?|rowf(ullnames|ullname|ullnam|ullna|ulln|ull|ul|u)?|colf(ullnames|ullname|ullnam|ullna|ulln|ull|ul|u)?|roweq?|coleq?|rownumb|colnumb|roweqnumb|coleqnumb|rownfreeparms|colnfreeparms|rownlfs|colnlfs|rowsof|colsof|rowvarlist|colvarlist|rowlfnames|collfnames)\\b",
@@ -1302,7 +1448,7 @@
                     }
                 },
                 {
-                    "match": "(word|piece)\\s+([\\s0-9`'A-Za-z_]+)\\s+(of)",
+                    "match": "(word|piece)\\s+([\\s`'\\w]+)\\s+(of)",
                     "captures": {
                         "1": {
                             "name": "keyword.macro.extendedfcn.stata"
@@ -1323,7 +1469,7 @@
                     }
                 },
                 {
-                    "begin": "\\b(subinstr\\s+(loc(al|a)?|gl(obal|oba|ob|o)?))\\s+([A-Za-z_][A-Za-z0-9_]{0,31})",
+                    "begin": "\\b(subinstr\\s+(loc(al|a)?|gl(obal|oba|ob|o)?))\\s+(\\w{1,32})",
                     "end": "(?=//|\\n)",
                     "beginCaptures": {
                         "1": {
@@ -1347,7 +1493,7 @@
                             "include": "#string-regular"
                         },
                         {
-                            "match": "(count|coun|cou|co|c)(\\()(local|loca|loc|global|globa|glob|glo|gl)\\s+([A-Za-z_][A-Za-z0-9_]{0,31})(\\))",
+                            "match": "(count|coun|cou|co|c)(\\()(local|loca|loc|global|globa|glob|glo|gl)\\s+(\\w{1,32})(\\))",
                             "captures": {
                                 "1": {
                                     "name": "support.function.builtin.stata"
@@ -1406,7 +1552,7 @@
                             "include": "#macro-global"
                         },
                         {
-                            "match": "[^\\\\`'\\$\\{\\}]+",
+                            "match": "\\w{1,31}",
                             "name": "entity.name.type.class.stata"
                         }
                     ]
@@ -1503,7 +1649,7 @@
                             "include": "#macro-global"
                         },
                         {
-                            "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                            "match": "\\w{1,31}",
                             "name": "entity.name.type.class.stata"
                         }
                     ]
@@ -1533,7 +1679,15 @@
                             "include": "#macro-global"
                         },
                         {
-                            "match": "[^`'\\$\\{\\}]+",
+                            "include": "#comments-block"
+                        },
+                        {
+                            "begin": "[^\\w]",
+                            "end": "\\n|(?=')",
+                            "name": "comment.line.stata"
+                        },
+                        {
+                            "match": "\\w{1,31}",
                             "name": "entity.name.type.class.stata"
                         }
                     ]
@@ -1563,7 +1717,7 @@
                             "include": "#macro-global"
                         },
                         {
-                            "match": "[^\\\\`'\\$\\{\\}\\\"\\s\\n/,]+",
+                            "match": "[\\w&&[^0-9_]]\\w{0,31}|_\\w{1,31}",
                             "name": "entity.name.type.class.stata"
                         }
                     ]
@@ -1593,7 +1747,15 @@
                             "include": "#macro-global"
                         },
                         {
-                            "match": "[^`'\\$\\{\\}\\\"\\s\\n/,]+",
+                            "include": "#comments-block"
+                        },
+                        {
+                            "begin": "[^\\w]",
+                            "end": "\\n|(?=})",
+                            "name": "comment.line.stata"
+                        },
+                        {
+                            "match": "\\w{1,32}",
                             "name": "entity.name.type.class.stata"
                         }
                     ]
@@ -1605,7 +1767,7 @@
                             "name": "punctuation.definition.string.begin.stata"
                         }
                     },
-                    "end": "(?=\\\"|\\s|\\n|/|\\\\|,|\\$)",
+                    "end": "(?!\\w)",
                     "endCaptures": {
                         "1": {
                             "name": "punctuation.definition.string.end.stata"
@@ -1619,7 +1781,7 @@
                             "include": "#macro-global"
                         },
                         {
-                            "match": "[^`'\\$\\{\\}\\\"\\s\\n/\\\\,]+",
+                            "match": "[\\w&&[^0-9_]]\\w{0,31}|_\\w{1,31}",
                             "name": "entity.name.type.class.stata"
                         }
                     ]
@@ -1648,7 +1810,7 @@
                     "name": "constant.numeric.integer.decimal.stata"
                 },
                 {
-                    "match": "(?<![a-zA-Z0-9])(\\.(?![\\./]))(?![a-zA-Z0-9])",
+                    "match": "(?<![\\w])(\\.(?![\\./]))(?![\\w])",
                     "name": "constant.language.missing.stata"
                 },
                 {
@@ -1660,11 +1822,11 @@
         "factorvariables": {
             "patterns": [
                 {
-                    "match": "\\b(i|c|o)\\.(?=[a-zA-Z_]|\\([a-zA-Z_])",
+                    "match": "\\b(i|c|o)\\.(?=[\\w&&[^0-9]]|\\([\\w&&[^0-9]])",
                     "name": "constant.language.factorvars.stata"
                 },
                 {
-                    "match": "\\b(i?b)((\\d+)|n)\\.(?=[a-zA-Z_]|\\([a-zA-Z_])",
+                    "match": "\\b(i?b)((\\d+)|n)\\.(?=[\\w&&[^0-9]]|\\([\\w&&[^0-9]])",
                     "captures": {
                         "0": {
                             "name": "constant.language.factorvars.stata"
@@ -1679,7 +1841,7 @@
                     }
                 },
                 {
-                    "match": "\\b(i?b)(\\()(#\\d+|first|last|freq)(\\))\\.(?=[a-zA-Z_]|\\([a-zA-Z_])",
+                    "match": "\\b(i?b)(\\()(#\\d+|first|last|freq)(\\))\\.(?=[\\w&&[^0-9]]|\\([\\w&&[^0-9]])",
                     "captures": {
                         "0": {
                             "name": "constant.language.factorvars.stata"
@@ -1703,7 +1865,7 @@
                     }
                 },
                 {
-                    "match": "\\b(i?o?)(\\d+)\\.(?=[a-zA-Z_]|\\([a-zA-Z_])",
+                    "match": "\\b(i?o?)(\\d+)\\.(?=[\\w&&[^0-9]]|\\([\\w&&[^0-9]])",
                     "captures": {
                         "0": {
                             "name": "constant.language.factorvars.stata"
@@ -1718,7 +1880,7 @@
                     }
                 },
                 {
-                    "match": "\\b(i?o?)(\\()(.*?)(\\))(\\.)(?=[a-zA-Z_]|\\([a-zA-Z_])",
+                    "match": "\\b(i?o?)(\\()(.*?)(\\))(\\.)(?=[\\w&&[^0-9]]|\\([\\w&&[^0-9]])",
                     "captures": {
                         "1": {
                             "name": "constant.language.factorvars.stata"
@@ -1752,12 +1914,12 @@
                 },
                 {
                     "comment": "match division operator but not path separator",
-                    "match": "(?<![a-zA-Z.])/(?![a-zA-Z.]|$)",
+                    "match": "(?<![\\w.&&[^0-9]])/(?![\\w.&&[^0-9]]|$)",
                     "name": "keyword.operator.arithmetic.stata"
                 },
                 {
                     "comment": "match division operator but not path separator",
-                    "match": "(?<![a-zA-Z.])\\\\(?![a-zA-Z.]|$)",
+                    "match": "(?<![\\w.&&[^0-9]])\\\\(?![\\w.&&[^0-9]]|$)",
                     "name": "keyword.operator.matrix.addrow.stata"
                 },
                 {
@@ -1900,7 +2062,7 @@
             "patterns": [
                 {
                     "comment": "highlight expressions, like [_n], when using subscripts on a variable",
-                    "begin": "(?<=[0-9a-zA-Z_'])(\\[)",
+                    "begin": "(?<=[\\w'])(\\[)",
                     "beginCaptures": {
                         "1": {
                             "name": "punctuation.definition.parameters.begin.stata"
@@ -1912,8 +2074,14 @@
                             "name": "punctuation.definition.parameters.end.stata"
                         }
                     },
-                    "name": "meta.function.stata",
+                    "name": "meta.subscripts.stata",
                     "patterns": [
+                        {
+                            "include": "#macro-local"
+                        },
+                        {
+                            "include": "#macro-global"
+                        },
                         {
                             "include": "#builtin_variables"
                         },
@@ -1930,27 +2098,39 @@
                 }
             ]
         },
-        "reserved_names": {
+        "reserved-names": {
             "patterns": [
                 {
-                    "match": "\\b(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with|[0-9][A-Za-z0-9_]+|[A-Za-z_][A-Za-z0-9_]{32,})\\b",
+                    "match": "\\b(_all|_b|byte|_coef|_cons|double|float|if|in|int|long|_n|_N|_pi|_pred|_rc|_skip|str[0-9]+|strL|using|with)\\b",
                     "name": "invalid.illegal.name.stata"
                 },
                 {
-                    "match": "[^a-zA-Z0-9_'`\\$\\(\\)\\s]",
+                    "match": "[^\\w'`\\$\\(\\)\\s]",
+                    "name": "invalid.illegal.name.stata"
+                },
+                {
+                    "match": "[0-9][\\w]{31,}",
+                    "name": "invalid.illegal.name.stata"
+                },
+                {
+                    "match": "\\w{33,}",
                     "name": "invalid.illegal.name.stata"
                 }
             ]
         },
-        "macro-reserved_names": {
+        "macro-local-identifiers": {
             "patterns": [
                 {
-                    "match": "\\b([A-Za-z_][A-Za-z0-9_]{32,})\\b",
+                    "match": "[^\\w'`\\$\\(\\)\\s]",
                     "name": "invalid.illegal.name.stata"
                 },
                 {
-                    "match": "[^a-zA-Z0-9_'`\\$\\(\\)\\s]",
+                    "match": "\\w{32,}",
                     "name": "invalid.illegal.name.stata"
+                },
+                {
+                    "match": "\\w{1,31}",
+                    "name": "entity.name.type.class.stata"
                 }
             ]
         },
@@ -1984,7 +2164,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2044,7 +2224,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2101,7 +2281,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2150,7 +2330,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2191,7 +2371,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2237,7 +2417,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2259,8 +2439,9 @@
                     "name": "keyword.control.anchor.stata"
                 },
                 {
-                    "match": "\\$(?![a-zA-Z\\{])",
-                    "name": "keyword.control.anchor.stata"
+                    "match": "\\$(?![a-zA-Z_\\{])",
+                    "name": "keyword.control.anchor.stata",
+                    "comment": "matched when not a global, but must be ascii"
                 },
                 {
                     "match": "[\\?\\+\\*]",
@@ -2314,6 +2495,7 @@
                     "include": "#macro-global"
                 },
                 {
+                    "comment": "NOTE: Error if I have .+ No idea why but it works fine it seems with just .",
                     "match": ".",
                     "name": "string.quoted.stata"
                 }
@@ -2400,7 +2582,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2471,7 +2653,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2539,7 +2721,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2588,7 +2770,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2632,7 +2814,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2678,7 +2860,7 @@
                                     "include": "#functions"
                                 },
                                 {
-                                    "match": "[A-Za-z_][A-Za-z0-9_]{0,31}",
+                                    "match": "[\\w&&[^0-9]]\\w{0,31}",
                                     "name": "variable.parameter.function.stata"
                                 },
                                 {
@@ -2703,8 +2885,9 @@
                     "name": "keyword.control.anchor.stata"
                 },
                 {
-                    "match": "\\$(?![a-zA-Z\\{])",
-                    "name": "keyword.control.anchor.stata"
+                    "match": "\\$(?![[\\w&&[^0-9_]][\\w]{0,31}|_[\\w]{1,31}\\{])",
+                    "name": "keyword.control.anchor.stata",
+                    "comment": "matched when not a global"
                 },
                 {
                     "match": "\\\\[1-9][0-9]?",
@@ -2809,6 +2992,7 @@
                     "include": "#macro-global"
                 },
                 {
+                    "comment": "NOTE: Error if I have .+ No idea why but it works fine it seems with just .",
                     "match": ".",
                     "name": "string.quoted.stata"
                 }

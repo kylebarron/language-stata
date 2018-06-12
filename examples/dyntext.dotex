@@ -1,0 +1,92 @@
+<<dd_version: 1>>
+
+\documentclass[12pt]{article}
+\usepackage{graphicsx}
+\begin{document}
+
+\section{Using Stata dynamic tags in a text file with the \texttt{dyntext} command}
+
+Let us consider an example where we study the \texttt{mpg} and \texttt{weight} variables in
+\texttt{auto.dta}. In our examples below, we will first write the commands so that
+they will be displayed in our output text file.  Then, we will write the
+commands so that Stata will process the Stata dynamic tags, displaying the
+results of the Stata commands in the output text file.
+
+We first use the \texttt{sysuse} command to load the dataset and then describe
+the data using the \texttt{describe} command.
+
+<<dd_ignore>>
+<<dd_do>>
+sysuse auto, clear
+describe
+<</dd_do>>
+<</dd_ignore>>
+
+This produces the following Stata results:
+
+<<dd_do>>
+sysuse auto, clear
+describe
+<</dd_do>>
+
+Now, we want to check if \texttt{mpg} is always greater than 0 and less than 100.
+We use the \texttt{assert} command to perform the check.  In this case, we do not
+want to include any output in the output text file, so we use the \texttt{quietly}
+attribute to modify the behavior of the \texttt{dd_do} Stata dynamic tag.
+
+<<dd_ignore>>
+<<dd_do:quietly>>
+assert mpg > 0 & mpg < 100
+<</dd_do>>
+<</dd_ignore>>
+
+<<dd_do:quietly>>
+assert mpg > 0 & mpg < 100
+<</dd_do>>
+
+If the data do not satisfy the conditions, \texttt{dyntext} will fail with an error
+message, which will occur if we run the same \texttt{assert} command in a do-file.
+
+Next, we want to summarize the \texttt{weight} variable:
+
+<<dd_ignore>>
+<<dd_do>>
+summarize weight
+<</dd_do>>
+<</dd_ignore>>
+
+This produces the following in the output text file:
+
+<<dd_do>>
+summarize weight
+<</dd_do>>
+
+We want to use the minimum and maximum values of \texttt{weight} in a sentence.
+Instead of copying and pasting the numbers from the \texttt{summarize} output, we can
+use the \texttt{dd_display} Stata dynamic tag with the \texttt{r(min)} and \texttt{r(max)}
+stored results
+
+<<dd_ignore>>
+The variable weight has minimum value <<dd_display: %4.2f `r(min)'>> and
+has maximum value <<dd_display: %4.2f `r(max)'>>.
+<</dd_ignore>>
+
+which produces the following in the output text file:
+
+> The variable weight has minimum value <<dd_display: %4.2f `r(min)'>>
+and has maximum value <<dd_display: %4.2f `r(max)'>>.
+
+The \texttt{dd_display} dynamic tag uses Stata's \texttt{display} command to evaluate
+expressions.  It can be used as a calculator. For example, if we want to
+include the $range = max - min$ in a sentence, instead of calculating the
+number and then copying and pasting it, we can use
+
+<<dd_ignore>>
+The variable weight has range <<dd_display: %4.2f `r(max)'-`r(min)'>>.
+<</dd_ignore>>
+
+which produces the following in the output text file:
+
+> The variable weight has range <<dd_display: %4.2f `r(max)'-`r(min)'>>.
+
+\end{document}

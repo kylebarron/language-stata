@@ -20,7 +20,7 @@
         "url": "https://github.com/kylebarron/language-stata.git"
     },
     "categories": [
-        "Languages"
+        "Programming Languages"
     ],
     "galleryBanner": {
         "color": "#1d5f6d",
@@ -41,6 +41,35 @@
                     ".mata"
                 ],
                 "configuration": "./language_config.json"
+            },
+            {
+                "id": "stata-dyndoc-latex",
+                "aliases": [
+                    "Stata Dyndoc (LaTeX)"
+                ],
+                "extensions": [
+                    ".dotex"
+                ],
+                "configuration": "./language_config.json"
+            },
+            {
+                "id": "stata-dyndoc-md",
+                "aliases": [
+                    "Stata Dyndoc (Markdown)"
+                ],
+                "extensions": [
+                    ".domd"
+                ],
+                "configuration": "./language_config.json"
+            },
+            {
+                "id": "stata-dyndoc",
+                "aliases": [
+                    "Stata Dyndoc (Base)"
+                ],
+                "extensions": [
+                ],
+                "configuration": "./language_config.json"
             }
         ],
         "grammars": [
@@ -48,6 +77,21 @@
                 "language": "stata",
                 "scopeName": "source.stata",
                 "path": "./grammars/stata.json"
+            },
+            {
+                "language": "stata-dyndoc-latex",
+                "scopeName": "source.dyndoc.latex.stata",
+                "path": "./grammars/stata-dyndoc-latex.json"
+            },
+            {
+                "language": "stata-dyndoc-md",
+                "scopeName": "source.dyndoc.md.stata",
+                "path": "./grammars/stata-dyndoc-md.json"
+            },
+            {
+                "language": "stata-dyndoc",
+                "scopeName": "source.dyndoc.stata",
+                "path": "./grammars/stata-dyndoc.json"
             }
         ]
     }
