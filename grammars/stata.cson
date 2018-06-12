@@ -995,10 +995,17 @@ patterns: [
           }
           {include: '#macro-local'}
           {include: '#macro-global'}
+          {include: '#comments-block'}
           {
-            'match': '[^`\'\\$\\{\\}]+'
-            'name': 'entity.name.type.class.stata'
+            begin: '[^\\w]'
+            end: '\\n|(?=\')'
+            name: 'comment.line.stata'
           }
+          {
+            match: '\\w{1,31}'
+            name: 'entity.name.type.class.stata'
+          }
+
         ]
       }
     ]
@@ -1033,13 +1040,15 @@ patterns: [
         patterns: [
           {include: '#macro-local'}
           {include: '#macro-global'}
+          {include: '#comments-block'}
           {
-            match: '[\\w&&[^0-9_]]\\w{0,31}|_\\w{1,31}'
-            name: 'entity.name.type.class.stata'
+            begin: '[^\\w]'
+            end: '\\n|(?=\})'
+            name: 'comment.line.stata'
           }
           {
-            match: '.'
-            name: 'comment.line.stata'
+            match: '\\w{1,32}'
+            name: 'entity.name.type.class.stata'
           }
         ]
       }
