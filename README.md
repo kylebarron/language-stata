@@ -38,6 +38,7 @@ This package highlights:
 
 Other nice features:
 
+- Works with unicode identifiers. Use unicode anywhere it's legal Stata syntax.
 - Autocomplete for built-in commands and functions, and for your macros as you write them.
 - Alerts you if your variable name is illegal, i.e. if your variable name is more than 32 chars, starts with a number, or is a reserved name.
 - Alerts you if you have any text other than } on a line ending a foreach/forvalues/if/else command

@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.0] - 2018-06-11
+
+- Update for Unicode identifiers. You should be able to use unicode anywhere it's legal now and have it be correctly colored. #84
+- Fix bug with multiple expressions in parentheses. #46
+- Fix comments inside locals, and fix comments inside globals used with `${...}`. #90
+- Color macros better in list extended function. #75
+- Allow macros within subscripts. #74 and #57
+
 ## [1.5.0] - 2018-06-11
 
 - Make comment highlighting stubbornly accurate. See [this Statalist post](https://www.statalist.org/forums/forum/general-stata-discussion/general/1448244-understanding-stata-s-comment-hierarchy) for more information about how Stata highlights in practice, and [go here for an example](examples/comments.md).
