@@ -799,8 +799,29 @@ patterns: [
         name: 'keyword.macro.extendedfcn.stata'
       }
       {
-        match: '\\b(list)\\b'
-        name: 'keyword.macro.extendedfcn.stata'
+        match: '\\b(list)\\s+(uniq|dups|sort|clean|retok(enize|eniz|eni|en|e)?|sizeof)\\s+(\\w{1,32})'
+        captures:
+          1: name: 'keyword.macro.extendedfcn.stata'
+          2: name: 'keyword.macro.extendedfcn.stata'
+          3: name: 'entity.name.type.class.stata'
+      }
+      {
+        match: '\\b(list)\\s+(\\w{1,32})\\s+(\\||&|\\-|===|==|in)\\s+(\\w{1,32})'
+        captures:
+          1: name: 'keyword.macro.extendedfcn.stata'
+          2: name: 'entity.name.type.class.stata'
+          3: name: 'keyword.operator.list.stata'
+          4: name: 'entity.name.type.class.stata'
+      }
+      {
+        match: '\\b(list\\s+posof)\\s+(")(\\w+)(")\\s+(in)\\s+(\\w{1,32})'
+        captures:
+          1: name: 'keyword.macro.extendedfcn.stata'
+          2: name: 'punctuation.definition.string.begin.stata'
+          3: name: 'string.quoted.double.stata'
+          4: name: 'punctuation.definition.string.end.stata'
+          5: name: 'keyword.macro.extendedfcn.stata'
+          6: name: 'entity.name.type.class.stata'
       }
       {
         match: '\\b(rown(ames|ame|am|a)?|coln(ames|ame|am|a)?|rowf(ullnames|ullname|ullnam|ullna|ulln|ull|ul|u)?|colf(ullnames|ullname|ullnam|ullna|ulln|ull|ul|u)?|roweq?|coleq?|rownumb|colnumb|roweqnumb|coleqnumb|rownfreeparms|colnfreeparms|rownlfs|colnlfs|rowsof|colsof|rowvarlist|colvarlist|rowlfnames|collfnames)\\b'
