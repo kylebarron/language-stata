@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.6.1] - 2018-06-11
+
+- Bugfixes for `syntax` command
+
 ## [1.6.0] - 2018-06-11
 
 - Update for Unicode identifiers. You should be able to use unicode anywhere it's legal now and have it be correctly colored. #84

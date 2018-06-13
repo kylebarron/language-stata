@@ -236,6 +236,18 @@ patterns: [
             name: 'comment.block.stata'
           }
           {
+            match: '(\\[)'
+            name: 'punctuation.definition.parameters.begin.stata'
+          }
+          {
+            match: '(\\])'
+            name: 'punctuation.definition.parameters.end.stata'
+          }
+          {
+            match: '\\*'
+            name: 'keyword.operator.options.stata'
+          }
+          {
             comment: 'color options with parentheses'
             begin: '([^\\s\\[\\]]+)(\\()'
             beginCaptures:
