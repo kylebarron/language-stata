@@ -1,6 +1,10 @@
 # Changelog
 
-## [1.6.1] - 2018-06-11
+## [1.6.2] - 2018-06-13
+
+- Bugfixes for defining globals with extended functions
+
+## [1.6.1] - 2018-06-13
 
 - Bugfixes for `syntax` command
 

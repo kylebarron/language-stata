@@ -737,25 +737,40 @@ patterns: [
             beginCaptures:
               0: name: 'keyword.operator.arithmetic.stata'
             end: '(?=\\n)'
-            patterns: [
-              {include: '#macro-extended-functions'}
-            ]
+            patterns: [{include: '#macro-extended-functions'}]
           }
         ]
       }
       {
-        begin: '\\b(gl(obal|oba|ob|o)?)\\s+(?=[\\w`\\$])'
+        begin: '\\b(gl(obal|oba|ob|o)?)\\s+([\\w\'`\\$\\(\\)\\{\\}]+)\\s*(?=:|=)'
         beginCaptures:
           1: name: 'keyword.macro.stata'
-        end: '(\\})|(?=\\"|\\s|\\n|/|,|=)'
+          3:
+            patterns: [
+              {include: '#reserved-names'}
+              {
+                match: '[\\w&&[^0-9_]]\\w{0,31}'
+                name: 'entity.name.type.class.stata'
+              }
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+            ]
+        end: '\\n'
         patterns: [
-          {include: '#reserved-names'}
           {
-            match: '[\\w&&[^0-9_]]\\w{0,31}'
-            name: 'entity.name.type.class.stata'
+            begin: '='
+            beginCaptures:
+              0: name: 'keyword.operator.arithmetic.stata'
+            end: '(?=\\n)'
+            patterns: [{include: '$self'}]
           }
-          {include: '#macro-local'}
-          {include: '#macro-global'}
+          {
+            begin: ':'
+            beginCaptures:
+              0: name: 'keyword.operator.arithmetic.stata'
+            end: '(?=\\n)'
+            patterns: [{include: '#macro-extended-functions'}]
+          }
         ]
       }
       {
@@ -766,6 +781,22 @@ patterns: [
         end: '(?=\\"|\\s|\\n|/|,|=)'
         patterns: [
           {include: '#macro-local-identifiers'}
+          {include: '#macro-local'}
+          {include: '#macro-global'}
+        ]
+      }
+      {
+        begin: '\\b(gl(obal|oba|ob|o)?)\\s+(?=[\\w`\\$])'
+        beginCaptures:
+          1: name: 'keyword.macro.stata'
+          3: name: 'keyword.operator.arithmetic.stata'
+        end: '(?=\\"|\\s|\\n|/|,|=)'
+        patterns: [
+          {include: '#reserved-names'}
+          {
+            match: '[\\w&&[^0-9_]]\\w{0,31}'
+            name: 'entity.name.type.class.stata'
+          }
           {include: '#macro-local'}
           {include: '#macro-global'}
         ]
