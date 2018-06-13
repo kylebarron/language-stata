@@ -1040,9 +1040,17 @@ patterns: [
           {include: '#macro-global'}
           {include: '#comments-block'}
           {
-            begin: '[^\\w]'
+            begin: '[^\\w\\(\\)]'
             end: '\\n|(?=\')'
             name: 'comment.line.stata'
+          }
+          {
+            match: '\\('
+            name: 'punctuation.definition.parameters.begin.stata'
+          }
+          {
+            match: '\\)'
+            name: 'punctuation.definition.parameters.end.stata'
           }
           {
             match: '\\w{1,31}'

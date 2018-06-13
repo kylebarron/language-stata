@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.6.3] - 2018-06-13
+
+- Bug fix for using parentheses inside a local macro. See #90
+
 ## [1.6.2] - 2018-06-13
 
 - Bugfixes for defining globals with extended functions
