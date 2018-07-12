@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.6.4] - upcoming
+
+- Fix `merge` to not discolor everything after it when typing. Fixes #45
+
 ## [1.6.3] - 2018-06-13
 
 - Bug fix for using parentheses inside a local macro. See #90

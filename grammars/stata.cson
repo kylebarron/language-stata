@@ -42,8 +42,8 @@ patterns: [
     match: '^\\s*(sca(lar|la|l)?(\\s+de(fine|fin|fi|f)?)?)\\s+(?!(drop|dir?|l(ist|is|i)?)\\s+)'
   }
   {
-    begin: '\\b(mer(ge|g)?)\\s+(1|m|n)(:)(1|m|n)'
-    beginCaptures:
+    match: '\\b(mer(ge|g)?)\\s+(1|m|n)(:)(1|m|n)\\s*(.+?)\\s*(using)'
+    captures:
       1: name: 'keyword.control.flow.stata'
       3:
         patterns: [
@@ -62,13 +62,13 @@ patterns: [
             name: ''
           }
         ]
-    end: 'using'
-    patterns: [
-      {include: '#builtin_variables'}
-      {include: '#macro-local'}
-      {include: '#macro-global'}
-      {include: '#comments'}
-    ]
+      6:
+        patterns: [
+          {include: '#builtin_variables'}
+          {include: '#macro-local'}
+          {include: '#macro-global'}
+          {include: '#comments'}
+        ]
   }
   {
     match: '\\b(foreach)\\s+((?!in|of).+)\\s+(in|of var(list|lis|li|l)?|of new(list|lis|li|l)?|of num(list|lis|li|l)?)\\b'
