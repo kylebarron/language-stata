@@ -571,7 +571,7 @@ patterns: [
               {include: '#comments'}
               {
                 match: '[^\\n]+'
-                name: 'illegal.invalid.name.stata'
+                name: 'invalid.illegal.name.stata'
               }
             ]
         comment: 'It\'s a complicated regex so that it\'ll alert you if you have text on the same line as the }'
@@ -1274,7 +1274,7 @@ patterns: [
         begin: '`"'
         beginCaptures:
           0: name: 'punctuation.definition.string.begin.stata'
-        end: '"\'|(?=\n)'
+        end: '("\')|(?=\\n)'
         endCaptures:
           0: name: 'punctuation.definition.string.end.stata'
         name: 'string.quoted.double.compound.stata'
@@ -1284,12 +1284,7 @@ patterns: [
             name: 'string.quoted.double.compound.stata'
             comment: 'This must come before #string-regular and #string-compound to accurately color `"""\' in strings'
           }
-          {
-            match: '```(?=[^\']*")'
-            name: 'meta.markdown.code.block.stata'
-            comment: 'color "```" as regular text, allowing for words after ```'
-            comment: 'see https://github.com/kylebarron/language-stata/issues/53'
-          }
+          {include: '#literal-backtick-in-string'}
           {include: '#string-regular'}
           {include: '#string-compound'}
           {include: '#macro-local-escaped'}
@@ -1305,23 +1300,42 @@ patterns: [
         begin: '(?<!`)"'
         beginCaptures:
           0: name: 'punctuation.definition.string.begin.stata'
-        end: '(")(\')?|(?=\n)'
+        end: '(")(\')?|(?=\\n)'
         endCaptures:
           1: name: 'punctuation.definition.string.end.stata'
           2: name: 'invalid.illegal.punctuation.stata'
         name: 'string.quoted.double.stata'
         patterns: [
-          {
-            match: '```(?=[^\']*")'
-            name: 'meta.markdown.code.block.stata'
-            comment: 'color "```" as regular text, allowing for words after ```'
-            comment: 'see https://github.com/kylebarron/language-stata/issues/53'
-          }
+          {include: '#literal-backtick-in-string'}
           {include: '#macro-local-escaped'}
           {include: '#macro-global-escaped'}
           {include: '#macro-local'}
           {include: '#macro-global'}
         ]
+      }
+    ]
+  'literal-backtick-in-string':
+    patterns: [
+      {
+        match: '```(?=[^\']*")'
+        name: 'meta.markdown.code.block.stata'
+        comment: 'color "```" as regular text, allowing for words after ```'
+        comment: 'see https://github.com/kylebarron/language-stata/issues/53'
+      }
+      {
+        # match: '(?<!`)(`+)(?=\\s)(.+?)(\\s)(\\1)(?!`)'
+        match: '(?<!`)(`{2,})(.+?)(\\1)(?!`)'
+        name: 'code.raw.markup.allow_macro_embed.stata'
+        captures:
+          2:
+            patterns: [
+              {include: '#macro-local'}
+              {include: '#macro-global'}
+            ]
+      }
+      {
+        match: '(?<!`)(`+)(?!`)[^\']+?(?<!`)(\\1)(?!`)'
+        name: 'code.raw.markup.stata'
       }
     ]
   'subscripts':

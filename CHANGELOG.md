@@ -4,6 +4,8 @@
 
 - Fix `merge` to not discolor everything after it when typing. Fixes #45
 - Update snippets. Change `forv` to `forvalues`; `fore` to `foreach`. Change tabs to spaces.
+- Fix global macro errors within strings; See #91.
+- Attempt to color literal backticks better within strings.
 
 ## [1.6.3] - 2018-06-13
 
