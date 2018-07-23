@@ -1063,12 +1063,26 @@ patterns: [
   'macro-global-escaped':
     patterns: [
       {
-        begin: '(\\\\\\$)(\\\\\\{)?'
+        begin: '\\\\\\$\\{'
         beginCaptures:
           0: name: 'punctuation.definition.string.begin.stata'
-        end: '(\\\\\\})|(?=\\"|\\s|\\n|/|,)'
+        end: '\\}'
         endCaptures:
-          1: name: 'punctuation.definition.string.end.stata'
+          0: name: 'punctuation.definition.string.end.stata'
+        patterns: [
+          {include: '#macro-local'}
+          {include: '#macro-global'}
+          {
+            match: '[\\w&&[^0-9_]]\\w{0,31}|_\\w{1,31}'
+            name: 'entity.name.type.class.stata'
+          }
+        ]
+      }
+      {
+        begin: '(\\\\\\$)(?=[\\w&&[^0-9]])'
+        beginCaptures:
+          1: name: 'punctuation.definition.string.begin.stata'
+        end: '(?!\\w)'
         patterns: [
           {include: '#macro-local'}
           {include: '#macro-global'}
@@ -1082,7 +1096,7 @@ patterns: [
   'macro-global':
     patterns: [
       {
-        begin: '(\\$)(\\{)'
+        begin: '\\$\\{'
         beginCaptures:
           0: name: 'punctuation.definition.string.begin.stata'
         end: '\\}'
@@ -1104,12 +1118,10 @@ patterns: [
         ]
       }
       {
-        begin: '\\$'
+        begin: '\\$(?=[\\w&&[^0-9]])'
         beginCaptures:
           0: name: 'punctuation.definition.string.begin.stata'
         end: '(?!\\w)'
-        endCaptures:
-          1: name: 'punctuation.definition.string.end.stata'
         patterns: [
           {include: '#macro-local'}
           {include: '#macro-global'}
