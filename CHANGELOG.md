@@ -3,6 +3,7 @@
 ## [1.6.4] - upcoming
 
 - Fix `merge` to not discolor everything after it when typing. Fixes #45
+- Update snippets. Change `forv` to `forvalues`; `fore` to `foreach`. Change tabs to spaces.
 
 ## [1.6.3] - 2018-06-13
 
