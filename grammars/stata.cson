@@ -1232,6 +1232,10 @@ patterns: [
         name: 'keyword.operator.logical.stata'
       }
       {
+        comment: 'This is so that << and >> in <</dd_do>> aren\'t matched by < and >'
+        match: '(?=<<)|(?=>>)'
+      }
+      {
         match: '(?:<=|>=|:=|==|!=|~=|<|>|=|!!|!)' # !! is for xshell
         name: 'keyword.operator.comparison.stata'
       }
