@@ -10,6 +10,7 @@
     commentStart: '% '
 '.source.stata':
   'editor':
+    'foldEndPattern': '^\\s*(\\)|\\}|end)'
     'decreaseIndentPattern': '^\\s*\\}|^\\s*\\)'
   "bracket-matcher":
     autocompleteCharacters: [
