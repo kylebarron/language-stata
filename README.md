@@ -14,14 +14,9 @@
 
 ## News
 
-- Support added for [Dynamic Documents](#dynamic-documents)
-- The [stata-exec](https://atom.io/packages/stata-exec) package has been updated and now makes it extremely easy to run code line-by-line in Stata on Windows, macOS, and Linux.
+Use the new [Stata Jupyter Kernel](https://kylebarron.github.io/stata_kernel/) with Atom's [Hydrogen package](https://atom.io/packages/Hydrogen) to show Stata results inline. It works with Windows, macOS, and Linux. Example gif uses the [Atom Material Syntax](https://github.com/atom-material/atom-material-syntax) theme and [Fira Code](https://github.com/tonsky/FiraCode) font.
 
-Also [available for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=kylebarron.stata-enhanced).
-
-<img src="./img/stata.png" alt="stata" style="width: 500px;"/>
-
-Code snippet (mostly) from [Gtools](https://github.com/mcaceresb/stata-gtools), a faster implementation of Stata's collapse and egen using C plugins. Shown with the [Atom Material Syntax](https://github.com/atom-material/atom-material-syntax) theme and [Fira Code](https://github.com/tonsky/FiraCode) font.
+![](./img/stata_kernel_example.gif)
 
 ## Features
 

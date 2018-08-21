@@ -2,6 +2,7 @@
 
 ## [1.6.4] - upcoming
 
+- Fix `foldEndPattern` in the settings to work better with Hydrogen
 - Fix `merge` to not discolor everything after it when typing. Fixes #45
 - Update snippets. Change `forv` to `forvalues`; `fore` to `foreach`. Change tabs to spaces.
 - Fix global macro errors within strings; See #91.
