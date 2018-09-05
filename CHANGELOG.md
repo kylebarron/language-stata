@@ -1,6 +1,13 @@
 # Changelog
 
-## [1.6.4] - upcoming
+## [1.6.5] - 2018-09-05
+
+- Color names after `args` as locals. Fixes #96
+- Switch to `// ` as default comment character with note in README of how to change the comment character
+- Color nested functions correctly. Fixes #97
+- More info in README about running code in Stata
+
+## [1.6.4] - 2018-08-21
 
 - Fix `foldEndPattern` in the settings to work better with Hydrogen
 - Fix `merge` to not discolor everything after it when typing. Fixes #45

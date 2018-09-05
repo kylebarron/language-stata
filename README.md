@@ -9,12 +9,13 @@
 - [News](#news)
 - [Features](#features)
 - [Installation](#installation)
-- [Dynamic Documents](#dynamic-documents)
+- [Configuration](#configuration)
 - [Running Code](#running-code)
+- [Dynamic Documents](#dynamic-documents)
 
 ## News
 
-Use the new [Stata Jupyter Kernel](https://kylebarron.github.io/stata_kernel/) with Atom's [Hydrogen package](https://atom.io/packages/Hydrogen) to show Stata results inline. It works with Windows, macOS, and Linux. Example gif uses the [Atom Material Syntax](https://github.com/atom-material/atom-material-syntax) theme and [Fira Code](https://github.com/tonsky/FiraCode) font.
+Use the new [Stata Jupyter kernel](https://kylebarron.github.io/stata_kernel/) with Atom's [Hydrogen package](https://atom.io/packages/Hydrogen) to show Stata results inline. It works with Windows, macOS, and Linux. Example gif uses the [Atom Material Syntax](https://github.com/atom-material/atom-material-syntax) theme and [Fira Code](https://github.com/tonsky/FiraCode) font.
 
 ![](./img/stata_kernel_example.gif)
 
@@ -75,6 +76,23 @@ To change to `*` comments, use the following. However I don't recommend using th
 
 Note that in your `config.cson` file there can only be a single `'.source.stata'` top-level key, and only a single `editor` key under `'.source.stata'`. If you customize some other settings within the Stata grammar, you might already have a `'.source.stata'` key, and thus you would add the `commentStart` key to it.
 
+## Running Code
+
+There are three ways to run code in Stata from Atom
+
+1. The [Hydrogen](https://atom.io/packages/Hydrogen) package in conjunction with the new [Stata Jupyter kernel](https://kylebarron.github.io/stata_kernel/) shows Stata results inside Atom next to your code. The gif at the top of the page is an example of this setup. A few features:
+
+    - Works with Windows, macOS, and Linux. Has an easier install on Windows than `stata-exec`.
+    - Use a different session of Stata for each file, or connect them all to the same session.
+    - Autocompletions as you type based on the variables and macros in memory
+    - Use any type of comments in your code
+    - Low-latency connections with remote sessions of Stata. Possible to reconnect to a running remote session if you get disconnected.
+    - Use `#delimit ;` interactively with your code
+
+2. The [`stata-exec`](https://atom.io/packages/stata-exec) package sends selected Stata code to an open Stata GUI window on Windows, macOS, and Linux. This differs from Hydrogen because it allows you to still interact with the Stata GUI. This might be easier for users who are new to Stata. However, it can be difficult to successfully install this on Windows.
+3. The [script](https://atom.io/packages/script) package will run code in the Stata console, but has the limitations 1) each command is run in a separate session of Stata, 2) it currently doesn't work with selections; you have to run the entire file, 3) it doesn't work on Windows.
+
+
 ## Dynamic Documents
 
 ![](img/dyntext_domd.png)
@@ -107,10 +125,6 @@ pandoc dyntext.md -o dyntext.pdf
 on the command line using [Pandoc](https://pandoc.org/).
 
 The file [`dyntext.dotex`](examples/dyntext.dotex) is a proof-of-concept and should compile with LaTeX but the output is not shown here.
-
-## Running Code
-
-The [`stata-exec`](https://atom.io/packages/stata-exec) package has functionality to run Stata code on Windows, macOS, and Linux.
 
 #### Footnotes
 
