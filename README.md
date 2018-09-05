@@ -52,6 +52,29 @@ To install, do one of the following:
 
 The local macro back tick autocompletion won't function until you fully restart Atom. Do `ctrl-shift-P` or `cmd-shift-P` to bring up the command palette, type `Window: Reload`, and click enter.
 
+## Configuration
+
+Atom allows you to toggle whether a line is commented using <kbd>ctrl</kbd>+<kbd>/</kbd>. As of version 1.6.5, the comment character this uses is `// ` by default. You can change this to use `/* */` or `*` characters to comment lines.
+
+To change to `/* */` comments, you can put the following in your [`config.cson`](https://flight-manual.atom.io/using-atom/sections/basic-customization/) file.
+
+```cson
+'.source.stata':
+  editor:
+    commentStart: '/* '
+    commentEnd: ' */'
+```
+
+To change to `*` comments, use the following. However I don't recommend using this character<sup>[1](#myfootnote1)</sup>.
+
+```cson
+'.source.stata':
+  editor:
+    commentStart: '* '
+```
+
+Note that in your `config.cson` file there can only be a single `'.source.stata'` top-level key, and only a single `editor` key under `'.source.stata'`. If you customize some other settings within the Stata grammar, you might already have a `'.source.stata'` key, and thus you would add the `commentStart` key to it.
+
 ## Dynamic Documents
 
 ![](img/dyntext_domd.png)
@@ -87,5 +110,13 @@ The file [`dyntext.dotex`](examples/dyntext.dotex) is a proof-of-concept and sho
 
 ## Running Code
 
-The [`stata-exec`](https://atom.io/packages/stata-exec) package has functionality to run Stata code on Window, macOS, and Linux.
+The [`stata-exec`](https://atom.io/packages/stata-exec) package has functionality to run Stata code on Windows, macOS, and Linux.
 
+#### Footnotes
+
+<a name="myfootnote1">1</a>: The following code is legal Stata code, but Atom will confuse the `*` used as multiplication with the `*` used for a comment. So if your cursor is on the second line and you press <kbd>ctrl</kbd>+<kbd>/</kbd>, Atom will remove the `*` symbol and the semantic meaning of the multiplication will be lost. Thus using `// ` as the comment symbol is safer.
+
+```stata
+display 2 ///
+  * 2
+```

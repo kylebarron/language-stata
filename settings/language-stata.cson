@@ -12,6 +12,7 @@
   'editor':
     'foldEndPattern': '^\\s*(\\)|\\}|end)'
     'decreaseIndentPattern': '^\\s*\\}|^\\s*\\)'
+    commentStart: '// '
   "bracket-matcher":
     autocompleteCharacters: [
       "()"
