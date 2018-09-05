@@ -482,10 +482,6 @@ patterns: [
           1: name: 'punctuation.definition.parameters.end.stata'
         patterns: [
           {
-            match: '[\\w&&[^0-9]]\\w{0,31}'
-            name: 'variable.parameter.function.stata'
-          }
-          {
             begin: '\\('
             end: '\\)'
             beginCaptures:
@@ -527,6 +523,10 @@ patterns: [
           {include: '#builtin_variables'}
           {include: '#macro-commands'}
           {include: '#braces-without-error'}
+          {
+            match: '[\\w&&[^0-9]]\\w{0,31}'
+            name: 'variable.parameter.function.stata'
+          }
         ]
       }
     ]
