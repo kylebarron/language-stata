@@ -1352,7 +1352,7 @@ patterns: [
   'subscripts':
     patterns: [
       {
-        comment: 'highlight expressions, like [_n], when using subscripts on a variable'
+        comment: 'highlight expressions, like [_n], when using subscripts on a variable or matrix'
         begin: '(?<=[\\w\'])(\\[)'
         beginCaptures:
           1: name: 'punctuation.definition.parameters.begin.stata'
@@ -1361,12 +1361,20 @@ patterns: [
           1: name: 'punctuation.definition.parameters.end.stata'
         name: 'meta.subscripts.stata'
         patterns: [
+          {
+            match: '\\b(\\d*)(\\.\\.\\.|\\.\\.)'
+            captures:
+              1: name: 'constant.numeric.integer.decimal.stata'
+              2: name: 'constant.language.matrix_row.stata'
+          }
           {include: '#macro-local'}
           {include: '#macro-global'}
           {include: '#builtin_variables'}
           {include: '#operators'}
           {include: '#constants'}
           {include: '#functions'}
+          {include: '#string-compound'}
+          {include: '#string-regular'}
         ]
       }
     ]
