@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.7.0] - 2018-09-13
+
+- Add enhanced autocomplete with help menus for functions.
+
 ## [1.6.5] - 2018-09-05
 
 - Color names after `args` as locals. Fixes #96

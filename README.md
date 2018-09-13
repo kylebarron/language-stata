@@ -35,7 +35,8 @@ This package highlights:
 Other nice features:
 
 - Works with unicode identifiers. Use unicode anywhere it's legal Stata syntax.
-- Autocomplete for built-in commands and functions, and for your macros as you write them.
+- Autocomplete for functions with a drop-down help menu. (This can be turned off in the settings).
+- Autocomplete for commands and macros.
 - Alerts you if your variable name is illegal, i.e. if your variable name is more than 32 chars, starts with a number, or is a reserved name.
 - Alerts you if you have any text other than } on a line ending a foreach/forvalues/if/else command
 - Local macro back tick autocompletion. When you write a `, Atom automatically fills in a ' after your cursor
