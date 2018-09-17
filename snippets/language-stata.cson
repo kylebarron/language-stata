@@ -96,7 +96,7 @@
     'body':
       """<<dd_version: ${1:1}>>
       """
-
+'.source.webdoc.stata':
   'Webdoc Enclose':
     'prefix': 'wdenc'
     'body': """
@@ -104,7 +104,6 @@
       $1
       ***/
     """
-    
   'Webdoc Separate':
     'prefix': 'wdsep'
     'body': """
@@ -112,7 +111,6 @@
       $1
       /***
     """
-    
   'Webdoc Stlog cmdstrip':
     'prefix': 'wdstlcmdstrip'
     'body': """
@@ -120,7 +118,6 @@
       $1
       webdoc stlog close
     """
-    
   'Webdoc Stlog':
     'prefix': 'wdstlog'
     'body': """
@@ -128,8 +125,6 @@
       $1
       webdoc stlog close
     """
-    
   'Webdoc Graph SVG':
     'prefix': 'wdgraphsvg'
     'body': 'webdoc graph, as(svg)'	  
-

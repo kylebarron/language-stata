@@ -1,10 +1,8 @@
 'scopeName': 'source.webdoc.stata'
 'name': 'Stata Webdoc'
 'fileTypes': [
-  'do'
   'dowd'
 ]
-'firstLineMatch': 'webdoc init'
 'patterns': [
   {
     'begin': '(/\\*\\*\\*)(\\s)'
