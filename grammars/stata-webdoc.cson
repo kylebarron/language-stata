@@ -16,7 +16,7 @@
     'name': 'meta.tag.block.$2.html'
     'patterns': [
       {
-        'include': 'text.html.basic'
+        'include': 'text.md'
       }
     ]
   }
