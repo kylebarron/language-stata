@@ -1,0 +1,30 @@
+'scopeName': 'source.webdoc.stata'
+'name': 'Stata Webdoc'
+'fileTypes': [
+  'dowd'
+]
+'patterns': [
+  {
+    'begin': '(/\\*\\*\\*)(\\s)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.definition.comment.webdoc.stata'
+    'end': '(^|\\s)(\\*\\*\\*/)'
+    'endCaptures':
+      '2':
+        'name': 'punctuation.definition.comment.webdoc.stata'
+    'name': 'meta.tag.block.$2.html'
+    'patterns': [
+      {
+        'include': 'text.md'
+      }
+    ]
+  }
+  {
+    'match': 'webdoc|stlog'
+    'name': 'support.function.custom.stata'
+  }
+  {
+    'include': 'source.stata'
+  }
+]

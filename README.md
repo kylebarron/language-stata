@@ -127,6 +127,14 @@ on the command line using [Pandoc](https://pandoc.org/).
 
 The file [`dyntext.dotex`](examples/dyntext.dotex) is a proof-of-concept and should compile with LaTeX but the output is not shown here.
 
+### Webdoc support
+
+If you use the user-created command
+[webdoc](http://repec.sowi.unibe.ch/stata/webdoc/getting-started.html), you can
+add highlighting by using a `.dowd` file extension or by manually selecting the
+language of the current file to be "Stata Webdoc".
+
+
 #### Footnotes
 
 <a name="myfootnote1">1</a>: The following code is legal Stata code, but Atom will confuse the `*` used as multiplication with the `*` used for a comment. So if your cursor is on the second line and you press <kbd>ctrl</kbd>+<kbd>/</kbd>, Atom will remove the `*` symbol and the semantic meaning of the multiplication will be lost. Thus using `// ` as the comment symbol is safer.
