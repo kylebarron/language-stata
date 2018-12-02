@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.7.1] - 2018-12-02
+
+- Change language name of Stata Dyndoc Markdown and Stata Dyndoc LaTeX so that they'll work out of the box with Hydrogen.
+
 ## [1.7.0] - 2018-09-13
 
 - Add enhanced autocomplete with help menus for functions.

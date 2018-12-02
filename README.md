@@ -90,6 +90,10 @@ There are three ways to run code in Stata from Atom
     - Low-latency connections with remote sessions of Stata. Possible to reconnect to a running remote session if you get disconnected.
     - Use `#delimit ;` interactively with your code
 
+    As of the next release of Hydrogen (>2.6.0), you'll also be able to run code
+    blocks within a Stata [dynamic document](#dynamic-documents) using the Stata
+    Jupyter kernel.
+
 2. The [`stata-exec`](https://atom.io/packages/stata-exec) package sends selected Stata code to an open Stata GUI window on Windows, macOS, and Linux. This differs from Hydrogen because it allows you to still interact with the Stata GUI. This might be easier for users who are new to Stata. However, it can be difficult to successfully install this on Windows.
 3. The [script](https://atom.io/packages/script) package will run code in the Stata console, but has the limitations 1) each command is run in a separate session of Stata, 2) it currently doesn't work with selections; you have to run the entire file, 3) it doesn't work on Windows.
 
