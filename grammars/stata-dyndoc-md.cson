@@ -1,5 +1,6 @@
+# The `name` is set so that Hydrogen will work in it by default
 'scopeName': 'source.dyndoc.md.stata'
-'name': 'Stata Dyndoc (Markdown)'
+'name': 'Stata'
 'fileTypes': [
   'domd'
 ]
