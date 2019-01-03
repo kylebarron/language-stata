@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fix mata comments. #102
+
 ## [1.7.1] - 2018-12-02
 
 - Change language name of Stata Dyndoc Markdown and Stata Dyndoc LaTeX so that they'll work out of the box with Hydrogen.

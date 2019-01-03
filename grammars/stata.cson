@@ -420,6 +420,9 @@ patterns: [
     end: '^\\s*end\\s*$\\n?'
     name: 'meta.embedded.block.mata'
     patterns: [
+      {include: '#comments-double-slash'}
+      {include: '#comments-block'}
+      {include: '#comments-triple-slash'}
       {
         match: '(?<![^$\\s])(version|pragma|if|else|for|while|do|break|continue|goto|return)(?=\\s)'
         name: 'keyword.control.mata'
