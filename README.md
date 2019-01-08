@@ -15,9 +15,10 @@
 
 ## News
 
-Use the new [Stata Jupyter kernel](https://kylebarron.github.io/stata_kernel/) with Atom's [Hydrogen package](https://atom.io/packages/Hydrogen) to show Stata results inline. It works with Windows, macOS, and Linux. Example gif uses the [Atom Material Syntax](https://github.com/atom-material/atom-material-syntax) theme and [Fira Code](https://github.com/tonsky/FiraCode) font.
+Use the [Stata Jupyter kernel](https://kylebarron.github.io/stata_kernel/) with Atom's [Hydrogen package](https://atom.io/packages/Hydrogen) to show Stata results inline. It works with Windows, macOS, and Linux.
 
 ![](./img/stata_kernel_example.gif)
+Example uses the [Atom Material Syntax](https://github.com/atom-material/atom-material-syntax) theme and [Fira Code](https://github.com/tonsky/FiraCode) font.
 
 ## Features
 
@@ -81,7 +82,7 @@ Note that in your `config.cson` file there can only be a single `'.source.stata'
 
 There are three ways to run code in Stata from Atom
 
-1. The [Hydrogen](https://atom.io/packages/Hydrogen) package in conjunction with the new [Stata Jupyter kernel](https://kylebarron.github.io/stata_kernel/) shows Stata results inside Atom next to your code. The gif at the top of the page is an example of this setup. A few features:
+1. The [Hydrogen](https://atom.io/packages/Hydrogen) package in conjunction with the [Stata Jupyter kernel](https://kylebarron.github.io/stata_kernel/) shows Stata results inside Atom next to your code. The gif at the top of the page is an example of this setup. A few features:
 
     - Works with Windows, macOS, and Linux. Has an easier install on Windows than `stata-exec`.
     - Use a different session of Stata for each file, or connect them all to the same session.
@@ -89,10 +90,12 @@ There are three ways to run code in Stata from Atom
     - Use any type of comments in your code
     - Low-latency connections with remote sessions of Stata. Possible to reconnect to a running remote session if you get disconnected.
     - Use `#delimit ;` interactively with your code
+    - Run code blocks within a Stata [dynamic document](#dynamic-documents)
 
-    As of the next release of Hydrogen (>2.6.0), you'll also be able to run code
-    blocks within a Stata [dynamic document](#dynamic-documents) using the Stata
-    Jupyter kernel.
+    You'll need to have both Hydrogen and `stata_kernel` installed. You can
+    install Hydrogen from the Atom settings pane; see the [`stata_kernel`
+    documentation](https://kylebarron.github.io/stata_kernel/) for more
+    information on how to install `stata_kernel`.
 
 2. The [`stata-exec`](https://atom.io/packages/stata-exec) package sends selected Stata code to an open Stata GUI window on Windows, macOS, and Linux. This differs from Hydrogen because it allows you to still interact with the Stata GUI. This might be easier for users who are new to Stata. However, it can be difficult to successfully install this on Windows.
 3. The [script](https://atom.io/packages/script) package will run code in the Stata console, but has the limitations 1) each command is run in a separate session of Stata, 2) it currently doesn't work with selections; you have to run the entire file, 3) it doesn't work on Windows.
@@ -106,11 +109,17 @@ Stata 15 brought new features for working with dynamic documents. The [`dyndoc`]
 
 It also added the [`dyntext`](https://www.stata.com/help.cgi?dyntext) command, which fills in Stata output for any text file, without touching the text itself. This lets you then use third-party document generators like [Pandoc](https://pandoc.org/) and [LaTeX](https://www.latex-project.org/) to generate documents.
 
-This package now provides syntax highlighting for Stata code written inside Stata's [dynamic tags](https://www.stata.com/help.cgi?dynamic+tags) for Markdown and LaTeX documents.
+### Syntax Highlighting
+
+This package provides syntax highlighting for Stata code written inside Stata's [dynamic tags](https://www.stata.com/help.cgi?dynamic+tags) for Markdown and LaTeX documents.
 
 By default, this package's Markdown and LaTeX syntax highlighting will be applied for files ending in `.domd` and `.dotex` respectively. **The [language-markdown](https://atom.io/packages/language-markdown) and [language-latex](https://atom.io/packages/language-latex) packages must be installed for the highlighting to work.**
 
-If you name your file with a different extension, you can manually set the highlighting by clicking on the "Plain Text" button on the bottom right of the screen (or by pressing <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>L</kbd>) and then selecting `Stata Dyndoc (Markdown)` or `Stata Dyndoc (LaTeX)` from the drop-down menu.
+If you name your file with a different extension, you can manually set the highlighting by clicking on the "Plain Text" button on the bottom right of the screen (or by pressing <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>L</kbd>). Then type `stata` and you'll see a list of choices:
+![grammar-picker](img/grammar-picker.png)
+For a `.do` file, choose `source.stata`; for a Markdown dynamic document choose `source.dyndoc.md.stata`; and for a LaTeX dynamic document choose `source.dyndoc.latex.stata`.
+
+Both Hydrogen and `stata-exec` should work for running code interactively, even within a dynamic document.
 
 ### Examples
 
