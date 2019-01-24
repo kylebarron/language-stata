@@ -197,6 +197,7 @@ patterns: [
             end: '\\n'
             name: 'comment.block.stata'
           }
+          {include: '#comments'}
           {
             match: '\\['
             name: 'punctuation.definition.parameters.begin.stata'
@@ -242,6 +243,7 @@ patterns: [
             end: '\\n'
             name: 'comment.block.stata'
           }
+          {include: '#comments'}
           {
             match: '(\\[)'
             name: 'punctuation.definition.parameters.begin.stata'
