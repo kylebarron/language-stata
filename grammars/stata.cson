@@ -179,7 +179,10 @@ patterns: [
     beginCaptures:
       1: name: 'keyword.functions.args.stata'
     end: '\\n'
-    patterns: [{include: '#macro-local-identifiers'}]
+    patterns: [
+        {include: '#comments'}
+        {include: '#macro-local-identifiers'}
+    ]
   }
   {
     begin: '(?=syntax)'

@@ -1,6 +1,10 @@
 # Changelog
 
-## [1.7.2]
+## [1.7.4] - 2019-02-13
+
+- Fix comments in `args` #107
+
+## [1.7.3] - 2019-02-13
 
 - Fix for loop comments #106
 - Fix mata comments. #102
