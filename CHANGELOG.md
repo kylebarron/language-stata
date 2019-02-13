@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## [1.7.2]
 
+- Fix for loop comments #106
 - Fix mata comments. #102
 
 ## [1.7.1] - 2018-12-02
