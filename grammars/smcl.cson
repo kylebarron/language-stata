@@ -1,0 +1,52 @@
+'scopeName': 'source.smcl'
+'name': 'SMCL'
+'fileTypes': [
+  'smcl'
+]
+# 'firstLineMatch': '\\{smcl\\}'
+'patterns': [
+  {
+    'begin': '\\{stata `"'
+    'end': '"\'\\}'
+    'patterns': [
+      {
+        'include': 'source.stata'
+      }
+    ]
+  }
+  {
+    'begin': '\\{stata'
+    'end': '\\}'
+    'patterns': [
+      {
+        'include': 'source.stata'
+      }
+    ]
+  }
+  {
+    'begin': '\\{bf:'
+    'end': '\\}'
+    'name': 'strong.emphasis.bold.markup.smcl'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  }
+  {
+    'begin': '\\{it:'
+    'end': '\\}'
+    'name': 'emphasis.italic.markup.smcl'
+    'patterns': [
+      {
+        'include': '$self'
+      }
+    ]
+  }
+]
+# 'repository':
+  # 'functions':
+  #   'patterns': [
+  #
+  #   ]
+# {pstd}{bf:{stata `"display "Hello world!""'}}{p_end}
