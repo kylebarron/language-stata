@@ -588,7 +588,7 @@ patterns: [
             ]
         comment: 'It\'s a complicated regex so that it\'ll alert you if you have text on the same line as the }'
         comment: 'correct with nothing else on the line but whitespace; before and after; before; after; correct'
-        end: '^\\s*(\\})\\s*$|^\\s*([^\\*"\\}]+)\\s+(\\})\\s*([^\\*"\\}/\\n]+)|^\\s*([^"\\*\\}]+)\\s+(\\})|\\s*(\\})\\s*([^"\\*\\}/\\n]+)|(\\})$'
+        end: '^\\s*(\\})\\s*$|^\\s*([^\\*"\\}/]+)\\s+(\\})\\s*([^\\*"\\}/\\n]+)|^\\s*([^"\\*\\}/]+)\\s+(\\})|\\s*(\\})\\s*([^"\\*\\}/\\n]+)|(\\})$'
         endCaptures:
           1: name: 'keyword.control.block.end.stata'
           2: name: 'invalid.illegal.name.stata'
