@@ -71,7 +71,7 @@ patterns: [
         ]
   }
   {
-    match: '\\b(foreach)\\s+((?!in |of ).+)\\s+(in|of var(list|lis|li|l)?|of new(list|lis|li|l)?|of num(list|lis|li|l)?)\\b'
+    match: '\\b(foreach)\\s+(.+)\\s+(in|of var(list|lis|li|l)?|of new(list|lis|li|l)?|of num(list|lis|li|l)?)\\b'
     captures:
       1: name: 'keyword.control.flow.stata'
       2:
