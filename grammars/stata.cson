@@ -454,7 +454,17 @@ patterns: [
       }
       {include: '$self'}
     ]
-  }
+  },
+  {
+    "begin": "^\\s*python:?\\s*$",
+    "end": "^\\s*end\\s*$\\n?",
+    "name": "source.python",
+    "patterns":[
+        {
+            "include": "source.python"
+        }
+    ]
+  }, 
   {
     begin: '\\b(odbc)\\b'
     beginCaptures:
